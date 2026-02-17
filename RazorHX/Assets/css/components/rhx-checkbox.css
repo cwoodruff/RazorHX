@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════
+   rhx-checkbox — Custom checkbox component
+   ═══════════════════════════════════════════════ */
+
+/* ── Screen-reader-only utility ── */
+.rhx-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── Block ── */
+.rhx-checkbox {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--rhx-space-xs);
+}
+
+/* ── Label wrapper (clickable row) ── */
+.rhx-checkbox__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+    cursor: pointer;
+    user-select: none;
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+    line-height: var(--rhx-leading-normal);
+}
+
+/* ── Custom visual control ── */
+.rhx-checkbox__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    border: 2px solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-sm);
+    background: var(--rhx-color-surface);
+    color: white;
+    transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+/* ── Check and dash icons (hidden by default) ── */
+.rhx-checkbox__check,
+.rhx-checkbox__dash {
+    display: none;
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+/* ── Checked state (via CSS sibling combinator) ── */
+.rhx-checkbox__native:checked ~ .rhx-checkbox__control {
+    background: var(--rhx-color-brand-500);
+    border-color: var(--rhx-color-brand-500);
+}
+
+.rhx-checkbox__native:checked ~ .rhx-checkbox__control .rhx-checkbox__check {
+    display: block;
+}
+
+/* ── Indeterminate state ── */
+[data-rhx-indeterminate] .rhx-checkbox__control {
+    background: var(--rhx-color-brand-500);
+    border-color: var(--rhx-color-brand-500);
+}
+
+[data-rhx-indeterminate] .rhx-checkbox__dash {
+    display: block;
+}
+
+[data-rhx-indeterminate] .rhx-checkbox__check {
+    display: none;
+}
+
+/* ── Focus ring ── */
+.rhx-checkbox__native:focus-visible ~ .rhx-checkbox__control {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+}
+
+/* ── Hover ── */
+.rhx-checkbox__label:hover .rhx-checkbox__control {
+    border-color: var(--rhx-color-brand-400);
+}
+
+.rhx-checkbox__native:checked ~ .rhx-checkbox__control:hover,
+.rhx-checkbox__label:hover .rhx-checkbox__native:checked ~ .rhx-checkbox__control {
+    background: var(--rhx-color-brand-600);
+    border-color: var(--rhx-color-brand-600);
+}
+
+/* ── Label text ── */
+.rhx-checkbox__text {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+}
+
+/* ── Hint ── */
+.rhx-checkbox__hint {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-text-muted);
+    padding-left: calc(1.25rem + var(--rhx-space-sm));
+}
+
+/* ── Error ── */
+.rhx-checkbox__error {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-danger-500);
+    padding-left: calc(1.25rem + var(--rhx-space-sm));
+}
+
+/* ── Disabled ── */
+.rhx-checkbox--disabled {
+    opacity: 0.5;
+}
+
+.rhx-checkbox--disabled .rhx-checkbox__label {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Error modifier ── */
+.rhx-checkbox--error .rhx-checkbox__control {
+    border-color: var(--rhx-color-danger-500);
+}
+
+/* ── Size: small ── */
+.rhx-checkbox--small .rhx-checkbox__control {
+    width: 1rem;
+    height: 1rem;
+}
+
+.rhx-checkbox--small .rhx-checkbox__check,
+.rhx-checkbox--small .rhx-checkbox__dash {
+    width: 0.625rem;
+    height: 0.625rem;
+}
+
+.rhx-checkbox--small .rhx-checkbox__text {
+    font-size: var(--rhx-font-size-xs);
+}
+
+.rhx-checkbox--small .rhx-checkbox__hint,
+.rhx-checkbox--small .rhx-checkbox__error {
+    padding-left: calc(1rem + var(--rhx-space-sm));
+}
+
+/* ── Size: large ── */
+.rhx-checkbox--large .rhx-checkbox__control {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--rhx-radius-md);
+}
+
+.rhx-checkbox--large .rhx-checkbox__check,
+.rhx-checkbox--large .rhx-checkbox__dash {
+    width: 1rem;
+    height: 1rem;
+}
+
+.rhx-checkbox--large .rhx-checkbox__text {
+    font-size: var(--rhx-font-size-md);
+}
+
+.rhx-checkbox--large .rhx-checkbox__hint,
+.rhx-checkbox--large .rhx-checkbox__error {
+    padding-left: calc(1.5rem + var(--rhx-space-sm));
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-checkbox__control {
+        transition: none;
+    }
+}

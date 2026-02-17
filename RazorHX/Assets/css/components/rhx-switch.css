@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════
+   rhx-switch — Toggle switch component
+   ═══════════════════════════════════════════════ */
+
+/* ── Block ── */
+.rhx-switch {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--rhx-space-xs);
+}
+
+/* ── Label wrapper (clickable row) ── */
+.rhx-switch__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+    cursor: pointer;
+    user-select: none;
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+    line-height: var(--rhx-leading-normal);
+}
+
+/* ── Track ── */
+.rhx-switch__track {
+    display: inline-flex;
+    align-items: center;
+    width: 2.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    padding: 2px;
+    border-radius: 9999px;
+    background: var(--rhx-color-neutral-300);
+    transition: background-color 150ms ease;
+}
+
+/* ── Thumb ── */
+.rhx-switch__thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background: white;
+    box-shadow: var(--rhx-shadow-sm);
+    transition: transform 150ms ease;
+}
+
+/* ── Checked state ── */
+.rhx-switch__native:checked ~ .rhx-switch__track {
+    background: var(--rhx-color-brand-500);
+}
+
+.rhx-switch__native:checked ~ .rhx-switch__track .rhx-switch__thumb {
+    transform: translateX(1rem);
+}
+
+/* ── Focus ring ── */
+.rhx-switch__native:focus-visible ~ .rhx-switch__track {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+}
+
+/* ── Hover ── */
+.rhx-switch__label:hover .rhx-switch__track {
+    background: var(--rhx-color-neutral-400);
+}
+
+.rhx-switch__label:hover .rhx-switch__native:checked ~ .rhx-switch__track {
+    background: var(--rhx-color-brand-600);
+}
+
+/* ── Label text ── */
+.rhx-switch__text {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+}
+
+/* ── Hint ── */
+.rhx-switch__hint {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-text-muted);
+    padding-left: calc(2.5rem + var(--rhx-space-sm));
+}
+
+/* ── Error ── */
+.rhx-switch__error {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-danger-500);
+    padding-left: calc(2.5rem + var(--rhx-space-sm));
+}
+
+/* ── Disabled ── */
+.rhx-switch--disabled {
+    opacity: 0.5;
+}
+
+.rhx-switch--disabled .rhx-switch__label {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Error modifier ── */
+.rhx-switch--error .rhx-switch__track {
+    outline: 2px solid var(--rhx-color-danger-500);
+    outline-offset: 1px;
+}
+
+/* ── Size: small ── */
+.rhx-switch--small .rhx-switch__track {
+    width: 2rem;
+    height: 1.25rem;
+}
+
+.rhx-switch--small .rhx-switch__thumb {
+    width: 1rem;
+    height: 1rem;
+}
+
+.rhx-switch--small .rhx-switch__native:checked ~ .rhx-switch__track .rhx-switch__thumb {
+    transform: translateX(0.75rem);
+}
+
+.rhx-switch--small .rhx-switch__text {
+    font-size: var(--rhx-font-size-xs);
+}
+
+.rhx-switch--small .rhx-switch__hint,
+.rhx-switch--small .rhx-switch__error {
+    padding-left: calc(2rem + var(--rhx-space-sm));
+}
+
+/* ── Size: large ── */
+.rhx-switch--large .rhx-switch__track {
+    width: 3rem;
+    height: 1.75rem;
+}
+
+.rhx-switch--large .rhx-switch__thumb {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.rhx-switch--large .rhx-switch__native:checked ~ .rhx-switch__track .rhx-switch__thumb {
+    transform: translateX(1.25rem);
+}
+
+.rhx-switch--large .rhx-switch__text {
+    font-size: var(--rhx-font-size-md);
+}
+
+.rhx-switch--large .rhx-switch__hint,
+.rhx-switch--large .rhx-switch__error {
+    padding-left: calc(3rem + var(--rhx-space-sm));
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-switch__track,
+    .rhx-switch__thumb {
+        transition: none;
+    }
+}

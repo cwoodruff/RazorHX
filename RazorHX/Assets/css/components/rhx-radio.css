@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════
+   rhx-radio-group & rhx-radio — Radio button components
+   ═══════════════════════════════════════════════ */
+
+/* ── Radio Group (fieldset) ── */
+.rhx-radio-group {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-sm);
+}
+
+/* ── Legend ── */
+.rhx-radio-group__legend {
+    font-size: var(--rhx-font-size-sm);
+    font-weight: var(--rhx-font-weight-medium);
+    color: var(--rhx-color-text);
+    margin-bottom: var(--rhx-space-xs);
+    padding: 0;
+}
+
+/* ── Items container ── */
+.rhx-radio-group__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-sm);
+}
+
+/* ── Inline layout ── */
+.rhx-radio-group--inline .rhx-radio-group__items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--rhx-space-md);
+}
+
+/* ── Hint ── */
+.rhx-radio-group__hint {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Error ── */
+.rhx-radio-group__error {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-danger-500);
+}
+
+/* ── Disabled ── */
+.rhx-radio-group--disabled {
+    opacity: 0.5;
+}
+
+/* ── Error modifier ── */
+.rhx-radio-group--error .rhx-radio__control {
+    border-color: var(--rhx-color-danger-500);
+}
+
+/* ── Size variants on group ── */
+.rhx-radio-group--small .rhx-radio-group__legend {
+    font-size: var(--rhx-font-size-xs);
+}
+
+.rhx-radio-group--large .rhx-radio-group__legend {
+    font-size: var(--rhx-font-size-md);
+}
+
+/* ══════════════════════════════════════════════
+   Individual radio button
+   ══════════════════════════════════════════════ */
+
+/* ── Radio label (clickable row) ── */
+.rhx-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+    cursor: pointer;
+    user-select: none;
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+    line-height: var(--rhx-leading-normal);
+}
+
+/* ── Custom visual control (circle) ── */
+.rhx-radio__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    border: 2px solid var(--rhx-color-border);
+    border-radius: 50%;
+    background: var(--rhx-color-surface);
+    transition: border-color 150ms ease;
+}
+
+/* Inner dot (always present, scaled to 0 when unchecked) */
+.rhx-radio__control::after {
+    content: '';
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background: var(--rhx-color-brand-500);
+    transform: scale(0);
+    transition: transform 150ms ease;
+}
+
+/* ── Checked state ── */
+.rhx-radio__native:checked ~ .rhx-radio__control {
+    border-color: var(--rhx-color-brand-500);
+}
+
+.rhx-radio__native:checked ~ .rhx-radio__control::after {
+    transform: scale(1);
+}
+
+/* ── Focus ring ── */
+.rhx-radio__native:focus-visible ~ .rhx-radio__control {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+}
+
+/* ── Hover ── */
+.rhx-radio:hover .rhx-radio__control {
+    border-color: var(--rhx-color-brand-400);
+}
+
+/* ── Radio text ── */
+.rhx-radio__text {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+}
+
+/* ── Disabled radio ── */
+.rhx-radio--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Size: small (set from group) ── */
+.rhx-radio-group--small .rhx-radio__control {
+    width: 1rem;
+    height: 1rem;
+}
+
+.rhx-radio-group--small .rhx-radio__control::after {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.rhx-radio-group--small .rhx-radio__text {
+    font-size: var(--rhx-font-size-xs);
+}
+
+/* ── Size: large (set from group) ── */
+.rhx-radio-group--large .rhx-radio__control {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.rhx-radio-group--large .rhx-radio__control::after {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+.rhx-radio-group--large .rhx-radio__text {
+    font-size: var(--rhx-font-size-md);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-radio__control,
+    .rhx-radio__control::after {
+        transition: none;
+    }
+}
