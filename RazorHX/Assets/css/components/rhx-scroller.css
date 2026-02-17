@@ -1,0 +1,138 @@
+/* ══════════════════════════════════════════════
+   rhx-scroller — Scroll container with shadow indicators
+   ══════════════════════════════════════════════ */
+
+.rhx-scroller {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Content wrapper ── */
+
+.rhx-scroller__content {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rhx-scroller--horizontal > .rhx-scroller__content {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.rhx-scroller--vertical > .rhx-scroller__content {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.rhx-scroller--both > .rhx-scroller__content {
+    overflow: auto;
+}
+
+/* Hide scrollbar for cleaner appearance (optional, keep functional) */
+.rhx-scroller__content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.rhx-scroller__content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rhx-scroller__content::-webkit-scrollbar-thumb {
+    background: var(--rhx-color-neutral-300);
+    border-radius: var(--rhx-radius-full);
+}
+
+.rhx-scroller__content::-webkit-scrollbar-thumb:hover {
+    background: var(--rhx-color-neutral-400);
+}
+
+/* ── Shadow overlays ── */
+
+.rhx-scroller__shadow {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--rhx-transition-normal);
+}
+
+.rhx-scroller__shadow--active {
+    opacity: 1;
+}
+
+/* ── Horizontal shadows ── */
+
+.rhx-scroller--horizontal > .rhx-scroller__shadow--start,
+.rhx-scroller--both > .rhx-scroller__shadow--start {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    background: linear-gradient(
+        to right,
+        var(--rhx-color-surface, #fff),
+        transparent
+    );
+}
+
+.rhx-scroller--horizontal > .rhx-scroller__shadow--end,
+.rhx-scroller--both > .rhx-scroller__shadow--end {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 2rem;
+    background: linear-gradient(
+        to left,
+        var(--rhx-color-surface, #fff),
+        transparent
+    );
+}
+
+/* ── Vertical shadows ── */
+
+.rhx-scroller--vertical > .rhx-scroller__shadow--start {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    background: linear-gradient(
+        to bottom,
+        var(--rhx-color-surface, #fff),
+        transparent
+    );
+}
+
+.rhx-scroller--vertical > .rhx-scroller__shadow--end {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    background: linear-gradient(
+        to top,
+        var(--rhx-color-surface, #fff),
+        transparent
+    );
+}
+
+/* ── Both: vertical top/bottom shadows (horizontal handled above) ── */
+
+.rhx-scroller--both > .rhx-scroller__shadow--start {
+    /* horizontal start shadow already covered; for "both" we only do left/right */
+}
+
+.rhx-scroller--both > .rhx-scroller__shadow--end {
+    /* horizontal end shadow already covered; for "both" we only do left/right */
+}
+
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .rhx-scroller__content {
+        scroll-behavior: auto;
+    }
+
+    .rhx-scroller__shadow {
+        transition: none;
+    }
+}

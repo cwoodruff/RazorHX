@@ -1,0 +1,95 @@
+@page
+@model ScrollerModel
+@{
+    ViewData["Title"] = "Scroller";
+}
+
+<div class="demo-section">
+    <h2>Scroller — Horizontal</h2>
+
+    <div class="demo-label">Scroll shadows appear when content overflows horizontally</div>
+    <rhx-scroller rhx-orientation="horizontal">
+        <div style="display: flex; gap: var(--rhx-space-md); padding: var(--rhx-space-md); white-space: nowrap;">
+            @for (int i = 1; i <= 20; i++)
+            {
+                <div style="flex: 0 0 auto; width: 160px; height: 100px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); font-weight: var(--rhx-font-weight-medium);">
+                    Item @i
+                </div>
+            }
+        </div>
+    </rhx-scroller>
+</div>
+
+<div class="demo-section">
+    <h2>Scroller — Vertical</h2>
+
+    <div class="demo-label">Scroll shadows for vertical overflow</div>
+    <rhx-scroller rhx-orientation="vertical" style="height: 200px;">
+        <div style="padding: var(--rhx-space-md);">
+            @for (int i = 1; i <= 30; i++)
+            {
+                <div style="padding: var(--rhx-space-sm) var(--rhx-space-md); margin-bottom: var(--rhx-space-xs); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-sm);">
+                    List item @i
+                </div>
+            }
+        </div>
+    </rhx-scroller>
+</div>
+
+<div class="demo-section">
+    <h2>Scroller — Both Directions</h2>
+
+    <div class="demo-label">Shadows on both axes for 2D scrollable content</div>
+    <rhx-scroller rhx-orientation="both" style="height: 250px;">
+        <div style="display: grid; grid-template-columns: repeat(10, 160px); gap: var(--rhx-space-sm); padding: var(--rhx-space-md);">
+            @for (int row = 1; row <= 10; row++)
+            {
+                @for (int col = 1; col <= 10; col++)
+                {
+                    <div style="height: 60px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-sm); font-size: var(--rhx-font-size-sm);">
+                        @row,@col
+                    </div>
+                }
+            }
+        </div>
+    </rhx-scroller>
+</div>
+
+<div class="demo-section">
+    <h2>Scroller — Card Gallery</h2>
+
+    <div class="demo-label">Horizontal scrolling card layout</div>
+    <rhx-scroller rhx-orientation="horizontal">
+        <div style="display: flex; gap: var(--rhx-space-lg); padding: var(--rhx-space-md);">
+            @for (int i = 1; i <= 8; i++)
+            {
+                <rhx-card style="flex: 0 0 280px;">
+                    <rhx-card-header><h3 style="margin:0;">Card @i</h3></rhx-card-header>
+                    <p>A scrollable card gallery. Each card has a fixed width so the row extends beyond the viewport.</p>
+                    <rhx-card-footer>
+                        <rhx-button rhx-variant="ghost" rhx-size="small">View</rhx-button>
+                    </rhx-card-footer>
+                </rhx-card>
+            }
+        </div>
+    </rhx-scroller>
+</div>
+
+<div class="demo-section">
+    <h2>Scroller — No Overflow</h2>
+
+    <div class="demo-label">No shadows appear when content fits within the container</div>
+    <rhx-scroller rhx-orientation="horizontal">
+        <div style="display: flex; gap: var(--rhx-space-md); padding: var(--rhx-space-md);">
+            <div style="flex: 0 0 auto; width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
+                A
+            </div>
+            <div style="flex: 0 0 auto; width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
+                B
+            </div>
+            <div style="flex: 0 0 auto; width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
+                C
+            </div>
+        </div>
+    </rhx-scroller>
+</div>
