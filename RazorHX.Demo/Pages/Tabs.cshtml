@@ -1,0 +1,177 @@
+@page
+@model TabsModel
+@{
+    ViewData["Title"] = "Tabs";
+}
+
+<div class="demo-section">
+    <h2>Basic Tabs</h2>
+
+    <div class="demo-label">Pre-rendered Content (top placement, default)</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group aria-label="Account settings">
+            <rhx-tab rhx-panel="general" rhx-active>General</rhx-tab>
+            <rhx-tab rhx-panel="profile">Profile</rhx-tab>
+            <rhx-tab rhx-panel="notifications">Notifications</rhx-tab>
+            <rhx-tab-panel rhx-name="general" rhx-active>
+                <p>General account settings. Configure your display name, email, and language preferences.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="profile">
+                <p>Profile settings. Update your bio, avatar, and social links.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="notifications">
+                <p>Notification preferences. Choose which emails and alerts you want to receive.</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Placements</h2>
+
+    <div class="demo-label">Bottom</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group rhx-placement="bottom" aria-label="Bottom tabs example">
+            <rhx-tab rhx-panel="b-one" rhx-active>Tab One</rhx-tab>
+            <rhx-tab rhx-panel="b-two">Tab Two</rhx-tab>
+            <rhx-tab-panel rhx-name="b-one" rhx-active>
+                <p>Content for tab one (bottom placement).</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="b-two">
+                <p>Content for tab two (bottom placement).</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <div class="demo-label">Start (vertical)</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group rhx-placement="start" aria-label="Start tabs example">
+            <rhx-tab rhx-panel="s-one" rhx-active>Dashboard</rhx-tab>
+            <rhx-tab rhx-panel="s-two">Analytics</rhx-tab>
+            <rhx-tab rhx-panel="s-three">Reports</rhx-tab>
+            <rhx-tab-panel rhx-name="s-one" rhx-active>
+                <p>Dashboard overview with key metrics and quick actions.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="s-two">
+                <p>Analytics panel with charts and data visualizations.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="s-three">
+                <p>Reports section for generating and downloading reports.</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <div class="demo-label">End (vertical)</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group rhx-placement="end" aria-label="End tabs example">
+            <rhx-tab rhx-panel="e-one" rhx-active>Info</rhx-tab>
+            <rhx-tab rhx-panel="e-two">Details</rhx-tab>
+            <rhx-tab-panel rhx-name="e-one" rhx-active>
+                <p>Info panel content (end placement).</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="e-two">
+                <p>Details panel content (end placement).</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Manual Activation</h2>
+
+    <div class="demo-label">Arrow keys move focus only; Enter/Space activates</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group rhx-activation="manual" aria-label="Manual activation example">
+            <rhx-tab rhx-panel="m-one" rhx-active>First</rhx-tab>
+            <rhx-tab rhx-panel="m-two">Second</rhx-tab>
+            <rhx-tab rhx-panel="m-three">Third</rhx-tab>
+            <rhx-tab-panel rhx-name="m-one" rhx-active>
+                <p>First tab content. Use arrow keys to move focus, then Enter/Space to select.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="m-two">
+                <p>Second tab content.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="m-three">
+                <p>Third tab content.</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Closable Tabs</h2>
+
+    <div class="demo-label">Click the &times; to close a tab</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group aria-label="Closable tabs example">
+            <rhx-tab rhx-panel="c-one" rhx-active rhx-closable>Document 1</rhx-tab>
+            <rhx-tab rhx-panel="c-two" rhx-closable>Document 2</rhx-tab>
+            <rhx-tab rhx-panel="c-three" rhx-closable>Document 3</rhx-tab>
+            <rhx-tab-panel rhx-name="c-one" rhx-active>
+                <p>Document 1 content. Close this tab to see the next one activate.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="c-two">
+                <p>Document 2 content.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="c-three">
+                <p>Document 3 content.</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Disabled Tab</h2>
+
+    <div class="demo-label">The disabled tab cannot be activated</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group aria-label="Disabled tab example">
+            <rhx-tab rhx-panel="d-one" rhx-active>Active</rhx-tab>
+            <rhx-tab rhx-panel="d-two" rhx-disabled>Disabled</rhx-tab>
+            <rhx-tab rhx-panel="d-three">Available</rhx-tab>
+            <rhx-tab-panel rhx-name="d-one" rhx-active>
+                <p>This tab is active. The "Disabled" tab cannot be clicked or focused via keyboard.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="d-two">
+                <p>This content is unreachable via the disabled tab.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="d-three">
+                <p>Available tab content.</p>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>htmx Lazy-Loaded Tabs</h2>
+
+    <div class="demo-label">Panels load content via htmx on tab activation</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch;">
+        <rhx-tab-group aria-label="Lazy-loaded tabs example">
+            <rhx-tab rhx-panel="lazy-pre" rhx-active>Pre-rendered</rhx-tab>
+            <rhx-tab rhx-panel="lazy-one"
+                      hx-get="/Tabs?handler=LazyContent&tab=one"
+                      hx-target="#panel-lazy-one"
+                      hx-swap="innerHTML"
+                      hx-trigger="click once">Lazy Tab 1</rhx-tab>
+            <rhx-tab rhx-panel="lazy-two"
+                      hx-get="/Tabs?handler=LazyContent&tab=two"
+                      hx-target="#panel-lazy-two"
+                      hx-swap="innerHTML"
+                      hx-trigger="click once">Lazy Tab 2</rhx-tab>
+            <rhx-tab-panel rhx-name="lazy-pre" rhx-active>
+                <p>This panel was rendered with the page. The other tabs will load content via htmx when first clicked.</p>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="lazy-one">
+                <rhx-spinner rhx-size="small" /> Loading...
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="lazy-two">
+                <rhx-spinner rhx-size="small" /> Loading...
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/_rhx/js/components/rhx-tabs.js" defer></script>
+}
