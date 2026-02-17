@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX Progress Bar Component
+   BEM:  rhx-progress-bar  /  rhx-progress-bar__{track,fill,label}
+         rhx-progress-bar--indeterminate
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--rhx-space-sm);
+  width: 100%;
+  font-family: var(--rhx-font-family);
+  font-size: var(--rhx-font-size-xs);
+  color: var(--rhx-color-text-muted);
+}
+
+/* ── Track ── */
+.rhx-progress-bar__track {
+  flex: 1;
+  height: 0.5rem;
+  background: var(--rhx-color-neutral-200);
+  border-radius: var(--rhx-radius-full);
+  overflow: hidden;
+}
+
+/* ── Fill ── */
+.rhx-progress-bar__fill {
+  height: 100%;
+  background: var(--rhx-color-brand-500);
+  border-radius: var(--rhx-radius-full);
+  transition: width var(--rhx-transition-normal) ease;
+}
+
+/* ── Label ── */
+.rhx-progress-bar__label {
+  flex-shrink: 0;
+  min-width: 2.5rem;
+  text-align: right;
+  font-weight: var(--rhx-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INDETERMINATE
+   ══════════════════════════════════════════════════════════════ */
+
+.rhx-progress-bar--indeterminate .rhx-progress-bar__fill {
+  width: 40%;
+  animation: rhx-progress-bar-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes rhx-progress-bar-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-progress-bar__fill {
+    transition-duration: 0.01ms;
+  }
+
+  .rhx-progress-bar--indeterminate .rhx-progress-bar__fill {
+    animation-duration: 3s;
+  }
+}

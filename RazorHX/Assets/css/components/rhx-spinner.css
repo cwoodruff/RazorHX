@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX Spinner Component
+   BEM:  rhx-spinner  /  rhx-spinner--{size}
+   Uses [data-rhx-spinner] to distinguish from button's border-based spinner.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base (standalone SVG spinner) ── */
+[data-rhx-spinner] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--rhx-color-brand-500);
+  /* Override border-based spinner from button CSS */
+  border: none;
+  border-radius: 0;
+  animation: none;
+}
+
+[data-rhx-spinner] svg {
+  width: 100%;
+  height: 100%;
+  animation: rhx-spinner-rotate 0.8s linear infinite;
+}
+
+[data-rhx-spinner] svg circle {
+  stroke-linecap: round;
+  stroke-dasharray: 42 63;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SIZES
+   ══════════════════════════════════════════════════════════════ */
+
+[data-rhx-spinner].rhx-spinner--small {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* medium is the default (1.5rem) — no modifier needed */
+
+[data-rhx-spinner].rhx-spinner--large {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ANIMATION
+   ══════════════════════════════════════════════════════════════ */
+
+@keyframes rhx-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rhx-spinner] svg {
+    animation-duration: 2s;
+  }
+}

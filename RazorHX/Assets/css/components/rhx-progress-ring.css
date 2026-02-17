@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX Progress Ring Component
+   BEM:  rhx-progress-ring  /  rhx-progress-ring__{track,fill,label}
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-progress-ring {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* ── Track ── */
+.rhx-progress-ring__track {
+  stroke: var(--rhx-color-neutral-200);
+}
+
+/* ── Fill ── */
+.rhx-progress-ring__fill {
+  stroke: var(--rhx-color-brand-500);
+  transition: stroke-dasharray var(--rhx-transition-normal) ease;
+}
+
+/* ── Label ── */
+.rhx-progress-ring__label {
+  fill: var(--rhx-color-text);
+  font-family: var(--rhx-font-family);
+  font-size: 0.5rem;
+  font-weight: var(--rhx-font-weight-medium);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-progress-ring__fill {
+    transition-duration: 0.01ms;
+  }
+}
