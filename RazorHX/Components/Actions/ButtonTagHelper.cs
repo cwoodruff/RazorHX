@@ -1,78 +1,124 @@
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using RazorHX.Infrastructure;
 
 namespace RazorHX.Components.Actions;
 
+/// <summary>
+/// Available button visual variants.
+/// </summary>
 public enum ButtonVariant
 {
+    /// <summary>Default neutral button.</summary>
     Default,
+    /// <summary>Brand/primary color button.</summary>
     Brand,
+    /// <summary>Success/positive action button.</summary>
     Success,
+    /// <summary>Warning/caution action button.</summary>
     Warning,
+    /// <summary>Danger/destructive action button.</summary>
     Danger,
+    /// <summary>Ghost button with no background or border.</summary>
     Ghost,
+    /// <summary>Text-only link-style button.</summary>
     Text
 }
 
+/// <summary>
+/// Available button sizes.
+/// </summary>
 public enum ButtonSize
 {
+    /// <summary>Small button.</summary>
     Small,
+    /// <summary>Default/medium button.</summary>
     Default,
+    /// <summary>Large button.</summary>
     Large
 }
 
 /// <summary>
-/// Renders a styled button with htmx support.
-/// Usage: &lt;rhx-button variant="brand" hx-post="/api/submit"&gt;Submit&lt;/rhx-button&gt;
+/// Renders a styled button element with full htmx and ARIA support.
+/// Supports variants, sizes, loading states, and ASP.NET Core route URL generation.
 /// </summary>
+/// <example>
+/// <code>
+/// &lt;rhx-button variant="Brand" hx-post="/api/submit" hx-target="#result"&gt;
+///     Submit
+/// &lt;/rhx-button&gt;
+///
+/// &lt;rhx-button variant="Danger" hx-post="" hx-page="/Items/Delete" hx-route-id="42"
+///             hx-confirm="Are you sure?"&gt;
+///     Delete Item
+/// &lt;/rhx-button&gt;
+/// </code>
+/// </example>
 [HtmlTargetElement("rhx-button")]
-public class ButtonTagHelper : RazorHXTagHelperBase, IHtmxAttributes
+public class ButtonTagHelper : RazorHXTagHelperBase
 {
+    /// <inheritdoc/>
     protected override string BlockName => "button";
 
+    /// <summary>
+    /// The visual variant of the button.
+    /// Default: <see cref="ButtonVariant.Default"/>.
+    /// </summary>
     [HtmlAttributeName("variant")]
     public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
 
+    /// <summary>
+    /// The size of the button.
+    /// Default: <see cref="ButtonSize.Default"/>.
+    /// </summary>
     [HtmlAttributeName("size")]
     public ButtonSize Size { get; set; } = ButtonSize.Default;
 
+    /// <summary>
+    /// Whether the button is disabled.
+    /// Sets both the HTML disabled attribute and the ARIA disabled state.
+    /// </summary>
     [HtmlAttributeName("disabled")]
     public bool Disabled { get; set; }
 
+    /// <summary>
+    /// Whether the button is in a loading state.
+    /// Disables the button and shows a loading indicator.
+    /// </summary>
     [HtmlAttributeName("loading")]
     public bool Loading { get; set; }
 
+    /// <summary>
+    /// Whether the button should take the full width of its container.
+    /// </summary>
     [HtmlAttributeName("full-width")]
     public bool FullWidth { get; set; }
 
+    /// <summary>
+    /// Whether this is an icon-only button (square aspect ratio).
+    /// </summary>
     [HtmlAttributeName("icon-only")]
     public bool IconOnly { get; set; }
 
+    /// <summary>
+    /// The HTML button type attribute.
+    /// Default: "button".
+    /// </summary>
     [HtmlAttributeName("type")]
     public string ButtonType { get; set; } = "button";
 
+    /// <summary>
+    /// Accessible label for the button. Required for icon-only buttons.
+    /// </summary>
     [HtmlAttributeName("aria-label")]
     public string? AriaLabel { get; set; }
 
-    // htmx attributes
-    [HtmlAttributeName("hx-get")] public string? HxGet { get; set; }
-    [HtmlAttributeName("hx-post")] public string? HxPost { get; set; }
-    [HtmlAttributeName("hx-put")] public string? HxPut { get; set; }
-    [HtmlAttributeName("hx-patch")] public string? HxPatch { get; set; }
-    [HtmlAttributeName("hx-delete")] public string? HxDelete { get; set; }
-    [HtmlAttributeName("hx-target")] public string? HxTarget { get; set; }
-    [HtmlAttributeName("hx-swap")] public string? HxSwap { get; set; }
-    [HtmlAttributeName("hx-trigger")] public string? HxTrigger { get; set; }
-    [HtmlAttributeName("hx-indicator")] public string? HxIndicator { get; set; }
-    [HtmlAttributeName("hx-confirm")] public string? HxConfirm { get; set; }
-    [HtmlAttributeName("hx-vals")] public string? HxVals { get; set; }
-    [HtmlAttributeName("hx-headers")] public string? HxHeaders { get; set; }
-    [HtmlAttributeName("hx-include")] public string? HxInclude { get; set; }
-    [HtmlAttributeName("hx-select")] public string? HxSelect { get; set; }
-    [HtmlAttributeName("hx-push-url")] public string? HxPushUrl { get; set; }
-    [HtmlAttributeName("hx-boost")] public bool? HxBoost { get; set; }
-    [HtmlAttributeName("hx-disabled-elt")] public bool? HxDisabledElt { get; set; }
+    /// <summary>
+    /// Creates a new ButtonTagHelper with URL generation support.
+    /// </summary>
+    public ButtonTagHelper(IUrlHelperFactory urlHelperFactory) : base(urlHelperFactory) { }
 
+    /// <inheritdoc/>
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "button";
@@ -98,9 +144,9 @@ public class ButtonTagHelper : RazorHXTagHelperBase, IHtmxAttributes
 
         if (!string.IsNullOrWhiteSpace(AriaLabel))
         {
-            AriaAttributeHelper.SetLabel(output, AriaLabel);
+            AriaAttributeHelper.AriaLabel(output, AriaLabel);
         }
 
-        HtmxAttributesMixin.ApplyHtmxAttributes(output, this);
+        RenderHtmxAttributes(output);
     }
 }
