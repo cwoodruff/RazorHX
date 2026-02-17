@@ -12,185 +12,445 @@ public class ButtonTagHelperTests : TagHelperTestBase
         return helper;
     }
 
+    // ──────────────────────────────────────────────
+    //  Default rendering
+    // ──────────────────────────────────────────────
+
     [Fact]
-    public void Renders_Button_Element_With_Block_Class()
+    public async Task Renders_Button_Element_By_Default()
     {
         var helper = CreateHelper();
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         Assert.Equal("button", output.TagName);
+        AssertAttribute(output, "type", "button");
+    }
+
+    [Fact]
+    public async Task Renders_Block_Class_And_Default_Modifiers()
+    {
+        var helper = CreateHelper();
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
         Assert.True(HasClass(output, "rhx-button"));
-        Assert.Equal("button", GetAttribute(output, "type"));
-    }
-
-    [Theory]
-    [InlineData(ButtonVariant.Default, "rhx-button--default")]
-    [InlineData(ButtonVariant.Brand, "rhx-button--brand")]
-    [InlineData(ButtonVariant.Success, "rhx-button--success")]
-    [InlineData(ButtonVariant.Warning, "rhx-button--warning")]
-    [InlineData(ButtonVariant.Danger, "rhx-button--danger")]
-    [InlineData(ButtonVariant.Ghost, "rhx-button--ghost")]
-    [InlineData(ButtonVariant.Text, "rhx-button--text")]
-    public void Renders_Correct_Variant_Class(ButtonVariant variant, string expectedClass)
-    {
-        var helper = CreateHelper();
-        helper.Variant = variant;
-        var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
-
-        helper.Process(context, output);
-
-        Assert.True(HasClass(output, expectedClass));
+        Assert.True(HasClass(output, "rhx-button--neutral"));
+        Assert.True(HasClass(output, "rhx-button--filled"));
     }
 
     [Fact]
-    public void Renders_Small_Size_Class()
+    public async Task Default_Medium_Size_Has_No_Size_Modifier()
     {
         var helper = CreateHelper();
-        helper.Size = ButtonSize.Small;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
-        Assert.True(HasClass(output, "rhx-button--small"));
-    }
-
-    [Fact]
-    public void Renders_Large_Size_Class()
-    {
-        var helper = CreateHelper();
-        helper.Size = ButtonSize.Large;
-        var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
-
-        helper.Process(context, output);
-
-        Assert.True(HasClass(output, "rhx-button--large"));
-    }
-
-    [Fact]
-    public void Default_Size_Has_No_Size_Modifier()
-    {
-        var helper = CreateHelper();
-        helper.Size = ButtonSize.Default;
-        var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
-
-        helper.Process(context, output);
-
+        Assert.False(HasClass(output, "rhx-button--medium"));
         Assert.False(HasClass(output, "rhx-button--small"));
         Assert.False(HasClass(output, "rhx-button--large"));
     }
 
     [Fact]
-    public void Sets_Disabled_Attribute_And_Class_When_Disabled()
+    public async Task Wraps_Child_Content_In_Label_Span()
+    {
+        var helper = CreateHelper();
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Save");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("<span class=\"rhx-button__label\">", content);
+        Assert.Contains("Save", content);
+        Assert.Contains("</span>", content);
+    }
+
+    // ──────────────────────────────────────────────
+    //  Variants
+    // ──────────────────────────────────────────────
+
+    [Theory]
+    [InlineData("neutral", "rhx-button--neutral")]
+    [InlineData("brand", "rhx-button--brand")]
+    [InlineData("success", "rhx-button--success")]
+    [InlineData("warning", "rhx-button--warning")]
+    [InlineData("danger", "rhx-button--danger")]
+    public async Task Renders_Correct_Variant_Class(string variant, string expectedClass)
+    {
+        var helper = CreateHelper();
+        helper.Variant = variant;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, expectedClass));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Appearances
+    // ──────────────────────────────────────────────
+
+    [Theory]
+    [InlineData("filled", "rhx-button--filled")]
+    [InlineData("outlined", "rhx-button--outlined")]
+    [InlineData("plain", "rhx-button--plain")]
+    public async Task Renders_Correct_Appearance_Class(string appearance, string expectedClass)
+    {
+        var helper = CreateHelper();
+        helper.Appearance = appearance;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, expectedClass));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Sizes
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Renders_Small_Size_Class()
+    {
+        var helper = CreateHelper();
+        helper.Size = "small";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--small"));
+    }
+
+    [Fact]
+    public async Task Renders_Large_Size_Class()
+    {
+        var helper = CreateHelper();
+        helper.Size = "large";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--large"));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Shape modifiers
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Pill_Adds_Pill_Modifier()
+    {
+        var helper = CreateHelper();
+        helper.Pill = true;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--pill"));
+    }
+
+    [Fact]
+    public async Task Circle_Adds_Circle_Modifier()
+    {
+        var helper = CreateHelper();
+        helper.Circle = true;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "+");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--circle"));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Disabled state
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Disabled_Button_Sets_Disabled_Attribute()
     {
         var helper = CreateHelper();
         helper.Disabled = true;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         Assert.Equal("disabled", GetAttribute(output, "disabled"));
-        Assert.True(HasClass(output, "rhx-button--disabled"));
     }
 
     [Fact]
-    public void Sets_Disabled_And_Loading_Class_When_Loading()
+    public async Task Disabled_Button_Does_Not_Add_Disabled_Modifier_Class()
+    {
+        var helper = CreateHelper();
+        helper.Disabled = true;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        // For native <button>, disabled attribute is sufficient; modifier class is only for <a>
+        Assert.False(HasClass(output, "rhx-button--disabled"));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Loading state
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Loading_Sets_Disabled_And_AriaBusy()
     {
         var helper = CreateHelper();
         helper.Loading = true;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         Assert.Equal("disabled", GetAttribute(output, "disabled"));
+        AssertAttribute(output, "aria-busy", "true");
         Assert.True(HasClass(output, "rhx-button--loading"));
     }
 
     [Fact]
-    public void Renders_FullWidth_Class()
+    public async Task Loading_Prepends_Spinner()
     {
         var helper = CreateHelper();
-        helper.FullWidth = true;
+        helper.Loading = true;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Saving");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
-        Assert.True(HasClass(output, "rhx-button--full"));
+        var content = output.Content.GetContent();
+        Assert.Contains("rhx-button__spinner", content);
+        Assert.Contains("rhx-spinner", content);
+        Assert.Contains("role=\"status\"", content);
+        // Spinner should appear before the label
+        var spinnerPos = content.IndexOf("rhx-button__spinner");
+        var labelPos = content.IndexOf("rhx-button__label");
+        Assert.True(spinnerPos < labelPos);
     }
 
     [Fact]
-    public void Renders_IconOnly_Class()
+    public async Task Not_Loading_Has_No_Spinner()
     {
         var helper = CreateHelper();
-        helper.IconOnly = true;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
-        Assert.True(HasClass(output, "rhx-button--icon-only"));
+        var content = output.Content.GetContent();
+        Assert.DoesNotContain("rhx-button__spinner", content);
+        Assert.DoesNotContain("rhx-spinner", content);
+    }
+
+    // ──────────────────────────────────────────────
+    //  Link rendering (<a> tag)
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Href_Renders_As_Anchor_Tag()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/about";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "About");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.Equal("a", output.TagName);
+        AssertAttribute(output, "href", "/about");
+        AssertAttribute(output, "role", "button");
+        AssertNoAttribute(output, "type");
     }
 
     [Fact]
-    public void Sets_AriaLabel_When_Provided()
+    public async Task Link_Target_Blank_Sets_Rel_Noopener()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/external";
+        helper.LinkTarget = "_blank";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Open");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "target", "_blank");
+        AssertAttribute(output, "rel", "noopener noreferrer");
+    }
+
+    [Fact]
+    public async Task Link_Target_Self_Has_No_Rel()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/page";
+        helper.LinkTarget = "_self";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Go");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "target", "_self");
+        AssertNoAttribute(output, "rel");
+    }
+
+    [Fact]
+    public async Task Download_Sets_Download_Attribute()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/file.pdf";
+        helper.Download = "report.pdf";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Download");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "download", "report.pdf");
+    }
+
+    [Fact]
+    public async Task Disabled_Link_Uses_AriaDisabled_And_TabindexMinus1()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/about";
+        helper.Disabled = true;
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "About");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.Equal("a", output.TagName);
+        AssertAttribute(output, "aria-disabled", "true");
+        AssertAttribute(output, "tabindex", "-1");
+        Assert.True(HasClass(output, "rhx-button--disabled"));
+        AssertNoAttribute(output, "disabled");
+    }
+
+    // ──────────────────────────────────────────────
+    //  Form attributes
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Submit_Type_Renders()
+    {
+        var helper = CreateHelper();
+        helper.ButtonType = "submit";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Submit");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "type", "submit");
+    }
+
+    [Fact]
+    public async Task Name_And_Value_Render()
+    {
+        var helper = CreateHelper();
+        helper.Name = "action";
+        helper.FormValue = "save";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Save");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "name", "action");
+        AssertAttribute(output, "value", "save");
+    }
+
+    [Fact]
+    public async Task Name_And_Value_Not_Rendered_On_Links()
+    {
+        var helper = CreateHelper();
+        helper.Href = "/about";
+        helper.Name = "action";
+        helper.FormValue = "save";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "About");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertNoAttribute(output, "name");
+        AssertNoAttribute(output, "value");
+    }
+
+    // ──────────────────────────────────────────────
+    //  Accessibility
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task AriaLabel_Sets_Attribute()
     {
         var helper = CreateHelper();
         helper.AriaLabel = "Close dialog";
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "X");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         AssertAttribute(output, "aria-label", "Close dialog");
     }
 
+    // ──────────────────────────────────────────────
+    //  Custom CSS class
+    // ──────────────────────────────────────────────
+
     [Fact]
-    public void Appends_Custom_CssClass()
+    public async Task Custom_CssClass_Appended()
     {
         var helper = CreateHelper();
-        helper.CssClass = "my-custom-class";
+        helper.CssClass = "my-custom";
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
-        Assert.True(HasClass(output, "my-custom-class"));
+        Assert.True(HasClass(output, "my-custom"));
         Assert.True(HasClass(output, "rhx-button"));
     }
 
+    // ──────────────────────────────────────────────
+    //  htmx attributes
+    // ──────────────────────────────────────────────
+
     [Fact]
-    public void Renders_HxGet_Attribute()
+    public async Task HxGet_Renders()
     {
         var helper = CreateHelper();
         helper.HxGet = "/api/data";
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Load");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         AssertAttribute(output, "hx-get", "/api/data");
     }
 
     [Fact]
-    public void Renders_HxPost_With_Target_And_Swap()
+    public async Task HxPost_With_Target_And_Swap_Renders()
     {
         var helper = CreateHelper();
         helper.HxPost = "/api/submit";
         helper.HxTarget = "#result";
         helper.HxSwap = "innerHTML";
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Submit");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         AssertAttribute(output, "hx-post", "/api/submit");
         AssertAttribute(output, "hx-target", "#result");
@@ -198,13 +458,13 @@ public class ButtonTagHelperTests : TagHelperTestBase
     }
 
     [Fact]
-    public void Does_Not_Render_Null_Htmx_Attributes()
+    public async Task Null_Htmx_Attributes_Not_Rendered()
     {
         var helper = CreateHelper();
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         AssertNoAttribute(output, "hx-get");
         AssertNoAttribute(output, "hx-post");
@@ -213,29 +473,83 @@ public class ButtonTagHelperTests : TagHelperTestBase
     }
 
     [Fact]
-    public void Renders_HxConfirm()
+    public async Task HxConfirm_Renders()
     {
         var helper = CreateHelper();
         helper.HxPost = "/api/delete";
         helper.HxConfirm = "Are you sure?";
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Delete");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
         AssertAttribute(output, "hx-confirm", "Are you sure?");
     }
 
-    [Fact]
-    public void Renders_Submit_ButtonType()
+    // ──────────────────────────────────────────────
+    //  Variant × Appearance combinations
+    // ──────────────────────────────────────────────
+
+    [Theory]
+    [InlineData("brand", "outlined")]
+    [InlineData("danger", "plain")]
+    [InlineData("success", "filled")]
+    [InlineData("warning", "outlined")]
+    [InlineData("neutral", "plain")]
+    public async Task Variant_And_Appearance_Combine(string variant, string appearance)
     {
         var helper = CreateHelper();
-        helper.ButtonType = "submit";
+        helper.Variant = variant;
+        helper.Appearance = appearance;
         var context = CreateContext("rhx-button");
-        var output = CreateOutput("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
 
-        helper.Process(context, output);
+        await helper.ProcessAsync(context, output);
 
-        AssertAttribute(output, "type", "submit");
+        Assert.True(HasClass(output, $"rhx-button--{variant}"));
+        Assert.True(HasClass(output, $"rhx-button--{appearance}"));
+    }
+
+    // ──────────────────────────────────────────────
+    //  Case insensitivity
+    // ──────────────────────────────────────────────
+
+    [Fact]
+    public async Task Variant_Is_Case_Insensitive()
+    {
+        var helper = CreateHelper();
+        helper.Variant = "Brand";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--brand"));
+    }
+
+    [Fact]
+    public async Task Appearance_Is_Case_Insensitive()
+    {
+        var helper = CreateHelper();
+        helper.Appearance = "Outlined";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--outlined"));
+    }
+
+    [Fact]
+    public async Task Size_Is_Case_Insensitive()
+    {
+        var helper = CreateHelper();
+        helper.Size = "Large";
+        var context = CreateContext("rhx-button");
+        var output = CreateOutput("rhx-button", childContent: "Click");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-button--large"));
     }
 }

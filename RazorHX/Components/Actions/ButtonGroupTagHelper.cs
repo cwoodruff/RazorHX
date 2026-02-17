@@ -5,20 +5,22 @@ using RazorHX.Infrastructure;
 namespace RazorHX.Components.Actions;
 
 /// <summary>
-/// Groups multiple <c>&lt;rhx-button&gt;</c> elements together with connected styling.
-/// Renders as a <c>&lt;div role="group"&gt;</c> with appropriate ARIA semantics.
+/// Groups multiple <c>&lt;rhx-button&gt;</c> elements together with joined border
+/// and radius styling. Renders as a <c>&lt;div role="group"&gt;</c>.
 /// </summary>
+/// <remarks>
+/// <para>
+/// CSS handles joined borders/radius automatically: the first child gets left radius,
+/// the last child gets right radius, and middle children get no radius. Adjacent
+/// borders are collapsed to avoid double-thickness borders.
+/// </para>
+/// </remarks>
 /// <example>
 /// <code>
-/// &lt;rhx-button-group&gt;
-///     &lt;rhx-button variant="Default"&gt;Left&lt;/rhx-button&gt;
-///     &lt;rhx-button variant="Default"&gt;Center&lt;/rhx-button&gt;
-///     &lt;rhx-button variant="Default"&gt;Right&lt;/rhx-button&gt;
-/// &lt;/rhx-button-group&gt;
-///
-/// &lt;rhx-button-group orientation="vertical" aria-label="Alignment"&gt;
-///     &lt;rhx-button&gt;Top&lt;/rhx-button&gt;
-///     &lt;rhx-button&gt;Bottom&lt;/rhx-button&gt;
+/// &lt;rhx-button-group label="Actions"&gt;
+///     &lt;rhx-button rhx-variant="neutral"&gt;Edit&lt;/rhx-button&gt;
+///     &lt;rhx-button rhx-variant="neutral"&gt;Copy&lt;/rhx-button&gt;
+///     &lt;rhx-button rhx-variant="danger"&gt;Delete&lt;/rhx-button&gt;
 /// &lt;/rhx-button-group&gt;
 /// </code>
 /// </example>
@@ -29,17 +31,11 @@ public class ButtonGroupTagHelper : RazorHXTagHelperBase
     protected override string BlockName => "button-group";
 
     /// <summary>
-    /// The orientation of the button group.
-    /// Default: "horizontal".
-    /// </summary>
-    [HtmlAttributeName("orientation")]
-    public string Orientation { get; set; } = "horizontal";
-
-    /// <summary>
     /// Accessible label for the button group.
+    /// Sets <c>aria-label</c> on the group container.
     /// </summary>
-    [HtmlAttributeName("aria-label")]
-    public string? AriaLabel { get; set; }
+    [HtmlAttributeName("label")]
+    public string? Label { get; set; }
 
     /// <summary>
     /// Creates a new ButtonGroupTagHelper with URL generation support.
@@ -52,15 +48,14 @@ public class ButtonGroupTagHelper : RazorHXTagHelperBase
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        var css = CreateCssBuilder()
-            .AddIf(GetModifierClass("vertical"), Orientation == "vertical");
-
+        var css = CreateCssBuilder();
         ApplyBaseAttributes(output, css);
+
         AriaAttributeHelper.RoleGroup(output);
 
-        if (!string.IsNullOrWhiteSpace(AriaLabel))
+        if (!string.IsNullOrWhiteSpace(Label))
         {
-            AriaAttributeHelper.AriaLabel(output, AriaLabel);
+            AriaAttributeHelper.AriaLabel(output, Label);
         }
     }
 }
