@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX Callout Component
+   BEM:  rhx-callout  /  rhx-callout__{icon,content,close}
+         rhx-callout--{variant}
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rhx-space-md);
+  padding: var(--rhx-space-md) var(--rhx-space-lg);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
+  border-left: 3px solid var(--rhx-color-neutral-400);
+  border-radius: var(--rhx-radius-md);
+  background: var(--rhx-color-neutral-50);
+  font-family: var(--rhx-font-family);
+  font-size: var(--rhx-font-size-sm);
+  line-height: var(--rhx-line-height-normal);
+  color: var(--rhx-color-text);
+  opacity: 1;
+  transition: opacity var(--rhx-transition-normal) ease;
+}
+
+.rhx-callout[hidden] {
+  display: none;
+}
+
+/* ── Inner elements ── */
+.rhx-callout__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--rhx-color-neutral-500);
+}
+
+.rhx-callout__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.rhx-callout__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--rhx-space-xs);
+  border: none;
+  border-radius: var(--rhx-radius-sm);
+  background: transparent;
+  color: var(--rhx-color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--rhx-transition-fast) ease, color var(--rhx-transition-fast) ease;
+}
+
+.rhx-callout__close:hover {
+  background: var(--rhx-color-neutral-200);
+  color: var(--rhx-color-text);
+}
+
+.rhx-callout__close:focus-visible {
+  outline: 2px solid var(--rhx-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   VARIANTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Neutral (default) ── */
+.rhx-callout--neutral {
+  border-left-color: var(--rhx-color-neutral-400);
+  background: var(--rhx-color-neutral-50);
+}
+
+.rhx-callout--neutral .rhx-callout__icon {
+  color: var(--rhx-color-neutral-500);
+}
+
+/* ── Brand ── */
+.rhx-callout--brand {
+  border-left-color: var(--rhx-color-brand-500);
+  background: var(--rhx-color-brand-50);
+}
+
+.rhx-callout--brand .rhx-callout__icon {
+  color: var(--rhx-color-brand-500);
+}
+
+/* ── Success ── */
+.rhx-callout--success {
+  border-left-color: var(--rhx-color-success-500);
+  background: var(--rhx-color-success-50);
+}
+
+.rhx-callout--success .rhx-callout__icon {
+  color: var(--rhx-color-success-500);
+}
+
+/* ── Warning ── */
+.rhx-callout--warning {
+  border-left-color: var(--rhx-color-warning-500);
+  background: var(--rhx-color-warning-50);
+}
+
+.rhx-callout--warning .rhx-callout__icon {
+  color: var(--rhx-color-warning-600);
+}
+
+/* ── Danger ── */
+.rhx-callout--danger {
+  border-left-color: var(--rhx-color-danger-500);
+  background: var(--rhx-color-danger-50);
+}
+
+.rhx-callout--danger .rhx-callout__icon {
+  color: var(--rhx-color-danger-500);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CLOSING ANIMATION
+   ══════════════════════════════════════════════════════════════ */
+
+.rhx-callout--closing {
+  opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-callout {
+    transition-duration: 0.01ms;
+  }
+}
