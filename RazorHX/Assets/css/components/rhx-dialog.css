@@ -1,0 +1,122 @@
+/* ══════════════════════════════════════════════
+   rhx-dialog — Modal dialog (native <dialog>)
+   ══════════════════════════════════════════════ */
+
+.rhx-dialog {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: min(90vw, 32rem);
+    max-height: 85vh;
+    border-radius: var(--rhx-radius-lg);
+    box-shadow: var(--rhx-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
+    overflow: visible;
+}
+
+/* ── Native backdrop ── */
+.rhx-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    animation: rhx-dialog-backdrop-in 0.15s ease;
+}
+
+/* ── Open animation ── */
+.rhx-dialog[open] {
+    animation: rhx-dialog-in 0.2s ease;
+}
+
+/* ── Panel ── */
+.rhx-dialog__panel {
+    display: flex;
+    flex-direction: column;
+    background: var(--rhx-color-surface);
+    border-radius: var(--rhx-radius-lg);
+    overflow: hidden;
+    max-height: 85vh;
+}
+
+/* ── Header ── */
+.rhx-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--rhx-space-lg);
+    border-bottom: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+    flex-shrink: 0;
+}
+
+.rhx-dialog__title {
+    margin: 0;
+    font-size: var(--rhx-font-size-lg);
+    font-weight: var(--rhx-font-weight-semibold, var(--rhx-font-weight-bold));
+    color: var(--rhx-color-text);
+}
+
+/* ── Close button ── */
+.rhx-dialog__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: none;
+    border-radius: var(--rhx-radius-sm);
+    cursor: pointer;
+    color: var(--rhx-color-text-muted);
+    font-size: 1.25rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.rhx-dialog__close:hover {
+    background: var(--rhx-color-neutral-100);
+    color: var(--rhx-color-text);
+}
+
+.rhx-dialog__close:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: -2px;
+}
+
+/* ── Body ── */
+.rhx-dialog__body {
+    padding: var(--rhx-space-lg);
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* ── Footer ── */
+.rhx-dialog__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--rhx-space-sm);
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    border-top: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+    flex-shrink: 0;
+}
+
+/* ── Animations ── */
+@keyframes rhx-dialog-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes rhx-dialog-backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-dialog[open],
+    .rhx-dialog::backdrop {
+        animation: none;
+    }
+}

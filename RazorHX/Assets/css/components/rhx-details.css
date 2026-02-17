@@ -1,0 +1,92 @@
+/* ══════════════════════════════════════════════
+   rhx-details — Collapsible disclosure widget
+   ══════════════════════════════════════════════ */
+
+.rhx-details {
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-md);
+    overflow: hidden;
+}
+
+/* Remove default marker */
+.rhx-details > .rhx-details__summary {
+    list-style: none;
+}
+
+.rhx-details > .rhx-details__summary::-webkit-details-marker {
+    display: none;
+}
+
+/* ── Summary ── */
+.rhx-details__summary {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    cursor: pointer;
+    user-select: none;
+    font-weight: var(--rhx-font-weight-medium);
+    color: var(--rhx-color-text);
+    background: var(--rhx-color-surface);
+}
+
+.rhx-details__summary:hover {
+    background: var(--rhx-color-neutral-50, var(--rhx-color-neutral-100));
+}
+
+.rhx-details__summary:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: -2px;
+}
+
+/* ── Summary icon (CSS chevron) ── */
+.rhx-details__summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+
+.rhx-details__summary-icon::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 6px;
+    border-color: transparent transparent transparent currentColor;
+}
+
+/* Rotate chevron when open */
+.rhx-details[open] > .rhx-details__summary > .rhx-details__summary-icon {
+    transform: rotate(90deg);
+}
+
+/* ── Summary text ── */
+.rhx-details__summary-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ── Content ── */
+.rhx-details__content {
+    padding: var(--rhx-space-lg);
+    border-top: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+}
+
+/* ── Disabled state ── */
+.rhx-details--disabled > .rhx-details__summary {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-details__summary-icon {
+        transition: none;
+    }
+}

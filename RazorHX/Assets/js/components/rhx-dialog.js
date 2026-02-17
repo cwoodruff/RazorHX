@@ -1,95 +1,117 @@
-/**
- * RazorHX Dialog
- * Focus trap, ESC to close, backdrop click dismiss.
- */
+/* ══════════════════════════════════════════════
+   rhx-dialog.js — Native dialog behavior
+   ══════════════════════════════════════════════ */
 (function () {
-  "use strict";
+    'use strict';
 
-  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    function init(dialog) {
+        if (dialog._rhxDialogInit) return;
+        dialog._rhxDialogInit = true;
 
-  function initDialogs(root) {
-    var dialogs = root.querySelectorAll("[data-rhx-dialog]");
-    dialogs.forEach(function (dialog) {
-      if (dialog._rhxDialogInit) return;
-      dialog._rhxDialogInit = true;
-
-      var backdrop = dialog.querySelector("[data-rhx-dialog-backdrop]");
-      var closeBtns = dialog.querySelectorAll("[data-rhx-dialog-close]");
-
-      function open() {
-        dialog.hidden = false;
-        dialog.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        trapFocus(dialog);
-      }
-
-      function close() {
-        dialog.hidden = true;
-        dialog.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      function trapFocus(container) {
-        var focusable = container.querySelectorAll(FOCUSABLE);
-        if (focusable.length > 0) {
-          focusable[0].focus();
+        // ── Close button ──
+        var closeBtn = dialog.querySelector('.rhx-dialog__close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                close(dialog);
+            });
         }
 
-        container.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            e.preventDefault();
-            close();
-            return;
-          }
-
-          if (e.key !== "Tab") return;
-
-          var focusableEls = Array.from(container.querySelectorAll(FOCUSABLE));
-          var first = focusableEls[0];
-          var last = focusableEls[focusableEls.length - 1];
-
-          if (e.shiftKey) {
-            if (document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
+        // ── Backdrop click (click on dialog element itself, not panel) ──
+        dialog.addEventListener('click', function (e) {
+            if (e.target === dialog) {
+                close(dialog);
             }
-          } else {
-            if (document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
-          }
         });
-      }
 
-      if (backdrop) {
-        backdrop.addEventListener("click", close);
-      }
+        // ── Native close event → sync state ──
+        dialog.addEventListener('close', function () {
+            dialog.dispatchEvent(new CustomEvent('rhx:dialog:close', {
+                bubbles: true,
+                detail: { dialog: dialog }
+            }));
+        });
 
-      closeBtns.forEach(function (btn) {
-        btn.addEventListener("click", close);
-      });
+        // Auto-open if 'open' attribute is present at init
+        if (dialog.hasAttribute('open')) {
+            // Remove native open and use showModal for proper modal behavior
+            dialog.removeAttribute('open');
+            dialog.showModal();
+        }
 
-      // Expose open/close on the element
-      dialog.rhxOpen = open;
-      dialog.rhxClose = close;
+        // Expose open/close on element
+        dialog.rhxOpen = function () { open(dialog); };
+        dialog.rhxClose = function () { close(dialog); };
+    }
+
+    function open(dialog) {
+        if (!dialog || dialog.open) return;
+        dialog.showModal();
+        dialog.dispatchEvent(new CustomEvent('rhx:dialog:open', {
+            bubbles: true,
+            detail: { dialog: dialog }
+        }));
+    }
+
+    function close(dialog) {
+        if (!dialog || !dialog.open) return;
+        dialog.close();
+    }
+
+    // ── Trigger buttons: data-rhx-dialog-open="dialog-id" ──
+    document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-rhx-dialog-open]');
+        if (!trigger) return;
+
+        var dialogId = trigger.getAttribute('data-rhx-dialog-open');
+        var dialog = document.getElementById(dialogId);
+        if (dialog) open(dialog);
     });
 
-    // Wire up dialog triggers
-    var triggers = root.querySelectorAll("[data-rhx-dialog-open]");
-    triggers.forEach(function (trigger) {
-      if (trigger._rhxDialogTriggerInit) return;
-      trigger._rhxDialogTriggerInit = true;
+    // Close triggers: data-rhx-dialog-close
+    document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-rhx-dialog-close]');
+        if (!trigger) return;
 
-      var targetId = trigger.getAttribute("data-rhx-dialog-open");
-      trigger.addEventListener("click", function () {
-        var target = document.getElementById(targetId);
-        if (target && target.rhxOpen) target.rhxOpen();
-      });
+        var targetId = trigger.getAttribute('data-rhx-dialog-close');
+        var dialog = targetId
+            ? document.getElementById(targetId)
+            : trigger.closest('dialog[data-rhx-dialog]');
+        if (dialog) close(dialog);
     });
-  }
 
-  if (window.RHX) {
-    window.RHX.register("dialog", initDialogs);
-  }
+    // ── htmx integration: listen for rhx:dialog:open event from HX-Trigger header ──
+    document.addEventListener('rhx:dialog:open', function (e) {
+        var detail = e.detail;
+        if (detail && detail.target) {
+            var dialog = document.querySelector(detail.target);
+            if (dialog) open(dialog);
+        }
+    });
+
+    // ── Registration ──
+    if (typeof RHX !== 'undefined' && RHX.register) {
+        RHX.register('dialog', init);
+    }
+
+    // Auto-init
+    function initAll() {
+        document.querySelectorAll('[data-rhx-dialog]').forEach(init);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+
+    // Re-init on htmx content swap
+    document.addEventListener('htmx:afterSettle', function (e) {
+        var el = e.detail.elt;
+        if (el && el.querySelectorAll) {
+            el.querySelectorAll('[data-rhx-dialog]').forEach(init);
+        }
+        if (el && el.matches && el.matches('[data-rhx-dialog]')) {
+            init(el);
+        }
+    });
 })();
