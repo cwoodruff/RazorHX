@@ -1,0 +1,125 @@
+/* ══════════════════════════════════════════════
+   rhx-split-panel — Resizable two-panel layout
+   ══════════════════════════════════════════════ */
+
+.rhx-split-panel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ── Vertical (top/bottom) ── */
+.rhx-split-panel--vertical {
+    flex-direction: column;
+}
+
+/* ── Panels ── */
+.rhx-split-panel__start,
+.rhx-split-panel__end {
+    overflow: auto;
+    min-width: 0;
+    min-height: 0;
+}
+
+.rhx-split-panel__start {
+    flex: 0 0 auto;
+}
+
+.rhx-split-panel__end {
+    flex: 1 1 0%;
+}
+
+/* ── Divider ── */
+.rhx-split-panel__divider {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rhx-color-neutral-100, #f3f4f6);
+    cursor: col-resize;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* Horizontal layout → vertical divider bar */
+.rhx-split-panel:not(.rhx-split-panel--vertical) > .rhx-split-panel__divider {
+    width: 8px;
+}
+
+/* Vertical layout → horizontal divider bar */
+.rhx-split-panel--vertical > .rhx-split-panel__divider {
+    height: 8px;
+    cursor: row-resize;
+}
+
+/* ── Divider handle (visual grip) ── */
+.rhx-split-panel__divider-handle {
+    border-radius: var(--rhx-radius-full, 9999px);
+    background: var(--rhx-color-neutral-400, #9ca3af);
+}
+
+/* Horizontal layout → vertical grip */
+.rhx-split-panel:not(.rhx-split-panel--vertical) > .rhx-split-panel__divider > .rhx-split-panel__divider-handle {
+    width: 2px;
+    height: 24px;
+}
+
+/* Vertical layout → horizontal grip */
+.rhx-split-panel--vertical > .rhx-split-panel__divider > .rhx-split-panel__divider-handle {
+    width: 24px;
+    height: 2px;
+}
+
+/* ── Hover / active states ── */
+.rhx-split-panel__divider:hover {
+    background: var(--rhx-color-neutral-200, #e5e7eb);
+}
+
+.rhx-split-panel__divider:hover > .rhx-split-panel__divider-handle {
+    background: var(--rhx-color-brand-500);
+}
+
+/* ── Focus ── */
+.rhx-split-panel__divider:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: -2px;
+}
+
+/* ── Dragging state (applied by JS) ── */
+.rhx-split-panel--dragging {
+    cursor: col-resize;
+}
+
+.rhx-split-panel--dragging.rhx-split-panel--vertical {
+    cursor: row-resize;
+}
+
+.rhx-split-panel--dragging .rhx-split-panel__start,
+.rhx-split-panel--dragging .rhx-split-panel__end {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Disabled ── */
+.rhx-split-panel--disabled > .rhx-split-panel__divider {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.rhx-split-panel--disabled > .rhx-split-panel__divider:hover {
+    background: var(--rhx-color-neutral-100, #f3f4f6);
+}
+
+.rhx-split-panel--disabled > .rhx-split-panel__divider:hover > .rhx-split-panel__divider-handle {
+    background: var(--rhx-color-neutral-400, #9ca3af);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-split-panel__start,
+    .rhx-split-panel__end {
+        transition: none;
+    }
+}

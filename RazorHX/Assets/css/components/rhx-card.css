@@ -1,0 +1,55 @@
+/* ══════════════════════════════════════════════
+   rhx-card — Card container
+   ══════════════════════════════════════════════ */
+
+.rhx-card {
+    background: var(--rhx-color-surface);
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-lg);
+    box-shadow: var(--rhx-shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Image ── */
+.rhx-card__image {
+    line-height: 0; /* remove descender gap */
+}
+
+.rhx-card__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ── Header ── */
+.rhx-card__header {
+    padding: var(--rhx-space-lg) var(--rhx-space-lg) 0;
+}
+
+/* When header follows image, add top padding */
+.rhx-card__image + .rhx-card__header {
+    padding-top: var(--rhx-space-lg);
+}
+
+/* ── Body ── */
+.rhx-card__body {
+    padding: var(--rhx-space-lg);
+    flex: 1;
+}
+
+/* When body follows header, reduce top padding */
+.rhx-card__header + .rhx-card__body {
+    padding-top: var(--rhx-space-sm);
+}
+
+/* ── Footer ── */
+.rhx-card__footer {
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    border-top: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+}

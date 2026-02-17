@@ -1,0 +1,18 @@
+/* ══════════════════════════════════════════════
+   rhx-divider — Horizontal / vertical divider
+   ══════════════════════════════════════════════ */
+
+.rhx-divider {
+    border: none;
+    border-top: var(--rhx-border-width) solid var(--rhx-color-border);
+    margin: var(--rhx-space-md) 0;
+}
+
+/* ── Vertical ── */
+.rhx-divider--vertical {
+    border-top: none;
+    border-left: var(--rhx-border-width) solid var(--rhx-color-border);
+    margin: 0 var(--rhx-space-md);
+    align-self: stretch;
+    width: 0;
+}
