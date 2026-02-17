@@ -1,0 +1,62 @@
+/* ══════════════════════════════════════════════
+   rhx-animated-image — GIF/APNG with play/pause
+   ══════════════════════════════════════════════ */
+
+.rhx-animated-image {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+
+.rhx-animated-image__img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.rhx-animated-image__canvas {
+    display: none;
+    max-width: 100%;
+    height: auto;
+}
+
+.rhx-animated-image--paused .rhx-animated-image__img {
+    display: none;
+}
+
+.rhx-animated-image--paused .rhx-animated-image__canvas {
+    display: block;
+}
+
+.rhx-animated-image__control {
+    position: absolute;
+    bottom: var(--rhx-space-sm);
+    right: var(--rhx-space-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: var(--rhx-radius-full);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--rhx-transition-fast);
+}
+
+.rhx-animated-image__control:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.rhx-animated-image__control:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rhx-animated-image__control {
+        transition: none;
+    }
+}

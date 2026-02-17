@@ -1,0 +1,49 @@
+/* ══════════════════════════════════════════════
+   rhx-zoomable-frame — Pinch/scroll to zoom
+   ══════════════════════════════════════════════ */
+
+.rhx-zoomable-frame {
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    touch-action: none;
+}
+
+.rhx-zoomable-frame:active {
+    cursor: grabbing;
+}
+
+.rhx-zoomable-frame:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+}
+
+.rhx-zoomable-frame__content {
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+.rhx-zoomable-frame__content img {
+    display: block;
+    max-width: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.rhx-zoomable-frame__content iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+}
+
+.rhx-zoomable-frame--panning .rhx-zoomable-frame__content iframe {
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rhx-zoomable-frame__content {
+        transition: none !important;
+    }
+}

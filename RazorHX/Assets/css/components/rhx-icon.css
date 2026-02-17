@@ -1,0 +1,28 @@
+/* ══════════════════════════════════════════════
+   rhx-icon — Inline SVG icon
+   ══════════════════════════════════════════════ */
+
+.rhx-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* ── Sizes ── */
+
+.rhx-icon--small {
+    width: 1rem;
+    height: 1rem;
+}
+
+.rhx-icon--medium {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.rhx-icon--large {
+    width: 2rem;
+    height: 2rem;
+}

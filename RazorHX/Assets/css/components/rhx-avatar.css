@@ -1,0 +1,77 @@
+/* ══════════════════════════════════════════════
+   rhx-avatar — User avatar with image or initials
+   ══════════════════════════════════════════════ */
+
+.rhx-avatar {
+    --rhx-avatar-size: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--rhx-avatar-size);
+    height: var(--rhx-avatar-size);
+    overflow: hidden;
+    background: var(--rhx-color-neutral-200);
+    color: var(--rhx-color-text);
+    font-weight: var(--rhx-font-weight-medium);
+    font-size: calc(var(--rhx-avatar-size) * 0.4);
+    line-height: 1;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* ── Shapes ── */
+
+.rhx-avatar--circle {
+    border-radius: var(--rhx-radius-full);
+}
+
+.rhx-avatar--square {
+    border-radius: 0;
+}
+
+.rhx-avatar--rounded {
+    border-radius: var(--rhx-radius-md);
+}
+
+/* ── Named sizes ── */
+
+.rhx-avatar--small {
+    --rhx-avatar-size: 1.75rem;
+}
+
+.rhx-avatar--medium {
+    --rhx-avatar-size: 2.5rem;
+}
+
+.rhx-avatar--large {
+    --rhx-avatar-size: 3.5rem;
+}
+
+/* ── Image ── */
+
+.rhx-avatar__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ── Initials — color variety via data-rhx-hash ── */
+
+.rhx-avatar__initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.rhx-avatar__initials[data-rhx-hash="0"] { background: hsl(210, 60%, 85%); color: hsl(210, 60%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="1"] { background: hsl(150, 50%, 85%); color: hsl(150, 50%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="2"] { background: hsl(30, 60%, 85%); color: hsl(30, 60%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="3"] { background: hsl(330, 50%, 85%); color: hsl(330, 50%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="4"] { background: hsl(270, 50%, 85%); color: hsl(270, 50%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="5"] { background: hsl(60, 50%, 85%); color: hsl(60, 50%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="6"] { background: hsl(0, 50%, 85%); color: hsl(0, 50%, 30%); }
+.rhx-avatar__initials[data-rhx-hash="7"] { background: hsl(180, 50%, 85%); color: hsl(180, 50%, 30%); }
