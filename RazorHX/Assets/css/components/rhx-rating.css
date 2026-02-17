@@ -1,0 +1,165 @@
+/* ──────────────────────────────────────────────
+   rhx-rating — Interactive star rating
+   ────────────────────────────────────────────── */
+
+.rhx-rating {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-sm);
+}
+
+/* ── Label ── */
+
+.rhx-rating__label {
+    font-size: var(--rhx-font-size-sm);
+    font-weight: var(--rhx-font-weight-medium);
+    color: var(--rhx-color-text);
+}
+
+/* ── Stars container ── */
+
+.rhx-rating__stars {
+    display: flex;
+    gap: var(--rhx-space-xs);
+}
+
+/* ── Individual star ── */
+
+.rhx-rating__star {
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    color: var(--rhx-color-neutral-300);
+    transition: color 0.1s ease, transform 0.1s ease;
+}
+
+.rhx-rating__star svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 0.5;
+}
+
+/* Filled star */
+.rhx-rating__star--filled {
+    color: var(--rhx-color-warning-500, #eab308);
+}
+
+/* Half star — clip technique with overflow */
+.rhx-rating__star--half {
+    color: var(--rhx-color-neutral-300);
+}
+
+.rhx-rating__star--half::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.rhx-rating__star--half svg {
+    position: relative;
+}
+
+/* Use a CSS approach for half-fill: clip the filled color */
+.rhx-rating__star--half {
+    background: linear-gradient(
+        to right,
+        var(--rhx-color-warning-500, #eab308) 50%,
+        var(--rhx-color-neutral-300) 50%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Override for SVG fill via a different approach: use two overlapping stars */
+.rhx-rating__star--half svg {
+    fill: var(--rhx-color-neutral-300);
+}
+
+.rhx-rating__star--half::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hover preview */
+.rhx-rating:not(.rhx-rating--disabled):not(.rhx-rating--readonly) .rhx-rating__star:hover,
+.rhx-rating:not(.rhx-rating--disabled):not(.rhx-rating--readonly) .rhx-rating__star:hover ~ .rhx-rating__star {
+    transform: scale(1.1);
+}
+
+.rhx-rating:not(.rhx-rating--disabled):not(.rhx-rating--readonly) .rhx-rating__star[data-hover="true"] {
+    color: var(--rhx-color-warning-500, #eab308);
+}
+
+/* ── Focus ring ── */
+
+.rhx-rating[role="slider"]:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 4px;
+    border-radius: var(--rhx-radius-sm);
+}
+
+/* ── Hint ── */
+
+.rhx-rating__hint {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Error ── */
+
+.rhx-rating__error {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-danger-500);
+}
+
+/* ── Disabled ── */
+
+.rhx-rating--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.rhx-rating--disabled .rhx-rating__star {
+    cursor: default;
+}
+
+/* ── Readonly ── */
+
+.rhx-rating--readonly .rhx-rating__star {
+    cursor: default;
+}
+
+/* ── Size variants ── */
+
+.rhx-rating--small .rhx-rating__star svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.rhx-rating--large .rhx-rating__star svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .rhx-rating__star {
+        transition: none;
+    }
+}
