@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - RazorHX Demo</title>
     <link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-input.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-dropdown.css" />
     <style>
         .demo-section {
             max-width: 56rem;
@@ -41,6 +42,7 @@
             </h1>
             <nav style="display: flex; gap: var(--rhx-space-lg);">
                 <a href="/" style="color: var(--rhx-color-brand-500); font-weight: var(--rhx-font-weight-medium);">Components</a>
+                <a href="/Dropdowns" style="color: var(--rhx-color-brand-500); font-weight: var(--rhx-font-weight-medium);">Dropdown</a>
             </nav>
             <button onclick="RHX.toggleTheme()" class="rhx-button rhx-button--ghost rhx-button--small">
                 Toggle Theme
@@ -52,6 +54,7 @@
         @RenderBody()
     </main>
 
+    <script src="/_rhx/js/components/rhx-dropdown.js" defer></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
