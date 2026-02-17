@@ -1,0 +1,316 @@
+/* ─────────────────────────────────────────────
+   rhx-select
+   Custom-styled select with button trigger, listbox panel,
+   and hidden input for form submission.
+   ───────────────────────────────────────────── */
+
+/* ── Block ── */
+.rhx-select {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--rhx-space-xs);
+    width: 100%;
+    max-width: 20rem;
+    font-family: var(--rhx-font-family);
+}
+
+/* ── Label ── */
+.rhx-select__label {
+    display: block;
+    font-size: var(--rhx-font-size-sm);
+    font-weight: var(--rhx-font-weight-medium);
+    color: var(--rhx-color-text);
+    line-height: var(--rhx-line-height-tight);
+}
+
+/* ── Trigger button ── */
+.rhx-select__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--rhx-space-sm);
+    width: 100%;
+    min-height: 2.5rem;
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    background: var(--rhx-color-surface);
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-md);
+    color: var(--rhx-color-text);
+    font-size: var(--rhx-font-size-base);
+    font-family: inherit;
+    line-height: var(--rhx-line-height-normal);
+    cursor: pointer;
+    transition: border-color var(--rhx-transition-fast),
+                box-shadow var(--rhx-transition-fast);
+    text-align: left;
+}
+
+.rhx-select__trigger:hover {
+    border-color: var(--rhx-color-border-hover, var(--rhx-color-neutral-400));
+}
+
+.rhx-select__trigger:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 2px;
+    border-color: var(--rhx-color-brand-500);
+}
+
+.rhx-select__trigger[aria-expanded="true"] {
+    border-color: var(--rhx-color-brand-500);
+    box-shadow: 0 0 0 1px var(--rhx-color-brand-500);
+}
+
+/* ── Value display ── */
+.rhx-select__value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rhx-select__placeholder {
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Arrow icon ── */
+.rhx-select__arrow {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--rhx-color-text-muted);
+    transition: transform var(--rhx-transition-fast);
+}
+
+.rhx-select__trigger[aria-expanded="true"] .rhx-select__arrow {
+    transform: rotate(180deg);
+}
+
+/* ── Clear button ── */
+.rhx-select__clear {
+    position: absolute;
+    right: 2.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--rhx-color-text-muted);
+    cursor: pointer;
+    border-radius: var(--rhx-radius-sm);
+}
+
+.rhx-select__clear:hover {
+    color: var(--rhx-color-text);
+}
+
+.rhx-select__clear:focus-visible {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: 1px;
+}
+
+.rhx-select--has-label .rhx-select__clear {
+    top: calc(50% + 0.75rem);
+}
+
+/* ── Listbox panel ── */
+.rhx-select__listbox {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: var(--rhx-z-dropdown);
+    margin-top: var(--rhx-space-xs);
+    padding: var(--rhx-space-xs) 0;
+    background: var(--rhx-color-surface);
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-md);
+    box-shadow: var(--rhx-shadow-lg);
+    overflow-y: auto;
+}
+
+.rhx-select__listbox:not([hidden]) {
+    display: block;
+}
+
+/* ── Option ── */
+.rhx-select__option {
+    display: flex;
+    align-items: center;
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    color: var(--rhx-color-text);
+    font-size: var(--rhx-font-size-base);
+    cursor: pointer;
+    transition: background-color var(--rhx-transition-fast);
+    user-select: none;
+}
+
+.rhx-select__option:hover {
+    background-color: var(--rhx-color-neutral-100);
+}
+
+.rhx-select__option:focus-visible,
+.rhx-select__option[data-rhx-focused] {
+    background-color: var(--rhx-color-neutral-100);
+    outline: none;
+}
+
+.rhx-select__option--selected {
+    background-color: var(--rhx-color-brand-50, var(--rhx-color-neutral-50));
+    font-weight: var(--rhx-font-weight-medium);
+}
+
+.rhx-select__option--selected::after {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: auto;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.rhx-select__option--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Multi-select tags ── */
+.rhx-select--multiple .rhx-select__value {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--rhx-space-xs);
+    white-space: normal;
+}
+
+.rhx-select__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rhx-space-xs);
+    padding: 0.125rem var(--rhx-space-sm);
+    background: var(--rhx-color-neutral-100);
+    border-radius: var(--rhx-radius-sm);
+    font-size: var(--rhx-font-size-sm);
+    line-height: var(--rhx-line-height-tight);
+}
+
+.rhx-select__tag-remove {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--rhx-color-text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.rhx-select__tag-remove:hover {
+    color: var(--rhx-color-text);
+}
+
+/* ── Hidden inputs container ── */
+.rhx-select__values {
+    display: none;
+}
+
+.rhx-select__hidden {
+    display: none;
+}
+
+/* ── Filled variant ── */
+.rhx-select--filled .rhx-select__trigger {
+    background: var(--rhx-color-neutral-100);
+    border-color: transparent;
+}
+
+.rhx-select--filled .rhx-select__trigger:hover {
+    background: var(--rhx-color-neutral-200);
+}
+
+.rhx-select--filled .rhx-select__trigger:focus-visible,
+.rhx-select--filled .rhx-select__trigger[aria-expanded="true"] {
+    background: var(--rhx-color-surface);
+    border-color: var(--rhx-color-brand-500);
+}
+
+/* ── Size variants ── */
+.rhx-select--small .rhx-select__trigger {
+    min-height: 2rem;
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-select--small .rhx-select__option {
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-select--large .rhx-select__trigger {
+    min-height: 3rem;
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    font-size: var(--rhx-font-size-lg);
+}
+
+.rhx-select--large .rhx-select__option {
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    font-size: var(--rhx-font-size-lg);
+}
+
+/* ── Disabled ── */
+.rhx-select--disabled .rhx-select__trigger {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.rhx-select--disabled .rhx-select__label {
+    opacity: 0.5;
+}
+
+/* ── Readonly ── */
+.rhx-select--readonly .rhx-select__trigger {
+    background: var(--rhx-color-neutral-50);
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Error ── */
+.rhx-select--error .rhx-select__trigger {
+    border-color: var(--rhx-color-danger-500);
+}
+
+.rhx-select--error .rhx-select__trigger:focus-visible,
+.rhx-select--error .rhx-select__trigger[aria-expanded="true"] {
+    border-color: var(--rhx-color-danger-500);
+    box-shadow: 0 0 0 1px var(--rhx-color-danger-500);
+    outline-color: var(--rhx-color-danger-500);
+}
+
+.rhx-select__error {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-danger-500);
+}
+
+/* ── Hint ── */
+.rhx-select__hint {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-select__trigger,
+    .rhx-select__arrow,
+    .rhx-select__option {
+        transition: none;
+    }
+}

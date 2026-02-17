@@ -1,0 +1,242 @@
+/* ─────────────────────────────────────────────
+   rhx-combobox
+   Searchable/filterable select combining a text input
+   with a dropdown listbox.
+   ───────────────────────────────────────────── */
+
+/* ── Block ── */
+.rhx-combobox {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--rhx-space-xs);
+    width: 100%;
+    max-width: 20rem;
+    font-family: var(--rhx-font-family);
+}
+
+/* ── Label ── */
+.rhx-combobox__label {
+    display: block;
+    font-size: var(--rhx-font-size-sm);
+    font-weight: var(--rhx-font-weight-medium);
+    color: var(--rhx-color-text);
+    line-height: var(--rhx-line-height-tight);
+}
+
+/* ── Control wrapper ── */
+.rhx-combobox__control {
+    display: flex;
+    align-items: center;
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-md);
+    background: var(--rhx-color-surface);
+    transition: border-color var(--rhx-transition-fast),
+                box-shadow var(--rhx-transition-fast);
+}
+
+.rhx-combobox__control:focus-within {
+    border-color: var(--rhx-color-brand-500);
+    box-shadow: 0 0 0 1px var(--rhx-color-brand-500);
+}
+
+/* ── Text input ── */
+.rhx-combobox__input {
+    flex: 1;
+    min-height: 2.5rem;
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    border: none;
+    background: transparent;
+    color: var(--rhx-color-text);
+    font-size: var(--rhx-font-size-base);
+    font-family: inherit;
+    line-height: var(--rhx-line-height-normal);
+    outline: none;
+}
+
+.rhx-combobox__input::placeholder {
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Trigger button (toggle) ── */
+.rhx-combobox__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 100%;
+    padding: 0;
+    border: none;
+    border-left: var(--rhx-border-width) solid var(--rhx-color-border);
+    background: none;
+    color: var(--rhx-color-text-muted);
+    cursor: pointer;
+    transition: color var(--rhx-transition-fast),
+                transform var(--rhx-transition-fast);
+}
+
+.rhx-combobox__trigger:hover {
+    color: var(--rhx-color-text);
+}
+
+.rhx-combobox__input[aria-expanded="true"] ~ .rhx-combobox__trigger {
+    transform: rotate(180deg);
+}
+
+/* ── Listbox panel ── */
+.rhx-combobox__listbox {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: var(--rhx-z-dropdown);
+    margin-top: var(--rhx-space-xs);
+    padding: var(--rhx-space-xs) 0;
+    background: var(--rhx-color-surface);
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-md);
+    box-shadow: var(--rhx-shadow-lg);
+    overflow-y: auto;
+}
+
+.rhx-combobox__listbox:not([hidden]) {
+    display: block;
+}
+
+/* ── Option ── */
+.rhx-combobox__option {
+    display: flex;
+    align-items: center;
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    color: var(--rhx-color-text);
+    font-size: var(--rhx-font-size-base);
+    cursor: pointer;
+    transition: background-color var(--rhx-transition-fast);
+    user-select: none;
+}
+
+.rhx-combobox__option:hover {
+    background-color: var(--rhx-color-neutral-100);
+}
+
+.rhx-combobox__option:focus-visible,
+.rhx-combobox__option[data-rhx-focused] {
+    background-color: var(--rhx-color-neutral-100);
+    outline: none;
+}
+
+.rhx-combobox__option--selected {
+    background-color: var(--rhx-color-brand-50, var(--rhx-color-neutral-50));
+    font-weight: var(--rhx-font-weight-medium);
+}
+
+.rhx-combobox__option--disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── No results message ── */
+.rhx-combobox__no-results {
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    color: var(--rhx-color-text-muted);
+    font-size: var(--rhx-font-size-sm);
+    text-align: center;
+}
+
+/* ── Hidden input ── */
+.rhx-combobox__hidden {
+    display: none;
+}
+
+/* ── Filled variant ── */
+.rhx-combobox--filled .rhx-combobox__control {
+    background: var(--rhx-color-neutral-100);
+    border-color: transparent;
+}
+
+.rhx-combobox--filled .rhx-combobox__control:focus-within {
+    background: var(--rhx-color-surface);
+    border-color: var(--rhx-color-brand-500);
+}
+
+/* ── Size variants ── */
+.rhx-combobox--small .rhx-combobox__input {
+    min-height: 2rem;
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-combobox--small .rhx-combobox__trigger {
+    width: 1.5rem;
+}
+
+.rhx-combobox--small .rhx-combobox__option {
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-combobox--large .rhx-combobox__input {
+    min-height: 3rem;
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    font-size: var(--rhx-font-size-lg);
+}
+
+.rhx-combobox--large .rhx-combobox__trigger {
+    width: 2.5rem;
+}
+
+.rhx-combobox--large .rhx-combobox__option {
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    font-size: var(--rhx-font-size-lg);
+}
+
+/* ── Disabled ── */
+.rhx-combobox--disabled .rhx-combobox__control {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.rhx-combobox--disabled .rhx-combobox__label {
+    opacity: 0.5;
+}
+
+/* ── Readonly ── */
+.rhx-combobox--readonly .rhx-combobox__control {
+    background: var(--rhx-color-neutral-50);
+}
+
+.rhx-combobox--readonly .rhx-combobox__trigger {
+    display: none;
+}
+
+/* ── Error ── */
+.rhx-combobox--error .rhx-combobox__control {
+    border-color: var(--rhx-color-danger-500);
+}
+
+.rhx-combobox--error .rhx-combobox__control:focus-within {
+    border-color: var(--rhx-color-danger-500);
+    box-shadow: 0 0 0 1px var(--rhx-color-danger-500);
+}
+
+.rhx-combobox__error {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-danger-500);
+}
+
+/* ── Hint ── */
+.rhx-combobox__hint {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text-muted);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-combobox__control,
+    .rhx-combobox__trigger,
+    .rhx-combobox__option {
+        transition: none;
+    }
+}
