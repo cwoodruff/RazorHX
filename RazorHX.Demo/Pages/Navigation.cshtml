@@ -1,0 +1,135 @@
+@page
+@model NavigationModel
+@{
+    ViewData["Title"] = "Navigation";
+}
+
+<div class="demo-section">
+    <h2>Breadcrumb — Model-bound Items</h2>
+
+    <div class="demo-label">Items set from the server model</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-breadcrumb rhx-items="@Model.BreadcrumbItems" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Breadcrumb — Child Items</h2>
+
+    <div class="demo-label">Items declared inline with tag helpers</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-breadcrumb>
+            <rhx-breadcrumb-item rhx-href="/">Home</rhx-breadcrumb-item>
+            <rhx-breadcrumb-item rhx-href="/Navigation">Navigation</rhx-breadcrumb-item>
+            <rhx-breadcrumb-item>Breadcrumb</rhx-breadcrumb-item>
+        </rhx-breadcrumb>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Breadcrumb — Custom Separator &amp; Label</h2>
+
+    <div class="demo-label">Using &rsaquo; separator and custom aria-label</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-breadcrumb rhx-separator="›" rhx-label="Site navigation"
+                        rhx-items="@Model.BreadcrumbItems" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Tree — Basic</h2>
+
+    <div class="demo-label">Single selection (default)</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-tree aria-label="File explorer">
+            <rhx-tree-item rhx-label="Documents" rhx-expanded>
+                <rhx-tree-item>README.md</rhx-tree-item>
+                <rhx-tree-item>LICENSE</rhx-tree-item>
+                <rhx-tree-item rhx-label="Reports">
+                    <rhx-tree-item>Q1 Report.pdf</rhx-tree-item>
+                    <rhx-tree-item>Q2 Report.pdf</rhx-tree-item>
+                </rhx-tree-item>
+            </rhx-tree-item>
+            <rhx-tree-item rhx-label="Images">
+                <rhx-tree-item>logo.png</rhx-tree-item>
+                <rhx-tree-item>banner.jpg</rhx-tree-item>
+            </rhx-tree-item>
+        </rhx-tree>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Tree — Multiple Selection</h2>
+
+    <div class="demo-label">Click items to toggle selection</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-tree rhx-selection="multiple" aria-label="Multi-select tree">
+            <rhx-tree-item>Apple</rhx-tree-item>
+            <rhx-tree-item>Banana</rhx-tree-item>
+            <rhx-tree-item>Cherry</rhx-tree-item>
+            <rhx-tree-item rhx-label="Citrus">
+                <rhx-tree-item>Orange</rhx-tree-item>
+                <rhx-tree-item>Lemon</rhx-tree-item>
+                <rhx-tree-item>Grapefruit</rhx-tree-item>
+            </rhx-tree-item>
+        </rhx-tree>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Tree — Leaf Selection Only</h2>
+
+    <div class="demo-label">Only leaf items can be selected</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-tree rhx-selection="leaf" aria-label="Leaf selection tree">
+            <rhx-tree-item rhx-label="Frontend" rhx-expanded>
+                <rhx-tree-item>React</rhx-tree-item>
+                <rhx-tree-item>Vue</rhx-tree-item>
+                <rhx-tree-item>Angular</rhx-tree-item>
+            </rhx-tree-item>
+            <rhx-tree-item rhx-label="Backend">
+                <rhx-tree-item>ASP.NET Core</rhx-tree-item>
+                <rhx-tree-item>Express</rhx-tree-item>
+            </rhx-tree-item>
+        </rhx-tree>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Tree — States</h2>
+
+    <div class="demo-label">Pre-selected, disabled, and expanded items</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-tree aria-label="States example">
+            <rhx-tree-item rhx-label="Available" rhx-expanded>
+                <rhx-tree-item rhx-selected>Selected item</rhx-tree-item>
+                <rhx-tree-item>Normal item</rhx-tree-item>
+            </rhx-tree-item>
+            <rhx-tree-item rhx-label="Locked" rhx-disabled>
+                <rhx-tree-item>Cannot interact</rhx-tree-item>
+            </rhx-tree-item>
+        </rhx-tree>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Tree — htmx Lazy Loading</h2>
+
+    <div class="demo-label">Children load via htmx when the branch is expanded</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start;">
+        <rhx-tree aria-label="Lazy-loaded tree">
+            <rhx-tree-item rhx-label="Lazy Folder"
+                           rhx-lazy
+                           hx-get="/Navigation?handler=TreeChildren&folder=root"
+                           hx-target="find .rhx-tree__children"
+                           hx-swap="innerHTML"
+                           hx-trigger="toggle once">
+            </rhx-tree-item>
+            <rhx-tree-item>Static leaf item</rhx-tree-item>
+        </rhx-tree>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/_rhx/js/components/rhx-tree.js" defer></script>
+}

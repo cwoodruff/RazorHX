@@ -1,0 +1,108 @@
+/* ══════════════════════════════════════════════
+   rhx-tree — Tree view component
+   ══════════════════════════════════════════════ */
+
+.rhx-tree {
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+}
+
+/* ── Item ── */
+.rhx-tree__item {
+    /* Structural — no visual styling on the wrapper */
+}
+
+.rhx-tree__item:focus {
+    outline: none;
+}
+
+/* ── Item content (clickable row) ── */
+.rhx-tree__item-content {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-xs);
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    border-radius: var(--rhx-radius-sm);
+    cursor: pointer;
+    user-select: none;
+}
+
+.rhx-tree__item-content:hover {
+    background: var(--rhx-color-neutral-100);
+}
+
+.rhx-tree__item:focus-visible > .rhx-tree__item-content {
+    outline: 2px solid var(--rhx-color-brand-500);
+    outline-offset: -2px;
+}
+
+/* ── Expand icon (CSS triangle) ── */
+.rhx-tree__expand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+
+.rhx-tree__expand-icon::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 6px;
+    border-color: transparent transparent transparent currentColor;
+}
+
+.rhx-tree__item--expanded > .rhx-tree__item-content > .rhx-tree__expand-icon {
+    transform: rotate(90deg);
+}
+
+/* ── Item label ── */
+.rhx-tree__item-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Children group (nested items) ── */
+.rhx-tree__children {
+    padding-left: var(--rhx-space-lg);
+}
+
+/* ── Selected state ── */
+.rhx-tree__item--selected > .rhx-tree__item-content {
+    background: var(--rhx-color-brand-50, rgba(59, 130, 246, 0.1));
+    color: var(--rhx-color-brand-700, var(--rhx-color-brand-500));
+}
+
+.rhx-tree__item--selected > .rhx-tree__item-content:hover {
+    background: var(--rhx-color-brand-100, rgba(59, 130, 246, 0.15));
+}
+
+/* ── Disabled state ── */
+.rhx-tree__item--disabled > .rhx-tree__item-content {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.rhx-tree__item--disabled > .rhx-tree__item-content:hover {
+    background: none;
+}
+
+/* ── Leaf items — indent to align with branch items ── */
+.rhx-tree__item--leaf > .rhx-tree__item-content {
+    padding-left: calc(var(--rhx-space-sm) + 1rem + var(--rhx-space-xs));
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-tree__expand-icon {
+        transition: none;
+    }
+}
