@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX Copy Button Component
+   BEM:  rhx-copy-button  /  rhx-copy-button__{icon}
+         rhx-copy-button--{success,disabled}
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--rhx-space-xs) var(--rhx-space-sm);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
+  border-radius: var(--rhx-radius-md);
+  background: var(--rhx-color-surface);
+  color: var(--rhx-color-text-muted);
+  font-family: var(--rhx-font-family);
+  cursor: pointer;
+  line-height: 1;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--rhx-transition-fast);
+  transition-timing-function: ease;
+}
+
+.rhx-copy-button:hover {
+  color: var(--rhx-color-text);
+  background-color: var(--rhx-color-neutral-100);
+}
+
+.rhx-copy-button:active {
+  background-color: var(--rhx-color-neutral-200);
+}
+
+.rhx-copy-button:focus-visible {
+  outline: 2px solid var(--rhx-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Icon layers ── */
+.rhx-copy-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rhx-copy-button__icon--success {
+  display: none;
+  color: var(--rhx-color-success-600);
+}
+
+/* ── Success state ── */
+.rhx-copy-button--success .rhx-copy-button__icon--copy {
+  display: none;
+}
+
+.rhx-copy-button--success .rhx-copy-button__icon--success {
+  display: flex;
+}
+
+.rhx-copy-button--success {
+  color: var(--rhx-color-success-600);
+  border-color: var(--rhx-color-success-300);
+}
+
+/* ── Disabled state ── */
+.rhx-copy-button:disabled,
+.rhx-copy-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .rhx-copy-button {
+    transition-duration: 0.01ms;
+  }
+}

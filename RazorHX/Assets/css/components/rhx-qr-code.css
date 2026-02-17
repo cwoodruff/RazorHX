@@ -1,0 +1,9 @@
+/* ═══════════════════════════════════════════════════════════════
+   RazorHX QR Code Component
+   BEM:  rhx-qr-code
+   ═══════════════════════════════════════════════════════════════ */
+
+.rhx-qr-code {
+  display: block;
+  image-rendering: pixelated;
+}
