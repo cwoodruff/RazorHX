@@ -1,26 +1,28 @@
 /*
  * RazorHX Input Component
- * BEM: rhx-input / rhx-input__field / rhx-input__label / rhx-input--{modifier}
+ * BEM: rhx-input / rhx-input__label / rhx-input__control / rhx-input__native / rhx-input--{modifier}
  */
 
+/* ── Block ── */
 .rhx-input {
   display: flex;
   flex-direction: column;
   gap: var(--rhx-space-xs);
 }
 
+/* ── Label ── */
 .rhx-input__label {
   font-size: var(--rhx-font-size-sm);
   font-weight: var(--rhx-font-weight-medium);
   color: var(--rhx-color-text);
 }
 
-.rhx-input__field {
+/* ── Control wrapper ── */
+.rhx-input__control {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
-  padding: var(--rhx-space-sm) var(--rhx-space-md);
-  font-size: var(--rhx-font-size-md);
-  line-height: var(--rhx-line-height-normal);
-  color: var(--rhx-color-text);
   background: var(--rhx-color-surface);
   border: var(--rhx-border-width) solid var(--rhx-color-border);
   border-radius: var(--rhx-radius-md);
@@ -29,63 +31,194 @@
     box-shadow var(--rhx-transition-fast);
 }
 
-.rhx-input__field::placeholder {
-  color: var(--rhx-color-text-muted);
-}
-
-.rhx-input__field:hover {
+.rhx-input__control:hover {
   border-color: var(--rhx-color-neutral-400);
 }
 
-.rhx-input__field:focus {
+.rhx-input__control:focus-within {
   border-color: var(--rhx-color-focus-ring);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ── Native input ── */
+.rhx-input__native {
+  flex: 1;
+  width: 100%;
+  padding: var(--rhx-space-sm) var(--rhx-space-md);
+  font-family: inherit;
+  font-size: var(--rhx-font-size-md);
+  line-height: var(--rhx-line-height-normal);
+  color: var(--rhx-color-text);
+  background: transparent;
+  border: none;
   outline: none;
 }
 
-.rhx-input__field:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.rhx-input__native::placeholder {
+  color: var(--rhx-color-text-muted);
+}
+
+/* ── Clear button ── */
+.rhx-input__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: var(--rhx-space-xs);
+  padding: 0;
+  color: var(--rhx-color-text-muted);
+  background: none;
+  border: none;
+  border-radius: var(--rhx-radius-sm);
+  cursor: pointer;
+  transition: color var(--rhx-transition-fast), background-color var(--rhx-transition-fast);
+}
+
+.rhx-input__clear:hover {
+  color: var(--rhx-color-text);
   background: var(--rhx-color-neutral-100);
 }
 
-.rhx-input__help {
+.rhx-input__clear[hidden] {
+  display: none;
+}
+
+/* ── Password toggle ── */
+.rhx-input__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: var(--rhx-space-xs);
+  padding: 0;
+  color: var(--rhx-color-text-muted);
+  background: none;
+  border: none;
+  border-radius: var(--rhx-radius-sm);
+  cursor: pointer;
+  transition: color var(--rhx-transition-fast), background-color var(--rhx-transition-fast);
+}
+
+.rhx-input__toggle:hover {
+  color: var(--rhx-color-text);
+  background: var(--rhx-color-neutral-100);
+}
+
+.rhx-input__toggle-show,
+.rhx-input__toggle-hide {
+  display: flex;
+}
+
+.rhx-input__toggle-show[hidden],
+.rhx-input__toggle-hide[hidden] {
+  display: none;
+}
+
+/* ── Hint ── */
+.rhx-input__hint {
   font-size: var(--rhx-font-size-xs);
   color: var(--rhx-color-text-muted);
 }
 
-/* ── Filled variant ── */
-.rhx-input--filled .rhx-input__field {
-  background: var(--rhx-color-neutral-100);
-  border-color: transparent;
-}
-
-.rhx-input--filled .rhx-input__field:focus {
-  background: var(--rhx-color-surface);
-  border-color: var(--rhx-color-focus-ring);
-}
-
-/* ── Error state ── */
-.rhx-input--error .rhx-input__field {
-  border-color: var(--rhx-color-danger-500);
-}
-
-.rhx-input--error .rhx-input__field:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
-}
-
+/* ── Error ── */
 .rhx-input__error {
   font-size: var(--rhx-font-size-xs);
   color: var(--rhx-color-danger-500);
 }
 
-/* ── Sizes ── */
-.rhx-input--small .rhx-input__field {
+.rhx-input__error[hidden] {
+  display: none;
+}
+
+/* ── Filled variant ── */
+.rhx-input--filled .rhx-input__control {
+  background: var(--rhx-color-neutral-100);
+  border-color: transparent;
+}
+
+.rhx-input--filled .rhx-input__control:focus-within {
+  background: var(--rhx-color-surface);
+  border-color: var(--rhx-color-focus-ring);
+}
+
+/* ── Error state ── */
+.rhx-input--error .rhx-input__control {
+  border-color: var(--rhx-color-danger-500);
+}
+
+.rhx-input--error .rhx-input__control:focus-within {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* ── Disabled state ── */
+.rhx-input--disabled .rhx-input__control {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--rhx-color-neutral-100);
+}
+
+.rhx-input--disabled .rhx-input__native {
+  cursor: not-allowed;
+}
+
+.rhx-input--disabled .rhx-input__control:hover {
+  border-color: var(--rhx-color-border);
+}
+
+/* ── Readonly state ── */
+.rhx-input--readonly .rhx-input__control {
+  background: var(--rhx-color-neutral-50);
+}
+
+.rhx-input--readonly .rhx-input__native {
+  cursor: default;
+}
+
+.rhx-input--readonly .rhx-input__control:hover {
+  border-color: var(--rhx-color-border);
+}
+
+/* ── Size: small ── */
+.rhx-input--small .rhx-input__native {
   padding: var(--rhx-space-xs) var(--rhx-space-sm);
   font-size: var(--rhx-font-size-sm);
 }
 
-.rhx-input--large .rhx-input__field {
+.rhx-input--small .rhx-input__label {
+  font-size: var(--rhx-font-size-xs);
+}
+
+.rhx-input--small .rhx-input__clear,
+.rhx-input--small .rhx-input__toggle {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ── Size: large ── */
+.rhx-input--large .rhx-input__native {
   padding: var(--rhx-space-md) var(--rhx-space-lg);
   font-size: var(--rhx-font-size-lg);
+}
+
+.rhx-input--large .rhx-input__label {
+  font-size: var(--rhx-font-size-md);
+}
+
+.rhx-input--large .rhx-input__clear,
+.rhx-input--large .rhx-input__toggle {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .rhx-input__control,
+  .rhx-input__clear,
+  .rhx-input__toggle {
+    transition: none;
+  }
 }
