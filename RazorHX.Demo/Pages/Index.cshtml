@@ -1,0 +1,51 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Components";
+}
+
+<div class="demo-section">
+    <h2>Buttons</h2>
+
+    <div class="demo-label">Variants</div>
+    <div class="demo-row">
+        <rhx-button variant="Default">Default</rhx-button>
+        <rhx-button variant="Brand">Brand</rhx-button>
+        <rhx-button variant="Success">Success</rhx-button>
+        <rhx-button variant="Warning">Warning</rhx-button>
+        <rhx-button variant="Danger">Danger</rhx-button>
+        <rhx-button variant="Ghost">Ghost</rhx-button>
+        <rhx-button variant="Text">Text</rhx-button>
+    </div>
+
+    <div class="demo-label">Sizes</div>
+    <div class="demo-row">
+        <rhx-button variant="Brand" size="Small">Small</rhx-button>
+        <rhx-button variant="Brand">Default</rhx-button>
+        <rhx-button variant="Brand" size="Large">Large</rhx-button>
+    </div>
+
+    <div class="demo-label">States</div>
+    <div class="demo-row">
+        <rhx-button variant="Brand" disabled="true">Disabled</rhx-button>
+        <rhx-button variant="Brand" loading="true">Loading</rhx-button>
+        <rhx-button variant="Brand" full-width="true">Full Width</rhx-button>
+    </div>
+
+    <div class="demo-label">Button Group</div>
+    <div class="demo-row">
+        <rhx-button-group>
+            <rhx-button variant="Default">Left</rhx-button>
+            <rhx-button variant="Default">Center</rhx-button>
+            <rhx-button variant="Default">Right</rhx-button>
+        </rhx-button-group>
+    </div>
+
+    <div class="demo-label">htmx Integration</div>
+    <div class="demo-row">
+        <rhx-button variant="Brand" hx-get="/api/greeting" hx-target="#result" hx-swap="innerHTML">
+            Load Greeting
+        </rhx-button>
+        <span id="result" class="rhx-text-muted">Click the button...</span>
+    </div>
+</div>

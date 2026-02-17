@@ -1,0 +1,98 @@
+/*
+ * RazorHX Core
+ * Shared component foundations — base styles used across all components.
+ */
+
+/* ── Visually hidden (accessible) ── */
+.rhx-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Focus ring ── */
+.rhx-focus-ring:focus-visible {
+  outline: 2px solid var(--rhx-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Disabled state ── */
+.rhx-disabled,
+[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Loading indicator (htmx) ── */
+.rhx-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.rhx-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rhx-color-surface);
+  opacity: 0.7;
+  border-radius: inherit;
+}
+
+/* ── htmx indicator integration ── */
+.htmx-indicator {
+  display: none;
+}
+
+.htmx-request .htmx-indicator {
+  display: inline-block;
+}
+
+.htmx-request.htmx-indicator {
+  display: inline-block;
+}
+
+/* ── Transition helpers ── */
+.rhx-transition {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: var(--rhx-transition-normal);
+  transition-timing-function: ease;
+}
+
+.rhx-transition-fast {
+  transition-duration: var(--rhx-transition-fast);
+}
+
+.rhx-transition-slow {
+  transition-duration: var(--rhx-transition-slow);
+}
+
+/* ── Overlay backdrop ── */
+.rhx-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--rhx-color-overlay);
+  z-index: var(--rhx-z-dialog);
+}
+
+/* ── Surface ── */
+.rhx-surface {
+  background: var(--rhx-color-surface);
+  color: var(--rhx-color-text);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
+  border-radius: var(--rhx-radius-md);
+}
+
+.rhx-surface--raised {
+  background: var(--rhx-color-surface-raised);
+  box-shadow: var(--rhx-shadow-md);
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-rhx-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RazorHX Demo</title>
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-input.css" />
+    <style>
+        .demo-section {
+            max-width: 56rem;
+            margin: 0 auto;
+            padding: var(--rhx-space-xl);
+        }
+        .demo-section h2 {
+            font-size: var(--rhx-font-size-2xl);
+            font-weight: var(--rhx-font-weight-bold);
+            margin-bottom: var(--rhx-space-lg);
+            color: var(--rhx-color-text);
+        }
+        .demo-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--rhx-space-md);
+            align-items: center;
+            margin-bottom: var(--rhx-space-xl);
+        }
+        .demo-label {
+            font-size: var(--rhx-font-size-sm);
+            font-weight: var(--rhx-font-weight-medium);
+            color: var(--rhx-color-text-muted);
+            margin-bottom: var(--rhx-space-sm);
+        }
+    </style>
+</head>
+<body>
+    <header class="rhx-surface" style="border-bottom: var(--rhx-border-width) solid var(--rhx-color-border); padding: var(--rhx-space-lg) var(--rhx-space-xl);">
+        <div style="max-width: 56rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+            <h1 style="font-size: var(--rhx-font-size-xl); font-weight: var(--rhx-font-weight-bold);">
+                RazorHX
+            </h1>
+            <nav style="display: flex; gap: var(--rhx-space-lg);">
+                <a href="/" style="color: var(--rhx-color-brand-500); font-weight: var(--rhx-font-weight-medium);">Components</a>
+            </nav>
+            <button onclick="RHX.toggleTheme()" class="rhx-button rhx-button--ghost rhx-button--small">
+                Toggle Theme
+            </button>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

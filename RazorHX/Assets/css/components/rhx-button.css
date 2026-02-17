@@ -1,0 +1,208 @@
+/*
+ * RazorHX Button Component
+ * BEM: rhx-button / rhx-button__label / rhx-button__icon / rhx-button--{variant}
+ */
+
+.rhx-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rhx-space-sm);
+  padding: var(--rhx-space-sm) var(--rhx-space-lg);
+  font-family: var(--rhx-font-family);
+  font-size: var(--rhx-font-size-sm);
+  font-weight: var(--rhx-font-weight-medium);
+  line-height: var(--rhx-line-height-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  border: var(--rhx-border-width) solid transparent;
+  border-radius: var(--rhx-radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--rhx-transition-fast),
+    border-color var(--rhx-transition-fast),
+    color var(--rhx-transition-fast),
+    box-shadow var(--rhx-transition-fast);
+  user-select: none;
+}
+
+.rhx-button:focus-visible {
+  outline: 2px solid var(--rhx-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.rhx-button:disabled,
+.rhx-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Elements ── */
+.rhx-button__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.rhx-button__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+/* ── Variant: Default ── */
+.rhx-button--default {
+  background: var(--rhx-color-surface);
+  color: var(--rhx-color-text);
+  border-color: var(--rhx-color-border);
+}
+
+.rhx-button--default:hover {
+  background: var(--rhx-color-neutral-100);
+  border-color: var(--rhx-color-neutral-400);
+}
+
+.rhx-button--default:active {
+  background: var(--rhx-color-neutral-200);
+}
+
+/* ── Variant: Brand ── */
+.rhx-button--brand {
+  background: var(--rhx-color-brand-500);
+  color: var(--rhx-color-text-inverse);
+  border-color: var(--rhx-color-brand-500);
+}
+
+.rhx-button--brand:hover {
+  background: var(--rhx-color-brand-600);
+  border-color: var(--rhx-color-brand-600);
+}
+
+.rhx-button--brand:active {
+  background: var(--rhx-color-brand-700);
+}
+
+/* ── Variant: Success ── */
+.rhx-button--success {
+  background: var(--rhx-color-success-500);
+  color: var(--rhx-color-text-inverse);
+  border-color: var(--rhx-color-success-500);
+}
+
+.rhx-button--success:hover {
+  background: var(--rhx-color-success-600);
+  border-color: var(--rhx-color-success-600);
+}
+
+.rhx-button--success:active {
+  background: var(--rhx-color-success-700);
+}
+
+/* ── Variant: Warning ── */
+.rhx-button--warning {
+  background: var(--rhx-color-warning-500);
+  color: var(--rhx-color-neutral-900);
+  border-color: var(--rhx-color-warning-500);
+}
+
+.rhx-button--warning:hover {
+  background: var(--rhx-color-warning-600);
+  border-color: var(--rhx-color-warning-600);
+}
+
+.rhx-button--warning:active {
+  background: var(--rhx-color-warning-700);
+}
+
+/* ── Variant: Danger ── */
+.rhx-button--danger {
+  background: var(--rhx-color-danger-500);
+  color: var(--rhx-color-text-inverse);
+  border-color: var(--rhx-color-danger-500);
+}
+
+.rhx-button--danger:hover {
+  background: var(--rhx-color-danger-600);
+  border-color: var(--rhx-color-danger-600);
+}
+
+.rhx-button--danger:active {
+  background: var(--rhx-color-danger-700);
+}
+
+/* ── Variant: Ghost ── */
+.rhx-button--ghost {
+  background: transparent;
+  color: var(--rhx-color-text);
+  border-color: transparent;
+}
+
+.rhx-button--ghost:hover {
+  background: var(--rhx-color-neutral-100);
+}
+
+.rhx-button--ghost:active {
+  background: var(--rhx-color-neutral-200);
+}
+
+/* ── Variant: Text/Link ── */
+.rhx-button--text {
+  background: transparent;
+  color: var(--rhx-color-brand-500);
+  border-color: transparent;
+  padding-left: var(--rhx-space-xs);
+  padding-right: var(--rhx-space-xs);
+}
+
+.rhx-button--text:hover {
+  color: var(--rhx-color-brand-600);
+  text-decoration: underline;
+}
+
+/* ── Size: Small ── */
+.rhx-button--small {
+  padding: var(--rhx-space-xs) var(--rhx-space-md);
+  font-size: var(--rhx-font-size-xs);
+}
+
+/* ── Size: Large ── */
+.rhx-button--large {
+  padding: var(--rhx-space-md) var(--rhx-space-xl);
+  font-size: var(--rhx-font-size-md);
+}
+
+/* ── Full width ── */
+.rhx-button--full {
+  width: 100%;
+}
+
+/* ── Icon only ── */
+.rhx-button--icon-only {
+  padding: var(--rhx-space-sm);
+  aspect-ratio: 1;
+}
+
+/* ── Loading state ── */
+.rhx-button--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.rhx-button--loading::after {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rhx-spin 0.6s linear infinite;
+  color: var(--rhx-color-text-inverse);
+}
+
+@keyframes rhx-spin {
+  to { transform: rotate(360deg); }
+}

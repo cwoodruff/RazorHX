@@ -1,0 +1,161 @@
+/*
+ * RazorHX Design Tokens
+ * CSS custom properties that define the visual foundation of the design system.
+ * All component styles reference these tokens — never raw values.
+ */
+
+:root,
+[data-rhx-theme="light"] {
+  /* ── Color Palette: Neutral ── */
+  --rhx-color-neutral-50: #fafafa;
+  --rhx-color-neutral-100: #f5f5f5;
+  --rhx-color-neutral-200: #e5e5e5;
+  --rhx-color-neutral-300: #d4d4d4;
+  --rhx-color-neutral-400: #a3a3a3;
+  --rhx-color-neutral-500: #737373;
+  --rhx-color-neutral-600: #525252;
+  --rhx-color-neutral-700: #404040;
+  --rhx-color-neutral-800: #262626;
+  --rhx-color-neutral-900: #171717;
+  --rhx-color-neutral-950: #0a0a0a;
+
+  /* ── Color Palette: Brand ── */
+  --rhx-color-brand-50: #eff6ff;
+  --rhx-color-brand-100: #dbeafe;
+  --rhx-color-brand-200: #bfdbfe;
+  --rhx-color-brand-300: #93c5fd;
+  --rhx-color-brand-400: #60a5fa;
+  --rhx-color-brand-500: #3b82f6;
+  --rhx-color-brand-600: #2563eb;
+  --rhx-color-brand-700: #1d4ed8;
+  --rhx-color-brand-800: #1e40af;
+  --rhx-color-brand-900: #1e3a8a;
+  --rhx-color-brand-950: #172554;
+
+  /* ── Color Palette: Success ── */
+  --rhx-color-success-50: #f0fdf4;
+  --rhx-color-success-100: #dcfce7;
+  --rhx-color-success-200: #bbf7d0;
+  --rhx-color-success-300: #86efac;
+  --rhx-color-success-400: #4ade80;
+  --rhx-color-success-500: #22c55e;
+  --rhx-color-success-600: #16a34a;
+  --rhx-color-success-700: #15803d;
+  --rhx-color-success-800: #166534;
+  --rhx-color-success-900: #14532d;
+  --rhx-color-success-950: #052e16;
+
+  /* ── Color Palette: Warning ── */
+  --rhx-color-warning-50: #fffbeb;
+  --rhx-color-warning-100: #fef3c7;
+  --rhx-color-warning-200: #fde68a;
+  --rhx-color-warning-300: #fcd34d;
+  --rhx-color-warning-400: #fbbf24;
+  --rhx-color-warning-500: #f59e0b;
+  --rhx-color-warning-600: #d97706;
+  --rhx-color-warning-700: #b45309;
+  --rhx-color-warning-800: #92400e;
+  --rhx-color-warning-900: #78350f;
+  --rhx-color-warning-950: #451a03;
+
+  /* ── Color Palette: Danger ── */
+  --rhx-color-danger-50: #fef2f2;
+  --rhx-color-danger-100: #fee2e2;
+  --rhx-color-danger-200: #fecaca;
+  --rhx-color-danger-300: #fca5a5;
+  --rhx-color-danger-400: #f87171;
+  --rhx-color-danger-500: #ef4444;
+  --rhx-color-danger-600: #dc2626;
+  --rhx-color-danger-700: #b91c1c;
+  --rhx-color-danger-800: #991b1b;
+  --rhx-color-danger-900: #7f1d1d;
+  --rhx-color-danger-950: #450a0a;
+
+  /* ── Semantic Color Tokens ── */
+  --rhx-color-bg: var(--rhx-color-neutral-50);
+  --rhx-color-surface: #ffffff;
+  --rhx-color-surface-raised: #ffffff;
+  --rhx-color-text: var(--rhx-color-neutral-900);
+  --rhx-color-text-muted: var(--rhx-color-neutral-500);
+  --rhx-color-text-inverse: #ffffff;
+  --rhx-color-border: var(--rhx-color-neutral-300);
+  --rhx-color-border-muted: var(--rhx-color-neutral-200);
+  --rhx-color-focus-ring: var(--rhx-color-brand-500);
+  --rhx-color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* ── Typography ── */
+  --rhx-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --rhx-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --rhx-font-size-xs: 0.75rem;
+  --rhx-font-size-sm: 0.875rem;
+  --rhx-font-size-md: 1rem;
+  --rhx-font-size-lg: 1.125rem;
+  --rhx-font-size-xl: 1.25rem;
+  --rhx-font-size-2xl: 1.5rem;
+  --rhx-font-size-3xl: 1.875rem;
+  --rhx-font-size-4xl: 2.25rem;
+  --rhx-font-weight-normal: 400;
+  --rhx-font-weight-medium: 500;
+  --rhx-font-weight-semibold: 600;
+  --rhx-font-weight-bold: 700;
+  --rhx-line-height-tight: 1.25;
+  --rhx-line-height-normal: 1.5;
+  --rhx-line-height-relaxed: 1.75;
+
+  /* ── Spacing ── */
+  --rhx-space-xs: 0.25rem;
+  --rhx-space-sm: 0.5rem;
+  --rhx-space-md: 0.75rem;
+  --rhx-space-lg: 1rem;
+  --rhx-space-xl: 1.5rem;
+  --rhx-space-2xl: 2rem;
+  --rhx-space-3xl: 3rem;
+  --rhx-space-4xl: 4rem;
+
+  /* ── Borders ── */
+  --rhx-radius-sm: 0.25rem;
+  --rhx-radius-md: 0.375rem;
+  --rhx-radius-lg: 0.5rem;
+  --rhx-radius-xl: 0.75rem;
+  --rhx-radius-full: 9999px;
+  --rhx-border-width: 1px;
+  --rhx-border-width-thick: 2px;
+
+  /* ── Shadows ── */
+  --rhx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --rhx-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --rhx-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --rhx-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* ── Transitions ── */
+  --rhx-transition-fast: 150ms ease;
+  --rhx-transition-normal: 250ms ease;
+  --rhx-transition-slow: 400ms ease;
+
+  /* ── Z-Index Layers ── */
+  --rhx-z-dropdown: 700;
+  --rhx-z-sticky: 750;
+  --rhx-z-dialog: 800;
+  --rhx-z-drawer: 800;
+  --rhx-z-tooltip: 900;
+  --rhx-z-toast: 950;
+}
+
+/* ── Dark Theme ── */
+[data-rhx-theme="dark"] {
+  --rhx-color-bg: var(--rhx-color-neutral-900);
+  --rhx-color-surface: var(--rhx-color-neutral-800);
+  --rhx-color-surface-raised: var(--rhx-color-neutral-700);
+  --rhx-color-text: var(--rhx-color-neutral-100);
+  --rhx-color-text-muted: var(--rhx-color-neutral-400);
+  --rhx-color-text-inverse: var(--rhx-color-neutral-900);
+  --rhx-color-border: var(--rhx-color-neutral-700);
+  --rhx-color-border-muted: var(--rhx-color-neutral-800);
+  --rhx-color-focus-ring: var(--rhx-color-brand-400);
+  --rhx-color-overlay: rgba(0, 0, 0, 0.7);
+
+  --rhx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}

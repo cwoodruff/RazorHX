@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <RootNamespace>RazorHX</RootNamespace>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <IsPackable>true</IsPackable>
+    <PackageId>RazorHX</PackageId>
+    <Description>ASP.NET Core UI component library using Razor Tag Helpers with first-class htmx integration</Description>
+    <PackageTags>aspnetcore;taghelpers;htmx;ui;components</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Htmx" Version="1.9.0" />
+    <PackageReference Include="Htmx.TagHelpers" Version="1.9.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/**/*" />
+  </ItemGroup>
+
+</Project>
