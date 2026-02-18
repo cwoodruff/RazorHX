@@ -127,6 +127,11 @@
     color: var(--rhx-color-danger-500);
 }
 
+.rhx-rating--error .rhx-rating__star,
+.rhx-rating[data-rhx-invalid] .rhx-rating__star {
+    color: var(--rhx-color-danger-500);
+}
+
 /* ── Disabled ── */
 
 .rhx-rating--disabled {

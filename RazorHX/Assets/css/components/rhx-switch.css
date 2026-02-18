@@ -99,7 +99,8 @@
 }
 
 /* ── Error modifier ── */
-.rhx-switch--error .rhx-switch__track {
+.rhx-switch--error .rhx-switch__track,
+.rhx-switch[data-rhx-invalid] .rhx-switch__track {
     outline: 2px solid var(--rhx-color-danger-500);
     outline-offset: 1px;
 }

@@ -53,7 +53,8 @@
 }
 
 /* ── Error modifier ── */
-.rhx-radio-group--error .rhx-radio__control {
+.rhx-radio-group--error .rhx-radio__control,
+.rhx-radio-group[data-rhx-invalid] .rhx-radio__control {
     border-color: var(--rhx-color-danger-500);
 }
 

@@ -147,7 +147,8 @@
     color: var(--rhx-color-danger-500);
 }
 
-.rhx-file-input--error .rhx-file-input__dropzone {
+.rhx-file-input--error .rhx-file-input__dropzone,
+.rhx-file-input[data-rhx-invalid] .rhx-file-input__dropzone {
     border-color: var(--rhx-color-danger-500);
 }
 

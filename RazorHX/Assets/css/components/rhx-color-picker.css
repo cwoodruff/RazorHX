@@ -275,7 +275,8 @@
     color: var(--rhx-color-danger-500);
 }
 
-.rhx-color-picker--error .rhx-color-picker__trigger {
+.rhx-color-picker--error .rhx-color-picker__trigger,
+.rhx-color-picker[data-rhx-invalid] .rhx-color-picker__trigger {
     border-color: var(--rhx-color-danger-500);
 }
 

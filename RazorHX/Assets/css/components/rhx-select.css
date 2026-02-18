@@ -284,12 +284,15 @@
 }
 
 /* ── Error ── */
-.rhx-select--error .rhx-select__trigger {
+.rhx-select--error .rhx-select__trigger,
+.rhx-select[data-rhx-invalid] .rhx-select__trigger {
     border-color: var(--rhx-color-danger-500);
 }
 
 .rhx-select--error .rhx-select__trigger:focus-visible,
-.rhx-select--error .rhx-select__trigger[aria-expanded="true"] {
+.rhx-select--error .rhx-select__trigger[aria-expanded="true"],
+.rhx-select[data-rhx-invalid] .rhx-select__trigger:focus-visible,
+.rhx-select[data-rhx-invalid] .rhx-select__trigger[aria-expanded="true"] {
     border-color: var(--rhx-color-danger-500);
     box-shadow: 0 0 0 1px var(--rhx-color-danger-500);
     outline-color: var(--rhx-color-danger-500);

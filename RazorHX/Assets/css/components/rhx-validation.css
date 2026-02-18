@@ -1,0 +1,34 @@
+/* ================================================================
+   RazorHX Validation Components
+   Standalone validation message and validation summary styling.
+   ================================================================ */
+
+/* ── Validation Message ── */
+.rhx-validation-message {
+  display: block;
+  font-size: var(--rhx-font-size-xs);
+  color: var(--rhx-color-danger-600);
+  margin-top: var(--rhx-space-xs);
+}
+
+.rhx-validation-message[hidden] {
+  display: none;
+}
+
+.rhx-validation-message--error {
+  color: var(--rhx-color-danger-600);
+}
+
+/* ── Validation Summary List (inside callout) ── */
+.rhx-validation-summary__list {
+  margin: 0;
+  padding: 0 0 0 var(--rhx-space-lg);
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhx-space-xs);
+}
+
+.rhx-validation-summary__list li {
+  line-height: var(--rhx-line-height-normal);
+}

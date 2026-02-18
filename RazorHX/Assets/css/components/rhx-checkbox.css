@@ -129,7 +129,8 @@
 }
 
 /* ── Error modifier ── */
-.rhx-checkbox--error .rhx-checkbox__control {
+.rhx-checkbox--error .rhx-checkbox__control,
+.rhx-checkbox[data-rhx-invalid] .rhx-checkbox__control {
     border-color: var(--rhx-color-danger-500);
 }
 

@@ -85,11 +85,13 @@
 }
 
 /* ── Error state ── */
-.rhx-textarea--error .rhx-textarea__control {
+.rhx-textarea--error .rhx-textarea__control,
+.rhx-textarea[data-rhx-invalid] .rhx-textarea__control {
   border-color: var(--rhx-color-danger-500);
 }
 
-.rhx-textarea--error .rhx-textarea__control:focus-within {
+.rhx-textarea--error .rhx-textarea__control:focus-within,
+.rhx-textarea[data-rhx-invalid] .rhx-textarea__control:focus-within {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
 }
 

@@ -212,11 +212,13 @@
 }
 
 /* ── Error ── */
-.rhx-combobox--error .rhx-combobox__control {
+.rhx-combobox--error .rhx-combobox__control,
+.rhx-combobox[data-rhx-invalid] .rhx-combobox__control {
     border-color: var(--rhx-color-danger-500);
 }
 
-.rhx-combobox--error .rhx-combobox__control:focus-within {
+.rhx-combobox--error .rhx-combobox__control:focus-within,
+.rhx-combobox[data-rhx-invalid] .rhx-combobox__control:focus-within {
     border-color: var(--rhx-color-danger-500);
     box-shadow: 0 0 0 1px var(--rhx-color-danger-500);
 }

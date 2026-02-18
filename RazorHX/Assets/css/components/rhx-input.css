@@ -146,11 +146,13 @@
 }
 
 /* ── Error state ── */
-.rhx-input--error .rhx-input__control {
+.rhx-input--error .rhx-input__control,
+.rhx-input[data-rhx-invalid] .rhx-input__control {
   border-color: var(--rhx-color-danger-500);
 }
 
-.rhx-input--error .rhx-input__control:focus-within {
+.rhx-input--error .rhx-input__control:focus-within,
+.rhx-input[data-rhx-invalid] .rhx-input__control:focus-within {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
 }
 

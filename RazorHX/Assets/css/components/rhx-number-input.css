@@ -130,11 +130,13 @@
 }
 
 /* ── Error state ── */
-.rhx-number-input--error .rhx-number-input__control {
+.rhx-number-input--error .rhx-number-input__control,
+.rhx-number-input[data-rhx-invalid] .rhx-number-input__control {
   border-color: var(--rhx-color-danger-500);
 }
 
-.rhx-number-input--error .rhx-number-input__control:focus-within {
+.rhx-number-input--error .rhx-number-input__control:focus-within,
+.rhx-number-input[data-rhx-invalid] .rhx-number-input__control:focus-within {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
 }
 
