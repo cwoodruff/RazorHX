@@ -394,7 +394,7 @@ public abstract class FormControlTagHelperBase : RazorHXTagHelperBase
 
     /// <summary>
     /// Applies CSS classes and hidden attribute to the wrapper div.
-    /// Unlike <see cref="ApplyBaseAttributes"/>, this does NOT set the id
+    /// Unlike <see cref="RazorHX.Infrastructure.RazorHXTagHelperBase.ApplyBaseAttributes"/>, this does NOT set the id
     /// on the wrapper — form controls place id on the native input element.
     /// </summary>
     protected void ApplyWrapperAttributes(TagHelperOutput output, CssClassBuilder css)
