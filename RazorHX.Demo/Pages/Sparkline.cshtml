@@ -1,0 +1,173 @@
+@page
+@model SparklineModel
+@{
+    ViewData["Title"] = "Sparkline";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Line Sparklines
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Line (Default)</h2>
+
+    <div class="demo-label">Default line sparkline with currentColor stroke</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.CpuHistory" rhx-label="CPU history" />
+    </div>
+
+    <div class="demo-label">Custom stroke color and width</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.StockPrice"
+                       rhx-stroke-color="#6366f1"
+                       rhx-stroke-width="3"
+                       rhx-label="Stock price trend" />
+    </div>
+
+    <div class="demo-label">Custom size: 300px wide, 3rem tall</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Temperature"
+                       rhx-width="300px"
+                       rhx-height="3rem"
+                       rhx-stroke-color="#f59e0b"
+                       rhx-label="Daily temperatures" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Area Sparklines
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Area</h2>
+
+    <div class="demo-label">Area with auto fill (stroke color at 20% opacity)</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Sales"
+                       rhx-type="area"
+                       rhx-stroke-color="#10b981"
+                       rhx-label="Monthly sales" />
+    </div>
+
+    <div class="demo-label">Area with custom fill color</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.CpuHistory"
+                       rhx-type="area"
+                       rhx-stroke-color="#3b82f6"
+                       rhx-fill-color="#3b82f633"
+                       rhx-label="CPU usage area chart" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Bar Sparklines
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Bar</h2>
+
+    <div class="demo-label">Bar chart with custom fill</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Scores"
+                       rhx-type="bar"
+                       rhx-fill-color="#3b82f6"
+                       rhx-label="Score distribution" />
+    </div>
+
+    <div class="demo-label">Bar chart with default fill (uses stroke color)</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Sales"
+                       rhx-type="bar"
+                       rhx-stroke-color="#8b5cf6"
+                       rhx-label="Monthly sales bars" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Min/Max & Negative Values
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Min/Max Override</h2>
+
+    <div class="demo-label">Fixed Y-axis range: 0 to 100</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.CpuHistory"
+                       rhx-min="0"
+                       rhx-max="100"
+                       rhx-stroke-color="#ef4444"
+                       rhx-label="CPU percentage (0-100)" />
+    </div>
+
+    <div class="demo-label">Negative values with area fill</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.NegativeValues"
+                       rhx-type="area"
+                       rhx-stroke-color="#f97316"
+                       rhx-fill-color="#f9731633"
+                       rhx-label="Values crossing zero" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Multiple Inline
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Inline Usage</h2>
+
+    <div class="demo-label">Sparklines render inline alongside text</div>
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md);">
+        <p style="margin: 0;">
+            CPU usage
+            <rhx-sparkline rhx-values="@Model.CpuHistory"
+                           rhx-width="80px"
+                           rhx-height="1rem"
+                           rhx-stroke-color="#10b981"
+                           rhx-label="CPU sparkline" />
+            72%
+        </p>
+        <p style="margin: 0;">
+            Revenue
+            <rhx-sparkline rhx-values="@Model.Sales"
+                           rhx-type="area"
+                           rhx-width="80px"
+                           rhx-height="1rem"
+                           rhx-stroke-color="#6366f1"
+                           rhx-fill-color="#6366f133"
+                           rhx-label="Revenue sparkline" />
+            $280k
+        </p>
+        <p style="margin: 0;">
+            Scores
+            <rhx-sparkline rhx-values="@Model.Scores"
+                           rhx-type="bar"
+                           rhx-width="80px"
+                           rhx-height="1rem"
+                           rhx-fill-color="#f59e0b"
+                           rhx-label="Score sparkline" />
+            avg 7.5
+        </p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Accessibility
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Sparkline — Accessibility</h2>
+
+    <div class="demo-label">With aria-label (role="img")</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Temperature"
+                       rhx-stroke-color="#06b6d4"
+                       rhx-label="Temperature readings for the past 12 hours" />
+    </div>
+
+    <div class="demo-label">Without label (aria-hidden="true")</div>
+    <div class="demo-row">
+        <rhx-sparkline rhx-values="@Model.Temperature"
+                       rhx-stroke-color="#06b6d4" />
+    </div>
+</div>
