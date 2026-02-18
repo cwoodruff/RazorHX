@@ -1,0 +1,110 @@
+@{
+    var currentPath = ViewContext.HttpContext.Request.Path.Value ?? "";
+}
+
+<nav aria-label="Documentation">
+    <ul class="docs-nav">
+        <li class="docs-nav__section">
+            <a href="/" class="docs-nav__link @(currentPath == "/" ? "docs-nav__link--active" : "")">Home</a>
+        </li>
+        <li class="docs-nav__section">
+            <a href="/Docs/GettingStarted" class="docs-nav__link @(currentPath == "/Docs/GettingStarted" ? "docs-nav__link--active" : "")">Getting Started</a>
+        </li>
+
+        @* ── Components ── *@
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Actions</span>
+            <a href="/Docs/Components/Button" class="docs-nav__sublink @(currentPath == "/Docs/Components/Button" ? "docs-nav__sublink--active" : "")">Button</a>
+            <a href="/Dropdowns" class="docs-nav__sublink">Dropdown</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Forms</span>
+            <a href="/Docs/Components/Input" class="docs-nav__sublink @(currentPath == "/Docs/Components/Input" ? "docs-nav__sublink--active" : "")">Input</a>
+            <a href="/Forms" class="docs-nav__sublink">Textarea</a>
+            <a href="/Selects" class="docs-nav__sublink">Select</a>
+            <a href="/Selects" class="docs-nav__sublink">Combobox</a>
+            <a href="/Toggles" class="docs-nav__sublink">Checkbox</a>
+            <a href="/Toggles" class="docs-nav__sublink">Switch</a>
+            <a href="/Toggles" class="docs-nav__sublink">Radio</a>
+            <a href="/Specialized" class="docs-nav__sublink">Slider</a>
+            <a href="/Specialized" class="docs-nav__sublink">Rating</a>
+            <a href="/Specialized" class="docs-nav__sublink">Color Picker</a>
+            <a href="/Specialized" class="docs-nav__sublink">File Input</a>
+            <a href="/Forms" class="docs-nav__sublink">Number Input</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Overlays</span>
+            <a href="/Docs/Components/Dialog" class="docs-nav__sublink @(currentPath == "/Docs/Components/Dialog" ? "docs-nav__sublink--active" : "")">Dialog</a>
+            <a href="/Overlays" class="docs-nav__sublink">Drawer</a>
+            <a href="/Overlays" class="docs-nav__sublink">Details</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Feedback</span>
+            <a href="/Feedback" class="docs-nav__sublink">Callout</a>
+            <a href="/Indicators" class="docs-nav__sublink">Badge</a>
+            <a href="/Indicators" class="docs-nav__sublink">Tag</a>
+            <a href="/Feedback" class="docs-nav__sublink">Spinner</a>
+            <a href="/Feedback" class="docs-nav__sublink">Skeleton</a>
+            <a href="/Feedback" class="docs-nav__sublink">Progress Bar</a>
+            <a href="/Feedback" class="docs-nav__sublink">Progress Ring</a>
+            <a href="/Feedback" class="docs-nav__sublink">Tooltip</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Navigation</span>
+            <a href="/Tabs" class="docs-nav__sublink">Tabs</a>
+            <a href="/Navigation" class="docs-nav__sublink">Breadcrumb</a>
+            <a href="/Navigation" class="docs-nav__sublink">Tree</a>
+            <a href="/Carousel" class="docs-nav__sublink">Carousel</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Organization</span>
+            <a href="/Organization" class="docs-nav__sublink">Card</a>
+            <a href="/Organization" class="docs-nav__sublink">Divider</a>
+            <a href="/Organization" class="docs-nav__sublink">Split Panel</a>
+            <a href="/Scroller" class="docs-nav__sublink">Scroller</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Imagery</span>
+            <a href="/Imagery" class="docs-nav__sublink">Icon</a>
+            <a href="/Imagery" class="docs-nav__sublink">Avatar</a>
+            <a href="/Imagery" class="docs-nav__sublink">Animated Image</a>
+            <a href="/Imagery" class="docs-nav__sublink">Comparison</a>
+            <a href="/Imagery" class="docs-nav__sublink">Zoomable Frame</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Formatting</span>
+            <a href="/Formatting" class="docs-nav__sublink">Format Bytes</a>
+            <a href="/Formatting" class="docs-nav__sublink">Format Date</a>
+            <a href="/Formatting" class="docs-nav__sublink">Format Number</a>
+            <a href="/Formatting" class="docs-nav__sublink">Relative Time</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Utilities</span>
+            <a href="/Utilities" class="docs-nav__sublink">Copy Button</a>
+            <a href="/Utilities" class="docs-nav__sublink">QR Code</a>
+            <a href="/Utilities2" class="docs-nav__sublink">Animation</a>
+            <a href="/Utilities2" class="docs-nav__sublink">Popup</a>
+            <a href="/Utilities2" class="docs-nav__sublink">Popover</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <span class="docs-nav__heading">Data Visualization</span>
+            <a href="/Sparkline" class="docs-nav__sublink">Sparkline</a>
+        </li>
+
+        <li class="docs-nav__section">
+            <a href="/Patterns" class="docs-nav__link @(currentPath == "/Patterns" ? "docs-nav__link--active" : "")">Patterns</a>
+        </li>
+        <li class="docs-nav__section">
+            <a href="/Validation" class="docs-nav__link @(currentPath == "/Validation" ? "docs-nav__link--active" : "")">Validation</a>
+        </li>
+    </ul>
+</nav>

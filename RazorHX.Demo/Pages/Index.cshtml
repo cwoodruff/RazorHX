@@ -1,114 +1,110 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "Components";
+    Layout = "_DocsLayout";
+    ViewData["Title"] = "RazorHX";
+    ViewData["HideSidebar"] = true;
 }
 
-<div class="demo-section">
-    <h2>Buttons</h2>
-
-    <!-- ── Variants × Filled ── -->
-    <div class="demo-label">Variants (Filled)</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="neutral">Neutral</rhx-button>
-        <rhx-button rhx-variant="brand">Brand</rhx-button>
-        <rhx-button rhx-variant="success">Success</rhx-button>
-        <rhx-button rhx-variant="warning">Warning</rhx-button>
-        <rhx-button rhx-variant="danger">Danger</rhx-button>
-    </div>
-
-    <!-- ── Variants × Outlined ── -->
-    <div class="demo-label">Variants (Outlined)</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Neutral</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-appearance="outlined">Brand</rhx-button>
-        <rhx-button rhx-variant="success" rhx-appearance="outlined">Success</rhx-button>
-        <rhx-button rhx-variant="warning" rhx-appearance="outlined">Warning</rhx-button>
-        <rhx-button rhx-variant="danger" rhx-appearance="outlined">Danger</rhx-button>
-    </div>
-
-    <!-- ── Variants × Plain ── -->
-    <div class="demo-label">Variants (Plain)</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="neutral" rhx-appearance="plain">Neutral</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-appearance="plain">Brand</rhx-button>
-        <rhx-button rhx-variant="success" rhx-appearance="plain">Success</rhx-button>
-        <rhx-button rhx-variant="warning" rhx-appearance="plain">Warning</rhx-button>
-        <rhx-button rhx-variant="danger" rhx-appearance="plain">Danger</rhx-button>
-    </div>
-
-    <!-- ── Sizes ── -->
-    <div class="demo-label">Sizes</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand" rhx-size="small">Small</rhx-button>
-        <rhx-button rhx-variant="brand">Medium (default)</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-size="large">Large</rhx-button>
-    </div>
-
-    <!-- ── Shapes ── -->
-    <div class="demo-label">Shapes</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand">Default</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-pill="true">Pill</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-circle="true" aria-label="Add">+</rhx-button>
-    </div>
-
-    <!-- ── States ── -->
-    <div class="demo-label">States</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand" rhx-disabled="true">Disabled</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-loading="true">Loading</rhx-button>
-    </div>
-
-    <!-- ── Link Buttons ── -->
-    <div class="demo-label">Link Buttons</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand" rhx-href="/about">Navigate</rhx-button>
-        <rhx-button rhx-variant="brand" rhx-appearance="outlined" rhx-href="/docs" rhx-target="_blank">
-            External Link
+<!-- Hero -->
+<section class="docs-hero">
+    <h1 class="docs-hero__title">RazorHX</h1>
+    <p class="docs-hero__subtitle">
+        Server-rendered UI components for ASP.NET Core with first-class htmx integration.
+    </p>
+    <div class="docs-hero__actions">
+        <rhx-button rhx-variant="brand" rhx-size="large" rhx-href="/Docs/GettingStarted">
+            Get Started
         </rhx-button>
-        <rhx-button rhx-variant="neutral" rhx-appearance="plain" rhx-href="/download" rhx-download="file.pdf">
-            Download
+        <rhx-button rhx-variant="neutral" rhx-appearance="outlined" rhx-size="large"
+                    rhx-href="https://github.com/pamamalas/RazorHX" rhx-target="_blank">
+            View on GitHub
         </rhx-button>
     </div>
+</section>
 
-    <!-- ── Form Buttons ── -->
-    <div class="demo-label">Form Buttons</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand" type="submit">Submit</rhx-button>
-        <rhx-button rhx-variant="neutral" type="reset">Reset</rhx-button>
-        <rhx-button rhx-variant="neutral" name="action" value="save">Named Button</rhx-button>
+<rhx-divider />
+
+<!-- Features -->
+<section class="docs-features">
+    <div class="docs-feature-card">
+        <rhx-icon rhx-name="grid" rhx-size="32" />
+        <h3>Tag Helper Components</h3>
+        <p>72 server-rendered components across 10 categories. Buttons, forms, navigation, overlays, feedback, and more.</p>
+    </div>
+    <div class="docs-feature-card">
+        <rhx-icon rhx-name="refresh" rhx-size="32" />
+        <h3>htmx Integration</h3>
+        <p>Every component supports hx-get, hx-post, hx-target, hx-swap, and all htmx attributes natively.</p>
+    </div>
+    <div class="docs-feature-card">
+        <rhx-icon rhx-name="palette" rhx-size="32" />
+        <h3>Design Tokens</h3>
+        <p>Light and dark themes via CSS custom properties. Toggle with a single attribute or JavaScript call.</p>
+    </div>
+</section>
+
+<rhx-divider />
+
+<!-- Quick Start -->
+<section class="docs-quickstart">
+    <h2>Quick Start</h2>
+
+    <div class="docs-quickstart__step">
+        <h3>1. Install the package</h3>
+        <div class="docs-code">
+            <pre><code>dotnet add package RazorHX</code></pre>
+        </div>
     </div>
 
-    <!-- ── Button Group ── -->
-    <div class="demo-label">Button Group</div>
-    <div class="demo-row">
-        <rhx-button-group label="Actions">
-            <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Edit</rhx-button>
-            <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Copy</rhx-button>
-            <rhx-button rhx-variant="danger" rhx-appearance="outlined">Delete</rhx-button>
-        </rhx-button-group>
+    <div class="docs-quickstart__step">
+        <h3>2. Configure in Program.cs</h3>
+        <div class="docs-code">
+            <pre><code>builder.Services.AddRazorHX();
+
+var app = builder.Build();
+app.UseRazorHX();
+app.MapRazorPages();</code></pre>
+        </div>
     </div>
 
-    <div class="demo-row">
-        <rhx-button-group label="Sizes">
-            <rhx-button rhx-variant="brand" rhx-size="small">Small A</rhx-button>
-            <rhx-button rhx-variant="brand" rhx-size="small">Small B</rhx-button>
-            <rhx-button rhx-variant="brand" rhx-size="small">Small C</rhx-button>
-        </rhx-button-group>
+    <div class="docs-quickstart__step">
+        <h3>3. Register Tag Helpers</h3>
+        <div class="docs-code">
+            <pre><code>@@addTagHelper *, RazorHX</code></pre>
+        </div>
     </div>
 
-    <!-- ── htmx Integration ── -->
-    <div class="demo-label">htmx Integration</div>
-    <div class="demo-row">
-        <rhx-button rhx-variant="brand" hx-get="/api/greeting" hx-target="#result" hx-swap="innerHTML">
-            Load Greeting
-        </rhx-button>
-        <rhx-button rhx-variant="danger" rhx-appearance="outlined"
-                    hx-delete="/api/items/42" hx-confirm="Are you sure?"
-                    hx-target="#result" hx-swap="innerHTML">
-            Delete Item
-        </rhx-button>
-        <span id="result" class="rhx-text-muted">Click a button...</span>
+    <div class="docs-quickstart__step">
+        <h3>4. Use a component</h3>
+        <div class="docs-code">
+            <pre><code>&lt;rhx-button rhx-variant="brand" hx-get="/api/data" hx-target="#result"&gt;
+    Load Data
+&lt;/rhx-button&gt;</code></pre>
+        </div>
     </div>
-</div>
+</section>
+
+<rhx-divider />
+
+<!-- Component Categories -->
+<section style="padding: var(--rhx-space-2xl) var(--rhx-space-xl);">
+    <h2 style="text-align: center; font-size: var(--rhx-font-size-2xl); font-weight: var(--rhx-font-weight-bold); margin-bottom: var(--rhx-space-xl); color: var(--rhx-color-text);">
+        Component Categories
+    </h2>
+
+    <div class="docs-category-grid">
+        @foreach (var cat in Model.Categories)
+        {
+            <a href="@cat.Href" class="docs-category-card">
+                <rhx-card>
+                    <div style="text-align: center; padding: var(--rhx-space-md);">
+                        <rhx-icon rhx-name="@cat.Icon" rhx-size="24" />
+                        <h3 style="font-size: var(--rhx-font-size-md); margin: var(--rhx-space-sm) 0 var(--rhx-space-xs);">@cat.Name</h3>
+                        <rhx-badge rhx-variant="neutral">@cat.Count components</rhx-badge>
+                    </div>
+                </rhx-card>
+            </a>
+        }
+    </div>
+</section>

@@ -1,0 +1,172 @@
+@page
+@model InputModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Input";
+    ViewData["ComponentName"] = "Input";
+    ViewData["ComponentTag"] = "rhx-input";
+    ViewData["ComponentDescription"] = "A styled text input with label, hint, clear button, password toggle, and deep ASP.NET Core model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Full Name" rhx-placeholder="Enter your name" name="name" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Types -->
+    <div class="docs-example">
+        <h3>Types</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="types-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="types-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="types-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Email" rhx-type="email" rhx-placeholder="name@example.com" name="email" />
+                    <rhx-input rhx-label="Password" rhx-type="password" rhx-placeholder="Enter password" name="password" />
+                    <rhx-input rhx-label="Number" rhx-type="number" rhx-placeholder="0" name="number" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="types-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TypesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Clear Button -->
+    <div class="docs-example">
+        <h3>With Clear Button</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="clear-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="clear-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="clear-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Search" rhx-placeholder="Type to search..." rhx-with-clear="true" name="search" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="clear-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ClearCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Password Toggle -->
+    <div class="docs-example">
+        <h3>Password Toggle</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="pw-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="pw-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="pw-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Password" rhx-type="password" rhx-password-toggle="true" name="pw" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="pw-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PasswordToggleCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Small" rhx-size="small" rhx-placeholder="Small input" name="sm" />
+                    <rhx-input rhx-label="Medium" rhx-placeholder="Medium input (default)" name="md" />
+                    <rhx-input rhx-label="Large" rhx-size="large" rhx-placeholder="Large input" name="lg" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Disabled" rhx-disabled="true" value="Cannot edit" name="disabled" />
+                    <rhx-input rhx-label="Readonly" rhx-readonly="true" value="Read only value" name="readonly" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Live Search -->
+    <div class="docs-example">
+        <h3>htmx Live Search</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Live Search" rhx-placeholder="Type to search..."
+                               rhx-with-clear="true" name="q"
+                               hx-get="/search" hx-trigger="input changed delay:300ms"
+                               hx-target="#search-results" />
+                    <div id="search-results" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Results will appear here...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxSearchCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Label is linked to the native <code>&lt;input&gt;</code> via <code>for</code>/<code>id</code> pairing.</li>
+        <li>Hint and error messages are connected via <code>aria-describedby</code>.</li>
+        <li>Error state sets <code>aria-invalid="true"</code> on the input.</li>
+        <li>Required fields set both the HTML <code>required</code> and <code>aria-required="true"</code> attributes.</li>
+        <li>Clear and password toggle buttons have appropriate <code>aria-label</code> text.</li>
+    </ul>
+</section>

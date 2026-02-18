@@ -1,0 +1,145 @@
+@page
+@model DialogModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Dialog";
+    ViewData["ComponentName"] = "Dialog";
+    ViewData["ComponentTag"] = "rhx-dialog";
+    ViewData["ComponentDescription"] = "A modal dialog using the native HTML dialog element with focus trap, ESC to close, and htmx integration.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic Dialog -->
+    <div class="docs-example">
+        <h3>Basic Dialog</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" data-rhx-dialog-open="demo-dialog">
+                        Open Dialog
+                    </rhx-button>
+
+                    <rhx-dialog id="demo-dialog" rhx-label="Example Dialog">
+                        <p>This is a basic dialog with a title and close button.</p>
+                        <p>Press ESC or click the close button to dismiss.</p>
+                    </rhx-dialog>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- No Header -->
+    <div class="docs-example">
+        <h3>No Header</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="noheader-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="noheader-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="noheader-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="neutral" rhx-appearance="outlined" data-rhx-dialog-open="noheader-dialog">
+                        Open Headerless Dialog
+                    </rhx-button>
+
+                    <rhx-dialog id="noheader-dialog" rhx-no-header="true">
+                        <div style="text-align: center; padding: var(--rhx-space-xl);">
+                            <p style="font-size: var(--rhx-font-size-lg); margin-bottom: var(--rhx-space-md);">
+                                Are you sure you want to proceed?
+                            </p>
+                            <div style="display: flex; gap: var(--rhx-space-md); justify-content: center;">
+                                <rhx-button rhx-variant="neutral" rhx-appearance="outlined"
+                                            onclick="this.closest('dialog').close()">Cancel</rhx-button>
+                                <rhx-button rhx-variant="brand"
+                                            onclick="this.closest('dialog').close()">Confirm</rhx-button>
+                            </div>
+                        </div>
+                    </rhx-dialog>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="noheader-code">
+                <div class="docs-code">
+                    <pre><code>@Model.NoHeaderCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Footer -->
+    <div class="docs-example">
+        <h3>With Footer</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="footer-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="footer-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="footer-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" data-rhx-dialog-open="footer-dialog">
+                        Open Dialog with Footer
+                    </rhx-button>
+
+                    <rhx-dialog id="footer-dialog" rhx-label="Edit Profile">
+                        <rhx-input rhx-label="Display Name" rhx-placeholder="Enter name" name="displayName" />
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="neutral" rhx-appearance="outlined"
+                                        onclick="this.closest('dialog').close()">Cancel</rhx-button>
+                            <rhx-button rhx-variant="brand"
+                                        onclick="this.closest('dialog').close()">Save Changes</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="footer-code">
+                <div class="docs-code">
+                    <pre><code>@Model.FooterCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Use <code>data-rhx-dialog-open</code> on a trigger element. The server can also
+                        open a dialog by responding with an <code>HX-Trigger: rhx:dialog:open</code> header.
+                    </p>
+                    <div class="docs-code">
+                        <pre><code>@Model.HtmxCode</code></pre>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxServerCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses the native <code>&lt;dialog&gt;</code> element with built-in focus trap and inert background.</li>
+        <li>ESC key closes the dialog.</li>
+        <li>Dialog title is linked via <code>aria-labelledby</code> for screen readers.</li>
+        <li>Close button has <code>aria-label="Close"</code>.</li>
+        <li>Focus is returned to the trigger element when the dialog closes.</li>
+    </ul>
+</section>

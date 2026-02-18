@@ -1,0 +1,13 @@
+@{
+    Layout = "_DocsLayout";
+}
+
+<div class="docs-component-page">
+    <div class="docs-component-header">
+        <h1>@ViewData["ComponentName"]</h1>
+        <p>@ViewData["ComponentDescription"]</p>
+        <code>&lt;@ViewData["ComponentTag"]&gt;</code>
+    </div>
+
+    @RenderBody()
+</div>

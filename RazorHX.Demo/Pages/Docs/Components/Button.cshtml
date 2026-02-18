@@ -1,0 +1,184 @@
+@page
+@model ButtonModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Button";
+    ViewData["ComponentName"] = "Button";
+    ViewData["ComponentTag"] = "rhx-button";
+    ViewData["ComponentDescription"] = "A styled button with full htmx integration, ARIA support, and multiple visual variants.";
+}
+
+<!-- Variants -->
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="neutral">Neutral</rhx-button>
+                    <rhx-button rhx-variant="brand">Brand</rhx-button>
+                    <rhx-button rhx-variant="success">Success</rhx-button>
+                    <rhx-button rhx-variant="warning">Warning</rhx-button>
+                    <rhx-button rhx-variant="danger">Danger</rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Appearances -->
+    <div class="docs-example">
+        <h3>Appearances</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="appearances-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="appearances-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="appearances-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" rhx-appearance="filled">Filled</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-appearance="outlined">Outlined</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-appearance="plain">Plain</rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="appearances-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AppearancesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" rhx-size="small">Small</rhx-button>
+                    <rhx-button rhx-variant="brand">Medium</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-size="large">Large</rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" rhx-disabled="true">Disabled</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-loading="true">Loading</rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Shapes -->
+    <div class="docs-example">
+        <h3>Shapes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="shapes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="shapes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="shapes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand">Default</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-pill="true">Pill</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-circle="true" aria-label="Add">+</rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="shapes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ShapesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Link Buttons -->
+    <div class="docs-example">
+        <h3>Link Buttons</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="links-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="links-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="links-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" rhx-href="/Docs/GettingStarted">Navigate</rhx-button>
+                    <rhx-button rhx-variant="neutral" rhx-appearance="outlined" rhx-href="https://github.com" rhx-target="_blank">
+                        External Link
+                    </rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="links-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LinksCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand"
+                                hx-get="/api/greeting" hx-target="#btn-result" hx-swap="innerHTML">
+                        Load Greeting
+                    </rhx-button>
+                    <rhx-button rhx-variant="danger" rhx-appearance="outlined"
+                                hx-delete="/api/items/42" hx-confirm="Are you sure?"
+                                hx-target="#btn-result" hx-swap="innerHTML">
+                        Delete Item
+                    </rhx-button>
+                    <span id="btn-result" style="color: var(--rhx-color-text-muted);">Click a button...</span>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;button&gt;</code> element with full keyboard support.</li>
+        <li>Use <code>aria-label</code> for icon-only or circle buttons that lack visible text.</li>
+        <li>Loading state sets <code>aria-busy="true"</code> and disables interaction.</li>
+        <li>Link buttons (<code>rhx-href</code>) render as <code>&lt;a&gt;</code> with <code>role="button"</code> and <code>aria-disabled</code> when disabled.</li>
+        <li>External links automatically get <code>rel="noopener noreferrer"</code>.</li>
+    </ul>
+</section>
