@@ -17,7 +17,7 @@
     <PackageProjectUrl>https://github.com/cwoodruff/RazorHX</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cwoodruff/RazorHX</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon Condition="Exists('..\icon.png')">icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Copyright>Copyright (c) 2024 Chris Woody Woodruff</Copyright>
 
