@@ -1,0 +1,37 @@
+/* ================================================================
+   RazorHX Popup Component
+   Low-level positioning utility. Positioned by rhx-position.js.
+   BEM: rhx-popup / rhx-popup--active / rhx-popup__arrow
+   ================================================================ */
+
+.rhx-popup {
+  position: absolute;
+  z-index: var(--rhx-z-popup, 700);
+  display: none;
+}
+
+.rhx-popup--active {
+  display: block;
+}
+
+.rhx-popup[hidden] {
+  display: none;
+}
+
+/* ── Arrow ── */
+.rhx-popup__arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FIXED STRATEGY
+   ══════════════════════════════════════════════════════════════ */
+
+.rhx-popup[data-rhx-strategy="fixed"] {
+  position: fixed;
+}

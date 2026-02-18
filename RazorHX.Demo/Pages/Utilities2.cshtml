@@ -1,0 +1,231 @@
+@page
+@model Utilities2Model
+@{
+    ViewData["Title"] = "Animation / Popover / Popup";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Animation
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Animation — Fade In</h2>
+
+    <div class="demo-label">Default animation: fadeIn, 300ms</div>
+    <div class="demo-row">
+        <rhx-animation rhx-name="fadeIn">
+            <div style="padding: var(--rhx-space-lg); background: var(--rhx-color-brand-100); border-radius: var(--rhx-radius-md);">
+                Faded in content
+            </div>
+        </rhx-animation>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Animation — Slide In</h2>
+
+    <div class="demo-label">Slide animations with different durations and delays</div>
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md);">
+        <rhx-animation rhx-name="slideInLeft" rhx-duration="500">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-success-100); border-radius: var(--rhx-radius-md);">
+                Slide in from left (500ms)
+            </div>
+        </rhx-animation>
+
+        <rhx-animation rhx-name="slideInRight" rhx-duration="500" rhx-delay="200">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-warning-100); border-radius: var(--rhx-radius-md);">
+                Slide in from right (500ms, 200ms delay)
+            </div>
+        </rhx-animation>
+
+        <rhx-animation rhx-name="slideInUp" rhx-duration="400" rhx-delay="400">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-danger-100); border-radius: var(--rhx-radius-md);">
+                Slide in from bottom (400ms, 400ms delay)
+            </div>
+        </rhx-animation>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Animation — Bounce &amp; Zoom</h2>
+
+    <div class="demo-label">Bounce and zoom effects</div>
+    <div class="demo-row">
+        <rhx-animation rhx-name="bounceIn" rhx-duration="600">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-brand-100); border-radius: var(--rhx-radius-md);">
+                Bounce In
+            </div>
+        </rhx-animation>
+
+        <rhx-animation rhx-name="zoomIn" rhx-duration="400" rhx-delay="300">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
+                Zoom In
+            </div>
+        </rhx-animation>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Animation — Continuous</h2>
+
+    <div class="demo-label">Infinite iterations: pulse and spin</div>
+    <div class="demo-row">
+        <rhx-animation rhx-name="pulse" rhx-duration="1000" rhx-iterations="infinite">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-brand-500); color: white; border-radius: var(--rhx-radius-md); display: inline-block;">
+                Pulsing
+            </div>
+        </rhx-animation>
+
+        <rhx-animation rhx-name="bounce" rhx-duration="800" rhx-iterations="infinite" rhx-easing="ease-in-out">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-success-500); color: white; border-radius: var(--rhx-radius-full); width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;">
+                ↑
+            </div>
+        </rhx-animation>
+
+        <rhx-animation rhx-name="spin" rhx-duration="2000" rhx-iterations="infinite" rhx-easing="linear">
+            <rhx-icon rhx-name="settings" />
+        </rhx-animation>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Animation — Paused</h2>
+
+    <div class="demo-label">Animation paused until triggered by JS</div>
+    <div class="demo-row">
+        <rhx-animation rhx-name="fadeInUp" rhx-duration="400" rhx-play="false" id="paused-anim">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
+                I will animate when triggered
+            </div>
+        </rhx-animation>
+
+        <button class="rhx-button rhx-button--brand" onclick="RHX.playAnimation(document.getElementById('paused-anim'))">
+            Play Animation
+        </button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Popover
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Popover — Click Trigger</h2>
+
+    <div class="demo-label">Click the button to toggle a rich content popover</div>
+    <div class="demo-row">
+        <button class="rhx-button rhx-button--brand" id="pop-click-trigger">
+            Show Popover
+        </button>
+        <rhx-popover rhx-trigger="#pop-click-trigger" rhx-placement="bottom">
+            <h4 style="margin: 0 0 var(--rhx-space-sm) 0; font-weight: var(--rhx-font-weight-bold);">Popover Title</h4>
+            <p style="margin: 0; color: var(--rhx-color-text-muted);">
+                This is a rich content popover. It supports <strong>HTML</strong>, images, and interactive elements.
+            </p>
+        </rhx-popover>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Popover — Hover Trigger</h2>
+
+    <div class="demo-label">Hover to show the popover</div>
+    <div class="demo-row">
+        <button class="rhx-button rhx-button--neutral" id="pop-hover-trigger">
+            Hover Me
+        </button>
+        <rhx-popover rhx-trigger="#pop-hover-trigger" rhx-trigger-event="hover" rhx-placement="right">
+            <p style="margin: 0;">
+                This popover appears on hover and stays visible while the mouse is over it.
+            </p>
+        </rhx-popover>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Popover — Placements</h2>
+
+    <div class="demo-label">Different placement options</div>
+    <div class="demo-row">
+        <button class="rhx-button" id="pop-top">Top</button>
+        <rhx-popover rhx-trigger="#pop-top" rhx-placement="top">
+            <p style="margin: 0;">Popover on top</p>
+        </rhx-popover>
+
+        <button class="rhx-button" id="pop-bottom">Bottom</button>
+        <rhx-popover rhx-trigger="#pop-bottom" rhx-placement="bottom">
+            <p style="margin: 0;">Popover on bottom</p>
+        </rhx-popover>
+
+        <button class="rhx-button" id="pop-left">Left</button>
+        <rhx-popover rhx-trigger="#pop-left" rhx-placement="left">
+            <p style="margin: 0;">Popover on left</p>
+        </rhx-popover>
+
+        <button class="rhx-button" id="pop-right">Right</button>
+        <rhx-popover rhx-trigger="#pop-right" rhx-placement="right">
+            <p style="margin: 0;">Popover on right</p>
+        </rhx-popover>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Popover — No Arrow</h2>
+
+    <div class="demo-label">Popover without the directional arrow</div>
+    <div class="demo-row">
+        <button class="rhx-button rhx-button--ghost" id="pop-no-arrow">
+            No Arrow
+        </button>
+        <rhx-popover rhx-trigger="#pop-no-arrow" rhx-arrow="false">
+            <p style="margin: 0;">Clean popover without arrow indicator.</p>
+        </rhx-popover>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Popup
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Popup — Positioned Container</h2>
+
+    <div class="demo-label">Low-level positioning utility anchored to a trigger element</div>
+    <div class="demo-row" style="position: relative;">
+        <button class="rhx-button rhx-button--neutral" id="popup-anchor" onclick="
+            var p = document.getElementById('demo-popup');
+            p.hidden = !p.hidden;
+            p.classList.toggle('rhx-popup--active');
+        ">
+            Toggle Popup
+        </button>
+        <rhx-popup rhx-anchor="#popup-anchor" rhx-placement="bottom-start" id="demo-popup">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-surface); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); box-shadow: var(--rhx-shadow-lg); min-width: 12rem;">
+                <p style="margin: 0;">Positioned popup content.</p>
+                <p style="margin: var(--rhx-space-xs) 0 0; color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-xs);">
+                    Uses rhx-position.js for smart placement.
+                </p>
+            </div>
+        </rhx-popup>
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Popup — With Arrow</h2>
+
+    <div class="demo-label">Popup with directional arrow element</div>
+    <div class="demo-row" style="position: relative;">
+        <button class="rhx-button" id="popup-arrow-anchor" onclick="
+            var p = document.getElementById('demo-popup-arrow');
+            p.hidden = !p.hidden;
+            p.classList.toggle('rhx-popup--active');
+        ">
+            Toggle With Arrow
+        </button>
+        <rhx-popup rhx-anchor="#popup-arrow-anchor" rhx-placement="bottom" rhx-arrow="true" id="demo-popup-arrow">
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-surface); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); box-shadow: var(--rhx-shadow-lg);">
+                Popup with arrow
+            </div>
+        </rhx-popup>
+    </div>
+</div>
