@@ -1,0 +1,81 @@
+@page
+@model PatternsModel
+@{
+    ViewData["Title"] = "Patterns";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Infinite Scroll
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Infinite Scroll</h2>
+
+    <div class="demo-label">Appends items when the trigger element is scrolled into view (hx-trigger="revealed")</div>
+    <div id="item-list" style="max-height: 300px; overflow-y: auto; border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); padding: var(--rhx-space-sm);">
+        @foreach (var item in Model.Items)
+        {
+            <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">@item</div>
+        }
+        <rhx-infinite-scroll page="/Patterns" page-handler="LoadMore"
+                             route-page="2" target="#item-list" swap="beforeend">
+            <rhx-spinner />
+        </rhx-infinite-scroll>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Active Search
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Active Search</h2>
+
+    <div class="demo-label">Live search with configurable debounce — results update as you type</div>
+    <div style="max-width: 32rem;">
+        <rhx-active-search page="/Patterns" page-handler="Search"
+                           target="#search-results" debounce="300" min-length="1"
+                           placeholder="Search items..." with-clear="true" name="q" />
+    </div>
+
+    <div id="search-results" style="margin-top: var(--rhx-space-md); border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); max-height: 200px; overflow-y: auto;">
+        <div style="padding: var(--rhx-space-md); color: var(--rhx-color-text-muted);">Type to search...</div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Poll
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Poll</h2>
+
+    <div class="demo-label">Server polling every 2 seconds — the element replaces itself with fresh content</div>
+    <rhx-poll page="/Patterns" page-handler="Clock" interval="2s"
+              target="this" swap="outerHTML"
+              style="padding: var(--rhx-space-md); font-size: var(--rhx-font-size-lg);">
+        <span>Loading time...</span>
+    </rhx-poll>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Lazy Load
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Lazy Load</h2>
+
+    <div class="demo-label">Content loaded immediately on page load (hx-trigger="load")</div>
+    <rhx-lazy-load page="/Patterns" page-handler="Chart"
+                   target="this" swap="outerHTML">
+        <rhx-skeleton rhx-effect="sheen" rhx-width="100%" rhx-height="80px" />
+    </rhx-lazy-load>
+
+    <div style="margin-top: var(--rhx-space-xl);">
+        <div class="demo-label">Content loaded when scrolled into view (hx-trigger="revealed")</div>
+        <rhx-lazy-load page="/Patterns" page-handler="DeferredContent"
+                       trigger="revealed" target="this" swap="outerHTML">
+            <rhx-skeleton rhx-effect="pulse" rhx-width="100%" rhx-height="80px" />
+        </rhx-lazy-load>
+    </div>
+</div>
