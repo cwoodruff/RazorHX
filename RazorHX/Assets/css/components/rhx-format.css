@@ -1,0 +1,13 @@
+/* ═══════════════════════════════════════════
+   rhx-format (shared formatting styles)
+   ═══════════════════════════════════════════ */
+
+.rhx-format-bytes,
+.rhx-format-number {
+    font-variant-numeric: tabular-nums;
+}
+
+.rhx-format-date,
+.rhx-relative-time {
+    /* Inherits font styles from parent */
+}
