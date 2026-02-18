@@ -4,11 +4,32 @@
     <RootNamespace>RazorHX</RootNamespace>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+
+    <!-- NuGet Package Metadata -->
     <IsPackable>true</IsPackable>
     <PackageId>RazorHX</PackageId>
-    <Description>ASP.NET Core UI component library using Razor Tag Helpers with first-class htmx integration</Description>
-    <PackageTags>aspnetcore;taghelpers;htmx;ui;components</PackageTags>
+    <Version>0.1.0</Version>
+    <Authors>Chris Woodruff</Authors>
+    <Company>RazorHX</Company>
+    <Description>Server-rendered UI components for ASP.NET Core with first-class htmx integration. 72 Tag Helper components across 10 categories — buttons, forms, navigation, overlays, feedback, and more — all styled with CSS custom properties and fully accessible.</Description>
+    <PackageTags>dotnet;aspnetcore;htmx;ui-components;tag-helpers;razor-pages;server-rendered;design-system;theming;accessibility</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/cwoodruff/RazorHX</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cwoodruff/RazorHX</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>Copyright (c) 2024 Chris Woody Woodruff</Copyright>
+
+    <!-- XML Documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <!-- Source Link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +40,17 @@
     <PackageReference Include="Htmx" Version="1.9.0" />
     <PackageReference Include="Htmx.TagHelpers" Version="1.9.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets/**/*" />
+  </ItemGroup>
+
+  <!-- Pack README and icon into the NuGet package -->
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\icon.png" Pack="true" PackagePath="\" Condition="Exists('..\icon.png')" />
   </ItemGroup>
 
 </Project>
