@@ -1,0 +1,223 @@
+@page
+@model SpecializedModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Slider";
+    ViewData["ComponentName"] = "Slider";
+    ViewData["ComponentTag"] = "rhx-slider";
+    ViewData["ComponentDescription"] = "Range input with tooltips, custom ranges, and model binding. Also covers Rating, Color Picker, and File Input.";
+}
+
+<div class="demo-section">
+    <h2>Slider</h2>
+
+    <!-- ── Basic slider ── -->
+    <div class="demo-label">Basic Slider</div>
+    <div class="demo-row">
+        <rhx-slider name="volume" rhx-label="Volume" value="50" />
+    </div>
+
+    <!-- ── Custom range ── -->
+    <div class="demo-label">Custom Range (10-200, step 10)</div>
+    <div class="demo-row">
+        <rhx-slider name="custom" rhx-label="Custom Range" rhx-min="10" rhx-max="200" rhx-step="10" value="80" />
+    </div>
+
+    <!-- ── With tooltip ── -->
+    <div class="demo-label">With Tooltip (top)</div>
+    <div class="demo-row">
+        <rhx-slider name="brightness" rhx-label="Brightness" value="75" rhx-tooltip="top" />
+    </div>
+
+    <!-- ── Tooltip bottom ── -->
+    <div class="demo-label">With Tooltip (bottom)</div>
+    <div class="demo-row">
+        <rhx-slider name="contrast" rhx-label="Contrast" value="60" rhx-tooltip="bottom" />
+    </div>
+
+    <!-- ── With hint ── -->
+    <div class="demo-label">With Hint</div>
+    <div class="demo-row">
+        <rhx-slider name="opacity" rhx-label="Opacity" value="100" rhx-hint="0 = fully transparent, 100 = fully opaque" />
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="demo-label">Sizes</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch; gap: var(--rhx-space-lg);">
+        <rhx-slider name="sl-sm" rhx-label="Small slider" rhx-size="small" value="30" />
+        <rhx-slider name="sl-md" rhx-label="Medium slider (default)" value="50" />
+        <rhx-slider name="sl-lg" rhx-label="Large slider" rhx-size="large" value="70" />
+    </div>
+
+    <!-- ── Disabled ── -->
+    <div class="demo-label">Disabled</div>
+    <div class="demo-row">
+        <rhx-slider name="sl-dis" rhx-label="Disabled slider" rhx-disabled="true" value="40" />
+    </div>
+
+    <!-- ── Model binding ── -->
+    <div class="demo-label">Model Binding</div>
+    <div class="demo-row">
+        <rhx-slider rhx-for="Volume" rhx-label="Volume" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Rating</h2>
+
+    <!-- ── Basic rating ── -->
+    <div class="demo-label">Basic Rating</div>
+    <div class="demo-row">
+        <rhx-rating name="rating" rhx-label="Rate this product" />
+    </div>
+
+    <!-- ── Pre-set value ── -->
+    <div class="demo-label">Pre-set Value (3 stars)</div>
+    <div class="demo-row">
+        <rhx-rating name="rating-pre" rhx-label="Rating" value="3" />
+    </div>
+
+    <!-- ── Half-star precision ── -->
+    <div class="demo-label">Half-star Precision</div>
+    <div class="demo-row">
+        <rhx-rating name="rating-half" rhx-label="Detailed Rating" value="3.5" rhx-precision="0.5" />
+    </div>
+
+    <!-- ── Custom max ── -->
+    <div class="demo-label">Custom Max (10 stars)</div>
+    <div class="demo-row">
+        <rhx-rating name="rating-10" rhx-label="Extended Rating" rhx-max="10" value="7" />
+    </div>
+
+    <!-- ── Readonly ── -->
+    <div class="demo-label">Readonly</div>
+    <div class="demo-row">
+        <rhx-rating name="rating-ro" rhx-label="Average Rating" value="4" rhx-readonly="true" />
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="demo-label">Sizes</div>
+    <div class="demo-row" style="flex-direction: column; align-items: flex-start; gap: var(--rhx-space-lg);">
+        <rhx-rating name="rt-sm" rhx-label="Small" rhx-size="small" value="3" />
+        <rhx-rating name="rt-md" rhx-label="Medium (default)" value="3" />
+        <rhx-rating name="rt-lg" rhx-label="Large" rhx-size="large" value="3" />
+    </div>
+
+    <!-- ── Disabled ── -->
+    <div class="demo-label">Disabled</div>
+    <div class="demo-row">
+        <rhx-rating name="rt-dis" rhx-label="Disabled rating" rhx-disabled="true" value="2" />
+    </div>
+
+    <!-- ── Model binding ── -->
+    <div class="demo-label">Model Binding</div>
+    <div class="demo-row">
+        <rhx-rating rhx-for="ProductRating" rhx-label="Product Rating" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Color Picker</h2>
+
+    <!-- ── Basic color picker ── -->
+    <div class="demo-label">Basic Color Picker</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color" rhx-label="Color" value="#3b82f6" />
+    </div>
+
+    <!-- ── With swatches ── -->
+    <div class="demo-label">With Preset Swatches</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-swatches" rhx-label="Brand Color"
+                          value="#ef4444"
+                          rhx-swatches="#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6,#ec4899,#000000" />
+    </div>
+
+    <!-- ── With opacity ── -->
+    <div class="demo-label">With Opacity</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-alpha" rhx-label="Overlay Color" value="#3b82f6"
+                          rhx-opacity="true" />
+    </div>
+
+    <!-- ── RGB format ── -->
+    <div class="demo-label">RGB Format</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-rgb" rhx-label="RGB Color" value="#22c55e"
+                          rhx-format="rgb" />
+    </div>
+
+    <!-- ── HSL format ── -->
+    <div class="demo-label">HSL Format</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-hsl" rhx-label="HSL Color" value="#8b5cf6"
+                          rhx-format="hsl" />
+    </div>
+
+    <!-- ── Inline mode ── -->
+    <div class="demo-label">Inline (Always Open)</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-inline" rhx-label="Theme Color" value="#f97316"
+                          rhx-inline="true"
+                          rhx-swatches="#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6" />
+    </div>
+
+    <!-- ── Disabled ── -->
+    <div class="demo-label">Disabled</div>
+    <div class="demo-row">
+        <rhx-color-picker name="color-dis" rhx-label="Disabled" value="#6b7280"
+                          rhx-disabled="true" />
+    </div>
+
+    <!-- ── Model binding ── -->
+    <div class="demo-label">Model Binding</div>
+    <div class="demo-row">
+        <rhx-color-picker rhx-for="BrandColor" rhx-label="Brand Color" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>File Input</h2>
+
+    <!-- ── Basic file input ── -->
+    <div class="demo-label">Basic File Input</div>
+    <div class="demo-row">
+        <rhx-file-input name="file" rhx-label="Upload File" />
+    </div>
+
+    <!-- ── Image only ── -->
+    <div class="demo-label">Images Only</div>
+    <div class="demo-row">
+        <rhx-file-input name="avatar" rhx-label="Profile Photo" rhx-accept="image/*"
+                        rhx-hint="JPG, PNG, or GIF. Max 2MB." />
+    </div>
+
+    <!-- ── Multiple files ── -->
+    <div class="demo-label">Multiple Files</div>
+    <div class="demo-row">
+        <rhx-file-input name="documents" rhx-label="Documents" rhx-multiple="true"
+                        rhx-accept=".pdf,.doc,.docx" />
+    </div>
+
+    <!-- ── With max size ── -->
+    <div class="demo-label">With Max File Size (5MB)</div>
+    <div class="demo-row">
+        <rhx-file-input name="upload" rhx-label="Upload" rhx-multiple="true"
+                        rhx-max-file-size="5242880"
+                        rhx-hint="Maximum file size: 5MB per file" />
+    </div>
+
+    <!-- ── Sizes ── -->
+    <div class="demo-label">Sizes</div>
+    <div class="demo-row" style="flex-direction: column; align-items: stretch; gap: var(--rhx-space-lg);">
+        <rhx-file-input name="fi-sm" rhx-label="Small" rhx-size="small" />
+        <rhx-file-input name="fi-md" rhx-label="Medium (default)" />
+        <rhx-file-input name="fi-lg" rhx-label="Large" rhx-size="large" />
+    </div>
+
+    <!-- ── Disabled ── -->
+    <div class="demo-label">Disabled</div>
+    <div class="demo-row">
+        <rhx-file-input name="fi-dis" rhx-label="Disabled" rhx-disabled="true" />
+    </div>
+</div>

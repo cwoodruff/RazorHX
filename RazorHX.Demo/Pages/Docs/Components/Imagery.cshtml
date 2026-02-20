@@ -1,0 +1,174 @@
+@page
+@model ImageryModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Icon";
+    ViewData["ComponentName"] = "Icon";
+    ViewData["ComponentTag"] = "rhx-icon";
+    ViewData["ComponentDescription"] = "Inline SVG icon system with 40+ built-in icons. Also covers Avatar, Animated Image, Comparison, and Zoomable Frame.";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Icon
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Icon — Gallery</h2>
+
+    <div class="demo-label">~40 built-in icons, rendered as inline SVG</div>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--rhx-space-lg); align-items: center;">
+        @foreach (var name in RazorHX.Components.Imagery.IconRegistry.GetNames().OrderBy(n => n).Take(24))
+        {
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--rhx-space-xs); width: 72px;">
+                <rhx-icon rhx-name="@name" />
+                <span style="font-size: var(--rhx-font-size-xs); color: var(--rhx-color-text-muted);">@name</span>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Icon — Sizes</h2>
+
+    <div class="demo-label">Small (16px), Medium (24px), Large (32px)</div>
+    <div class="demo-row">
+        <rhx-icon rhx-name="star" rhx-size="small" />
+        <rhx-icon rhx-name="star" />
+        <rhx-icon rhx-name="star" rhx-size="large" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Icon — Accessible</h2>
+
+    <div class="demo-label">With aria-label for meaningful icons</div>
+    <div class="demo-row">
+        <rhx-icon rhx-name="settings" rhx-label="Settings" rhx-size="large" />
+        <rhx-icon rhx-name="bell" rhx-label="Notifications" rhx-size="large" />
+        <rhx-icon rhx-name="user" rhx-label="User profile" rhx-size="large" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Avatar
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Avatar — Images</h2>
+
+    <div class="demo-label">Photo avatars in different sizes</div>
+    <div class="demo-row">
+        <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=a" rhx-label="Alice" rhx-size="small" />
+        <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=b" rhx-label="Bob" />
+        <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=c" rhx-label="Charlie" rhx-size="large" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Avatar — Initials</h2>
+
+    <div class="demo-label">Deterministic colors from initials hash</div>
+    <div class="demo-row">
+        <rhx-avatar rhx-initials="JD" rhx-label="Jane Doe" />
+        <rhx-avatar rhx-initials="AB" rhx-label="Alice Brown" />
+        <rhx-avatar rhx-initials="KS" rhx-label="Kyle Smith" />
+        <rhx-avatar rhx-initials="MR" rhx-label="Maria Rodriguez" />
+        <rhx-avatar rhx-initials="TN" rhx-label="Tom Nguyen" />
+        <rhx-avatar rhx-initials="LP" rhx-label="Lisa Park" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Avatar — Shapes</h2>
+
+    <div class="demo-label">Circle (default), rounded, square</div>
+    <div class="demo-row">
+        <rhx-avatar rhx-initials="JD" rhx-label="Circle" rhx-shape="circle" />
+        <rhx-avatar rhx-initials="AB" rhx-label="Rounded" rhx-shape="rounded" />
+        <rhx-avatar rhx-initials="KS" rhx-label="Square" rhx-shape="square" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Avatar — Custom Size</h2>
+
+    <div class="demo-label">Arbitrary CSS value for size</div>
+    <div class="demo-row">
+        <rhx-avatar rhx-initials="XL" rhx-label="Extra Large" rhx-size="5rem" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Animated Image
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Animated Image — Play/Pause</h2>
+
+    <div class="demo-label">Click the control button to pause/resume the GIF</div>
+    <div class="demo-row">
+        <rhx-animated-image rhx-src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" rhx-alt="Animated loading" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Animated Image — Initially Paused</h2>
+
+    <div class="demo-label">Starts paused, click play to animate</div>
+    <div class="demo-row">
+        <rhx-animated-image rhx-src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" rhx-alt="Paused animation" rhx-play="false" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Comparison
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Comparison — Before / After</h2>
+
+    <div class="demo-label">Drag the handle or use arrow keys to compare</div>
+    <div style="max-width: 600px;">
+        <rhx-comparison
+            rhx-before="https://picsum.photos/id/10/600/400"
+            rhx-before-alt="Original photo"
+            rhx-after="https://picsum.photos/id/10/600/400?grayscale"
+            rhx-after-alt="Grayscale version" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Comparison — Custom Position</h2>
+
+    <div class="demo-label">Starts at 25%</div>
+    <div style="max-width: 600px;">
+        <rhx-comparison
+            rhx-before="https://picsum.photos/id/237/600/400"
+            rhx-before-alt="Original"
+            rhx-after="https://picsum.photos/id/237/600/400?blur=5"
+            rhx-after-alt="Blurred"
+            rhx-position="25" />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Zoomable Frame
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Zoomable Frame — Image</h2>
+
+    <div class="demo-label">Scroll to zoom, drag to pan when zoomed, double-click to reset</div>
+    <div style="max-width: 600px; height: 400px; border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); overflow: hidden;">
+        <rhx-zoomable-frame rhx-src="https://picsum.photos/id/1015/1200/800" rhx-alt="Mountain landscape" rhx-min-scale="0.5" rhx-max-scale="4" />
+    </div>
+</div>
+
+<div class="demo-section">
+    <h2>Zoomable Frame — Pre-zoomed</h2>
+
+    <div class="demo-label">Starts at 2x zoom</div>
+    <div style="max-width: 600px; height: 400px; border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); overflow: hidden;">
+        <rhx-zoomable-frame rhx-src="https://picsum.photos/id/1025/1200/800" rhx-alt="Dog portrait" rhx-scale="2" />
+    </div>
+</div>
