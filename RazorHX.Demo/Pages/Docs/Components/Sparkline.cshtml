@@ -8,170 +8,184 @@
     ViewData["ComponentDescription"] = "Inline SVG mini-charts for line, area, and bar visualization.";
 }
 
-<!-- ═══════════════════════════════════════════════
-     Line Sparklines
-     ═══════════════════════════════════════════════ -->
+<section class="docs-component-section">
+    <h2>Examples</h2>
 
-<div class="demo-section">
-    <h2>Sparkline — Line (Default)</h2>
+    <div class="docs-example">
+        <h3>Line (Default)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="line-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="line-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="line-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p class="demo-label">Default line sparkline with currentColor stroke</p>
+                    <rhx-sparkline rhx-values="@Model.CpuHistory" rhx-label="CPU history" />
 
-    <div class="demo-label">Default line sparkline with currentColor stroke</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.CpuHistory" rhx-label="CPU history" />
+                    <p class="demo-label" style="margin-top: var(--rhx-space-lg);">Custom stroke color and width</p>
+                    <rhx-sparkline rhx-values="@Model.StockPrice"
+                                   rhx-stroke-color="#6366f1"
+                                   rhx-stroke-width="3"
+                                   rhx-label="Stock price trend" />
+
+                    <p class="demo-label" style="margin-top: var(--rhx-space-lg);">Custom size: 300px wide, 3rem tall</p>
+                    <rhx-sparkline rhx-values="@Model.Temperature"
+                                   rhx-width="300px"
+                                   rhx-height="3rem"
+                                   rhx-stroke-color="#f59e0b"
+                                   rhx-label="Daily temperatures" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="line-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LineCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
     </div>
 
-    <div class="demo-label">Custom stroke color and width</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.StockPrice"
-                       rhx-stroke-color="#6366f1"
-                       rhx-stroke-width="3"
-                       rhx-label="Stock price trend" />
+    <div class="docs-example">
+        <h3>Area</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="area-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="area-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="area-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p class="demo-label">Area with auto fill (stroke color at 20% opacity)</p>
+                    <rhx-sparkline rhx-values="@Model.Sales"
+                                   rhx-type="area"
+                                   rhx-stroke-color="#10b981"
+                                   rhx-label="Monthly sales" />
+
+                    <p class="demo-label" style="margin-top: var(--rhx-space-lg);">Area with custom fill color</p>
+                    <rhx-sparkline rhx-values="@Model.CpuHistory"
+                                   rhx-type="area"
+                                   rhx-stroke-color="#3b82f6"
+                                   rhx-fill-color="#3b82f633"
+                                   rhx-label="CPU usage area chart" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="area-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AreaCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
     </div>
 
-    <div class="demo-label">Custom size: 300px wide, 3rem tall</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Temperature"
-                       rhx-width="300px"
-                       rhx-height="3rem"
-                       rhx-stroke-color="#f59e0b"
-                       rhx-label="Daily temperatures" />
-    </div>
-</div>
+    <div class="docs-example">
+        <h3>Bar</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="bar-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="bar-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="bar-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p class="demo-label">Bar chart with custom fill</p>
+                    <rhx-sparkline rhx-values="@Model.Scores"
+                                   rhx-type="bar"
+                                   rhx-fill-color="#3b82f6"
+                                   rhx-label="Score distribution" />
 
-<!-- ═══════════════════════════════════════════════
-     Area Sparklines
-     ═══════════════════════════════════════════════ -->
-
-<div class="demo-section">
-    <h2>Sparkline — Area</h2>
-
-    <div class="demo-label">Area with auto fill (stroke color at 20% opacity)</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Sales"
-                       rhx-type="area"
-                       rhx-stroke-color="#10b981"
-                       rhx-label="Monthly sales" />
-    </div>
-
-    <div class="demo-label">Area with custom fill color</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.CpuHistory"
-                       rhx-type="area"
-                       rhx-stroke-color="#3b82f6"
-                       rhx-fill-color="#3b82f633"
-                       rhx-label="CPU usage area chart" />
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     Bar Sparklines
-     ═══════════════════════════════════════════════ -->
-
-<div class="demo-section">
-    <h2>Sparkline — Bar</h2>
-
-    <div class="demo-label">Bar chart with custom fill</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Scores"
-                       rhx-type="bar"
-                       rhx-fill-color="#3b82f6"
-                       rhx-label="Score distribution" />
+                    <p class="demo-label" style="margin-top: var(--rhx-space-lg);">Bar chart with default fill (uses stroke color)</p>
+                    <rhx-sparkline rhx-values="@Model.Sales"
+                                   rhx-type="bar"
+                                   rhx-stroke-color="#8b5cf6"
+                                   rhx-label="Monthly sales bars" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="bar-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BarCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
     </div>
 
-    <div class="demo-label">Bar chart with default fill (uses stroke color)</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Sales"
-                       rhx-type="bar"
-                       rhx-stroke-color="#8b5cf6"
-                       rhx-label="Monthly sales bars" />
-    </div>
-</div>
+    <div class="docs-example">
+        <h3>Min/Max Override</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="minmax-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="minmax-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="minmax-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p class="demo-label">Fixed Y-axis range: 0 to 100</p>
+                    <rhx-sparkline rhx-values="@Model.CpuHistory"
+                                   rhx-min="0"
+                                   rhx-max="100"
+                                   rhx-stroke-color="#ef4444"
+                                   rhx-label="CPU percentage (0-100)" />
 
-<!-- ═══════════════════════════════════════════════
-     Min/Max & Negative Values
-     ═══════════════════════════════════════════════ -->
-
-<div class="demo-section">
-    <h2>Sparkline — Min/Max Override</h2>
-
-    <div class="demo-label">Fixed Y-axis range: 0 to 100</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.CpuHistory"
-                       rhx-min="0"
-                       rhx-max="100"
-                       rhx-stroke-color="#ef4444"
-                       rhx-label="CPU percentage (0-100)" />
-    </div>
-
-    <div class="demo-label">Negative values with area fill</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.NegativeValues"
-                       rhx-type="area"
-                       rhx-stroke-color="#f97316"
-                       rhx-fill-color="#f9731633"
-                       rhx-label="Values crossing zero" />
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     Multiple Inline
-     ═══════════════════════════════════════════════ -->
-
-<div class="demo-section">
-    <h2>Sparkline — Inline Usage</h2>
-
-    <div class="demo-label">Sparklines render inline alongside text</div>
-    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md);">
-        <p style="margin: 0;">
-            CPU usage
-            <rhx-sparkline rhx-values="@Model.CpuHistory"
-                           rhx-width="80px"
-                           rhx-height="1rem"
-                           rhx-stroke-color="#10b981"
-                           rhx-label="CPU sparkline" />
-            72%
-        </p>
-        <p style="margin: 0;">
-            Revenue
-            <rhx-sparkline rhx-values="@Model.Sales"
-                           rhx-type="area"
-                           rhx-width="80px"
-                           rhx-height="1rem"
-                           rhx-stroke-color="#6366f1"
-                           rhx-fill-color="#6366f133"
-                           rhx-label="Revenue sparkline" />
-            $280k
-        </p>
-        <p style="margin: 0;">
-            Scores
-            <rhx-sparkline rhx-values="@Model.Scores"
-                           rhx-type="bar"
-                           rhx-width="80px"
-                           rhx-height="1rem"
-                           rhx-fill-color="#f59e0b"
-                           rhx-label="Score sparkline" />
-            avg 7.5
-        </p>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     Accessibility
-     ═══════════════════════════════════════════════ -->
-
-<div class="demo-section">
-    <h2>Sparkline — Accessibility</h2>
-
-    <div class="demo-label">With aria-label (role="img")</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Temperature"
-                       rhx-stroke-color="#06b6d4"
-                       rhx-label="Temperature readings for the past 12 hours" />
+                    <p class="demo-label" style="margin-top: var(--rhx-space-lg);">Negative values with area fill</p>
+                    <rhx-sparkline rhx-values="@Model.NegativeValues"
+                                   rhx-type="area"
+                                   rhx-stroke-color="#f97316"
+                                   rhx-fill-color="#f9731633"
+                                   rhx-label="Values crossing zero" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="minmax-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MinMaxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
     </div>
 
-    <div class="demo-label">Without label (aria-hidden="true")</div>
-    <div class="demo-row">
-        <rhx-sparkline rhx-values="@Model.Temperature"
-                       rhx-stroke-color="#06b6d4" />
+    <div class="docs-example">
+        <h3>Inline Usage</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="inline-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="inline-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="inline-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p style="margin: 0;">
+                        CPU usage
+                        <rhx-sparkline rhx-values="@Model.CpuHistory"
+                                       rhx-width="80px"
+                                       rhx-height="1rem"
+                                       rhx-stroke-color="#10b981"
+                                       rhx-label="CPU sparkline" />
+                        72%
+                    </p>
+                    <p style="margin: 0;">
+                        Revenue
+                        <rhx-sparkline rhx-values="@Model.Sales"
+                                       rhx-type="area"
+                                       rhx-width="80px"
+                                       rhx-height="1rem"
+                                       rhx-stroke-color="#6366f1"
+                                       rhx-fill-color="#6366f133"
+                                       rhx-label="Revenue sparkline" />
+                        $280k
+                    </p>
+                    <p style="margin: 0;">
+                        Scores
+                        <rhx-sparkline rhx-values="@Model.Scores"
+                                       rhx-type="bar"
+                                       rhx-width="80px"
+                                       rhx-height="1rem"
+                                       rhx-fill-color="#f59e0b"
+                                       rhx-label="Score sparkline" />
+                        avg 7.5
+                    </p>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="inline-code">
+                <div class="docs-code">
+                    <pre><code>@Model.InlineCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
     </div>
-</div>
+</section>
+
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>When <code>rhx-label</code> is set, the SVG receives <code>role="img"</code> and <code>aria-label</code> with the provided text.</li>
+        <li>When no label is provided, the SVG is marked <code>aria-hidden="true"</code> so screen readers skip the decorative chart.</li>
+        <li>Sparklines are inline elements that flow naturally with surrounding text content.</li>
+        <li>Color is not the sole means of conveying information — pair sparklines with numeric values or labels for context.</li>
+    </ul>
+</section>
