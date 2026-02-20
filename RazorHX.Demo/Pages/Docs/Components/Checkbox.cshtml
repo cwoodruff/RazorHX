@@ -1,0 +1,162 @@
+@page
+@model CheckboxModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Checkbox";
+    ViewData["ComponentName"] = "Checkbox";
+    ViewData["ComponentTag"] = "rhx-checkbox";
+    ViewData["ComponentDescription"] = "Binary toggle with indeterminate state, model binding, and size variants.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox name="agree" rhx-label="I agree to the terms and conditions" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pre-checked -->
+    <div class="docs-example">
+        <h3>Pre-checked</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="prechecked-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="prechecked-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="prechecked-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox name="newsletter" rhx-label="Subscribe to newsletter" rhx-checked="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="prechecked-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PreCheckedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Hint -->
+    <div class="docs-example">
+        <h3>With Hint</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hint-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hint-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hint-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox name="marketing" rhx-label="Receive marketing emails"
+                                  rhx-hint="We'll only send relevant updates" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hint-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HintCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Indeterminate -->
+    <div class="docs-example">
+        <h3>Indeterminate</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="indeterminate-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="indeterminate-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="indeterminate-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox name="select-all" rhx-label="Select all items" rhx-indeterminate="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="indeterminate-code">
+                <div class="docs-code">
+                    <pre><code>@Model.IndeterminateCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: flex-start;">
+                    <rhx-checkbox name="cb-sm" rhx-label="Small checkbox" rhx-size="small" />
+                    <rhx-checkbox name="cb-md" rhx-label="Medium checkbox (default)" />
+                    <rhx-checkbox name="cb-lg" rhx-label="Large checkbox" rhx-size="large" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox name="cb-dis" rhx-label="Disabled checkbox" rhx-disabled="true" />
+                    <rhx-checkbox name="cb-dis-checked" rhx-label="Disabled checked" rhx-disabled="true" rhx-checked="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Model Binding -->
+    <div class="docs-example">
+        <h3>Model Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="binding-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="binding-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="binding-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-checkbox rhx-for="AgreeToTerms" rhx-label="Agree to Terms" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="binding-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;input type="checkbox"&gt;</code> with associated label.</li>
+        <li>Indeterminate state sets <code>aria-checked="mixed"</code>.</li>
+        <li>Hint text linked via <code>aria-describedby</code>.</li>
+        <li>Keyboard: Space toggles the checkbox.</li>
+    </ul>
+</section>

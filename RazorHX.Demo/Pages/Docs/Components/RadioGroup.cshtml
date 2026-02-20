@@ -1,0 +1,177 @@
+@page
+@model RadioGroupModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Radio Group";
+    ViewData["ComponentName"] = "Radio Group";
+    ViewData["ComponentTag"] = "rhx-radio-group";
+    ViewData["ComponentDescription"] = "Single-selection group with items binding, enum support, and inline layout.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Notification Frequency" name="frequency"
+                                     rhx-items="Model.FrequencyOptions" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pre-selected -->
+    <div class="docs-example">
+        <h3>Pre-selected</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="preselected-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="preselected-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="preselected-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Notification Frequency" name="frequency-pre"
+                                     value="weekly" rhx-items="Model.FrequencyOptions" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="preselected-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PreSelectedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Enum Binding -->
+    <div class="docs-example">
+        <h3>Enum Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="enum-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="enum-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="enum-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Priority" name="priority"
+                                     rhx-for="SelectedPriority" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="enum-code">
+                <div class="docs-code">
+                    <pre><code>@Model.EnumBindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Inline Layout -->
+    <div class="docs-example">
+        <h3>Inline Layout</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="inline-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="inline-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="inline-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Size" name="size" rhx-inline="true" value="md">
+                        <rhx-radio value="sm">Small</rhx-radio>
+                        <rhx-radio value="md">Medium</rhx-radio>
+                        <rhx-radio value="lg">Large</rhx-radio>
+                        <rhx-radio value="xl">Extra Large</rhx-radio>
+                    </rhx-radio-group>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="inline-code">
+                <div class="docs-code">
+                    <pre><code>@Model.InlineCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Hint -->
+    <div class="docs-example">
+        <h3>With Hint</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hint-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hint-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hint-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Plan" name="plan"
+                                     rhx-hint="You can change your plan at any time"
+                                     rhx-items="Model.PlanOptions" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hint-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HintCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Child Options -->
+    <div class="docs-example">
+        <h3>Child Options</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="children-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="children-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="children-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-radio-group rhx-label="Color" name="color">
+                        <rhx-radio value="red">Red</rhx-radio>
+                        <rhx-radio value="green">Green</rhx-radio>
+                        <rhx-radio value="blue">Blue</rhx-radio>
+                        <rhx-radio value="purple" rhx-disabled="true">Purple (disabled)</rhx-radio>
+                    </rhx-radio-group>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="children-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ChildOptionsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: flex-start; gap: var(--rhx-space-600);">
+                    <rhx-radio-group rhx-label="Disabled Group" name="dis-group"
+                                     rhx-disabled="true" value="weekly"
+                                     rhx-items="Model.FrequencyOptions" />
+                    <rhx-radio-group rhx-label="Small Size" name="priority-sm" rhx-size="small"
+                                     rhx-for="SelectedPriority" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>role="radiogroup"</code> with <code>aria-labelledby</code>.</li>
+        <li>Individual radios use native <code>&lt;input type="radio"&gt;</code> with labels.</li>
+        <li>Arrow keys navigate between options within the group.</li>
+        <li>Hint text linked via <code>aria-describedby</code>.</li>
+    </ul>
+</section>

@@ -1,0 +1,64 @@
+@page
+@model AnimatedImageModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Animated Image";
+    ViewData["ComponentName"] = "Animated Image";
+    ViewData["ComponentTag"] = "rhx-animated-image";
+    ViewData["ComponentDescription"] = "GIF/video player with play/pause controls.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Play/Pause -->
+    <div class="docs-example">
+        <h3>Play/Pause</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="playpause-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="playpause-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="playpause-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-animated-image rhx-src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" rhx-alt="Animated loading" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="playpause-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PlayPauseCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Initially Paused -->
+    <div class="docs-example">
+        <h3>Initially Paused</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="paused-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="paused-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="paused-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-animated-image rhx-src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" rhx-alt="Paused animation" rhx-play="false" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="paused-code">
+                <div class="docs-code">
+                    <pre><code>@Model.InitiallyPausedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Play/pause button has an <code>aria-label</code> that updates to reflect the current state ("Pause animation" / "Play animation").</li>
+        <li>The image element receives <code>alt</code> text from <code>rhx-alt</code> for screen reader users.</li>
+        <li>Respects the <code>prefers-reduced-motion</code> media query by starting in a paused state.</li>
+    </ul>
+</section>

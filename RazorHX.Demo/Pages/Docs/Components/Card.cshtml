@@ -1,0 +1,136 @@
+@page
+@model CardModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Card";
+    ViewData["ComponentName"] = "Card";
+    ViewData["ComponentTag"] = "rhx-card";
+    ViewData["ComponentDescription"] = "Content container with header, body, footer, and image slots.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="width: 320px;">
+                        <rhx-card>
+                            <rhx-card-header><h3 style="margin:0;">Product Name</h3></rhx-card-header>
+                            <p>A short description of the product. Great for showcasing items in a grid layout.</p>
+                            <rhx-card-footer>
+                                <rhx-button rhx-variant="brand" rhx-size="small">Buy Now</rhx-button>
+                                <rhx-button rhx-variant="ghost" rhx-size="small">Details</rhx-button>
+                            </rhx-card-footer>
+                        </rhx-card>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Image -->
+    <div class="docs-example">
+        <h3>With Image</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="image-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="image-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="image-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="width: 320px;">
+                        <rhx-card>
+                            <rhx-card-image rhx-src="https://picsum.photos/640/360" rhx-alt="Random photo" />
+                            <rhx-card-header><h3 style="margin:0;">Featured Article</h3></rhx-card-header>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+                            <rhx-card-footer>
+                                <rhx-button rhx-variant="ghost" rhx-size="small">Read More</rhx-button>
+                            </rhx-card-footer>
+                        </rhx-card>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="image-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ImageCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Minimal -->
+    <div class="docs-example">
+        <h3>Minimal</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="minimal-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="minimal-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="minimal-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="width: 320px;">
+                        <rhx-card>
+                            <p>A simple card with just body content. No header, footer, or image required.</p>
+                        </rhx-card>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="minimal-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MinimalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Card Grid -->
+    <div class="docs-example">
+        <h3>Card Grid</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="grid-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="grid-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="grid-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--rhx-space-lg); width: 100%;">
+                        @for (int i = 1; i <= 3; i++)
+                        {
+                            <rhx-card>
+                                <rhx-card-header><h3 style="margin:0;">Card @i</h3></rhx-card-header>
+                                <p>Card @i content goes here with some placeholder text.</p>
+                                <rhx-card-footer>
+                                    <rhx-button rhx-variant="ghost" rhx-size="small">Action</rhx-button>
+                                </rhx-card-footer>
+                            </rhx-card>
+                        }
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="grid-code">
+                <div class="docs-code">
+                    <pre><code>@Model.GridCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders as an <code>&lt;article&gt;</code> element, providing a semantic landmark for assistive technology.</li>
+        <li>A heading inside <code>&lt;rhx-card-header&gt;</code> gives the card an accessible name via the document outline.</li>
+        <li>Focusable cards (e.g. clickable cards) should include <code>tabindex="0"</code> and a keyboard handler.</li>
+        <li>Images in <code>&lt;rhx-card-image&gt;</code> require <code>rhx-alt</code> for meaningful alternative text.</li>
+    </ul>
+</section>

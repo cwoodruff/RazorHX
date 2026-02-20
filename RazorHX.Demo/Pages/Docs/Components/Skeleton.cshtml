@@ -1,0 +1,95 @@
+@page
+@model SkeletonModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Skeleton";
+    ViewData["ComponentName"] = "Skeleton";
+    ViewData["ComponentTag"] = "rhx-skeleton";
+    ViewData["ComponentDescription"] = "Content placeholder with pulse and sheen effects for loading states.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Effects -->
+    <div class="docs-example">
+        <h3>Effects</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="effects-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="effects-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="effects-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch; gap: var(--rhx-space-md);">
+                    <rhx-skeleton rhx-effect="none" rhx-width="200px" rhx-height="24px" />
+                    <rhx-skeleton rhx-effect="pulse" rhx-width="200px" rhx-height="24px" />
+                    <rhx-skeleton rhx-effect="sheen" rhx-width="200px" rhx-height="24px" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="effects-code">
+                <div class="docs-code">
+                    <pre><code>@Model.EffectsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Shapes -->
+    <div class="docs-example">
+        <h3>Shapes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="shapes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="shapes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="shapes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-skeleton rhx-shape="rectangle" rhx-width="120px" rhx-height="24px" />
+                    <rhx-skeleton rhx-shape="rounded" rhx-width="120px" rhx-height="24px" />
+                    <rhx-skeleton rhx-shape="circle" rhx-width="48px" rhx-height="48px" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="shapes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ShapesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Content Placeholder -->
+    <div class="docs-example">
+        <h3>Content Placeholder</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="placeholder-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="placeholder-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="placeholder-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch; gap: var(--rhx-space-sm);">
+                    <div style="display: flex; gap: var(--rhx-space-md); align-items: center;">
+                        <rhx-skeleton rhx-shape="circle" rhx-width="48px" rhx-height="48px" />
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--rhx-space-xs);">
+                            <rhx-skeleton rhx-width="60%" rhx-height="16px" />
+                            <rhx-skeleton rhx-width="40%" rhx-height="12px" />
+                        </div>
+                    </div>
+                    <rhx-skeleton rhx-width="100%" rhx-height="80px" />
+                    <rhx-skeleton rhx-width="75%" rhx-height="16px" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="placeholder-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PlaceholderCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders with <code>role="presentation"</code> as it is a decorative placeholder.</li>
+        <li>Sets <code>aria-busy="true"</code> to indicate content is loading.</li>
+        <li>Hidden from screen readers since skeleton shapes are purely visual placeholders.</li>
+    </ul>
+</section>

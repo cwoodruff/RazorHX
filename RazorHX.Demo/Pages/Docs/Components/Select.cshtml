@@ -1,0 +1,162 @@
+@page
+@model SelectModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Select";
+    ViewData["ComponentName"] = "Select";
+    ViewData["ComponentTag"] = "rhx-select";
+    ViewData["ComponentDescription"] = "Dropdown selection with items binding, enum support, and multi-select.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Country" name="country"
+                                rhx-placeholder="Choose a country"
+                                rhx-items="Model.Countries" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Enum Binding -->
+    <div class="docs-example">
+        <h3>Enum Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="enum-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="enum-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="enum-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Priority" name="priority" value="Medium"
+                                rhx-for="SelectedPriority" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="enum-code">
+                <div class="docs-code">
+                    <pre><code>@Model.EnumBindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Clear -->
+    <div class="docs-example">
+        <h3>With Clear</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="clear-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="clear-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="clear-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Country" name="country-clear" value="US"
+                                rhx-with-clear="true"
+                                rhx-items="Model.Countries" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="clear-code">
+                <div class="docs-code">
+                    <pre><code>@Model.WithClearCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Child Options -->
+    <div class="docs-example">
+        <h3>Child Options</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="children-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="children-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="children-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Color" name="color" rhx-placeholder="Pick a color">
+                        <rhx-option value="red">Red</rhx-option>
+                        <rhx-option value="green">Green</rhx-option>
+                        <rhx-option value="blue">Blue</rhx-option>
+                        <rhx-option value="purple" rhx-disabled="true">Purple (disabled)</rhx-option>
+                    </rhx-select>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="children-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ChildOptionsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Multi-select -->
+    <div class="docs-example">
+        <h3>Multi-select</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="multi-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="multi-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="multi-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Tags" name="tags" rhx-multiple="true"
+                                rhx-placeholder="Select tags">
+                        <rhx-option value="bug">Bug</rhx-option>
+                        <rhx-option value="feature">Feature</rhx-option>
+                        <rhx-option value="docs">Documentation</rhx-option>
+                        <rhx-option value="perf">Performance</rhx-option>
+                    </rhx-select>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="multi-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MultiSelectCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Small" name="sel-sm" rhx-size="small"
+                                rhx-placeholder="Small" rhx-items="Model.Cities" />
+                    <rhx-select rhx-label="Medium (default)" name="sel-md"
+                                rhx-placeholder="Medium" rhx-items="Model.Cities" />
+                    <rhx-select rhx-label="Large" name="sel-lg" rhx-size="large"
+                                rhx-placeholder="Large" rhx-items="Model.Cities" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;select&gt;</code> element with full keyboard support.</li>
+        <li>Label is associated via <code>for</code>/<code>id</code> pairing.</li>
+        <li>Required and disabled states are conveyed natively.</li>
+        <li>Multi-select uses <code>aria-multiselectable</code>.</li>
+    </ul>
+</section>

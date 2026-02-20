@@ -1,0 +1,82 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorHX.Components.Navigation;
+using RazorHX.Demo.Models;
+
+namespace RazorHX.Demo.Pages.Docs.Components;
+
+public class SplitPanelModel : PageModel
+{
+    public List<ComponentProperty> Properties { get; } = new()
+    {
+        new("rhx-position", "int", "50", "Initial divider position as a percentage (0-100)"),
+        new("rhx-vertical", "bool", "false", "Use vertical (top/bottom) layout instead of horizontal"),
+        new("rhx-snap", "string", "-", "Comma-separated snap point percentages (e.g. \"25,50,75\")"),
+        new("rhx-disabled", "bool", "false", "Prevents dragging the divider"),
+    };
+
+    public string HorizontalCode => @"<rhx-split-panel rhx-position=""30"">
+    <rhx-split-start>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <h4 style=""margin:0 0 var(--rhx-space-sm) 0;"">Sidebar</h4>
+            <p>Navigation or filter panel. Drag the divider to resize.</p>
+        </div>
+    </rhx-split-start>
+    <rhx-split-end>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <h4 style=""margin:0 0 var(--rhx-space-sm) 0;"">Main Content</h4>
+            <p>Primary content area. The end panel takes the remaining space.</p>
+        </div>
+    </rhx-split-end>
+</rhx-split-panel>";
+
+    public string VerticalCode => @"<rhx-split-panel rhx-position=""40"" rhx-vertical>
+    <rhx-split-start>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <h4 style=""margin:0 0 var(--rhx-space-sm) 0;"">Editor</h4>
+            <p>Code or text editing area.</p>
+        </div>
+    </rhx-split-start>
+    <rhx-split-end>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <h4 style=""margin:0 0 var(--rhx-space-sm) 0;"">Output</h4>
+            <p>Console or preview area below the editor.</p>
+        </div>
+    </rhx-split-end>
+</rhx-split-panel>";
+
+    public string SnapCode => @"<rhx-split-panel rhx-position=""50"" rhx-snap=""25,50,75"">
+    <rhx-split-start>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <p>Drag and feel the snap points.</p>
+        </div>
+    </rhx-split-start>
+    <rhx-split-end>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <p>The divider snaps at 25%, 50%, and 75%.</p>
+        </div>
+    </rhx-split-end>
+</rhx-split-panel>";
+
+    public string DisabledCode => @"<rhx-split-panel rhx-position=""60"" rhx-disabled>
+    <rhx-split-start>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <p>Fixed start panel (60%).</p>
+        </div>
+    </rhx-split-start>
+    <rhx-split-end>
+        <div style=""padding: var(--rhx-space-lg);"">
+            <p>Fixed end panel (40%).</p>
+        </div>
+    </rhx-split-end>
+</rhx-split-panel>";
+
+    public void OnGet()
+    {
+        ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
+        {
+            new("Home", "/"),
+            new("Components", "/Docs/Components/SplitPanel"),
+            new("Split Panel")
+        };
+    }
+}

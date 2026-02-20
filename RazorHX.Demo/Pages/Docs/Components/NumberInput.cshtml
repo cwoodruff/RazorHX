@@ -1,0 +1,130 @@
+@page
+@model NumberInputModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Number Input";
+    ViewData["ComponentName"] = "Number Input";
+    ViewData["ComponentTag"] = "rhx-number-input";
+    ViewData["ComponentDescription"] = "Numeric input with stepper buttons, decimal support, and model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-number-input rhx-label="Quantity" name="quantity" value="1"
+                                      rhx-min="0" rhx-max="99" rhx-step="1" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Decimal Step -->
+    <div class="docs-example">
+        <h3>Decimal Step</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="decimal-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="decimal-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="decimal-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-number-input rhx-label="Price" name="price" value="9.99"
+                                      rhx-min="0" rhx-step="0.01" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="decimal-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DecimalStepCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- No Steppers -->
+    <div class="docs-example">
+        <h3>No Steppers</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="nosteppers-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="nosteppers-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="nosteppers-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-number-input rhx-label="Amount" name="amount" value="100"
+                                      rhx-no-steppers="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="nosteppers-code">
+                <div class="docs-code">
+                    <pre><code>@Model.NoSteppersCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-number-input rhx-label="Small" name="num-sm" value="5"
+                                      rhx-size="small" rhx-min="0" rhx-max="10" />
+                    <rhx-number-input rhx-label="Medium" name="num-md" value="5"
+                                      rhx-min="0" rhx-max="10" />
+                    <rhx-number-input rhx-label="Large" name="num-lg" value="5"
+                                      rhx-size="large" rhx-min="0" rhx-max="10" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-number-input rhx-label="Disabled" name="num-dis" value="3"
+                                      rhx-disabled="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>input type="number"</code> with native keyboard support.</li>
+        <li>Stepper buttons have <code>aria-label</code> for screen readers.</li>
+        <li>Min, max, and step constraints are conveyed to assistive technology.</li>
+    </ul>
+</section>

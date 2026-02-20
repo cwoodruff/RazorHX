@@ -1,0 +1,171 @@
+@page
+@model TreeModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Tree";
+    ViewData["ComponentName"] = "Tree";
+    ViewData["ComponentTag"] = "rhx-tree";
+    ViewData["ComponentDescription"] = "Hierarchical tree view with selection modes and htmx lazy loading.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tree aria-label="File explorer">
+                        <rhx-tree-item rhx-label="Documents" rhx-expanded>
+                            <rhx-tree-item>README.md</rhx-tree-item>
+                            <rhx-tree-item>LICENSE</rhx-tree-item>
+                            <rhx-tree-item rhx-label="Reports">
+                                <rhx-tree-item>Q1 Report.pdf</rhx-tree-item>
+                                <rhx-tree-item>Q2 Report.pdf</rhx-tree-item>
+                            </rhx-tree-item>
+                        </rhx-tree-item>
+                        <rhx-tree-item rhx-label="Images">
+                            <rhx-tree-item>logo.png</rhx-tree-item>
+                            <rhx-tree-item>banner.jpg</rhx-tree-item>
+                        </rhx-tree-item>
+                    </rhx-tree>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Multiple Selection -->
+    <div class="docs-example">
+        <h3>Multiple Selection</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="multiple-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="multiple-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="multiple-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tree rhx-selection="multiple" aria-label="Multi-select tree">
+                        <rhx-tree-item>Apple</rhx-tree-item>
+                        <rhx-tree-item>Banana</rhx-tree-item>
+                        <rhx-tree-item>Cherry</rhx-tree-item>
+                        <rhx-tree-item rhx-label="Citrus">
+                            <rhx-tree-item>Orange</rhx-tree-item>
+                            <rhx-tree-item>Lemon</rhx-tree-item>
+                            <rhx-tree-item>Grapefruit</rhx-tree-item>
+                        </rhx-tree-item>
+                    </rhx-tree>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="multiple-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MultipleCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Leaf Selection Only -->
+    <div class="docs-example">
+        <h3>Leaf Selection Only</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="leaf-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="leaf-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="leaf-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tree rhx-selection="leaf" aria-label="Leaf selection tree">
+                        <rhx-tree-item rhx-label="Frontend" rhx-expanded>
+                            <rhx-tree-item>React</rhx-tree-item>
+                            <rhx-tree-item>Vue</rhx-tree-item>
+                            <rhx-tree-item>Angular</rhx-tree-item>
+                        </rhx-tree-item>
+                        <rhx-tree-item rhx-label="Backend">
+                            <rhx-tree-item>ASP.NET Core</rhx-tree-item>
+                            <rhx-tree-item>Express</rhx-tree-item>
+                        </rhx-tree-item>
+                    </rhx-tree>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="leaf-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LeafCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tree aria-label="States example">
+                        <rhx-tree-item rhx-label="Available" rhx-expanded>
+                            <rhx-tree-item rhx-selected>Selected item</rhx-tree-item>
+                            <rhx-tree-item>Normal item</rhx-tree-item>
+                        </rhx-tree-item>
+                        <rhx-tree-item rhx-label="Locked" rhx-disabled>
+                            <rhx-tree-item>Cannot interact</rhx-tree-item>
+                        </rhx-tree-item>
+                    </rhx-tree>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Lazy Loading -->
+    <div class="docs-example">
+        <h3>htmx Lazy Loading</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="lazy-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="lazy-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="lazy-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tree aria-label="Lazy-loaded tree">
+                        <rhx-tree-item rhx-label="Lazy Folder"
+                                       rhx-lazy
+                                       hx-get="/Docs/Components/Tree?handler=TreeChildren&folder=root"
+                                       hx-target="find .rhx-tree__children"
+                                       hx-swap="innerHTML"
+                                       hx-trigger="toggle once">
+                        </rhx-tree-item>
+                        <rhx-tree-item>Static leaf item</rhx-tree-item>
+                    </rhx-tree>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="lazy-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LazyLoadCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>The tree container uses <code>role="tree"</code> with each node using <code>role="treeitem"</code>.</li>
+        <li>Branch nodes use <code>aria-expanded</code> to indicate whether they are open or closed.</li>
+        <li>Arrow key navigation moves focus between items: Up/Down for siblings, Left to collapse or move to parent, Right to expand or move to first child.</li>
+        <li>Selected items are marked with <code>aria-selected</code> for screen reader announcement.</li>
+    </ul>
+</section>

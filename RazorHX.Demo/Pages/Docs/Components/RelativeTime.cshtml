@@ -1,0 +1,136 @@
+@page
+@model RelativeTimeModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Relative Time";
+    ViewData["ComponentName"] = "Relative Time";
+    ViewData["ComponentTag"] = "rhx-relative-time";
+    ViewData["ComponentDescription"] = "Auto-updating relative time display with long, short, and narrow formats.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Long (Default) -->
+    <div class="docs-example">
+        <h3>Long (Default)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="long-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="long-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="long-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddSeconds(-3)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddMinutes(-5)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddHours(-3)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-1)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-14)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-60)" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="long-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LongCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Future -->
+    <div class="docs-example">
+        <h3>Future</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="future-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="future-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="future-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddSeconds(3)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddMinutes(10)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddHours(2)" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(3)" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="future-code">
+                <div class="docs-code">
+                    <pre><code>@Model.FutureCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Short -->
+    <div class="docs-example">
+        <h3>Short</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="short-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="short-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="short-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddMinutes(-5)" rhx-format="short" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddHours(2)" rhx-format="short" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-3)" rhx-format="short" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="short-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ShortCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Narrow -->
+    <div class="docs-example">
+        <h3>Narrow</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="narrow-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="narrow-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="narrow-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddMinutes(-5)" rhx-format="narrow" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddHours(2)" rhx-format="narrow" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-45)" rhx-format="narrow" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="narrow-code">
+                <div class="docs-code">
+                    <pre><code>@Model.NarrowCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Auto Numeric -->
+    <div class="docs-example">
+        <h3>Auto Numeric</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="auto-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="auto-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="auto-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-1)" rhx-numeric="auto" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(1)" rhx-numeric="auto" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-7)" rhx-numeric="auto" />
+                    <rhx-relative-time rhx-date="@DateTimeOffset.UtcNow.AddDays(-365)" rhx-numeric="auto" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="auto-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AutoNumericCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders as a <code>&lt;time&gt;</code> element with a <code>datetime</code> attribute for machine readability.</li>
+        <li>Auto-updates via JavaScript without triggering screen reader live region announcements.</li>
+        <li>The visible text is always human-readable (e.g. "3 hours ago") for all users.</li>
+    </ul>
+</section>

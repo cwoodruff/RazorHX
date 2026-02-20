@@ -1,0 +1,125 @@
+@page
+@model TooltipModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Tooltip";
+    ViewData["ComponentName"] = "Tooltip";
+    ViewData["ComponentTag"] = "rhx-tooltip";
+    ViewData["ComponentDescription"] = "Contextual text popup with placement options and trigger modes.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tooltip rhx-content="Save your changes">
+                        <rhx-button rhx-variant="brand">Save</rhx-button>
+                    </rhx-tooltip>
+                    <rhx-tooltip rhx-content="Delete this item permanently" rhx-placement="bottom">
+                        <rhx-button rhx-variant="danger">Delete</rhx-button>
+                    </rhx-tooltip>
+                    <rhx-tooltip rhx-content="Edit settings" rhx-placement="right">
+                        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Settings</rhx-button>
+                    </rhx-tooltip>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Placements -->
+    <div class="docs-example">
+        <h3>Placements</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="placements-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="placements-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="placements-preview" rhx-active="true">
+                <div class="docs-preview" style="padding: var(--rhx-space-2xl);">
+                    <rhx-tooltip rhx-content="Top tooltip" rhx-placement="top">
+                        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Top</rhx-button>
+                    </rhx-tooltip>
+                    <rhx-tooltip rhx-content="Bottom tooltip" rhx-placement="bottom">
+                        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Bottom</rhx-button>
+                    </rhx-tooltip>
+                    <rhx-tooltip rhx-content="Left tooltip" rhx-placement="left">
+                        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Left</rhx-button>
+                    </rhx-tooltip>
+                    <rhx-tooltip rhx-content="Right tooltip" rhx-placement="right">
+                        <rhx-button rhx-variant="neutral" rhx-appearance="outlined">Right</rhx-button>
+                    </rhx-tooltip>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="placements-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PlacementsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Click Trigger -->
+    <div class="docs-example">
+        <h3>Click Trigger</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="click-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="click-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="click-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tooltip rhx-content="Click to toggle this tooltip" rhx-trigger="click">
+                        <rhx-button rhx-variant="brand" rhx-appearance="outlined">Click Me</rhx-button>
+                    </rhx-tooltip>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="click-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ClickTriggerCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Disabled -->
+    <div class="docs-example">
+        <h3>Disabled</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="disabled-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="disabled-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="disabled-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tooltip rhx-content="This tooltip is disabled" rhx-disabled="true">
+                        <rhx-button rhx-variant="neutral">Hover (no tooltip)</rhx-button>
+                    </rhx-tooltip>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="disabled-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DisabledCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Tooltip element has <code>role="tooltip"</code> for assistive technology recognition.</li>
+        <li>The trigger element is linked to the tooltip via <code>aria-describedby</code>.</li>
+        <li>Keyboard focus on the trigger element shows the tooltip.</li>
+    </ul>
+</section>

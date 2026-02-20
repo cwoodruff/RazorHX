@@ -1,0 +1,110 @@
+@page
+@model FormatNumberModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Format Number";
+    ViewData["ComponentName"] = "Format Number";
+    ViewData["ComponentTag"] = "rhx-format-number";
+    ViewData["ComponentDescription"] = "Locale-aware number formatting for decimal, currency, and percent.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Decimal -->
+    <div class="docs-example">
+        <h3>Decimal</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="decimal-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="decimal-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="decimal-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-number rhx-value="1234.56" />
+                    <rhx-format-number rhx-value="1234.56" rhx-no-grouping="true" />
+                    <rhx-format-number rhx-value="1.5" rhx-minimum-fraction-digits="0" rhx-maximum-fraction-digits="3" />
+                    <rhx-format-number rhx-value="1.0" rhx-minimum-fraction-digits="2" rhx-maximum-fraction-digits="2" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="decimal-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DecimalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Currency -->
+    <div class="docs-example">
+        <h3>Currency</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="currency-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="currency-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="currency-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-number rhx-value="1234.56" rhx-type="currency" rhx-currency="USD" />
+                    <rhx-format-number rhx-value="1234.56" rhx-type="currency" rhx-currency="USD" rhx-currency-display="code" />
+                    <rhx-format-number rhx-value="1234.56" rhx-type="currency" rhx-currency="USD" rhx-currency-display="name" />
+                    <rhx-format-number rhx-value="1234" rhx-type="currency" rhx-currency="JPY" />
+                    <rhx-format-number rhx-value="1234.56" rhx-type="currency" rhx-currency="EUR" />
+                    <rhx-format-number rhx-value="1234.56" rhx-type="currency" rhx-currency="GBP" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="currency-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CurrencyCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Percent -->
+    <div class="docs-example">
+        <h3>Percent</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="percent-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="percent-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="percent-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-number rhx-value="0.75" rhx-type="percent" />
+                    <rhx-format-number rhx-value="0.756" rhx-type="percent" rhx-maximum-fraction-digits="1" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="percent-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PercentCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Culture -->
+    <div class="docs-example">
+        <h3>Culture</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="culture-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="culture-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="culture-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-number rhx-value="1234.56" rhx-lang="de-DE" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="culture-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CultureCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders as inline text content — screen readers read the formatted value naturally.</li>
+        <li>No interactive elements or ARIA attributes required.</li>
+    </ul>
+</section>

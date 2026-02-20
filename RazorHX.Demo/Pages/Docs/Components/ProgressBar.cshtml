@@ -1,0 +1,68 @@
+@page
+@model ProgressBarModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Progress Bar";
+    ViewData["ComponentName"] = "Progress Bar";
+    ViewData["ComponentTag"] = "rhx-progress-bar";
+    ViewData["ComponentDescription"] = "Determinate and indeterminate horizontal loading indicator.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Determinate Values -->
+    <div class="docs-example">
+        <h3>Determinate Values</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="determinate-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="determinate-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="determinate-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch; gap: var(--rhx-space-md);">
+                    <rhx-progress-bar rhx-value="0" rhx-label="Not started" />
+                    <rhx-progress-bar rhx-value="25" rhx-label="Quarter complete" />
+                    <rhx-progress-bar rhx-value="65" rhx-label="Upload progress" />
+                    <rhx-progress-bar rhx-value="100" rhx-label="Complete" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="determinate-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DeterminateCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Indeterminate -->
+    <div class="docs-example">
+        <h3>Indeterminate</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="indeterminate-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="indeterminate-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="indeterminate-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <rhx-progress-bar rhx-indeterminate="true" rhx-label="Loading" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="indeterminate-code">
+                <div class="docs-code">
+                    <pre><code>@Model.IndeterminateCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders with <code>role="progressbar"</code> for assistive technology recognition.</li>
+        <li>Determinate bars set <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code>.</li>
+        <li>The <code>rhx-label</code> property maps to <code>aria-label</code> for a meaningful accessible name.</li>
+        <li>Indeterminate mode removes <code>aria-valuenow</code> to indicate unknown progress.</li>
+    </ul>
+</section>

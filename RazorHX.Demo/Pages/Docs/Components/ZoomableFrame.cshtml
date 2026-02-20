@@ -1,0 +1,68 @@
+@page
+@model ZoomableFrameModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Zoomable Frame";
+    ViewData["ComponentName"] = "Zoomable Frame";
+    ViewData["ComponentTag"] = "rhx-zoomable-frame";
+    ViewData["ComponentDescription"] = "Zoomable content container with hover zoom.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Image -->
+    <div class="docs-example">
+        <h3>Image</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="image-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="image-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="image-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="max-width: 600px; height: 400px; border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); overflow: hidden;">
+                        <rhx-zoomable-frame rhx-src="https://picsum.photos/id/1015/1200/800" rhx-alt="Mountain landscape" rhx-min-scale="0.5" rhx-max-scale="4" />
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="image-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ImageCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pre-zoomed -->
+    <div class="docs-example">
+        <h3>Pre-zoomed</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="prezoomed-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="prezoomed-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="prezoomed-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="max-width: 600px; height: 400px; border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); overflow: hidden;">
+                        <rhx-zoomable-frame rhx-src="https://picsum.photos/id/1015/1200/800" rhx-alt="Mountain landscape zoomed" rhx-scale="2" />
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="prezoomed-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PreZoomedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Keyboard shortcuts support zoom in (<code>+</code>), zoom out (<code>-</code>), and reset (<code>0</code>).</li>
+        <li>The container uses <code>aria-label</code> to describe the current zoom level for screen readers.</li>
+        <li>Double-click resets zoom to the default level for easy recovery.</li>
+    </ul>
+</section>

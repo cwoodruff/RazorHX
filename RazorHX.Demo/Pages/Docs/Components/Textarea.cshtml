@@ -1,0 +1,137 @@
+@page
+@model TextareaModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Textarea";
+    ViewData["ComponentName"] = "Textarea";
+    ViewData["ComponentTag"] = "rhx-textarea";
+    ViewData["ComponentDescription"] = "Multi-line text input with auto-resize, constraints, and model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-textarea rhx-label="Notes" name="notes"
+                                  rhx-placeholder="Enter your notes..." />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Hint and Maxlength -->
+    <div class="docs-example">
+        <h3>Hint and Maxlength</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hint-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hint-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hint-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-textarea rhx-label="Bio" name="bio" rhx-rows="5"
+                                  rhx-placeholder="Tell us about yourself..."
+                                  rhx-maxlength="500"
+                                  rhx-hint="Max 500 characters" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hint-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HintMaxlengthCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Auto-resize -->
+    <div class="docs-example">
+        <h3>Auto-resize</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="autoresize-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="autoresize-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="autoresize-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-textarea rhx-label="Auto-resize" name="auto"
+                                  rhx-resize="auto" rhx-rows="2"
+                                  rhx-placeholder="Type here and watch the textarea grow..." />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="autoresize-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AutoResizeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-textarea rhx-label="Small" name="ta-sm" rhx-size="small"
+                                  rhx-placeholder="Small textarea" />
+                    <rhx-textarea rhx-label="Medium (default)" name="ta-md"
+                                  rhx-placeholder="Medium textarea" />
+                    <rhx-textarea rhx-label="Large" name="ta-lg" rhx-size="large"
+                                  rhx-placeholder="Large textarea" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-textarea rhx-label="Disabled" name="ta-dis" value="Cannot edit"
+                                  rhx-disabled="true" />
+                    <rhx-textarea rhx-label="Readonly" name="ta-ro"
+                                  value="This content is read-only"
+                                  rhx-readonly="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;textarea&gt;</code> element with associated <code>&lt;label&gt;</code>.</li>
+        <li><code>rhx-hint</code> is linked via <code>aria-describedby</code>.</li>
+        <li>Required state is conveyed with <code>aria-required</code>.</li>
+        <li>Disabled state sets <code>aria-disabled</code>.</li>
+    </ul>
+</section>

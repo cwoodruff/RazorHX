@@ -1,0 +1,88 @@
+@page
+@model BreadcrumbModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Breadcrumb";
+    ViewData["ComponentName"] = "Breadcrumb";
+    ViewData["ComponentTag"] = "rhx-breadcrumb";
+    ViewData["ComponentDescription"] = "Navigation breadcrumb with model binding, child items, and custom separators.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Model-bound Items -->
+    <div class="docs-example">
+        <h3>Model-bound Items</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="model-bound-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="model-bound-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="model-bound-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-breadcrumb rhx-items="@Model.BreadcrumbItems" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="model-bound-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ModelBoundCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Child Items -->
+    <div class="docs-example">
+        <h3>Child Items</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="child-items-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="child-items-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="child-items-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-breadcrumb>
+                        <rhx-breadcrumb-item rhx-href="/">Home</rhx-breadcrumb-item>
+                        <rhx-breadcrumb-item rhx-href="/Docs/Components/Breadcrumb">Navigation</rhx-breadcrumb-item>
+                        <rhx-breadcrumb-item>Breadcrumb</rhx-breadcrumb-item>
+                    </rhx-breadcrumb>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="child-items-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ChildItemsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Separator -->
+    <div class="docs-example">
+        <h3>Custom Separator</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="custom-separator-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="custom-separator-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="custom-separator-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-breadcrumb rhx-separator="›" rhx-label="Site navigation"
+                                    rhx-items="@Model.BreadcrumbItems" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="custom-separator-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomSeparatorCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a <code>&lt;nav&gt;</code> element with <code>aria-label</code> for landmark navigation.</li>
+        <li>The current (last) page uses <code>aria-current="page"</code> to indicate the active location.</li>
+        <li>Separator characters between items are marked with <code>aria-hidden="true"</code> so screen readers skip them.</li>
+    </ul>
+</section>

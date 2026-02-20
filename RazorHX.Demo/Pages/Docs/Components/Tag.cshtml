@@ -1,0 +1,136 @@
+@page
+@model TagComponentModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Tag";
+    ViewData["ComponentName"] = "Tag";
+    ViewData["ComponentTag"] = "rhx-tag";
+    ViewData["ComponentDescription"] = "Removable label with size variants, pill shape, and htmx delete support.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Variants -->
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tag rhx-variant="neutral">Neutral</rhx-tag>
+                    <rhx-tag rhx-variant="brand">Brand</rhx-tag>
+                    <rhx-tag rhx-variant="success">Success</rhx-tag>
+                    <rhx-tag rhx-variant="warning">Warning</rhx-tag>
+                    <rhx-tag rhx-variant="danger">Danger</rhx-tag>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tag rhx-variant="brand" rhx-size="small">Small</rhx-tag>
+                    <rhx-tag rhx-variant="brand">Medium (default)</rhx-tag>
+                    <rhx-tag rhx-variant="brand" rhx-size="large">Large</rhx-tag>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pill Shape -->
+    <div class="docs-example">
+        <h3>Pill Shape</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="pill-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="pill-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="pill-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tag rhx-variant="brand" rhx-pill="true">C#</rhx-tag>
+                    <rhx-tag rhx-variant="success" rhx-pill="true">TypeScript</rhx-tag>
+                    <rhx-tag rhx-variant="danger" rhx-pill="true">Rust</rhx-tag>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="pill-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PillCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Removable -->
+    <div class="docs-example">
+        <h3>Removable</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="removable-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="removable-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="removable-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tag rhx-variant="brand" rhx-removable="true">JavaScript</rhx-tag>
+                    <rhx-tag rhx-variant="success" rhx-removable="true">Python</rhx-tag>
+                    <rhx-tag rhx-variant="danger" rhx-removable="true" rhx-pill="true">Deprecated</rhx-tag>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="removable-code">
+                <div class="docs-code">
+                    <pre><code>@Model.RemovableCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Delete -->
+    <div class="docs-example">
+        <h3>htmx Delete</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-tag rhx-variant="brand" rhx-removable="true"
+                             hx-delete="/api/tags/1" hx-trigger="click from:find .rhx-tag__remove"
+                             hx-target="closest .rhx-tag" hx-swap="outerHTML swap:200ms">
+                        htmx Tag
+                    </rhx-tag>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxDeleteCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Remove button has <code>aria-label="Remove {content}"</code> for screen reader context.</li>
+        <li>Remove button is keyboard accessible via <code>Tab</code> and activates with <code>Enter</code> or <code>Space</code>.</li>
+        <li>Tags are rendered as inline elements and do not interfere with document reading order.</li>
+        <li>Color is supplemented by text content so meaning is not conveyed by color alone.</li>
+    </ul>
+</section>

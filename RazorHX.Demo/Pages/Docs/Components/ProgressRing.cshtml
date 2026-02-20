@@ -1,0 +1,69 @@
+@page
+@model ProgressRingModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Progress Ring";
+    ViewData["ComponentName"] = "Progress Ring";
+    ViewData["ComponentTag"] = "rhx-progress-ring";
+    ViewData["ComponentDescription"] = "Circular progress indicator with customizable stroke width.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Various Values -->
+    <div class="docs-example">
+        <h3>Various Values</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="values-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="values-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="values-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-progress-ring rhx-value="0" rhx-label="Not started" />
+                    <rhx-progress-ring rhx-value="25" rhx-label="Quarter" />
+                    <rhx-progress-ring rhx-value="65" rhx-label="Upload" />
+                    <rhx-progress-ring rhx-value="100" rhx-label="Complete" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="values-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ValuesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Stroke Widths -->
+    <div class="docs-example">
+        <h3>Custom Stroke Widths</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="strokes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="strokes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="strokes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-progress-ring rhx-value="75" rhx-track-width="2" rhx-indicator-width="2" />
+                    <rhx-progress-ring rhx-value="75" rhx-track-width="4" rhx-indicator-width="4" />
+                    <rhx-progress-ring rhx-value="75" rhx-track-width="3" rhx-indicator-width="5" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="strokes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StrokesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders with <code>role="progressbar"</code> for assistive technology recognition.</li>
+        <li>Sets <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> on the ring element.</li>
+        <li>SVG-based rendering with <code>aria-label</code> derived from <code>rhx-label</code> for a meaningful accessible name.</li>
+    </ul>
+</section>

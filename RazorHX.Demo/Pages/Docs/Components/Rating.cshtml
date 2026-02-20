@@ -1,0 +1,181 @@
+@page
+@model RatingModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Rating";
+    ViewData["ComponentName"] = "Rating";
+    ViewData["ComponentTag"] = "rhx-rating";
+    ViewData["ComponentDescription"] = "Star rating control with half-star precision, custom max, and model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rating" rhx-label="Rate this product" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pre-set Value -->
+    <div class="docs-example">
+        <h3>Pre-set Value</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="preset-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="preset-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="preset-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rating-pre" rhx-label="Rating" value="3" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="preset-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PresetValueCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Half-star Precision -->
+    <div class="docs-example">
+        <h3>Half-star Precision</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="half-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="half-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="half-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rating-half" rhx-label="Detailed Rating" value="3.5" rhx-precision="0.5" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="half-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HalfStarCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Max -->
+    <div class="docs-example">
+        <h3>Custom Max</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="max-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="max-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="max-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rating-10" rhx-label="Extended Rating" rhx-max="10" value="7" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="max-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomMaxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Readonly -->
+    <div class="docs-example">
+        <h3>Readonly</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="readonly-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="readonly-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="readonly-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rating-ro" rhx-label="Average Rating" value="4" rhx-readonly="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="readonly-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ReadonlyCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: flex-start; gap: var(--rhx-space-lg);">
+                    <rhx-rating name="rt-sm" rhx-label="Small" rhx-size="small" value="3" />
+                    <rhx-rating name="rt-md" rhx-label="Medium (default)" value="3" />
+                    <rhx-rating name="rt-lg" rhx-label="Large" rhx-size="large" value="3" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="rt-dis" rhx-label="Disabled rating" rhx-disabled="true" value="2" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Model Binding -->
+    <div class="docs-example">
+        <h3>Model Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="binding-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="binding-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="binding-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating rhx-for="ProductRating" rhx-label="Product Rating" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="binding-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ModelBindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>role="radiogroup"</code> with individual star buttons acting as radio inputs.</li>
+        <li>Each star has an <code>aria-label</code> describing its value (e.g., "3 out of 5 stars").</li>
+        <li>Keyboard arrow keys navigate between star values.</li>
+        <li>Readonly mode uses <code>aria-readonly="true"</code> and removes interactive elements.</li>
+    </ul>
+</section>

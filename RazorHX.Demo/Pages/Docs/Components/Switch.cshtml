@@ -1,0 +1,143 @@
+@page
+@model SwitchModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Switch";
+    ViewData["ComponentName"] = "Switch";
+    ViewData["ComponentTag"] = "rhx-switch";
+    ViewData["ComponentDescription"] = "On/off toggle control with label, hint, and model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-switch name="darkMode" rhx-label="Dark mode" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pre-checked -->
+    <div class="docs-example">
+        <h3>Pre-checked</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="prechecked-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="prechecked-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="prechecked-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-switch name="notifications" rhx-label="Enable notifications" rhx-checked="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="prechecked-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PreCheckedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Hint -->
+    <div class="docs-example">
+        <h3>With Hint</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hint-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hint-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hint-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-switch name="autoSave" rhx-label="Auto-save"
+                                rhx-hint="Automatically save changes every 30 seconds" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hint-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HintCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: flex-start;">
+                    <rhx-switch name="sw-sm" rhx-label="Small switch" rhx-size="small" />
+                    <rhx-switch name="sw-md" rhx-label="Medium switch (default)" />
+                    <rhx-switch name="sw-lg" rhx-label="Large switch" rhx-size="large" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-switch name="sw-dis" rhx-label="Disabled switch" rhx-disabled="true" />
+                    <rhx-switch name="sw-dis-on" rhx-label="Disabled on" rhx-disabled="true" rhx-checked="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Model Binding -->
+    <div class="docs-example">
+        <h3>Model Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="binding-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="binding-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="binding-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-switch rhx-for="DarkMode" rhx-label="Dark Mode" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="binding-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>role="switch"</code> with <code>aria-checked</code> for on/off state.</li>
+        <li>Label is associated for screen readers.</li>
+        <li>Keyboard: Space toggles the switch.</li>
+        <li>Hint text linked via <code>aria-describedby</code>.</li>
+    </ul>
+</section>

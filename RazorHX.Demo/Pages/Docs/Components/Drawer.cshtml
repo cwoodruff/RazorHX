@@ -1,0 +1,145 @@
+@page
+@model DrawerModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Drawer";
+    ViewData["ComponentName"] = "Drawer";
+    ViewData["ComponentTag"] = "rhx-drawer";
+    ViewData["ComponentDescription"] = "Sliding overlay panel from any edge with contained mode and htmx support.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- End (Default) -->
+    <div class="docs-example">
+        <h3>End (Default)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="end-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="end-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="end-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" data-rhx-drawer-open="end-drawer">Open End Drawer</rhx-button>
+                    <rhx-drawer id="end-drawer" rhx-label="Notifications">
+                        <p>You have no new notifications.</p>
+                        <p>Check back later for updates.</p>
+                        <rhx-drawer-footer>
+                            <rhx-button rhx-variant="ghost" data-rhx-drawer-close="end-drawer">Close</rhx-button>
+                        </rhx-drawer-footer>
+                    </rhx-drawer>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="end-code">
+                <div class="docs-code">
+                    <pre><code>@Model.EndCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Start -->
+    <div class="docs-example">
+        <h3>Start</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="start-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="start-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="start-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="outline" data-rhx-drawer-open="start-drawer">Open Start Drawer</rhx-button>
+                    <rhx-drawer id="start-drawer" rhx-label="Navigation" rhx-placement="start">
+                        <nav style="display: flex; flex-direction: column; gap: var(--rhx-space-sm);">
+                            <a href="#" style="color: var(--rhx-color-brand-500); font-weight: var(--rhx-font-weight-medium);">Dashboard</a>
+                            <a href="#" style="color: var(--rhx-color-text);">Settings</a>
+                            <a href="#" style="color: var(--rhx-color-text);">Profile</a>
+                            <a href="#" style="color: var(--rhx-color-text);">Help</a>
+                        </nav>
+                    </rhx-drawer>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="start-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StartCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Top and Bottom -->
+    <div class="docs-example">
+        <h3>Top and Bottom</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="topbottom-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="topbottom-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="topbottom-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="outline" data-rhx-drawer-open="top-drawer">Open Top Drawer</rhx-button>
+                    <rhx-button rhx-variant="outline" data-rhx-drawer-open="bottom-drawer">Open Bottom Drawer</rhx-button>
+
+                    <rhx-drawer id="top-drawer" rhx-label="Alert Banner" rhx-placement="top">
+                        <p>This drawer slides down from the top of the viewport.</p>
+                    </rhx-drawer>
+
+                    <rhx-drawer id="bottom-drawer" rhx-label="Cookie Consent" rhx-placement="bottom">
+                        <p>We use cookies to improve your experience.</p>
+                        <rhx-drawer-footer>
+                            <rhx-button rhx-variant="ghost" data-rhx-drawer-close="bottom-drawer">Decline</rhx-button>
+                            <rhx-button rhx-variant="brand" data-rhx-drawer-close="bottom-drawer">Accept</rhx-button>
+                        </rhx-drawer-footer>
+                    </rhx-drawer>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="topbottom-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TopBottomCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Contained -->
+    <div class="docs-example">
+        <h3>Contained</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="contained-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="contained-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="contained-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="position: relative; height: 300px; border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); overflow: hidden;">
+                        <div style="padding: var(--rhx-space-lg);">
+                            <rhx-button rhx-variant="outline" rhx-size="small" data-rhx-drawer-open="contained-drawer">Toggle Sidebar</rhx-button>
+                            <p style="margin-top: var(--rhx-space-md);">Main content area. The drawer opens within this container.</p>
+                        </div>
+
+                        <rhx-drawer id="contained-drawer" rhx-label="Filters" rhx-placement="start" rhx-contained>
+                            <div style="display: flex; flex-direction: column; gap: var(--rhx-space-sm);">
+                                <label><input type="checkbox" /> Active</label>
+                                <label><input type="checkbox" /> Pending</label>
+                                <label><input type="checkbox" /> Archived</label>
+                            </div>
+                        </rhx-drawer>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="contained-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ContainedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>role="dialog"</code> for screen reader announcement.</li>
+        <li>Focus is trapped within the drawer while it is open.</li>
+        <li>ESC key closes the drawer and returns focus to the trigger element.</li>
+        <li><code>aria-label</code> is set from the <code>rhx-label</code> attribute.</li>
+        <li>Backdrop overlay prevents interaction with background content.</li>
+    </ul>
+</section>

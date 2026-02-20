@@ -1,0 +1,111 @@
+@page
+@model AvatarModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Avatar";
+    ViewData["ComponentName"] = "Avatar";
+    ViewData["ComponentTag"] = "rhx-avatar";
+    ViewData["ComponentDescription"] = "User avatar with image, initials, shapes, and custom sizes.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Images -->
+    <div class="docs-example">
+        <h3>Images</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="images-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="images-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="images-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=a" rhx-label="Alice" rhx-size="small" />
+                    <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=b" rhx-label="Bob" />
+                    <rhx-avatar rhx-image="https://i.pravatar.cc/150?u=c" rhx-label="Charlie" rhx-size="large" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="images-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ImagesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Initials -->
+    <div class="docs-example">
+        <h3>Initials</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="initials-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="initials-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="initials-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-avatar rhx-initials="JD" rhx-label="John Doe" />
+                    <rhx-avatar rhx-initials="AB" rhx-label="Alice Brown" />
+                    <rhx-avatar rhx-initials="KS" rhx-label="Karen Smith" />
+                    <rhx-avatar rhx-initials="MR" rhx-label="Mike Ross" />
+                    <rhx-avatar rhx-initials="TN" rhx-label="Tina Nguyen" />
+                    <rhx-avatar rhx-initials="LP" rhx-label="Liam Parker" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="initials-code">
+                <div class="docs-code">
+                    <pre><code>@Model.InitialsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Shapes -->
+    <div class="docs-example">
+        <h3>Shapes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="shapes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="shapes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="shapes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-avatar rhx-initials="JD" rhx-label="Circle" rhx-shape="circle" />
+                    <rhx-avatar rhx-initials="JD" rhx-label="Rounded" rhx-shape="rounded" />
+                    <rhx-avatar rhx-initials="JD" rhx-label="Square" rhx-shape="square" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="shapes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ShapesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Size -->
+    <div class="docs-example">
+        <h3>Custom Size</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="custom-size-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="custom-size-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="custom-size-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-avatar rhx-initials="XL" rhx-label="Extra large avatar" rhx-size="5rem" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="custom-size-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomSizeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Image avatars use <code>alt</code> text from <code>rhx-label</code> for screen reader announcement.</li>
+        <li>Initials avatars use <code>aria-label</code> so screen readers announce the full name, not just the letters.</li>
+        <li>Decorative avatars can use <code>aria-hidden="true"</code> when the identity is conveyed by adjacent text.</li>
+    </ul>
+</section>

@@ -1,0 +1,93 @@
+@page
+@model BadgeModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Badge";
+    ViewData["ComponentName"] = "Badge";
+    ViewData["ComponentTag"] = "rhx-badge";
+    ViewData["ComponentDescription"] = "Small status indicator with color variants, pill shape, and pulse animation.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Variants -->
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-badge rhx-variant="neutral">Neutral</rhx-badge>
+                    <rhx-badge rhx-variant="brand">Brand</rhx-badge>
+                    <rhx-badge rhx-variant="success">Success</rhx-badge>
+                    <rhx-badge rhx-variant="warning">Warning</rhx-badge>
+                    <rhx-badge rhx-variant="danger">Danger</rhx-badge>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pill Shape -->
+    <div class="docs-example">
+        <h3>Pill Shape</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="pill-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="pill-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="pill-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-badge rhx-variant="neutral" rhx-pill="true">12</rhx-badge>
+                    <rhx-badge rhx-variant="brand" rhx-pill="true">New</rhx-badge>
+                    <rhx-badge rhx-variant="success" rhx-pill="true">Active</rhx-badge>
+                    <rhx-badge rhx-variant="danger" rhx-pill="true">3</rhx-badge>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="pill-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PillCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Pulse Animation -->
+    <div class="docs-example">
+        <h3>Pulse Animation</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="pulse-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="pulse-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="pulse-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-badge rhx-variant="danger" rhx-pulse="true">3</rhx-badge>
+                    <rhx-badge rhx-variant="brand" rhx-pulse="true">Live</rhx-badge>
+                    <rhx-badge rhx-variant="success" rhx-pill="true" rhx-pulse="true">Online</rhx-badge>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="pulse-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PulseCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Use <code>aria-label</code> when the badge content is not self-explanatory (e.g., a number without context).</li>
+        <li>Decorative badges that duplicate adjacent text should use <code>aria-hidden="true"</code>.</li>
+        <li>Pulse animation is purely visual and does not affect screen reader output.</li>
+        <li>Color is supplemented by text content so meaning is not conveyed by color alone.</li>
+    </ul>
+</section>

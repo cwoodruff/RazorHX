@@ -1,0 +1,155 @@
+@page
+@model QrCodeModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "QR Code";
+    ViewData["ComponentName"] = "QR Code";
+    ViewData["ComponentTag"] = "rhx-qr-code";
+    ViewData["ComponentDescription"] = "SVG QR code generator with custom colors, sizes, and error correction.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-qr-code rhx-value="https://example.com" rhx-label="Example website" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Large with High Error Correction -->
+    <div class="docs-example">
+        <h3>Large with High Error Correction</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="large-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="large-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="large-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-qr-code rhx-value="https://example.com" rhx-label="Example website" rhx-size="256" rhx-error-correction="H" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="large-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LargeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Colors -->
+    <div class="docs-example">
+        <h3>Custom Colors</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="colors-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="colors-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="colors-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-qr-code rhx-value="https://example.com" rhx-label="Branded QR code" rhx-fill="#6366f1" rhx-background="#f0f0ff" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="colors-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomColorsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Rounded Dots -->
+    <div class="docs-example">
+        <h3>Rounded Dots</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="rounded-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="rounded-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="rounded-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-qr-code rhx-value="https://example.com" rhx-label="Rounded QR code" rhx-radius="0.5" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="rounded-code">
+                <div class="docs-code">
+                    <pre><code>@Model.RoundedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Small -->
+    <div class="docs-example">
+        <h3>Small</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="small-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="small-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="small-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-qr-code rhx-value="https://example.com" rhx-label="Small QR code" rhx-size="64" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="small-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SmallCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Error Correction Levels -->
+    <div class="docs-example">
+        <h3>Error Correction Levels</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="ec-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="ec-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="ec-preview" rhx-active="true">
+                <div class="docs-preview" style="gap: var(--rhx-space-lg);">
+                    <div style="text-align: center;">
+                        <rhx-qr-code rhx-value="https://example.com" rhx-label="Low EC" rhx-error-correction="L" rhx-size="96" />
+                        <div style="margin-top: var(--rhx-space-xs); font-size: var(--rhx-font-size-sm); color: var(--rhx-color-text-muted);">L (7%)</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <rhx-qr-code rhx-value="https://example.com" rhx-label="Medium EC" rhx-error-correction="M" rhx-size="96" />
+                        <div style="margin-top: var(--rhx-space-xs); font-size: var(--rhx-font-size-sm); color: var(--rhx-color-text-muted);">M (15%)</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <rhx-qr-code rhx-value="https://example.com" rhx-label="Quartile EC" rhx-error-correction="Q" rhx-size="96" />
+                        <div style="margin-top: var(--rhx-space-xs); font-size: var(--rhx-font-size-sm); color: var(--rhx-color-text-muted);">Q (25%)</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <rhx-qr-code rhx-value="https://example.com" rhx-label="High EC" rhx-error-correction="H" rhx-size="96" />
+                        <div style="margin-top: var(--rhx-space-xs); font-size: var(--rhx-font-size-sm); color: var(--rhx-color-text-muted);">H (30%)</div>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="ec-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ErrorCorrectionCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders an SVG with <code>role="img"</code> and <code>aria-label</code> from the <code>rhx-label</code> property.</li>
+        <li>Includes a <code>&lt;title&gt;</code> element inside the SVG for additional screen reader support.</li>
+        <li>QR codes are visual-only; always provide alternative text or a visible link alongside the QR code.</li>
+    </ul>
+</section>

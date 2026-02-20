@@ -1,0 +1,163 @@
+@page
+@model SliderModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Slider";
+    ViewData["ComponentName"] = "Slider";
+    ViewData["ComponentTag"] = "rhx-slider";
+    ViewData["ComponentDescription"] = "Range input with tooltips, custom ranges, and model binding.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="volume" rhx-label="Volume" value="50" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Range -->
+    <div class="docs-example">
+        <h3>Custom Range</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="range-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="range-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="range-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="custom" rhx-label="Custom Range" rhx-min="10" rhx-max="200" rhx-step="10" value="80" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="range-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomRangeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Tooltip -->
+    <div class="docs-example">
+        <h3>With Tooltip</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="tooltip-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="tooltip-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="tooltip-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="brightness" rhx-label="Brightness" value="75" rhx-tooltip="top" />
+                    <rhx-slider name="contrast" rhx-label="Contrast" value="60" rhx-tooltip="bottom" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="tooltip-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TooltipCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Hint -->
+    <div class="docs-example">
+        <h3>With Hint</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hint-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hint-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hint-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="opacity" rhx-label="Opacity" value="100" rhx-hint="0 = fully transparent, 100 = fully opaque" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hint-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HintCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="sl-sm" rhx-label="Small slider" rhx-size="small" value="30" />
+                    <rhx-slider name="sl-md" rhx-label="Medium slider (default)" value="50" />
+                    <rhx-slider name="sl-lg" rhx-label="Large slider" rhx-size="large" value="70" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="sl-dis" rhx-label="Disabled slider" rhx-disabled="true" value="40" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Model Binding -->
+    <div class="docs-example">
+        <h3>Model Binding</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="binding-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="binding-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="binding-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider rhx-for="Volume" rhx-label="Volume" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="binding-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ModelBindingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;input type="range"&gt;</code> element with full keyboard support.</li>
+        <li>Sets <code>aria-valuemin</code>, <code>aria-valuemax</code>, and <code>aria-valuenow</code> automatically.</li>
+        <li>Label is associated with the input via <code>for</code>/<code>id</code> pairing.</li>
+        <li>Keyboard arrow keys adjust the value by the configured step increment.</li>
+    </ul>
+</section>

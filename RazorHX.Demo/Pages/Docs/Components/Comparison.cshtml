@@ -1,0 +1,77 @@
+@page
+@model ComparisonModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Comparison";
+    ViewData["ComponentName"] = "Comparison";
+    ViewData["ComponentTag"] = "rhx-comparison";
+    ViewData["ComponentDescription"] = "Before/after image comparison slider.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Before / After -->
+    <div class="docs-example">
+        <h3>Before / After</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="beforeafter-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="beforeafter-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="beforeafter-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="max-width: 600px;">
+                        <rhx-comparison
+                            rhx-before="https://picsum.photos/id/10/600/400"
+                            rhx-before-alt="Original photo"
+                            rhx-after="https://picsum.photos/id/10/600/400?grayscale"
+                            rhx-after-alt="Grayscale version" />
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="beforeafter-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BeforeAfterCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Position -->
+    <div class="docs-example">
+        <h3>Custom Position</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="position-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="position-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="position-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="max-width: 600px;">
+                        <rhx-comparison
+                            rhx-before="https://picsum.photos/id/10/600/400"
+                            rhx-before-alt="Original photo"
+                            rhx-after="https://picsum.photos/id/10/600/400?grayscale"
+                            rhx-after-alt="Grayscale version"
+                            rhx-position="25" />
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="position-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomPositionCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>The slider handle has <code>role="slider"</code> with <code>aria-valuenow</code> reflecting the current position percentage.</li>
+        <li>Keyboard arrow keys adjust the slider position for users who cannot use a mouse or touch.</li>
+        <li>Both the before and after images have descriptive <code>alt</code> text for screen readers.</li>
+    </ul>
+</section>

@@ -1,0 +1,108 @@
+@page
+@model CalloutModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Callout";
+    ViewData["ComponentName"] = "Callout";
+    ViewData["ComponentTag"] = "rhx-callout";
+    ViewData["ComponentDescription"] = "Dismissable alert with variants, auto-dismiss timer, and custom icons.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Variants -->
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-callout rhx-variant="neutral">This is a neutral callout with informational content.</rhx-callout>
+                    <rhx-callout rhx-variant="brand">This is a brand callout for highlighting features.</rhx-callout>
+                    <rhx-callout rhx-variant="success">Item saved successfully!</rhx-callout>
+                    <rhx-callout rhx-variant="warning">Please review your changes before proceeding.</rhx-callout>
+                    <rhx-callout rhx-variant="danger">An error occurred while processing your request.</rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Closable -->
+    <div class="docs-example">
+        <h3>Closable</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="closable-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="closable-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="closable-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-callout rhx-variant="success" rhx-closable="true">This callout can be dismissed by clicking the close button.</rhx-callout>
+                    <rhx-callout rhx-variant="warning" rhx-closable="true">Warning: this will also close when you click the X.</rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="closable-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ClosableCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Auto-dismiss -->
+    <div class="docs-example">
+        <h3>Auto-dismiss</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="autodismiss-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="autodismiss-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="autodismiss-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-callout rhx-variant="brand" rhx-closable="true" rhx-duration="5000">This callout will auto-dismiss after 5 seconds.</rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="autodismiss-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AutoDismissCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Icon -->
+    <div class="docs-example">
+        <h3>Custom Icon</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="icon-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="icon-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="icon-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-callout rhx-variant="brand" rhx-icon="check-circle">Brand callout with a check circle icon override.</rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="icon-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomIconCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses <code>role="alert"</code> for important messages that need immediate screen reader announcement.</li>
+        <li>Close button has <code>aria-label="Close"</code> for screen readers.</li>
+        <li>Auto-dismiss respects <code>prefers-reduced-motion</code> to avoid unexpected content removal.</li>
+        <li>Color is not used as the sole indicator of variant meaning; icons provide additional context.</li>
+    </ul>
+</section>

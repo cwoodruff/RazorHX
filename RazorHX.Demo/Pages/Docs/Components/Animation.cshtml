@@ -1,0 +1,170 @@
+@page
+@model AnimationModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Animation";
+    ViewData["ComponentName"] = "Animation";
+    ViewData["ComponentTag"] = "rhx-animation";
+    ViewData["ComponentDescription"] = "CSS animation wrapper with fade, slide, bounce, zoom, and continuous effects.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Fade In -->
+    <div class="docs-example">
+        <h3>Fade In</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="fade-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="fade-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="fade-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-animation rhx-name="fadeIn">
+                        <div style="padding: var(--rhx-space-lg); background: var(--rhx-color-brand-100); border-radius: var(--rhx-radius-md);">
+                            Faded in content
+                        </div>
+                    </rhx-animation>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="fade-code">
+                <div class="docs-code">
+                    <pre><code>@Model.FadeInCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Slide In -->
+    <div class="docs-example">
+        <h3>Slide In</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="slide-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="slide-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="slide-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; gap: var(--rhx-space-md);">
+                    <rhx-animation rhx-name="slideInLeft" rhx-duration="500">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-success-100); border-radius: var(--rhx-radius-md);">
+                            Slide in from left
+                        </div>
+                    </rhx-animation>
+                    <rhx-animation rhx-name="slideInRight" rhx-duration="500" rhx-delay="200">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-warning-100); border-radius: var(--rhx-radius-md);">
+                            Slide in from right (200ms delay)
+                        </div>
+                    </rhx-animation>
+                    <rhx-animation rhx-name="slideInUp" rhx-duration="500" rhx-delay="400">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-danger-100); border-radius: var(--rhx-radius-md);">
+                            Slide in from below (400ms delay)
+                        </div>
+                    </rhx-animation>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="slide-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SlideInCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Bounce and Zoom -->
+    <div class="docs-example">
+        <h3>Bounce and Zoom</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="bouncezoom-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="bouncezoom-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="bouncezoom-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-animation rhx-name="bounceIn" rhx-duration="600">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-brand-100); border-radius: var(--rhx-radius-md);">
+                            Bounce in
+                        </div>
+                    </rhx-animation>
+                    <rhx-animation rhx-name="zoomIn" rhx-duration="600">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-success-100); border-radius: var(--rhx-radius-md);">
+                            Zoom in
+                        </div>
+                    </rhx-animation>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="bouncezoom-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BounceZoomCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Continuous -->
+    <div class="docs-example">
+        <h3>Continuous Animations</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="continuous-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="continuous-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="continuous-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-animation rhx-name="pulse" rhx-iterations="infinite">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-brand-100); border-radius: var(--rhx-radius-md);">
+                            Pulse
+                        </div>
+                    </rhx-animation>
+                    <rhx-animation rhx-name="bounce" rhx-iterations="infinite">
+                        <div style="padding: var(--rhx-space-md); background: var(--rhx-color-warning-100); border-radius: var(--rhx-radius-md);">
+                            Bounce
+                        </div>
+                    </rhx-animation>
+                    <rhx-animation rhx-name="spin" rhx-iterations="infinite" rhx-duration="1000">
+                        <div style="width: 2rem; height: 2rem; background: var(--rhx-color-brand-500); border-radius: var(--rhx-radius-sm);">
+                        </div>
+                    </rhx-animation>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="continuous-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ContinuousCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Paused -->
+    <div class="docs-example">
+        <h3>Paused Animation</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="paused-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="paused-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="paused-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: center; gap: var(--rhx-space-md);">
+                    <rhx-animation rhx-name="spin" rhx-iterations="infinite" rhx-duration="1000" rhx-play="false" id="paused-anim">
+                        <div style="width: 3rem; height: 3rem; background: var(--rhx-color-brand-500); border-radius: var(--rhx-radius-sm);">
+                        </div>
+                    </rhx-animation>
+                    <button class="rhx-button rhx-button--brand" onclick="
+                        var el = document.getElementById('paused-anim');
+                        var style = el.style.animationPlayState;
+                        el.style.animationPlayState = style === 'running' ? 'paused' : 'running';
+                        this.textContent = style === 'running' ? 'Play' : 'Pause';
+                    ">Play</button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="paused-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PausedCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Respects <code>prefers-reduced-motion</code>: animations are disabled or minimized for users who prefer reduced motion.</li>
+        <li>Animations are decorative and do not convey essential information.</li>
+        <li>Continuous animations (<code>rhx-iterations="infinite"</code>) should be used sparingly; consider providing a way to pause them.</li>
+    </ul>
+</section>

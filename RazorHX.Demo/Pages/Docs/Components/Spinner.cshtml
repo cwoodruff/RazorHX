@@ -1,0 +1,70 @@
+@page
+@model SpinnerModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Spinner";
+    ViewData["ComponentName"] = "Spinner";
+    ViewData["ComponentTag"] = "rhx-spinner";
+    ViewData["ComponentDescription"] = "Loading spinner with size variants and htmx indicator support.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-spinner rhx-size="small" />
+                    <rhx-spinner />
+                    <rhx-spinner rhx-size="large" />
+                    <rhx-spinner rhx-size="3rem" rhx-label="Custom size" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Indicator -->
+    <div class="docs-example">
+        <h3>htmx Indicator</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-spinner id="my-indicator" class="htmx-indicator" />
+                    <span style="font-size: var(--rhx-font-size-sm); color: var(--rhx-color-text-muted);">
+                        (Spinner with class="htmx-indicator" for use with hx-indicator)
+                    </span>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxIndicatorCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders with <code>role="status"</code> so screen readers announce the loading state.</li>
+        <li>The <code>rhx-label</code> property maps to <code>aria-label</code> (defaults to "Loading").</li>
+        <li>Animation respects <code>prefers-reduced-motion</code> media query.</li>
+    </ul>
+</section>

@@ -1,0 +1,111 @@
+@page
+@model FormatBytesModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Format Bytes";
+    ViewData["ComponentName"] = "Format Bytes";
+    ViewData["ComponentTag"] = "rhx-format-bytes";
+    ViewData["ComponentDescription"] = "Human-readable byte formatting with binary/decimal units and display styles.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Short (Default) -->
+    <div class="docs-example">
+        <h3>Short (Default)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="short-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="short-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="short-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-bytes rhx-value="0" />
+                    <rhx-format-bytes rhx-value="512" />
+                    <rhx-format-bytes rhx-value="1024" />
+                    <rhx-format-bytes rhx-value="1572864" />
+                    <rhx-format-bytes rhx-value="1073741824" />
+                    <rhx-format-bytes rhx-value="1099511627776" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="short-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ShortCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Long -->
+    <div class="docs-example">
+        <h3>Long</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="long-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="long-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="long-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-bytes rhx-value="1" rhx-display="long" />
+                    <rhx-format-bytes rhx-value="0" rhx-display="long" />
+                    <rhx-format-bytes rhx-value="1572864" rhx-display="long" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="long-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LongCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Narrow -->
+    <div class="docs-example">
+        <h3>Narrow</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="narrow-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="narrow-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="narrow-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-bytes rhx-value="1024" rhx-display="narrow" />
+                    <rhx-format-bytes rhx-value="1572864" rhx-display="narrow" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="narrow-code">
+                <div class="docs-code">
+                    <pre><code>@Model.NarrowCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Bits -->
+    <div class="docs-example">
+        <h3>Bits</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="bits-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="bits-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="bits-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-bytes rhx-value="500" rhx-unit="bit" />
+                    <rhx-format-bytes rhx-value="1000" rhx-unit="bit" />
+                    <rhx-format-bytes rhx-value="1000000" rhx-unit="bit" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="bits-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BitsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders as inline text content — screen readers read the formatted value naturally.</li>
+        <li>No interactive elements or ARIA attributes required.</li>
+    </ul>
+</section>

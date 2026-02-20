@@ -1,0 +1,112 @@
+@page
+@model FormatDateModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Format Date";
+    ViewData["ComponentName"] = "Format Date";
+    ViewData["ComponentTag"] = "rhx-format-date";
+    ViewData["ComponentDescription"] = "Date/time formatting with individual parts, timezones, and locale support.";
+    var sampleDate = new DateTimeOffset(2025, 3, 15, 10, 30, 45, TimeSpan.Zero);
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Custom Format -->
+    <div class="docs-example">
+        <h3>Custom Format</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="custom-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="custom-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="custom-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-date rhx-date="@sampleDate" rhx-format="yyyy-MM-dd" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-format="HH:mm:ss" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-format="MMMM d, yyyy h:mm tt" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="custom-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomFormatCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Individual Parts -->
+    <div class="docs-example">
+        <h3>Individual Parts</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="parts-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="parts-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="parts-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-date rhx-date="@sampleDate" rhx-month="long" rhx-day="numeric" rhx-year="numeric" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-month="short" rhx-day="numeric" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-month="numeric" rhx-day="numeric" rhx-year="numeric" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-weekday="long" rhx-month="long" rhx-day="numeric" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-year="2-digit" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="parts-code">
+                <div class="docs-code">
+                    <pre><code>@Model.IndividualPartsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Time -->
+    <div class="docs-example">
+        <h3>Time</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="time-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="time-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="time-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-date rhx-date="@sampleDate" rhx-hour="2-digit" rhx-minute="2-digit" rhx-hour-format="24" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-hour="numeric" rhx-minute="2-digit" rhx-second="2-digit" rhx-hour-format="12" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-month="long" rhx-day="numeric" rhx-year="numeric" rhx-hour="numeric" rhx-minute="2-digit" rhx-hour-format="12" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="time-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TimeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Timezone -->
+    <div class="docs-example">
+        <h3>Timezone</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="tz-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="tz-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="tz-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-format-date rhx-date="@sampleDate" rhx-timezone="America/New_York" rhx-hour="numeric" rhx-minute="2-digit" rhx-hour-format="24" />
+                    <rhx-format-date rhx-date="@sampleDate" rhx-timezone="Asia/Tokyo" rhx-hour="numeric" rhx-minute="2-digit" rhx-hour-format="24" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="tz-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TimezoneCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders as a <code>&lt;time&gt;</code> element with a <code>datetime</code> attribute for machine readability.</li>
+        <li>Screen readers announce the visible formatted text naturally.</li>
+        <li>The <code>datetime</code> attribute provides an unambiguous ISO 8601 value for assistive technologies.</li>
+    </ul>
+</section>

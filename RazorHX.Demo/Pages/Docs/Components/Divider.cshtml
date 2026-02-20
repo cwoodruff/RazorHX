@@ -1,0 +1,70 @@
+@page
+@model DividerModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Divider";
+    ViewData["ComponentName"] = "Divider";
+    ViewData["ComponentTag"] = "rhx-divider";
+    ViewData["ComponentDescription"] = "Visual separator in horizontal or vertical orientation.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Horizontal -->
+    <div class="docs-example">
+        <h3>Horizontal</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="horizontal-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="horizontal-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="horizontal-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <p>Content above the divider.</p>
+                    <rhx-divider />
+                    <p>Content below the divider.</p>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="horizontal-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HorizontalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Vertical -->
+    <div class="docs-example">
+        <h3>Vertical</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="vertical-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="vertical-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="vertical-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="display: flex; align-items: stretch; height: 48px; gap: var(--rhx-space-md);">
+                        <span>Left</span>
+                        <rhx-divider rhx-vertical />
+                        <span>Right</span>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="vertical-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VerticalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders with <code>role="separator"</code> to indicate a thematic break to assistive technology.</li>
+        <li>Horizontal dividers set <code>aria-orientation="horizontal"</code> (the default).</li>
+        <li>Vertical dividers set <code>aria-orientation="vertical"</code> to communicate the orientation.</li>
+    </ul>
+</section>

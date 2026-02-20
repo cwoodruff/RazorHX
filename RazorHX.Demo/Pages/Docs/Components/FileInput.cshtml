@@ -1,0 +1,147 @@
+@page
+@model FileInputModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "File Input";
+    ViewData["ComponentName"] = "File Input";
+    ViewData["ComponentTag"] = "rhx-file-input";
+    ViewData["ComponentDescription"] = "File upload control with accept filters, multiple files, and size limits.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="file" rhx-label="Upload File" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Images Only -->
+    <div class="docs-example">
+        <h3>Images Only</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="images-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="images-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="images-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="avatar" rhx-label="Profile Photo" rhx-accept="image/*"
+                                    rhx-hint="JPG, PNG, or GIF. Max 2MB." />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="images-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ImagesOnlyCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Multiple Files -->
+    <div class="docs-example">
+        <h3>Multiple Files</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="multiple-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="multiple-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="multiple-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="documents" rhx-label="Documents" rhx-multiple="true"
+                                    rhx-accept=".pdf,.doc,.docx" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="multiple-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MultipleCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Max File Size -->
+    <div class="docs-example">
+        <h3>Max File Size</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="maxsize-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="maxsize-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="maxsize-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="upload" rhx-label="Upload" rhx-multiple="true"
+                                    rhx-max-file-size="5242880"
+                                    rhx-hint="Maximum file size: 5MB per file" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="maxsize-code">
+                <div class="docs-code">
+                    <pre><code>@Model.MaxSizeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="fi-sm" rhx-label="Small" rhx-size="small" />
+                    <rhx-file-input name="fi-md" rhx-label="Medium (default)" />
+                    <rhx-file-input name="fi-lg" rhx-label="Large" rhx-size="large" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- States -->
+    <div class="docs-example">
+        <h3>States</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="states-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="states-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="states-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-file-input name="fi-dis" rhx-label="Disabled" rhx-disabled="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="states-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StatesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;input type="file"&gt;</code> element with an associated <code>&lt;label&gt;</code>.</li>
+        <li>Hint text is linked via <code>aria-describedby</code> for screen reader context.</li>
+        <li>The <code>accept</code> filter is announced to assistive technology so users know allowed file types.</li>
+        <li>Disabled state sets <code>aria-disabled="true"</code> on the input.</li>
+    </ul>
+</section>

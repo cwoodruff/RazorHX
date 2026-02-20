@@ -1,0 +1,90 @@
+@page
+@model PopupModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Popup";
+    ViewData["ComponentName"] = "Popup";
+    ViewData["ComponentTag"] = "rhx-popup";
+    ViewData["ComponentDescription"] = "Low-level positioned container anchored to an element.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Positioned Container -->
+    <div class="docs-example">
+        <h3>Positioned Container</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="position: relative;">
+                        <button class="rhx-button rhx-button--neutral" id="popup-anchor" onclick="
+                            var p = document.getElementById('demo-popup');
+                            p.hidden = !p.hidden;
+                            p.classList.toggle('rhx-popup--active');
+                        ">Toggle Popup</button>
+                        <rhx-popup rhx-anchor="#popup-anchor" rhx-placement="bottom-start" id="demo-popup">
+                            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-surface); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); box-shadow: var(--rhx-shadow-lg); min-width: 12rem;">
+                                <p style="margin: 0;">Positioned popup content.</p>
+                                <p style="margin: var(--rhx-space-xs) 0 0; color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-xs);">
+                                    Uses rhx-position.js for smart placement.
+                                </p>
+                            </div>
+                        </rhx-popup>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Arrow -->
+    <div class="docs-example">
+        <h3>With Arrow</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="arrow-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="arrow-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="arrow-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div style="position: relative;">
+                        <button class="rhx-button rhx-button--brand" id="popup-arrow-anchor" onclick="
+                            var p = document.getElementById('demo-popup-arrow');
+                            p.hidden = !p.hidden;
+                            p.classList.toggle('rhx-popup--active');
+                        ">Toggle Popup with Arrow</button>
+                        <rhx-popup rhx-anchor="#popup-arrow-anchor" rhx-placement="bottom" rhx-arrow="true" id="demo-popup-arrow">
+                            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-surface); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); box-shadow: var(--rhx-shadow-lg); min-width: 12rem;">
+                                <p style="margin: 0;">This popup has a directional arrow pointing to its anchor.</p>
+                            </div>
+                        </rhx-popup>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="arrow-code">
+                <div class="docs-code">
+                    <pre><code>@Model.WithArrowCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li><code>rhx-popup</code> is a low-level positioning utility; consumers should add appropriate ARIA roles and attributes based on their use case.</li>
+        <li>For menus, add <code>role="menu"</code> and connect to the trigger with <code>aria-controls</code>.</li>
+        <li>For tooltips or dialogs, use the higher-level <code>rhx-popover</code> or <code>rhx-tooltip</code> components instead.</li>
+        <li>Ensure keyboard users can dismiss the popup (e.g., with <code>Escape</code>) and that focus is managed appropriately.</li>
+    </ul>
+</section>
