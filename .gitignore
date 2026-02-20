@@ -485,3 +485,4 @@ http-client.private.env.json
 .idea/**/copilot.data.migration.*.xml
 /.claude
 /.idea
+CLAUDE.md
