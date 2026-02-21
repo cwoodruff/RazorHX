@@ -60,13 +60,14 @@
     }
   })();
 
-  // Initialize on DOM ready
-  if (document.readyState === "loading") {
+  // Initialize on DOM ready — must wait for DOMContentLoaded so that all
+  // defer component scripts have registered their hooks via RHX.register()
+  if (document.readyState === "complete") {
+    RHX.init();
+  } else {
     document.addEventListener("DOMContentLoaded", function () {
       RHX.init();
     });
-  } else {
-    RHX.init();
   }
 
   // Re-initialize after htmx content swaps
