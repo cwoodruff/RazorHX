@@ -158,6 +158,10 @@
     border-radius: var(--rhx-radius-sm);
     line-height: 1;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+    z-index: 1;
 }
 
 .rhx-tab__close:hover {

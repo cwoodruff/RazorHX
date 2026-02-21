@@ -86,59 +86,89 @@
             }
         }
 
-        // ── Click handler ──
+        // ── Close tab logic ──
+
+        function closeTab(tab) {
+            var panelId = tab.getAttribute('aria-controls');
+            var panel = panelId ? root.querySelector('#' + CSS.escape(panelId)) : null;
+            var wasActive = tab.getAttribute('aria-selected') === 'true';
+
+            // Dispatch cancelable event
+            var closeEvent = new CustomEvent('rhx:tab:close', {
+                bubbles: true,
+                cancelable: true,
+                detail: { tab: tab, panel: panel }
+            });
+            var allowed = root.dispatchEvent(closeEvent);
+            if (!allowed) return;
+
+            // Remove tab and panel
+            if (wasActive) {
+                var allTabs = getTabs();
+                var idx = allTabs.indexOf(tab);
+                tab.remove();
+                if (panel) panel.remove();
+
+                // Activate adjacent tab
+                var remaining = getEnabledTabs();
+                if (remaining.length > 0) {
+                    var nextIdx = Math.min(idx, remaining.length - 1);
+                    activateTab(remaining[nextIdx]);
+                }
+            } else {
+                tab.remove();
+                if (panel) panel.remove();
+            }
+        }
+
+        // ── Attach close handler to a single close button ──
+
+        function attachCloseHandler(closeBtn) {
+            if (closeBtn._rhxCloseInit) return;
+            closeBtn._rhxCloseInit = true;
+            closeBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var tab = closeBtn.closest('[role="tab"]');
+                if (tab) closeTab(tab);
+            });
+            // Also handle mousedown to prevent the button from gaining
+            // focus or firing the tab activation before the close click.
+            closeBtn.addEventListener('mousedown', function (e) {
+                e.stopPropagation();
+            });
+        }
+
+        // Set up close handlers on all existing close buttons
+        tablist.querySelectorAll('.rhx-tab__close').forEach(attachCloseHandler);
+
+        // Watch for dynamically added close buttons (e.g. htmx-loaded tabs)
+        if (typeof MutationObserver !== 'undefined') {
+            var closeObserver = new MutationObserver(function () {
+                tablist.querySelectorAll('.rhx-tab__close').forEach(attachCloseHandler);
+            });
+            closeObserver.observe(tablist, { childList: true, subtree: true });
+        }
+
+        // ── Click handler (tab activation only) ──
 
         tablist.addEventListener('click', function (e) {
             var tab = e.target.closest('[role="tab"]');
             if (!tab || tab.disabled || tab.getAttribute('aria-disabled') === 'true') return;
 
-            // Close button click — use closest first, then fall back to
-            // coordinate hit-test (some browsers normalize e.target to the
-            // <button> when clicking child elements inside it).
-            var closeBtn = e.target.closest('.rhx-tab__close');
-            if (!closeBtn && tab.classList.contains('rhx-tab--closable')) {
+            // If the click originated from a close button, its direct handler
+            // already called stopPropagation — this handler won't fire.
+            // But as a fallback, also check via coordinate hit-test.
+            if (tab.classList.contains('rhx-tab--closable')) {
                 var closeSpan = tab.querySelector('.rhx-tab__close');
                 if (closeSpan) {
                     var cr = closeSpan.getBoundingClientRect();
                     if (e.clientX >= cr.left && e.clientX <= cr.right &&
                         e.clientY >= cr.top && e.clientY <= cr.bottom) {
-                        closeBtn = closeSpan;
+                        closeTab(tab);
+                        return;
                     }
                 }
-            }
-            if (closeBtn) {
-                e.stopPropagation();
-                var panelId = tab.getAttribute('aria-controls');
-                var panel = panelId ? root.querySelector('#' + CSS.escape(panelId)) : null;
-                var wasActive = tab.getAttribute('aria-selected') === 'true';
-
-                // Dispatch cancelable event
-                var closeEvent = new CustomEvent('rhx:tab:close', {
-                    bubbles: true,
-                    cancelable: true,
-                    detail: { tab: tab, panel: panel }
-                });
-                var allowed = root.dispatchEvent(closeEvent);
-                if (!allowed) return;
-
-                // Remove tab and panel
-                if (wasActive) {
-                    var allTabs = getTabs();
-                    var idx = allTabs.indexOf(tab);
-                    tab.remove();
-                    if (panel) panel.remove();
-
-                    // Activate adjacent tab
-                    var remaining = getEnabledTabs();
-                    if (remaining.length > 0) {
-                        var nextIdx = Math.min(idx, remaining.length - 1);
-                        activateTab(remaining[nextIdx]);
-                    }
-                } else {
-                    tab.remove();
-                    if (panel) panel.remove();
-                }
-                return;
             }
 
             activateTab(tab);
@@ -149,6 +179,13 @@
         tablist.addEventListener('keydown', function (e) {
             var tab = e.target.closest('[role="tab"]');
             if (!tab) return;
+
+            // Delete key closes closable tabs
+            if (e.key === 'Delete' && tab.classList.contains('rhx-tab--closable')) {
+                e.preventDefault();
+                closeTab(tab);
+                return;
+            }
 
             var enabled = getEnabledTabs();
             var idx = enabled.indexOf(tab);
