@@ -98,6 +98,10 @@ public class InfiniteScrollTagHelper : RazorHXTagHelperBase
 
         output.Attributes.SetAttribute("hx-swap", Swap);
 
+        // Remove the trigger element after loading — prevents stale spinners
+        // between item groups and ensures only the newest trigger remains.
+        output.Attributes.SetAttribute("hx-on::after-request", "this.remove()");
+
         var childContent = await output.GetChildContentAsync();
         output.Content.SetHtmlContent(childContent);
     }

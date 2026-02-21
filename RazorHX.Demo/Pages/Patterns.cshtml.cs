@@ -13,21 +13,22 @@ public class PatternsModel : PageModel
         Items = Enumerable.Range(1, 10).Select(i => $"Item {i}").ToList();
     }
 
-    public IActionResult OnGetLoadMore(int page = 1)
+    public IActionResult OnGetLoadMore(int pageNumber = 1)
     {
-        var start = (page - 1) * 10 + 1;
+        var start = (pageNumber - 1) * 10 + 1;
         var items = Enumerable.Range(start, 10).Select(i => $"Item {i}").ToList();
 
         var html = string.Join("", items.Select(i =>
             $"<div class=\"rhx-card\" style=\"padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);\">" +
             $"{WebUtility.HtmlEncode(i)}</div>"));
 
-        if (page < 5)
+        if (pageNumber < 5)
         {
-            var next = page + 1;
+            var next = pageNumber + 1;
             html += $"<div class=\"rhx-infinite-scroll\" " +
-                    $"hx-get=\"/Patterns?handler=LoadMore&page={next}\" " +
-                    $"hx-trigger=\"revealed\" hx-target=\"#item-list\" hx-swap=\"beforeend\">" +
+                    $"hx-get=\"/Patterns?handler=LoadMore&pageNumber={next}\" " +
+                    $"hx-trigger=\"revealed\" hx-target=\"#item-list\" hx-swap=\"beforeend\" " +
+                    $"hx-on::after-request=\"this.remove()\">" +
                     $"<span class=\"rhx-spinner\" role=\"status\" data-rhx-spinner=\"\" aria-label=\"Loading\">" +
                     $"<svg viewBox=\"0 0 24 24\" fill=\"none\">" +
                     $"<circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"3\" />" +
