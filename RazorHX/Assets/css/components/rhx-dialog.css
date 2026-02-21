@@ -8,6 +8,7 @@
     background: transparent;
     max-width: min(90vw, 32rem);
     max-height: 85vh;
+    margin: auto;
     border-radius: var(--rhx-radius-lg);
     box-shadow: var(--rhx-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
     overflow: visible;

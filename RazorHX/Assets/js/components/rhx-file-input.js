@@ -67,6 +67,9 @@
         if (!fileList) return;
         fileList.innerHTML = "";
 
+        var validFiles = [];
+        var hasRejected = false;
+
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
           var item = document.createElement("div");
@@ -82,26 +85,66 @@
           sizeSpan.textContent = formatFileSize(file.size);
           item.appendChild(sizeSpan);
 
-          // Size validation
+          // Size validation — reject files that exceed maxSize
           if (maxSize > 0 && file.size > maxSize) {
+            hasRejected = true;
+            item.className += " rhx-file-input__file-item--error";
             var errorSpan = document.createElement("span");
             errorSpan.className = "rhx-file-input__file-error";
             errorSpan.textContent = "Exceeds " + formatFileSize(maxSize);
             item.appendChild(errorSpan);
+          } else {
+            validFiles.push(file);
           }
 
           fileList.appendChild(item);
         }
 
+        // Enforce max size by keeping only valid files in the input
+        if (maxSize > 0 && hasRejected) {
+          try {
+            var dt = new DataTransfer();
+            for (var j = 0; j < validFiles.length; j++) {
+              dt.items.add(validFiles[j]);
+            }
+            native.files = dt.files;
+          } catch (e) {
+            // Fallback: clear input entirely if DataTransfer not supported
+            if (validFiles.length === 0) {
+              native.value = "";
+            }
+          }
+        }
+
         fi.dispatchEvent(new CustomEvent("rhx:file-input:change", {
           bubbles: true,
-          detail: { files: files }
+          detail: { files: native.files }
         }));
       }
     });
   }
 
-  if (window.RHX) {
-    window.RHX.register("file-input", initFileInputs);
+  // ── Registration ──
+  if (typeof RHX !== 'undefined' && RHX.register) {
+    RHX.register('file-input', initFileInputs);
   }
+
+  // Auto-init
+  function initAll() {
+    initFileInputs(document);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  // Re-init on htmx content swap
+  document.addEventListener('htmx:afterSettle', function (e) {
+    var el = e.detail.elt;
+    if (el && el.querySelectorAll) {
+      initFileInputs(el);
+    }
+  });
 })();
