@@ -410,10 +410,10 @@
 
 .docs-property-table td code {
     font-size: var(--rhx-font-size-xs);
-    background: var(--rhx-color-neutral-100);
+    background: var(950);
     padding: 2px var(--rhx-space-xs);
     border-radius: var(--rhx-radius-sm);
-    color: var(--rhx-color-brand-600);
+    color: var(--rhx-color-neutral-50);
     white-space: nowrap;
 }
 
@@ -458,16 +458,16 @@
     margin-bottom: var(--rhx-space-xs);
 }
 
-.docs-prose code {
+.docs-prose code:not(.docs-code code) {
     font-size: 0.9em;
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-neutral-950);*/
     padding: 2px var(--rhx-space-xs);
     border-radius: var(--rhx-radius-sm);
-    color: var(--rhx-color-brand-600);
+    color: var(--rhx-color-neutral-50);*/
 }
 
 .docs-prose a {
-    color: var(--rhx-color-brand-500);
+    color: var(--rhx-color-neutral-50);
     text-decoration: none;
 }
 
