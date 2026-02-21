@@ -133,7 +133,27 @@
     });
   }
 
-  if (window.RHX) {
-    window.RHX.register("rating", initRatings);
+  // ── Registration ──
+  if (typeof RHX !== 'undefined' && RHX.register) {
+    RHX.register('rating', initRatings);
   }
+
+  // Auto-init
+  function initAll() {
+    initRatings(document);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  // Re-init on htmx content swap
+  document.addEventListener('htmx:afterSettle', function (e) {
+    var el = e.detail.elt;
+    if (el && el.querySelectorAll) {
+      initRatings(el);
+    }
+  });
 })();
