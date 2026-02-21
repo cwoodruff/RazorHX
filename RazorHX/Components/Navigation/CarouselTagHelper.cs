@@ -1,4 +1,3 @@
-using System.Net;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using RazorHX.Components.Imagery;
@@ -153,13 +152,13 @@ public class CarouselTagHelper : RazorHXTagHelperBase
                 $"<button class=\"{GetElementClass("nav-button")} {GetElementClass("nav-button")}--prev\" " +
                 "type=\"button\" aria-label=\"Previous slide\">" +
                 "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" " +
-                $"stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">{Enc(chevronLeft)}</svg>" +
+                $"stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">{chevronLeft}</svg>" +
                 "</button>");
             output.Content.AppendHtml(
                 $"<button class=\"{GetElementClass("nav-button")} {GetElementClass("nav-button")}--next\" " +
                 "type=\"button\" aria-label=\"Next slide\">" +
                 "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" " +
-                $"stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">{Enc(chevronRight)}</svg>" +
+                $"stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">{chevronRight}</svg>" +
                 "</button>");
             output.Content.AppendHtml("</div>");
         }
@@ -181,5 +180,4 @@ public class CarouselTagHelper : RazorHXTagHelperBase
         }
     }
 
-    private static string Enc(string? value) => WebUtility.HtmlEncode(value ?? "") ?? "";
 }
