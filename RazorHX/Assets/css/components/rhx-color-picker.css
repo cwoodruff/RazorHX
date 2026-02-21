@@ -76,6 +76,10 @@
     z-index: var(--rhx-z-dropdown, 1000);
 }
 
+.rhx-color-picker__panel[hidden] {
+    display: none;
+}
+
 /* Non-inline: position as dropdown */
 .rhx-color-picker:not(.rhx-color-picker--inline) .rhx-color-picker__panel {
     position: absolute;

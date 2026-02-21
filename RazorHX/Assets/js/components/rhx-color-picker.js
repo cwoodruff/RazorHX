@@ -189,9 +189,8 @@
       if (trigger && panel && !isInline) {
         trigger.addEventListener("click", function () {
           var isOpen = !panel.hidden;
-          panel.hidden = !isOpen ? false : true;
-          if (!panel.hidden) updateAll(); // sync on open
           panel.hidden = isOpen;
+          if (!panel.hidden) updateAll(); // sync on open
         });
 
         document.addEventListener("click", function (e) {
@@ -269,7 +268,27 @@
     });
   }
 
-  if (window.RHX) {
-    window.RHX.register("color-picker", initColorPickers);
+  // ── Registration ──
+  if (typeof RHX !== 'undefined' && RHX.register) {
+    RHX.register('color-picker', initColorPickers);
   }
+
+  // Auto-init
+  function initAll() {
+    initColorPickers(document);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  // Re-init on htmx content swap
+  document.addEventListener('htmx:afterSettle', function (e) {
+    var el = e.detail.elt;
+    if (el && el.querySelectorAll) {
+      initColorPickers(el);
+    }
+  });
 })();
