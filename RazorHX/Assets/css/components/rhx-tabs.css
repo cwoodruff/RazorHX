@@ -151,12 +151,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
     font-size: var(--rhx-font-size-sm);
     color: var(--rhx-color-text-muted);
     border-radius: var(--rhx-radius-sm);
     line-height: 1;
+    cursor: pointer;
 }
 
 .rhx-tab__close:hover {

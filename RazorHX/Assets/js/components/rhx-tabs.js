@@ -92,8 +92,20 @@
             var tab = e.target.closest('[role="tab"]');
             if (!tab || tab.disabled || tab.getAttribute('aria-disabled') === 'true') return;
 
-            // Close button click
+            // Close button click — use closest first, then fall back to
+            // coordinate hit-test (some browsers normalize e.target to the
+            // <button> when clicking child elements inside it).
             var closeBtn = e.target.closest('.rhx-tab__close');
+            if (!closeBtn && tab.classList.contains('rhx-tab--closable')) {
+                var closeSpan = tab.querySelector('.rhx-tab__close');
+                if (closeSpan) {
+                    var cr = closeSpan.getBoundingClientRect();
+                    if (e.clientX >= cr.left && e.clientX <= cr.right &&
+                        e.clientY >= cr.top && e.clientY <= cr.bottom) {
+                        closeBtn = closeSpan;
+                    }
+                }
+            }
             if (closeBtn) {
                 e.stopPropagation();
                 var panelId = tab.getAttribute('aria-controls');
@@ -166,8 +178,17 @@
 
     // ── Registration ──
 
+    function initWithin(root) {
+        if (root && root.querySelectorAll) {
+            root.querySelectorAll('[data-rhx-tabs]').forEach(init);
+        }
+        if (root && root.matches && root.matches('[data-rhx-tabs]')) {
+            init(root);
+        }
+    }
+
     if (typeof RHX !== 'undefined' && RHX.register) {
-        RHX.register('tabs', init);
+        RHX.register('tabs', initWithin);
     }
 
     // Auto-init

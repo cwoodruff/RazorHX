@@ -15,7 +15,11 @@
     root = root || document;
     // Component-specific init hooks will register themselves here
     RHX._initHooks.forEach(function (hook) {
-      hook(root);
+      try {
+        hook(root);
+      } catch (e) {
+        // Prevent one component from breaking others
+      }
     });
   };
 
