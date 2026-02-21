@@ -23,7 +23,8 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  background: inherit;
+  background: var(--rhx-color-surface);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
   transform: rotate(45deg);
   z-index: -1;
 }

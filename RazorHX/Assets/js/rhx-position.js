@@ -230,20 +230,33 @@
       floating.style.display = "block";
     }
 
+    var strategy = options.strategy || "absolute";
+
     var result = RHX.computePosition(anchor, floating, {
       placement: options.placement,
       distance: options.distance,
       skidding: options.skidding,
       flip: options.flip,
       shift: options.shift,
-      strategy: options.strategy,
+      strategy: strategy,
       arrow: !!arrowEl,
       arrowSize: arrowEl ? arrowEl.offsetWidth : 10,
       arrowPadding: options.arrowPadding || 8
     });
 
-    floating.style.left = result.x + "px";
-    floating.style.top = result.y + "px";
+    var x = result.x;
+    var y = result.y;
+
+    // For absolute positioning, convert page-absolute coords to offsetParent-relative
+    if (strategy === "absolute") {
+      var offsetParent = floating.offsetParent || document.body;
+      var parentRect = offsetParent.getBoundingClientRect();
+      x -= (parentRect.left + window.scrollX);
+      y -= (parentRect.top + window.scrollY);
+    }
+
+    floating.style.left = x + "px";
+    floating.style.top = y + "px";
     floating.setAttribute("data-rhx-current-placement", result.placement);
 
     if (arrowEl) {
