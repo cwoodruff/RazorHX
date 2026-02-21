@@ -6,12 +6,7 @@
 
 /* ── Container ── */
 .rhx-animation {
-  display: contents;
-}
-
-/* ── Playing state: apply animation from data attributes ── */
-.rhx-animation--playing {
-  display: block;
+  overflow: hidden;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -154,7 +149,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .rhx-animation--playing {
+  .rhx-animation {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }

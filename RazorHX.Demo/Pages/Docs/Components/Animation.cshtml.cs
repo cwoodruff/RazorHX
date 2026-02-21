@@ -59,9 +59,15 @@ public class AnimationModel : PageModel
 
 <button onclick=""
     var el = document.getElementById('paused-anim');
-    var style = el.style.animationPlayState;
-    el.style.animationPlayState = style === 'running' ? 'paused' : 'running';
-"">Toggle Play</button>";
+    var state = el.style.animationPlayState;
+    if (state === 'running') {
+        el.style.animationPlayState = 'paused';
+        this.textContent = 'Play';
+    } else {
+        el.style.animationPlayState = 'running';
+        this.textContent = 'Pause';
+    }
+"">Play</button>";
 
     public void OnGet()
     {

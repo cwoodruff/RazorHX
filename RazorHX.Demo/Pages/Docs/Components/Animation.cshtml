@@ -141,9 +141,14 @@
                     </rhx-animation>
                     <button class="rhx-button rhx-button--brand" onclick="
                         var el = document.getElementById('paused-anim');
-                        var style = el.style.animationPlayState;
-                        el.style.animationPlayState = style === 'running' ? 'paused' : 'running';
-                        this.textContent = style === 'running' ? 'Play' : 'Pause';
+                        var state = el.style.animationPlayState;
+                        if (state === 'running') {
+                            el.style.animationPlayState = 'paused';
+                            this.textContent = 'Play';
+                        } else {
+                            el.style.animationPlayState = 'running';
+                            this.textContent = 'Pause';
+                        }
                     ">Play</button>
                 </div>
             </rhx-tab-panel>

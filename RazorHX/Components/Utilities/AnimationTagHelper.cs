@@ -75,7 +75,7 @@ public class AnimationTagHelper : RazorHXTagHelperBase
             .AddIf(GetModifierClass("playing"), Play);
         ApplyBaseAttributes(output, css);
 
-        output.Attributes.SetAttribute("data-rhx-animation", Name.ToLowerInvariant());
+        output.Attributes.SetAttribute("data-rhx-animation", Name);
         output.Attributes.SetAttribute("data-rhx-duration", Duration.ToString());
         output.Attributes.SetAttribute("data-rhx-delay", Delay.ToString());
 

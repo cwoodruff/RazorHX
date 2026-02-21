@@ -77,7 +77,7 @@ public class AnimationTagHelperTests : TagHelperTestBase
 
         helper.Process(context, output);
 
-        AssertAttribute(output, "data-rhx-animation", "fadein");
+        AssertAttribute(output, "data-rhx-animation", "fadeIn");
     }
 
     [Fact]
@@ -191,7 +191,7 @@ public class AnimationTagHelperTests : TagHelperTestBase
 
         helper.Process(context, output);
 
-        AssertAttribute(output, "data-rhx-animation", "slideinleft");
+        AssertAttribute(output, "data-rhx-animation", "slideInLeft");
     }
 
     [Fact]
