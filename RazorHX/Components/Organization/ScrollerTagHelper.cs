@@ -65,8 +65,11 @@ public class ScrollerTagHelper : RazorHXTagHelperBase
         // Assemble inner HTML
         output.Content.Clear();
 
-        // Scrollable content wrapper
-        output.Content.AppendHtml($"<div class=\"{GetElementClass("content")}\">");
+        // Scrollable content wrapper — vertical/both need explicit height to enable scrolling
+        var contentStyle = (orientation == "vertical" || orientation == "both")
+            ? " style=\"height:100%\""
+            : "";
+        output.Content.AppendHtml($"<div class=\"{GetElementClass("content")}\"{contentStyle}>");
         output.Content.AppendHtml(childContent);
         output.Content.AppendHtml("</div>");
 

@@ -5,6 +5,7 @@
 .rhx-scroller {
     position: relative;
     overflow: hidden;
+    min-width: 0;
 }
 
 /* ── Content wrapper ── */
@@ -22,10 +23,12 @@
 .rhx-scroller--vertical > .rhx-scroller__content {
     overflow-x: hidden;
     overflow-y: auto;
+    height: 100%;
 }
 
 .rhx-scroller--both > .rhx-scroller__content {
     overflow: auto;
+    height: 100%;
 }
 
 /* Hide scrollbar for cleaner appearance (optional, keep functional) */

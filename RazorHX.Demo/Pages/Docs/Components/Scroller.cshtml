@@ -17,7 +17,7 @@
             <rhx-tab rhx-panel="horizontal-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="horizontal-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="horizontal-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
+                <div style="padding: var(--rhx-space-lg); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-lg); background: var(--rhx-color-surface); overflow: hidden;">
                     <rhx-scroller rhx-orientation="horizontal">
                         <div style="display: flex; gap: var(--rhx-space-md); padding: var(--rhx-space-md); white-space: nowrap;">
                             @for (int i = 1; i <= 20; i++)
@@ -44,7 +44,7 @@
             <rhx-tab rhx-panel="vertical-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="vertical-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="vertical-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
+                <div style="padding: var(--rhx-space-lg); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-lg); background: var(--rhx-color-surface); overflow: hidden;">
                     <rhx-scroller rhx-orientation="vertical" style="height: 200px;">
                         <div style="padding: var(--rhx-space-md);">
                             @for (int i = 1; i <= 30; i++)
@@ -71,7 +71,7 @@
             <rhx-tab rhx-panel="both-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="both-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="both-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
+                <div style="padding: var(--rhx-space-lg); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-lg); background: var(--rhx-color-surface); overflow: hidden;">
                     <rhx-scroller rhx-orientation="both" style="height: 250px;">
                         <div style="display: grid; grid-template-columns: repeat(10, 160px); gap: var(--rhx-space-sm); padding: var(--rhx-space-md);">
                             @for (int row = 1; row <= 10; row++)
@@ -101,7 +101,7 @@
             <rhx-tab rhx-panel="gallery-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="gallery-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="gallery-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
+                <div style="padding: var(--rhx-space-lg); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-lg); background: var(--rhx-color-surface); overflow: hidden;">
                     <rhx-scroller rhx-orientation="horizontal">
                         <div style="display: flex; gap: var(--rhx-space-lg); padding: var(--rhx-space-md);">
                             @for (int i = 1; i <= 8; i++)
@@ -132,8 +132,7 @@
             <rhx-tab rhx-panel="nooverflow-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="nooverflow-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="nooverflow-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
-                    <p class="demo-label">No shadows appear when content fits within the container</p>
+                <div style="padding: var(--rhx-space-lg); border: var(--rhx-border-width) solid var(--rhx-color-border); border-radius: var(--rhx-radius-lg); background: var(--rhx-color-surface); overflow: hidden;">
                     <rhx-scroller rhx-orientation="horizontal">
                         <div style="display: flex; gap: var(--rhx-space-md); padding: var(--rhx-space-md);">
                             <div style="flex: 0 0 auto; width: 120px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md);">
