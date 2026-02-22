@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorHX.Components.Navigation;
@@ -92,6 +93,18 @@ public class RadioGroupModel : PageModel
                    rhx-size=""small""
                    rhx-for=""SelectedPriority"" />";
 
+    public string HtmxCode => @"<rhx-radio-group rhx-label=""Pricing Plan"" name=""plan""
+                   rhx-inline=""true""
+                   hx-get=""/Docs/Components/RadioGroup?handler=PlanDetails""
+                   hx-trigger=""change""
+                   hx-target=""#plan-details""
+                   hx-include=""this"">
+    <rhx-radio value=""free"">Free</rhx-radio>
+    <rhx-radio value=""pro"">Pro</rhx-radio>
+    <rhx-radio value=""enterprise"">Enterprise</rhx-radio>
+</rhx-radio-group>
+<div id=""plan-details"">Select a plan to see details...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -100,5 +113,31 @@ public class RadioGroupModel : PageModel
             new("Components", "/Docs/Components/RadioGroup"),
             new("Radio Group")
         };
+    }
+
+    public IActionResult OnGetPlanDetails(string? plan)
+    {
+        var (name, price, features) = plan switch
+        {
+            "free" => ("Free", "$0/mo", new[] { "5 projects", "1 GB storage", "Community support" }),
+            "pro" => ("Pro", "$19/mo", new[] { "Unlimited projects", "100 GB storage", "Priority support", "Advanced analytics" }),
+            "enterprise" => ("Enterprise", "$99/mo", new[] { "Unlimited everything", "1 TB storage", "24/7 dedicated support", "SSO & SAML", "Custom integrations" }),
+            _ => ("", "", Array.Empty<string>())
+        };
+
+        if (string.IsNullOrEmpty(name))
+        {
+            return Content("<span style=\"color: var(--rhx-color-text-muted);\">Select a plan to see details...</span>", "text/html");
+        }
+
+        var featureItems = string.Join("", features.Select(f => $"<li style=\"padding: var(--rhx-space-xs) 0;\">{f}</li>"));
+        var html = $"""
+            <div style="color: var(--rhx-color-text-muted);">
+                <strong>{name}</strong> &mdash; {price}
+                <ul style="list-style: disc; padding-left: var(--rhx-space-lg); margin: var(--rhx-space-xs) 0 0 0;">{featureItems}</ul>
+            </div>
+            """;
+
+        return Content(html, "text/html");
     }
 }

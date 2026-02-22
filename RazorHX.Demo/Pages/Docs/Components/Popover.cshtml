@@ -116,6 +116,33 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <button class="rhx-button rhx-button--brand" id="user-card-trigger"
+                            hx-get="/Docs/Components/Popover?handler=UserCard"
+                            hx-target="#user-popover .rhx-popover__content"
+                            hx-trigger="click once">
+                        Load User Card
+                    </button>
+                    <rhx-popover id="user-popover" rhx-trigger="#user-card-trigger" rhx-placement="bottom">
+                        <p style="color: var(--rhx-color-text-muted);">Loading...</p>
+                    </rhx-popover>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

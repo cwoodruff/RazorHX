@@ -146,6 +146,31 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-slider name="fontSize" rhx-label="Font Size" value="16"
+                                rhx-min="8" rhx-max="48" rhx-step="1" rhx-tooltip="top"
+                                hx-get="/Docs/Components/Slider?handler=FontPreview"
+                                hx-trigger="input changed delay:200ms" hx-target="#slider-preview" hx-include="this" />
+                    <div id="slider-preview" style="color: var(--rhx-color-text-muted); padding: var(--rhx-space-md); border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md);">
+                        <span style="font-size: 16px;">The quick brown fox jumps over the lazy dog.</span>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

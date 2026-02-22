@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -100,16 +101,16 @@ public class DropdownsModel : PageModel
             Actions &#9662;
         </rhx-button>
     </rhx-dropdown-trigger>
-    <rhx-dropdown-item hx-post=""/api/edit""
+    <rhx-dropdown-item hx-post=""/Docs/Components/Dropdowns?handler=Edit""
                        hx-target=""#dropdown-result"" hx-swap=""innerHTML"">
         Edit Item
     </rhx-dropdown-item>
-    <rhx-dropdown-item hx-post=""/api/duplicate""
+    <rhx-dropdown-item hx-post=""/Docs/Components/Dropdowns?handler=Duplicate""
                        hx-target=""#dropdown-result"" hx-swap=""innerHTML"">
         Duplicate Item
     </rhx-dropdown-item>
     <rhx-dropdown-divider />
-    <rhx-dropdown-item hx-delete=""/api/remove""
+    <rhx-dropdown-item hx-delete=""/Docs/Components/Dropdowns?handler=Remove""
                        hx-target=""#dropdown-result"" hx-swap=""innerHTML""
                        hx-confirm=""Are you sure?"">
         Delete Item
@@ -145,5 +146,20 @@ public class DropdownsModel : PageModel
             new("Components", "/Docs/Components/Dropdowns"),
             new("Dropdown")
         };
+    }
+
+    public IActionResult OnPostEdit()
+    {
+        return Content("<strong>Edit</strong> action triggered via htmx POST.", "text/html");
+    }
+
+    public IActionResult OnPostDuplicate()
+    {
+        return Content("<strong>Duplicate</strong> action triggered via htmx POST.", "text/html");
+    }
+
+    public IActionResult OnDeleteRemove()
+    {
+        return Content("<em>Item removed successfully.</em>", "text/html");
     }
 }

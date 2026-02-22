@@ -65,7 +65,7 @@
             <a href="/" class="docs-topbar__logo">RazorHX</a>
         </div>
         <div class="docs-topbar__end">
-            <a href="https://github.com/pamamalas/RazorHX" class="rhx-button rhx-button--neutral rhx-button--outlined rhx-button--small" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/cwoodruff/RazorHX" class="rhx-button rhx-button--neutral rhx-button--outlined rhx-button--small" target="_blank" rel="noopener noreferrer">
                 <span class="rhx-button__label">GitHub</span>
             </a>
             <button onclick="RHX.toggleTheme()" class="rhx-button rhx-button--neutral rhx-button--outlined rhx-button--small">
@@ -93,6 +93,13 @@
         @await Html.PartialAsync("_SidebarNav")
     </rhx-drawer>
 
+    @Html.AntiForgeryToken()
+    <script>
+        document.addEventListener('htmx:configRequest', function(e) {
+            var token = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (token) e.detail.headers['RequestVerificationToken'] = token.value;
+        });
+    </script>
     <script src="/_rhx/js/components/rhx-dropdown.js" defer></script>
     <script src="/_rhx/js/components/rhx-copy-button.js" defer></script>
     <script src="/_rhx/js/components/rhx-qr-code.js" defer></script>

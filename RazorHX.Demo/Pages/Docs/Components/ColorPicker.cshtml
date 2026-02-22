@@ -152,6 +152,31 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-color-picker name="themeColor" rhx-label="Theme Color" value="#3b82f6"
+                                      rhx-swatches="#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6"
+                                      hx-post="/Docs/Components/ColorPicker?handler=SaveColor"
+                                      hx-trigger="change" hx-target="#color-result" hx-include="this" />
+                    <div id="color-result" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Pick a color to save...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -44,6 +45,15 @@ public class ColorPickerModel : PageModel
 
     public string ModelBindingCode => @"<rhx-color-picker rhx-for=""BrandColor"" rhx-label=""Brand Color"" />";
 
+    public string HtmxCode => @"<rhx-color-picker name=""themeColor"" rhx-label=""Theme Color""
+           value=""#3b82f6""
+           rhx-swatches=""#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6""
+           hx-post=""/Docs/Components/ColorPicker?handler=SaveColor""
+           hx-trigger=""change""
+           hx-target=""#color-result""
+           hx-include=""this"" />
+<div id=""color-result"">Pick a color to save...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -52,5 +62,17 @@ public class ColorPickerModel : PageModel
             new("Components", "/Docs/Components/ColorPicker"),
             new("Color Picker")
         };
+    }
+
+    public IActionResult OnPostSaveColor(string? themeColor)
+    {
+        var color = string.IsNullOrWhiteSpace(themeColor) ? "#000000" : System.Net.WebUtility.HtmlEncode(themeColor);
+        return Content($"""
+            <span style="color: var(--rhx-color-text-muted);">
+                Theme color saved:
+                <span style="display: inline-block; width: 1em; height: 1em; background: {color}; border-radius: var(--rhx-radius-sm); vertical-align: middle; border: 1px solid var(--rhx-color-border);"></span>
+                <strong>{color}</strong>
+            </span>
+            """, "text/html");
     }
 }

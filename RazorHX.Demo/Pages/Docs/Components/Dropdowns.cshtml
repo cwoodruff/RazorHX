@@ -157,14 +157,14 @@
                                 Actions &#9662;
                             </rhx-button>
                         </rhx-dropdown-trigger>
-                        <rhx-dropdown-item hx-post="/api/edit" hx-target="#dropdown-result" hx-swap="innerHTML">
+                        <rhx-dropdown-item hx-post="/Docs/Components/Dropdowns?handler=Edit" hx-target="#dropdown-result" hx-swap="innerHTML">
                             Edit Item
                         </rhx-dropdown-item>
-                        <rhx-dropdown-item hx-post="/api/duplicate" hx-target="#dropdown-result" hx-swap="innerHTML">
+                        <rhx-dropdown-item hx-post="/Docs/Components/Dropdowns?handler=Duplicate" hx-target="#dropdown-result" hx-swap="innerHTML">
                             Duplicate Item
                         </rhx-dropdown-item>
                         <rhx-dropdown-divider />
-                        <rhx-dropdown-item hx-delete="/api/remove" hx-target="#dropdown-result" hx-swap="innerHTML"
+                        <rhx-dropdown-item hx-delete="/Docs/Components/Dropdowns?handler=Remove" hx-target="#dropdown-result" hx-swap="innerHTML"
                                            hx-confirm="Are you sure?">
                             Delete Item
                         </rhx-dropdown-item>

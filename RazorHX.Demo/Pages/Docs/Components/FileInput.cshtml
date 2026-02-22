@@ -130,6 +130,38 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <form id="upload-form" hx-encoding="multipart/form-data">
+                        <rhx-file-input name="uploadFile" rhx-label="Upload a File"
+                                        rhx-accept=".pdf,.jpg,.png,.txt"
+                                        rhx-hint="PDF, JPG, PNG, or TXT. Max 10MB." />
+                    </form>
+                    <rhx-button rhx-variant="brand"
+                                hx-post="/Docs/Components/FileInput?handler=Upload"
+                                hx-include="#upload-form" hx-target="#upload-result"
+                                hx-encoding="multipart/form-data">
+                        Upload
+                    </rhx-button>
+                    <div id="upload-result" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Select a file and click upload...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

@@ -145,6 +145,34 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-select rhx-label="Country" name="country" rhx-placeholder="Choose a country"
+                                hx-get="/Docs/Components/Select?handler=Cities"
+                                hx-trigger="change" hx-target="#city-results" hx-include="this">
+                        <rhx-option value="US">United States</rhx-option>
+                        <rhx-option value="CA">Canada</rhx-option>
+                        <rhx-option value="UK">United Kingdom</rhx-option>
+                    </rhx-select>
+                    <div id="city-results" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Select a country to see cities...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

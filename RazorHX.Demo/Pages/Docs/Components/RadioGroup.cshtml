@@ -162,6 +162,34 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-radio-group rhx-label="Pricing Plan" name="plan" rhx-inline="true"
+                                     hx-get="/Docs/Components/RadioGroup?handler=PlanDetails"
+                                     hx-trigger="change" hx-target="#plan-details" hx-include="this">
+                        <rhx-radio value="free">Free</rhx-radio>
+                        <rhx-radio value="pro">Pro</rhx-radio>
+                        <rhx-radio value="enterprise">Enterprise</rhx-radio>
+                    </rhx-radio-group>
+                    <div id="plan-details" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Select a plan to see details...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 @await Html.PartialAsync("_PropertyTable", Model.Properties)

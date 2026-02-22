@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -43,6 +44,14 @@ public class RatingModel : PageModel
 
     public string ModelBindingCode => @"<rhx-rating rhx-for=""ProductRating"" rhx-label=""Product Rating"" />";
 
+    public string HtmxCode => @"<rhx-rating name=""productRating""
+           rhx-label=""Rate this product""
+           hx-post=""/Docs/Components/Rating?handler=SubmitRating""
+           hx-trigger=""change""
+           hx-target=""#rating-result""
+           hx-include=""this"" />
+<div id=""rating-result"">Click a star to submit your rating...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -51,5 +60,16 @@ public class RatingModel : PageModel
             new("Components", "/Docs/Components/Rating"),
             new("Rating")
         };
+    }
+
+    public IActionResult OnPostSubmitRating(string? productRating)
+    {
+        if (!int.TryParse(productRating, out var rating) || rating < 1 || rating > 5)
+        {
+            return Content("<span style=\"color: var(--rhx-color-text-muted);\">Please select a valid rating.</span>", "text/html");
+        }
+
+        var stars = new string('\u2605', rating) + new string('\u2606', 5 - rating);
+        return Content($"<span style=\"color: var(--rhx-color-text-muted);\">{stars} Thank you for rating <strong>{rating}/5</strong>!</span>", "text/html");
     }
 }

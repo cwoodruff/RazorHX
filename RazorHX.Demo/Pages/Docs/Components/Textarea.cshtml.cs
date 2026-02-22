@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -48,6 +49,17 @@ public class TextareaModel : PageModel
 <rhx-textarea rhx-label=""Readonly"" rhx-readonly=""true""
            value=""This content is read-only"" name=""ta-ro"" />";
 
+    public string HtmxCode => @"<rhx-textarea rhx-label=""Leave a Comment"" name=""comment""
+           rhx-rows=""3""
+           rhx-placeholder=""Write your comment here..."" />
+<rhx-button rhx-variant=""brand""
+            hx-post=""/Docs/Components/Textarea?handler=Comment""
+            hx-include=""[name='comment']""
+            hx-target=""#comment-result"">
+    Submit Comment
+</rhx-button>
+<div id=""comment-result"">Write a comment and click submit...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -56,5 +68,21 @@ public class TextareaModel : PageModel
             new("Components", "/Docs/Components/Textarea"),
             new("Textarea")
         };
+    }
+
+    public IActionResult OnPostComment(string? comment)
+    {
+        if (string.IsNullOrWhiteSpace(comment))
+        {
+            return Content("<span style=\"color: var(--rhx-color-text-muted);\">Please enter a comment before submitting.</span>", "text/html");
+        }
+
+        var encoded = System.Net.WebUtility.HtmlEncode(comment);
+        return Content($"""
+            <div style="padding: var(--rhx-space-md); background: var(--rhx-color-surface-raised); border-radius: var(--rhx-radius-md); color: var(--rhx-color-text-muted);">
+                <strong>Comment submitted!</strong>
+                <p style="margin: var(--rhx-space-xs) 0 0 0; font-style: italic;">"{encoded}"</p>
+            </div>
+            """, "text/html");
     }
 }

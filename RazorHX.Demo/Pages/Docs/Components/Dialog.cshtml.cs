@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -62,31 +63,16 @@ public class DialogModel : PageModel
     </rhx-dialog-footer>
 </rhx-dialog>";
 
-    public string HtmxCode => @"<!-- Trigger: load content into dialog via htmx -->
-<rhx-button rhx-variant=""brand""
-            hx-get=""/api/edit-form/42""
-            hx-target=""#edit-dialog .rhx-dialog__body""
-            data-rhx-dialog-open=""edit-dialog"">
-    Edit Item
+    public string HtmxCode => @"<rhx-button rhx-variant=""brand""
+            hx-get=""/Docs/Components/Dialog?handler=EditForm""
+            hx-target=""#htmx-dialog .rhx-dialog__body""
+            data-rhx-dialog-open=""htmx-dialog"">
+    Edit Profile
 </rhx-button>
 
-<rhx-dialog id=""edit-dialog"" rhx-label=""Edit Item"">
-    <!-- Content loaded via htmx -->
+<rhx-dialog id=""htmx-dialog"" rhx-label=""Edit Profile"">
+    <p>Loading...</p>
 </rhx-dialog>";
-
-    public string HtmxServerCode => @"// Server-side: open dialog after htmx swap
-// Use HX-Trigger header to open a dialog from the server
-
-[HttpPost(""/api/items"")]
-public IActionResult CreateItem(ItemModel model)
-{
-    // ... save item ...
-
-    // Tell the client to open a success dialog
-    Response.Headers[""HX-Trigger""] =
-        ""{\""rhx:dialog:open\"": \""success-dialog\""}"";
-    return Ok();
-}";
 
     public void OnGet()
     {
@@ -96,5 +82,21 @@ public IActionResult CreateItem(ItemModel model)
             new("Components", "/Docs/Components/Dialog"),
             new("Dialog")
         };
+    }
+
+    public IActionResult OnGetEditForm()
+    {
+        return Content("""
+            <div style="display: flex; flex-direction: column; gap: var(--rhx-space-md);">
+                <div>
+                    <label style="display: block; font-weight: var(--rhx-font-weight-medium); margin-bottom: var(--rhx-space-xs);">Name</label>
+                    <input type="text" value="Jane Smith" style="width: 100%; padding: var(--rhx-space-sm); border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md);" />
+                </div>
+                <div>
+                    <label style="display: block; font-weight: var(--rhx-font-weight-medium); margin-bottom: var(--rhx-space-xs);">Email</label>
+                    <input type="email" value="jane@example.com" style="width: 100%; padding: var(--rhx-space-sm); border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md);" />
+                </div>
+            </div>
+            """, "text/html");
     }
 }

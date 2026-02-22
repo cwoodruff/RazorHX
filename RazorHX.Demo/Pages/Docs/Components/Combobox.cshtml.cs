@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorHX.Components.Navigation;
@@ -94,6 +95,13 @@ public class ComboboxModel : PageModel
            value=""NYC"" rhx-readonly=""true""
            rhx-items=""Model.Cities"" />";
 
+    public string HtmxCode => @"<rhx-combobox rhx-label=""Search Users"" name=""userId""
+           rhx-placeholder=""Type a name...""
+           rhx-server-filter=""true""
+           hx-get=""/Docs/Components/Combobox?handler=SearchUsers""
+           hx-trigger=""input changed delay:300ms""
+           hx-target=""find .rhx-combobox__listbox"" />";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -102,5 +110,28 @@ public class ComboboxModel : PageModel
             new("Components", "/Docs/Components/Combobox"),
             new("Combobox")
         };
+    }
+
+    public IActionResult OnGetSearchUsers(string? q)
+    {
+        var allUsers = new (string Name, string Id)[]
+        {
+            ("Alice Johnson", "alice"), ("Bob Smith", "bob"), ("Carol Williams", "carol"),
+            ("David Brown", "david"), ("Eve Davis", "eve"), ("Frank Miller", "frank"),
+            ("Grace Wilson", "grace"), ("Henry Moore", "henry")
+        };
+
+        var matches = string.IsNullOrWhiteSpace(q)
+            ? allUsers
+            : allUsers.Where(u => u.Name.Contains(q, StringComparison.OrdinalIgnoreCase)).ToArray();
+
+        if (matches.Length == 0)
+        {
+            return Content("<div class=\"rhx-combobox__no-results\">No users found</div>", "text/html");
+        }
+
+        var options = string.Join("", matches.Select(m =>
+            $"<div class=\"rhx-combobox__option\" role=\"option\" data-value=\"{m.Id}\" aria-selected=\"false\" tabindex=\"-1\">{System.Net.WebUtility.HtmlEncode(m.Name)}</div>"));
+        return Content(options, "text/html");
     }
 }

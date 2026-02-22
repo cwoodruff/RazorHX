@@ -148,11 +148,11 @@
             <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
                 <div class="docs-preview">
                     <rhx-button rhx-variant="brand"
-                                hx-get="/api/greeting" hx-target="#btn-result" hx-swap="innerHTML">
+                                hx-get="/Docs/Components/Button?handler=Greeting" hx-target="#btn-result" hx-swap="innerHTML">
                         Load Greeting
                     </rhx-button>
                     <rhx-button rhx-variant="danger" rhx-appearance="outlined"
-                                hx-delete="/api/items/42" hx-confirm="Are you sure?"
+                                hx-delete="/Docs/Components/Button?handler=DeleteItem&id=42" hx-confirm="Are you sure?"
                                 hx-target="#btn-result" hx-swap="innerHTML">
                         Delete Item
                     </rhx-button>

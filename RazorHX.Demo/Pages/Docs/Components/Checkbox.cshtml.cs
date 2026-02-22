@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -47,6 +48,15 @@ public class CheckboxModel : PageModel
     public string BindingCode => @"<rhx-checkbox rhx-for=""AgreeToTerms""
                rhx-label=""Agree to Terms"" />";
 
+    public string HtmxCode => @"<rhx-checkbox name=""marketingEmails""
+               rhx-label=""Subscribe to marketing emails""
+               rhx-hint=""We'll send you product news and updates""
+               hx-post=""/Docs/Components/Checkbox?handler=UpdatePreference""
+               hx-trigger=""change""
+               hx-target=""#checkbox-result""
+               hx-include=""this"" />
+<div id=""checkbox-result"">Toggle the checkbox...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -55,5 +65,14 @@ public class CheckboxModel : PageModel
             new("Components", "/Docs/Components/Checkbox"),
             new("Checkbox")
         };
+    }
+
+    public IActionResult OnPostUpdatePreference(string? marketingEmails)
+    {
+        var subscribed = marketingEmails == "on";
+        var message = subscribed
+            ? "You are now <strong>subscribed</strong> to marketing emails."
+            : "You have <strong>unsubscribed</strong> from marketing emails.";
+        return Content($"<span style=\"color: var(--rhx-color-text-muted);\">{message}</span>", "text/html");
     }
 }

@@ -106,6 +106,13 @@
         @RenderBody()
     </main>
 
+    @Html.AntiForgeryToken()
+    <script>
+        document.addEventListener('htmx:configRequest', function(e) {
+            var token = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (token) e.detail.headers['RequestVerificationToken'] = token.value;
+        });
+    </script>
     <script src="/_rhx/js/components/rhx-dropdown.js" defer></script>
     <script src="/_rhx/js/components/rhx-copy-button.js" defer></script>
     <script src="/_rhx/js/components/rhx-qr-code.js" defer></script>

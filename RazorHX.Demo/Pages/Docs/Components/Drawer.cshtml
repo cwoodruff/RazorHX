@@ -127,6 +127,34 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand"
+                                hx-get="/Docs/Components/Drawer?handler=UserProfile"
+                                hx-target="#profile-drawer .rhx-drawer__body"
+                                data-rhx-drawer-open="profile-drawer">
+                        View Profile
+                    </rhx-button>
+
+                    <rhx-drawer id="profile-drawer" rhx-label="User Profile">
+                        <p style="color: var(--rhx-color-text-muted);">Loading...</p>
+                    </rhx-drawer>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

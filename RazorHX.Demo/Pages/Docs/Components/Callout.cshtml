@@ -91,6 +91,40 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="notif-1">
+                        <rhx-callout rhx-variant="success" rhx-closable="true"
+                                     hx-delete="/Docs/Components/Callout?handler=DismissNotification&id=1"
+                                     hx-trigger="click from:find .rhx-callout__close"
+                                     hx-target="#notif-1" hx-swap="outerHTML">
+                            Your profile has been updated successfully.
+                        </rhx-callout>
+                    </div>
+                    <div id="notif-2">
+                        <rhx-callout rhx-variant="warning" rhx-closable="true"
+                                     hx-delete="/Docs/Components/Callout?handler=DismissNotification&id=2"
+                                     hx-trigger="click from:find .rhx-callout__close"
+                                     hx-target="#notif-2" hx-swap="outerHTML">
+                            Your subscription expires in 3 days.
+                        </rhx-callout>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

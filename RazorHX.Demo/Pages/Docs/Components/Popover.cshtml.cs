@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -61,6 +62,18 @@ public class PopoverModel : PageModel
     <p>This popover has no directional arrow.</p>
 </rhx-popover>";
 
+    public string HtmxCode => @"<button class=""rhx-button rhx-button--brand"" id=""user-card-trigger""
+        hx-get=""/Docs/Components/Popover?handler=UserCard""
+        hx-target=""#user-popover .rhx-popover__content""
+        hx-trigger=""click once"">
+    Load User Card
+</button>
+<rhx-popover id=""user-popover""
+             rhx-trigger=""#user-card-trigger""
+             rhx-placement=""bottom"">
+    <p>Loading...</p>
+</rhx-popover>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -69,5 +82,18 @@ public class PopoverModel : PageModel
             new("Components", "/Docs/Components/Popover"),
             new("Popover")
         };
+    }
+
+    public IActionResult OnGetUserCard()
+    {
+        return Content("""
+            <div style="display: flex; align-items: center; gap: var(--rhx-space-md); min-width: 200px;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--rhx-color-brand-100); display: flex; align-items: center; justify-content: center; font-weight: var(--rhx-font-weight-bold); color: var(--rhx-color-brand-700);">JS</div>
+                <div>
+                    <div style="font-weight: var(--rhx-font-weight-bold);">Jane Smith</div>
+                    <div style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">Software Engineer</div>
+                </div>
+            </div>
+            """, "text/html");
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -52,12 +53,14 @@ public class ButtonModel : PageModel
 </rhx-button>";
 
     public string HtmxCode => @"<rhx-button rhx-variant=""brand""
-            hx-get=""/api/greeting"" hx-target=""#result"" hx-swap=""innerHTML"">
+            hx-get=""/Docs/Components/Button?handler=Greeting""
+            hx-target=""#result"" hx-swap=""innerHTML"">
     Load Greeting
 </rhx-button>
 
 <rhx-button rhx-variant=""danger"" rhx-appearance=""outlined""
-            hx-delete=""/api/items/42"" hx-confirm=""Are you sure?""
+            hx-delete=""/Docs/Components/Button?handler=DeleteItem&amp;id=42""
+            hx-confirm=""Are you sure?""
             hx-target=""#result"" hx-swap=""innerHTML"">
     Delete Item
 </rhx-button>";
@@ -70,5 +73,15 @@ public class ButtonModel : PageModel
             new("Components", "/Docs/Components/Button"),
             new("Button")
         };
+    }
+
+    public IActionResult OnGetGreeting()
+    {
+        return Content("<strong>Hello from the server!</strong> This was loaded via htmx GET.", "text/html");
+    }
+
+    public IActionResult OnDeleteDeleteItem(int id)
+    {
+        return Content($"<em>Item #{id} deleted successfully.</em>", "text/html");
     }
 }

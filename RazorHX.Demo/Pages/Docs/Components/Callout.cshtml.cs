@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -49,6 +50,16 @@ public class CalloutModel : PageModel
     Brand callout with a check circle icon override.
 </rhx-callout>";
 
+    public string HtmxCode => @"<div id=""notif-1"">
+    <rhx-callout rhx-variant=""success"" rhx-closable=""true""
+                 hx-delete=""/Docs/Components/Callout?handler=DismissNotification&amp;id=1""
+                 hx-trigger=""click from:find .rhx-callout__close""
+                 hx-target=""#notif-1""
+                 hx-swap=""outerHTML"">
+        Your profile has been updated successfully.
+    </rhx-callout>
+</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -57,5 +68,10 @@ public class CalloutModel : PageModel
             new("Components", "/Docs/Components/Callout"),
             new("Callout")
         };
+    }
+
+    public IActionResult OnDeleteDismissNotification(int id)
+    {
+        return Content("", "text/html");
     }
 }

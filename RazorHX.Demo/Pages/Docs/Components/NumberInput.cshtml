@@ -114,6 +114,31 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-number-input rhx-label="Quantity" name="quantity" value="1"
+                                      rhx-min="1" rhx-max="20" rhx-step="1"
+                                      hx-get="/Docs/Components/NumberInput?handler=Calculate"
+                                      hx-trigger="change" hx-target="#calc-result" hx-include="this" />
+                    <div id="calc-result" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        <strong>Total: $29.99</strong> ($29.99/ea)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 <!-- Properties -->

@@ -110,19 +110,22 @@
             <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
             <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
             <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
-                <div class="docs-preview docs-preview--vertical">
-                    <p style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
-                        Use <code>data-rhx-dialog-open</code> on a trigger element. The server can also
-                        open a dialog by responding with an <code>HX-Trigger: rhx:dialog:open</code> header.
-                    </p>
-                    <div class="docs-code">
-                        <pre><code>@Model.HtmxCode</code></pre>
-                    </div>
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand"
+                                hx-get="/Docs/Components/Dialog?handler=EditForm"
+                                hx-target="#htmx-dialog .rhx-dialog__body"
+                                data-rhx-dialog-open="htmx-dialog">
+                        Edit Profile
+                    </rhx-button>
+
+                    <rhx-dialog id="htmx-dialog" rhx-label="Edit Profile">
+                        <p style="color: var(--rhx-color-text-muted);">Loading...</p>
+                    </rhx-dialog>
                 </div>
             </rhx-tab-panel>
             <rhx-tab-panel rhx-name="htmx-code">
                 <div class="docs-code">
-                    <pre><code>@Model.HtmxServerCode</code></pre>
+                    <pre><code>@Model.HtmxCode</code></pre>
                 </div>
             </rhx-tab-panel>
         </rhx-tab-group>

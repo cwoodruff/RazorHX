@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -40,6 +41,14 @@ public class NumberInputModel : PageModel
     public string StatesCode => @"<rhx-number-input rhx-label=""Disabled"" name=""num-dis""
            value=""3"" rhx-disabled=""true"" />";
 
+    public string HtmxCode => @"<rhx-number-input rhx-label=""Quantity"" name=""quantity""
+           value=""1"" rhx-min=""1"" rhx-max=""20"" rhx-step=""1""
+           hx-get=""/Docs/Components/NumberInput?handler=Calculate""
+           hx-trigger=""change""
+           hx-target=""#calc-result""
+           hx-include=""this"" />
+<div id=""calc-result"">Total: $29.99</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -48,5 +57,17 @@ public class NumberInputModel : PageModel
             new("Components", "/Docs/Components/NumberInput"),
             new("Number Input")
         };
+    }
+
+    public IActionResult OnGetCalculate(int quantity)
+    {
+        if (quantity < 1) quantity = 1;
+        var unitPrice = 29.99m;
+        var discount = quantity >= 5 ? 0.10m : 0m;
+        var total = unitPrice * quantity * (1 - discount);
+        var html = discount > 0
+            ? $"<strong>Total: ${total:F2}</strong> (${unitPrice}/ea &times; {quantity}, <span style=\"color: var(--rhx-color-success-500);\">10% bulk discount!</span>)"
+            : $"<strong>Total: ${total:F2}</strong> (${unitPrice}/ea &times; {quantity})";
+        return Content($"<span style=\"color: var(--rhx-color-text-muted);\">{html}</span>", "text/html");
     }
 }

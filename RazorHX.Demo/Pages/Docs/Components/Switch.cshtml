@@ -128,6 +128,31 @@
             </rhx-tab-panel>
         </rhx-tab-group>
     </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-switch name="emailNotifications" rhx-label="Email notifications"
+                                rhx-hint="Receive email alerts for important updates"
+                                hx-post="/Docs/Components/Switch?handler=ToggleNotifications"
+                                hx-trigger="change" hx-target="#switch-result" hx-include="this" />
+                    <div id="switch-result" style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Toggle the switch...
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
 </section>
 
 @await Html.PartialAsync("_PropertyTable", Model.Properties)

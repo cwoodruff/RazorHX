@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -94,6 +95,17 @@ public class DrawerModel : PageModel
     </rhx-drawer>
 </div>";
 
+    public string HtmxCode => @"<rhx-button rhx-variant=""brand""
+            hx-get=""/Docs/Components/Drawer?handler=UserProfile""
+            hx-target=""#profile-drawer .rhx-drawer__body""
+            data-rhx-drawer-open=""profile-drawer"">
+    View Profile
+</rhx-button>
+
+<rhx-drawer id=""profile-drawer"" rhx-label=""User Profile"">
+    <p>Loading...</p>
+</rhx-drawer>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -102,5 +114,19 @@ public class DrawerModel : PageModel
             new("Components", "/Docs/Components/Drawer"),
             new("Drawer")
         };
+    }
+
+    public IActionResult OnGetUserProfile()
+    {
+        return Content("""
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--rhx-space-md); padding: var(--rhx-space-md);">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--rhx-color-brand-100); display: flex; align-items: center; justify-content: center; font-size: var(--rhx-font-size-xl); font-weight: var(--rhx-font-weight-bold); color: var(--rhx-color-brand-700);">JS</div>
+                <div style="text-align: center;">
+                    <div style="font-weight: var(--rhx-font-weight-bold); font-size: var(--rhx-font-size-lg);">Jane Smith</div>
+                    <div style="color: var(--rhx-color-text-muted);">jane@example.com</div>
+                    <div style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm); margin-top: var(--rhx-space-xs);">Engineering Team</div>
+                </div>
+            </div>
+            """, "text/html");
     }
 }

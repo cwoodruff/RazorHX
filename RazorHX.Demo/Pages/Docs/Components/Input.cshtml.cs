@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -67,7 +68,7 @@ public class InputModel : PageModel
            rhx-placeholder=""Type to search...""
            rhx-with-clear=""true""
            name=""q""
-           hx-get=""/search""
+           hx-get=""/Docs/Components/Input?handler=Search""
            hx-trigger=""input changed delay:300ms""
            hx-target=""#search-results"" />
 <div id=""search-results"">Results will appear here...</div>";
@@ -80,5 +81,23 @@ public class InputModel : PageModel
             new("Components", "/Docs/Components/Input"),
             new("Input")
         };
+    }
+
+    public IActionResult OnGetSearch(string? q)
+    {
+        if (string.IsNullOrWhiteSpace(q))
+        {
+            return Content("<span style=\"color: var(--rhx-color-text-muted);\">Results will appear here...</span>", "text/html");
+        }
+
+        var html = $"""
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: var(--rhx-space-xs) 0;">Found: <strong>{System.Net.WebUtility.HtmlEncode(q)}</strong> component</li>
+                <li style="padding: var(--rhx-space-xs) 0;">Found: <strong>{System.Net.WebUtility.HtmlEncode(q)}-input</strong> variant</li>
+                <li style="padding: var(--rhx-space-xs) 0;">Found: <strong>{System.Net.WebUtility.HtmlEncode(q)}-demo</strong> example</li>
+            </ul>
+            """;
+
+        return Content(html, "text/html");
     }
 }

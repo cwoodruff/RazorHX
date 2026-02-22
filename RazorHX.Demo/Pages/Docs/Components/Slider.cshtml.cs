@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -47,6 +48,17 @@ public class SliderModel : PageModel
 
     public string ModelBindingCode => @"<rhx-slider rhx-for=""Volume"" rhx-label=""Volume"" />";
 
+    public string HtmxCode => @"<rhx-slider name=""fontSize"" rhx-label=""Font Size""
+           value=""16"" rhx-min=""8"" rhx-max=""48"" rhx-step=""1""
+           rhx-tooltip=""top""
+           hx-get=""/Docs/Components/Slider?handler=FontPreview""
+           hx-trigger=""input changed delay:200ms""
+           hx-target=""#slider-preview""
+           hx-include=""this"" />
+<div id=""slider-preview"">
+    <span style=""font-size: 16px;"">The quick brown fox...</span>
+</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -55,5 +67,12 @@ public class SliderModel : PageModel
             new("Components", "/Docs/Components/Slider"),
             new("Slider")
         };
+    }
+
+    public IActionResult OnGetFontPreview(int fontSize)
+    {
+        if (fontSize < 8) fontSize = 8;
+        if (fontSize > 48) fontSize = 48;
+        return Content($"<span style=\"font-size: {fontSize}px;\">The quick brown fox jumps over the lazy dog. ({fontSize}px)</span>", "text/html");
     }
 }

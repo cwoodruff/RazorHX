@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -42,6 +43,15 @@ public class SwitchModel : PageModel
     public string BindingCode => @"<rhx-switch rhx-for=""DarkMode""
              rhx-label=""Dark Mode"" />";
 
+    public string HtmxCode => @"<rhx-switch name=""emailNotifications""
+             rhx-label=""Email notifications""
+             rhx-hint=""Receive email alerts for important updates""
+             hx-post=""/Docs/Components/Switch?handler=ToggleNotifications""
+             hx-trigger=""change""
+             hx-target=""#switch-result""
+             hx-include=""this"" />
+<div id=""switch-result"">Toggle the switch...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -50,5 +60,13 @@ public class SwitchModel : PageModel
             new("Components", "/Docs/Components/Switch"),
             new("Switch")
         };
+    }
+
+    public IActionResult OnPostToggleNotifications(string? emailNotifications)
+    {
+        var enabled = emailNotifications == "on";
+        var status = enabled ? "enabled" : "disabled";
+        var icon = enabled ? "&#9989;" : "&#10060;";
+        return Content($"<span style=\"color: var(--rhx-color-text-muted);\">{icon} Email notifications <strong>{status}</strong>.</span>", "text/html");
     }
 }

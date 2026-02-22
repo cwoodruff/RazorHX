@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorHX.Components.Navigation;
 using RazorHX.Demo.Models;
@@ -34,7 +35,7 @@ public class TagComponentModel : PageModel
          rhx-pill=""true"">Deprecated</rhx-tag>";
 
     public string HtmxDeleteCode => @"<rhx-tag rhx-variant=""brand"" rhx-removable=""true""
-         hx-delete=""/api/tags/1""
+         hx-delete=""/Docs/Components/Tag?handler=RemoveTag&amp;id=1""
          hx-trigger=""click from:find .rhx-tag__remove""
          hx-target=""closest .rhx-tag""
          hx-swap=""outerHTML swap:200ms"">
@@ -49,5 +50,11 @@ public class TagComponentModel : PageModel
             new("Components", "/Docs/Components/Tag"),
             new("Tag")
         };
+    }
+
+    public IActionResult OnDeleteRemoveTag(int id)
+    {
+        // Return empty content so the tag is removed from the DOM
+        return Content("", "text/html");
     }
 }

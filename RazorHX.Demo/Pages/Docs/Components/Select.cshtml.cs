@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorHX.Components.Navigation;
@@ -94,6 +95,18 @@ public class SelectModel : PageModel
 <rhx-select rhx-label=""Large"" rhx-size=""large""
            rhx-placeholder=""Large"" rhx-items=""Model.Cities"" name=""sel-lg"" />";
 
+    public string HtmxCode => @"<rhx-select rhx-label=""Country"" name=""country""
+           rhx-placeholder=""Choose a country""
+           hx-get=""/Docs/Components/Select?handler=Cities""
+           hx-trigger=""change""
+           hx-target=""#city-results""
+           hx-include=""this"">
+    <rhx-option value=""US"">United States</rhx-option>
+    <rhx-option value=""CA"">Canada</rhx-option>
+    <rhx-option value=""UK"">United Kingdom</rhx-option>
+</rhx-select>
+<div id=""city-results"">Select a country to see cities...</div>";
+
     public void OnGet()
     {
         ViewData["Breadcrumbs"] = new List<BreadcrumbItem>
@@ -102,5 +115,24 @@ public class SelectModel : PageModel
             new("Components", "/Docs/Components/Select"),
             new("Select")
         };
+    }
+
+    public IActionResult OnGetCities(string? country)
+    {
+        var cities = country switch
+        {
+            "US" => new[] { "New York", "Los Angeles", "Chicago", "Houston", "Phoenix" },
+            "CA" => new[] { "Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa" },
+            "UK" => new[] { "London", "Manchester", "Birmingham", "Edinburgh", "Bristol" },
+            _ => Array.Empty<string>()
+        };
+
+        if (cities.Length == 0)
+        {
+            return Content("<span style=\"color: var(--rhx-color-text-muted);\">Select a country to see cities...</span>", "text/html");
+        }
+
+        var items = string.Join("", cities.Select(c => $"<li style=\"padding: var(--rhx-space-xs) 0;\">{c}</li>"));
+        return Content($"<ul style=\"list-style: none; padding: 0; margin: 0; color: var(--rhx-color-text-muted);\">{items}</ul>", "text/html");
     }
 }
