@@ -10,7 +10,7 @@ namespace RazorHX.Components.Utilities;
 /// </summary>
 /// <example>
 /// <code>
-/// &lt;rhx-copy-button rhx-value="dotnet add package RazorHX" /&gt;
+/// &lt;rhx-copy-button rhx-value="dotnet add package htmxRazor" /&gt;
 ///
 /// &lt;pre id="code"&gt;&lt;code&gt;npm install razorhx&lt;/code&gt;&lt;/pre&gt;
 /// &lt;rhx-copy-button rhx-from="#code code" /&gt;

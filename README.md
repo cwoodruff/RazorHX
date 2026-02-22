@@ -1,6 +1,6 @@
 # RazorHX
 
-[![NuGet](https://img.shields.io/nuget/v/RazorHX.svg)](https://www.nuget.org/packages/RazorHX)
+[![NuGet](https://img.shields.io/nuget/v/htmxRazor.svg)](https://www.nuget.org/packages/htmxRazor)
 [![CI](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml/badge.svg)](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![.NET 9](https://img.shields.io/badge/.NET-9.0-purple.svg)](https://dotnet.microsoft.com/)
@@ -24,7 +24,7 @@ RazorHX is a complete UI component library implemented as Razor Tag Helpers. Eve
 ### 1. Install
 
 ```bash
-dotnet add package RazorHX
+dotnet add package htmxRazor
 ```
 
 ### 2. Configure

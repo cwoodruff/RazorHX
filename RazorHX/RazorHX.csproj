@@ -7,7 +7,7 @@
 
     <!-- NuGet Package Metadata -->
     <IsPackable>true</IsPackable>
-    <PackageId>RazorHX</PackageId>
+    <PackageId>htmxRazor</PackageId>
     <Version>0.1.0</Version>
     <Authors>Chris Woodruff</Authors>
     <Company>RazorHX</Company>

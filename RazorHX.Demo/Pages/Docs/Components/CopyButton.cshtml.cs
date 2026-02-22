@@ -16,8 +16,8 @@ public class CopyButtonModel : PageModel
         new("rhx-disabled", "bool", "false", "Whether the button is disabled"),
     };
 
-    public string StaticValueCode => @"<code>dotnet add package RazorHX</code>
-<rhx-copy-button rhx-value=""dotnet add package RazorHX"" />";
+    public string StaticValueCode => @"<code>dotnet add package htmxRazor</code>
+<rhx-copy-button rhx-value=""dotnet add package htmxRazor"" />";
 
     public string FromElementCode => @"<pre id=""install-cmd""><code>npm install razorhx-client</code></pre>
 <rhx-copy-button rhx-from=""#install-cmd code"" />";
