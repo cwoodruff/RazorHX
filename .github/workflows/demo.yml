@@ -38,4 +38,4 @@ jobs:
         run: |
           cd ./publish
           zip -r ../deploy.zip .
-          az webapp deploy --resource-group rg-razorhx --name razorhx-demo --src-path ../deploy.zip --type zip --async false
+          az webapp deploy --resource-group rg-razorhx --name razorhx-demo --src-path ../deploy.zip --type zip --async true
