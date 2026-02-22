@@ -76,6 +76,69 @@
             color: var(--rhx-color-text-muted);
             margin-bottom: var(--rhx-space-sm);
         }
+        .docs-footer {
+            border-top: 2px solid var(--rhx-color-brand-500);
+            padding: var(--rhx-space-xl) var(--rhx-space-xl);
+            background: var(--rhx-color-surface);
+        }
+        .docs-footer__inner {
+            max-width: 56rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--rhx-space-md);
+            font-size: var(--rhx-font-size-sm);
+            color: var(--rhx-color-text-muted);
+        }
+        .docs-footer__inner a {
+            color: var(--rhx-color-brand-500);
+            text-decoration: none;
+        }
+        .docs-footer__inner a:hover {
+            text-decoration: underline;
+        }
+        .docs-footer__brand {
+            display: flex;
+            align-items: center;
+            gap: var(--rhx-space-md);
+        }
+        .docs-footer__name {
+            font-weight: var(--rhx-font-weight-semibold);
+            color: var(--rhx-color-brand-500);
+            font-size: var(--rhx-font-size-md);
+        }
+        .docs-footer__version {
+            display: inline-block;
+            padding: 2px var(--rhx-space-sm);
+            font-size: var(--rhx-font-size-xs);
+            font-weight: var(--rhx-font-weight-medium);
+            background: var(--rhx-color-brand-50);
+            color: var(--rhx-color-brand-700);
+            border-radius: var(--rhx-radius-full);
+            line-height: 1.4;
+        }
+        .docs-footer__separator {
+            width: 100%;
+            max-width: 12rem;
+            border: none;
+            border-top: var(--rhx-border-width) solid var(--rhx-color-border);
+            margin: 0;
+        }
+        .docs-footer__legal {
+            display: flex;
+            align-items: center;
+            gap: var(--rhx-space-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .docs-footer__dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: var(--rhx-radius-full);
+            background: var(--rhx-color-text-muted);
+        }
     </style>
 </head>
 <body>
@@ -105,6 +168,8 @@
     <main>
         @RenderBody()
     </main>
+
+    @await Html.PartialAsync("_Footer")
 
     @Html.AntiForgeryToken()
     <script>

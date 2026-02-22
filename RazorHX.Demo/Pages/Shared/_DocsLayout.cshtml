@@ -93,6 +93,8 @@
         @await Html.PartialAsync("_SidebarNav")
     </rhx-drawer>
 
+    @await Html.PartialAsync("_Footer")
+
     @Html.AntiForgeryToken()
     <script>
         document.addEventListener('htmx:configRequest', function(e) {
