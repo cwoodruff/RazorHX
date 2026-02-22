@@ -28,8 +28,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: razorhx-demo
-          package: ./publish
+      - name: Ensure app is started
+        run: az webapp start --name razorhx-demo --resource-group rg-razorhx
+
+      - name: Deploy via Azure CLI
+        run: |
+          cd ./publish
+          zip -r ../deploy.zip .
+          az webapp deploy --resource-group rg-razorhx --name razorhx-demo --src-path ../deploy.zip --type zip --async false
