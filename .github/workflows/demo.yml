@@ -1,31 +1,35 @@
-  name: Deploy Demo Site
+name: Deploy Demo Site
 
-  on:
-    push:
-      branches: [ main ]
-      paths:
-        - 'RazorHX.Demo/**'
-        - 'RazorHX/**'
-    workflow_dispatch:
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'RazorHX.Demo/**'
+      - 'RazorHX/**'
+  workflow_dispatch:
 
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-        - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-        - name: Setup .NET
-          uses: actions/setup-dotnet@v4
-          with:
-            dotnet-version: '10.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
 
-        - name: Publish
-          run: dotnet publish RazorHX.Demo/RazorHX.Demo.csproj -c Release -o ./publish
+      - name: Publish
+        run: dotnet publish RazorHX.Demo/RazorHX.Demo.csproj -c Release -o ./publish
 
-        - name: Deploy to Azure Web App
-          uses: azure/webapps-deploy@v3
-          with:
-            app-name: razorhx-demo
-            publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-            package: ./publish
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: razorhx-demo
+          package: ./publish
