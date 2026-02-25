@@ -57,6 +57,8 @@ public class ComboboxModel : PageModel
         new("rhx-placeholder", "string", "-", "Placeholder text"),
         new("rhx-items", "List<SelectListItem>", "-", "Server-side items to render as options"),
         new("rhx-filled", "bool", "false", "Use filled appearance"),
+        new("rhx-server-filter", "bool", "false", "Filter options server-side via htmx instead of client-side JS"),
+        new("rhx-search-param", "string", "q", "Query parameter name for the search text when server filtering is enabled"),
     };
 
     public string BasicCode => @"<rhx-combobox rhx-label=""City"" name=""city""
@@ -100,7 +102,7 @@ public class ComboboxModel : PageModel
            rhx-server-filter=""true""
            hx-get=""/Docs/Components/Combobox?handler=SearchUsers""
            hx-trigger=""input changed delay:300ms""
-           hx-target=""find .rhx-combobox__listbox"" />";
+           hx-target=""next .rhx-combobox__listbox"" />";
 
     public void OnGet()
     {

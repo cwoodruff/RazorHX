@@ -18,7 +18,7 @@ namespace RazorHX.Components.Forms;
 ///
 /// &lt;rhx-combobox name="city" rhx-label="City" rhx-server-filter="true"
 ///                hx-get="/api/cities" hx-trigger="input changed delay:200ms"
-///                hx-target="find .rhx-combobox__listbox" /&gt;
+///                hx-target="next .rhx-combobox__listbox" /&gt;
 /// </code>
 /// </example>
 [HtmlTargetElement("rhx-combobox")]
@@ -56,6 +56,14 @@ public class ComboboxTagHelper : FormControlTagHelperBase
     /// </summary>
     [HtmlAttributeName("rhx-server-filter")]
     public bool ServerFilter { get; set; }
+
+    /// <summary>
+    /// The query parameter name used for the search text when <see cref="ServerFilter"/> is true.
+    /// This name is set on the visible text input so htmx includes the typed value in requests.
+    /// Default: "q".
+    /// </summary>
+    [HtmlAttributeName("rhx-search-param")]
+    public string SearchParam { get; set; } = "q";
 
     // ──────────────────────────────────────────────
     //  Constructor
@@ -129,6 +137,8 @@ public class ComboboxTagHelper : FormControlTagHelperBase
         sb.Append(" aria-autocomplete=\"list\"");
         sb.Append($" aria-controls=\"{Enc(listboxId)}\"");
         sb.Append(" autocomplete=\"off\"");
+        if (ServerFilter && !string.IsNullOrEmpty(SearchParam))
+            sb.Append($" name=\"{Enc(SearchParam)}\"");
         if (!string.IsNullOrEmpty(labelText))
             sb.Append($" aria-labelledby=\"{Enc(labelId)}\"");
         if (!string.IsNullOrEmpty(AriaLabel))
