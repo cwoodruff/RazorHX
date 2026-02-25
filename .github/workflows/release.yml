@@ -1,10 +1,17 @@
 name: Release to NuGet
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0.0)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -23,27 +30,20 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Extract version from tag
-        id: version
+      - name: Download NuGet package from CI
+        if: github.event_name != 'workflow_dispatch'
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget-package
+          path: ./artifacts
+
+      - name: Build and pack
+        if: github.event_name == 'workflow_dispatch'
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
-          if [[ ! "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-            echo "::error::Invalid version tag '${GITHUB_REF_NAME}'. Expected format: v*.*.*"
-            exit 1
-          fi
-          echo "VERSION=$TAG" >> $GITHUB_OUTPUT
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.version.outputs.VERSION }}
-
-      - name: Test
-        run: dotnet test --no-build --configuration Release --verbosity normal
-
-      - name: Pack
-        run: dotnet pack RazorHX/RazorHX.csproj --no-build --configuration Release -p:Version=${{ steps.version.outputs.VERSION }} --output ./artifacts
+          dotnet restore
+          dotnet build --no-restore --configuration Release -p:Version=${{ inputs.version }}
+          dotnet test --no-build --configuration Release --verbosity normal
+          dotnet pack RazorHX/RazorHX.csproj --no-build --configuration Release -p:Version=${{ inputs.version }} --output ./artifacts
 
       - name: Push to NuGet
         run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
@@ -51,5 +51,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ inputs.version }}
           generate_release_notes: true
           files: ./artifacts/*
