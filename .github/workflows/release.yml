@@ -45,6 +45,15 @@ jobs:
           dotnet test --no-build --configuration Release --verbosity normal
           dotnet pack RazorHX/RazorHX.csproj --no-build --configuration Release -p:Version=${{ inputs.version }} --output ./artifacts
 
+      - name: Verify NuGet API key is configured
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "::error::NUGET_API_KEY secret is not set. Add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
       - name: Push to NuGet
         run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
