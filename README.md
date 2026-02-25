@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/htmxRazor.svg)](https://www.nuget.org/packages/htmxRazor)
 [![CI](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml/badge.svg)](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![.NET 10](https://img.shields.io/badge/.NET-9.0-purple.svg)](https://dotnet.
+[![.NET 10](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.
 microsoft.com/)
 
 **Server-rendered UI components for ASP.NET Core with first-class htmx integration.**
