@@ -1,15 +1,16 @@
-# RazorHX
+# htmxRazor
 
 [![NuGet](https://img.shields.io/nuget/v/htmxRazor.svg)](https://www.nuget.org/packages/htmxRazor)
 [![CI](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml/badge.svg)](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![.NET 9](https://img.shields.io/badge/.NET-9.0-purple.svg)](https://dotnet.microsoft.com/)
+[![.NET 10](https://img.shields.io/badge/.NET-9.0-purple.svg)](https://dotnet.
+microsoft.com/)
 
 **Server-rendered UI components for ASP.NET Core with first-class htmx integration.**
 
-RazorHX is a complete UI component library implemented as Razor Tag Helpers. Every component renders clean, semantic HTML styled by its own CSS design system. No client-side framework required — just add htmx attributes to any component for dynamic behavior.
+htmxRazor is a complete UI component library implemented as Razor Tag Helpers. Every component renders clean, semantic HTML styled by its own CSS design system. No client-side framework required — just add htmx attributes to any component for dynamic behavior.
 
-## Why RazorHX?
+## Why htmxRazor?
 
 - **Server-rendered** — No JavaScript framework. Components are Tag Helpers that render HTML on the server.
 - **htmx-native** — Every component supports `hx-get`, `hx-post`, `hx-target`, `hx-swap`, and all htmx attributes directly.
