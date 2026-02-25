@@ -1,0 +1,36 @@
+/* ================================================================
+   htmxRazor Sparkline Component
+   Inline SVG sparkline chart — line, area, or bar.
+   All rendering is server-side; CSS handles sizing and theming.
+   ================================================================ */
+
+.rhx-sparkline {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+/* ── Line ── */
+.rhx-sparkline__line {
+  vector-effect: non-scaling-stroke;
+}
+
+/* ── Area fill ── */
+.rhx-sparkline__area {
+  opacity: 1;
+}
+
+/* ── Bar ── */
+.rhx-sparkline__bar {
+  transition: opacity var(--rhx-transition-fast) ease;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-sparkline__bar {
+    transition-duration: 0.01ms;
+  }
+}

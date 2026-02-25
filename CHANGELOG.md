@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - First-class htmx attribute support on every component
 - ASP.NET Core model binding integration for form controls
 - Embedded CSS/JS assets served from `/_rhx/` middleware path
-- Auto-injection of design tokens, reset CSS, and htmx script via `AddRazorHX()`
+- Auto-injection of design tokens, reset CSS, and htmx script via `AddhtmxRazor()`
 - 1,436 unit tests for Tag Helper rendering
 - Documentation site with Getting Started guide and component reference pages
 - GitHub Actions CI/CD workflows (build, release, demo deployment)

@@ -1,6 +1,6 @@
-# Contributing to RazorHX
+# Contributing to htmxRazor
 
-Thank you for your interest in contributing to RazorHX! This guide will help you get set up and familiar with the project's conventions.
+Thank you for your interest in contributing to htmxRazor! This guide will help you get set up and familiar with the project's conventions.
 
 ## Development Setup
 
@@ -13,8 +13,8 @@ Thank you for your interest in contributing to RazorHX! This guide will help you
 
 ```bash
 # Clone the repository
-git clone https://github.com/cwoodruff/RazorHX.git
-cd RazorHX
+git clone https://github.com/cwoodruff/htmxRazor.git
+cd htmxRazor
 
 # Build
 dotnet build
@@ -23,7 +23,7 @@ dotnet build
 dotnet test
 
 # Run the demo site
-dotnet run --project RazorHX.Demo
+dotnet run --project htmxRazor.Demo
 ```
 
 The demo site will be available at `https://localhost:5001` (or the port shown in the console).
@@ -32,14 +32,14 @@ The demo site will be available at `https://localhost:5001` (or the port shown i
 
 | Project | Purpose |
 |---------|---------|
-| `RazorHX/` | Core library — Tag Helpers, CSS, JS, infrastructure |
-| `RazorHX.Demo/` | Documentation and demo site |
-| `RazorHX.Tests/` | Unit tests |
+| `htmxRazor/` | Core library — Tag Helpers, CSS, JS, infrastructure |
+| `htmxRazor.Demo/` | Documentation and demo site |
+| `htmxRazor.Tests/` | Unit tests |
 
 ### Key Directories
 
 ```
-RazorHX/
+htmxRazor/
 ├── Assets/css/components/    # Component stylesheets
 ├── Assets/css/themes/        # Light/dark theme files
 ├── Assets/js/components/     # Component JavaScript
@@ -65,7 +65,7 @@ RazorHX/
 - **Class name**: `{ComponentName}TagHelper` (e.g., `ButtonTagHelper`)
 - **Tag name**: `rhx-{component}` (e.g., `<rhx-button>`)
 - **Attribute prefix**: `rhx-` for component properties (e.g., `rhx-variant`, `rhx-size`)
-- **Base class**: Extend `RazorHXTagHelperBase` (or `FormControlTagHelperBase` for form controls)
+- **Base class**: Extend `htmxRazorTagHelperBase` (or `FormControlTagHelperBase` for form controls)
 - **Block name**: Override `BlockName` to return the BEM block (e.g., `"button"`)
 
 ### CSS Conventions
@@ -123,8 +123,8 @@ Update button loading state ARIA attributes
 2. **Create the CSS** in `Assets/css/components/rhx-{component}.css`
 3. **Create JS** (if interactive) in `Assets/js/components/rhx-{component}.js`
 4. **Add CSS/JS references** to `_Layout.cshtml` in the demo project
-5. **Write unit tests** in `RazorHX.Tests/`
-6. **Add a demo page** or section in `RazorHX.Demo/`
+5. **Write unit tests** in `htmxRazor.Tests/`
+6. **Add a demo page** or section in `htmxRazor.Demo/`
 7. **Update the sidebar nav** in `_SidebarNav.cshtml`
 
 ## Reporting Issues

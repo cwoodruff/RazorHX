@@ -1,0 +1,18 @@
+/*
+ * htmxRazor Light Theme
+ * Light theme is the default — these are explicit overrides
+ * for when the theme is toggled via data attribute.
+ */
+
+[data-rhx-theme="light"] {
+  --rhx-color-bg: var(--rhx-color-neutral-50);
+  --rhx-color-surface: #ffffff;
+  --rhx-color-surface-raised: #ffffff;
+  --rhx-color-text: var(--rhx-color-neutral-900);
+  --rhx-color-text-muted: var(--rhx-color-neutral-500);
+  --rhx-color-text-inverse: #ffffff;
+  --rhx-color-border: var(--rhx-color-neutral-300);
+  --rhx-color-border-muted: var(--rhx-color-neutral-200);
+  --rhx-color-focus-ring: var(--rhx-color-brand-500);
+  --rhx-color-overlay: rgba(0, 0, 0, 0.5);
+}

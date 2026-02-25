@@ -1,0 +1,23 @@
+/*
+ * htmxRazor Dark Theme
+ * Dark theme token overrides.
+ * Activated by setting data-rhx-theme="dark" on a parent element (typically <html> or <body>).
+ */
+
+[data-rhx-theme="dark"] {
+  --rhx-color-bg: var(--rhx-color-neutral-900);
+  --rhx-color-surface: var(--rhx-color-neutral-800);
+  --rhx-color-surface-raised: var(--rhx-color-neutral-700);
+  --rhx-color-text: var(--rhx-color-neutral-100);
+  --rhx-color-text-muted: var(--rhx-color-neutral-400);
+  --rhx-color-text-inverse: var(--rhx-color-neutral-900);
+  --rhx-color-border: var(--rhx-color-neutral-700);
+  --rhx-color-border-muted: var(--rhx-color-neutral-800);
+  --rhx-color-focus-ring: var(--rhx-color-brand-400);
+  --rhx-color-overlay: rgba(0, 0, 0, 0.7);
+
+  --rhx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --rhx-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}

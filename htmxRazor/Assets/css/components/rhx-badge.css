@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════════════════════
+   htmxRazor Badge Component
+   BEM:  rhx-badge  /  rhx-badge--{variant}  rhx-badge--{pill,pulse}
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem var(--rhx-space-sm);
+  font-family: var(--rhx-font-family);
+  font-size: var(--rhx-font-size-xs);
+  font-weight: var(--rhx-font-weight-medium);
+  line-height: var(--rhx-line-height-tight);
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: var(--rhx-radius-sm);
+  border: var(--rhx-border-width) solid transparent;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   VARIANTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Neutral ── */
+.rhx-badge--neutral {
+  background: var(--rhx-color-neutral-100);
+  color: var(--rhx-color-neutral-700);
+  border-color: var(--rhx-color-neutral-200);
+}
+
+/* ── Brand ── */
+.rhx-badge--brand {
+  background: var(--rhx-color-brand-50);
+  color: var(--rhx-color-brand-700);
+  border-color: var(--rhx-color-brand-200);
+}
+
+/* ── Success ── */
+.rhx-badge--success {
+  background: var(--rhx-color-success-50);
+  color: var(--rhx-color-success-700);
+  border-color: var(--rhx-color-success-200);
+}
+
+/* ── Warning ── */
+.rhx-badge--warning {
+  background: var(--rhx-color-warning-50);
+  color: var(--rhx-color-warning-700);
+  border-color: var(--rhx-color-warning-200);
+}
+
+/* ── Danger ── */
+.rhx-badge--danger {
+  background: var(--rhx-color-danger-50);
+  color: var(--rhx-color-danger-700);
+  border-color: var(--rhx-color-danger-200);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MODIFIERS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Pill shape ── */
+.rhx-badge--pill {
+  border-radius: var(--rhx-radius-full);
+  padding-left: var(--rhx-space-md);
+  padding-right: var(--rhx-space-md);
+}
+
+/* ── Pulse animation ── */
+.rhx-badge--pulse {
+  position: relative;
+}
+
+.rhx-badge--pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: rhx-badge-pulse 1.5s ease-in-out infinite;
+}
+
+.rhx-badge--neutral.rhx-badge--pulse::after {
+  box-shadow: 0 0 0 0 var(--rhx-color-neutral-400);
+}
+
+.rhx-badge--brand.rhx-badge--pulse::after {
+  box-shadow: 0 0 0 0 var(--rhx-color-brand-400);
+}
+
+.rhx-badge--success.rhx-badge--pulse::after {
+  box-shadow: 0 0 0 0 var(--rhx-color-success-400);
+}
+
+.rhx-badge--warning.rhx-badge--pulse::after {
+  box-shadow: 0 0 0 0 var(--rhx-color-warning-400);
+}
+
+.rhx-badge--danger.rhx-badge--pulse::after {
+  box-shadow: 0 0 0 0 var(--rhx-color-danger-400);
+}
+
+@keyframes rhx-badge-pulse {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.6;
+  }
+  70% {
+    box-shadow: 0 0 0 6px currentColor;
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-badge--pulse::after {
+    animation: none;
+  }
+}

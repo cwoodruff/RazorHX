@@ -1,0 +1,86 @@
+/* ═══════════════════════════════════════════════════════════════
+   htmxRazor Skeleton Component
+   BEM:  rhx-skeleton  /  rhx-skeleton--{effect}  rhx-skeleton--{shape}
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ── */
+.rhx-skeleton {
+  display: block;
+  background: var(--rhx-color-neutral-200);
+  border-radius: var(--rhx-radius-md);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SHAPES
+   ══════════════════════════════════════════════════════════════ */
+
+/* rounded is the default — border-radius set on base */
+
+.rhx-skeleton--circle {
+  border-radius: var(--rhx-radius-full);
+}
+
+.rhx-skeleton--rectangle {
+  border-radius: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EFFECTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Pulse ── */
+.rhx-skeleton--pulse {
+  animation: rhx-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes rhx-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ── Sheen ── */
+.rhx-skeleton--sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.rhx-skeleton--sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: rhx-skeleton-sheen 1.5s ease-in-out infinite;
+}
+
+@keyframes rhx-skeleton-sheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-skeleton--pulse {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  .rhx-skeleton--sheen::after {
+    animation: none;
+  }
+}

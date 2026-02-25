@@ -1,0 +1,135 @@
+@using htmxRazor.Components.Navigation
+@{
+    var showSidebar = ViewData["HideSidebar"] as bool? != true;
+}
+<!DOCTYPE html>
+<html lang="en" data-rhx-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - htmxRazor</title>
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-input.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-dropdown.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-copy-button.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-qr-code.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-number-input.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-textarea.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-select.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-combobox.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-checkbox.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-switch.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-radio.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-slider.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-rating.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-color-picker.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-file-input.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-callout.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-badge.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-tag.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-progress-bar.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-progress-ring.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-spinner.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-skeleton.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-tooltip.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-tabs.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-breadcrumb.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-tree.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-card.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-divider.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-split-panel.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-dialog.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-drawer.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-details.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-scroller.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-icon.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-avatar.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-animated-image.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-comparison.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-zoomable-frame.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-carousel.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-format.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-animation.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-popup.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-popover.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-sparkline.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-validation.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-patterns.css" />
+    <link rel="stylesheet" href="/css/docs.css" />
+</head>
+<body class="docs-layout @(showSidebar ? "" : "docs-layout--no-sidebar")">
+
+    <header class="docs-topbar rhx-surface">
+        <div class="docs-topbar__start">
+            <button class="docs-topbar__menu-btn" onclick="document.getElementById('mobile-nav').showModal ? document.getElementById('mobile-nav').showModal() : null" aria-label="Open navigation">&#9776;</button>
+            <a href="/" class="docs-topbar__logo">htmxRazor</a>
+        </div>
+        <div class="docs-topbar__end">
+            <a href="https://github.com/cwoodruff/htmxRazor" class="rhx-button rhx-button--neutral rhx-button--outlined rhx-button--small" target="_blank" rel="noopener noreferrer">
+                <span class="rhx-button__label">GitHub</span>
+            </a>
+            <button onclick="RHX.toggleTheme()" class="rhx-button rhx-button--neutral rhx-button--outlined rhx-button--small">
+                <span class="rhx-button__label">Toggle Theme</span>
+            </button>
+        </div>
+    </header>
+
+    @if (showSidebar)
+    {
+        <aside class="docs-sidebar">
+            @await Html.PartialAsync("_SidebarNav")
+        </aside>
+    }
+
+    <main class="docs-main">
+        @if (ViewData["Breadcrumbs"] is IList<BreadcrumbItem> crumbs)
+        {
+            <rhx-breadcrumb rhx-items="@crumbs" />
+        }
+        @RenderBody()
+    </main>
+
+    <rhx-drawer id="mobile-nav" rhx-label="Navigation" rhx-placement="start">
+        @await Html.PartialAsync("_SidebarNav")
+    </rhx-drawer>
+
+    @await Html.PartialAsync("_Footer")
+
+    @Html.AntiForgeryToken()
+    <script>
+        document.addEventListener('htmx:configRequest', function(e) {
+            var token = document.querySelector('input[name="__RequestVerificationToken"]');
+            if (token) e.detail.headers['RequestVerificationToken'] = token.value;
+        });
+    </script>
+    <script src="/_rhx/js/components/rhx-dropdown.js" defer></script>
+    <script src="/_rhx/js/components/rhx-copy-button.js" defer></script>
+    <script src="/_rhx/js/components/rhx-qr-code.js" defer></script>
+    <script src="/_rhx/js/components/rhx-input.js" defer></script>
+    <script src="/_rhx/js/components/rhx-select.js" defer></script>
+    <script src="/_rhx/js/components/rhx-combobox.js" defer></script>
+    <script src="/_rhx/js/components/rhx-callout.js" defer></script>
+    <script src="/_rhx/js/components/rhx-tooltip.js" defer></script>
+    <script src="/_rhx/js/components/rhx-tabs.js" defer></script>
+    <script src="/_rhx/js/components/rhx-tree.js" defer></script>
+    <script src="/_rhx/js/components/rhx-split-panel.js" defer></script>
+    <script src="/_rhx/js/components/rhx-dialog.js" defer></script>
+    <script src="/_rhx/js/components/rhx-drawer.js" defer></script>
+    <script src="/_rhx/js/components/rhx-scroller.js" defer></script>
+    <script src="/_rhx/js/components/rhx-animated-image.js" defer></script>
+    <script src="/_rhx/js/components/rhx-comparison.js" defer></script>
+    <script src="/_rhx/js/components/rhx-zoomable-frame.js" defer></script>
+    <script src="/_rhx/js/components/rhx-carousel.js" defer></script>
+    <script src="/_rhx/js/components/rhx-relative-time.js" defer></script>
+    <script src="/_rhx/js/rhx-position.js" defer></script>
+    <script src="/_rhx/js/components/rhx-animation.js" defer></script>
+    <script src="/_rhx/js/components/rhx-popup.js" defer></script>
+    <script src="/_rhx/js/components/rhx-popover.js" defer></script>
+    <script src="/_rhx/js/components/rhx-slider.js" defer></script>
+    <script src="/_rhx/js/components/rhx-rating.js" defer></script>
+    <script src="/_rhx/js/components/rhx-color-picker.js" defer></script>
+    <script src="/_rhx/js/components/rhx-file-input.js" defer></script>
+    <script src="/_rhx/js/components/rhx-validation.js" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

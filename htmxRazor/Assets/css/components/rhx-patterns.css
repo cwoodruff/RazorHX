@@ -1,0 +1,43 @@
+/* ═══════════════════════════════════════════════════════════════
+   htmxRazor Pattern Components
+   Convenience wrappers for common htmx interaction patterns
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Infinite Scroll ── */
+
+.rhx-infinite-scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--rhx-space-md);
+}
+
+/* ── Active Search ── */
+
+.rhx-active-search {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-xs);
+}
+
+.rhx-active-search--small .rhx-input__native {
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-active-search--large .rhx-input__native {
+    padding: var(--rhx-space-md) var(--rhx-space-lg);
+    font-size: var(--rhx-font-size-lg);
+}
+
+/* ── Poll ── */
+
+.rhx-poll {
+    display: block;
+}
+
+/* ── Lazy Load ── */
+
+.rhx-lazy-load {
+    display: block;
+}

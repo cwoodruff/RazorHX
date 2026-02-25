@@ -1,0 +1,135 @@
+@page
+@model CopyButtonModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Copy Button";
+    ViewData["ComponentName"] = "Copy Button";
+    ViewData["ComponentTag"] = "rhx-copy-button";
+    ViewData["ComponentDescription"] = "One-click clipboard copy with customizable labels and feedback duration.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Copy Static Value -->
+    <div class="docs-example">
+        <h3>Copy Static Value</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="static-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="static-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="static-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <code style="padding: var(--rhx-space-sm) var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); font-family: var(--rhx-font-family-mono);">
+                        dotnet add package htmxRazor
+                    </code>
+                    <rhx-copy-button rhx-value="dotnet add package htmxRazor" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="static-code">
+                <div class="docs-code">
+                    <pre><code>@Model.StaticValueCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Copy from Element -->
+    <div class="docs-example">
+        <h3>Copy from Element</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="from-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="from-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="from-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <pre id="install-cmd" style="padding: var(--rhx-space-sm) var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); margin: 0; font-family: var(--rhx-font-family-mono);"><code>npm install htmxRazor-client</code></pre>
+                    <rhx-copy-button rhx-from="#install-cmd code" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="from-code">
+                <div class="docs-code">
+                    <pre><code>@Model.FromElementCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Labels -->
+    <div class="docs-example">
+        <h3>Custom Labels</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="labels-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="labels-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="labels-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <code style="padding: var(--rhx-space-sm) var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); font-family: var(--rhx-font-family-mono);">
+                        https://example.com
+                    </code>
+                    <rhx-copy-button rhx-value="https://example.com" rhx-copy-label="Copy URL" rhx-success-label="URL Copied!" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="labels-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomLabelsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Long Feedback -->
+    <div class="docs-example">
+        <h3>Long Feedback Duration</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="feedback-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="feedback-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="feedback-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <code style="padding: var(--rhx-space-sm) var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); font-family: var(--rhx-font-family-mono);">
+                        sk-1234567890abcdef
+                    </code>
+                    <rhx-copy-button rhx-value="sk-1234567890abcdef" rhx-feedback-duration="5000" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="feedback-code">
+                <div class="docs-code">
+                    <pre><code>@Model.LongFeedbackCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Disabled -->
+    <div class="docs-example">
+        <h3>Disabled</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="disabled-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="disabled-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="disabled-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <code style="padding: var(--rhx-space-sm) var(--rhx-space-md); background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); font-family: var(--rhx-font-family-mono);">
+                        No copying allowed
+                    </code>
+                    <rhx-copy-button rhx-value="No copying allowed" rhx-disabled="true" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="disabled-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DisabledCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a native <code>&lt;button&gt;</code> element with <code>aria-label</code> describing the copy action.</li>
+        <li>A live region announces the copy success to screen readers.</li>
+        <li>Disabled state sets <code>aria-disabled="true"</code> and prevents interaction.</li>
+        <li>Focus is fully keyboard-accessible with visible focus ring.</li>
+    </ul>
+</section>

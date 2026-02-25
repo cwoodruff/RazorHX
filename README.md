@@ -1,7 +1,7 @@
 # htmxRazor
 
 [![NuGet](https://img.shields.io/nuget/v/htmxRazor.svg)](https://www.nuget.org/packages/htmxRazor)
-[![CI](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml/badge.svg)](https://github.com/cwoodruff/RazorHX/actions/workflows/ci.yml)
+[![CI](https://github.com/cwoodruff/htmxRazor/actions/workflows/ci.yml/badge.svg)](https://github.com/cwoodruff/htmxRazor/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.
 microsoft.com/)
@@ -33,11 +33,11 @@ dotnet add package htmxRazor
 ```csharp
 // Program.cs
 builder.Services.AddRazorPages();
-builder.Services.AddRazorHX();
+builder.Services.AddhtmxRazor();
 
 var app = builder.Build();
 app.UseStaticFiles();
-app.UseRazorHX();       // Serves component CSS, JS, and htmx from /_rhx/
+app.UsehtmxRazor();       // Serves component CSS, JS, and htmx from /_rhx/
 app.MapRazorPages();
 app.Run();
 ```
@@ -47,7 +47,7 @@ app.Run();
 ```razor
 @* _ViewImports.cshtml *@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, RazorHX
+@addTagHelper *, htmxRazor
 ```
 
 ### 4. Use Components
@@ -154,7 +154,7 @@ app.Run();
 
 ## How It Compares
 
-| | RazorHX | Bootstrap | Blazor | Web Awesome |
+| | htmxRazor | Bootstrap | Blazor | Web Awesome |
 |---|---------|-----------|--------|-------------|
 | **Rendering** | Server (Tag Helpers) | Client (jQuery/JS) | Client (WebAssembly/SignalR) | Client (Web Components) |
 | **htmx support** | Native on every component | Manual attribute wiring | N/A (own reactivity) | Manual attribute wiring |
@@ -167,9 +167,9 @@ app.Run();
 
 | Project | Description |
 |---------|-------------|
-| `RazorHX` | Core Tag Helper library with embedded CSS/JS assets |
-| `RazorHX.Demo` | Documentation site showcasing all components |
-| `RazorHX.Tests` | 1,436 unit tests for Tag Helper rendering |
+| `htmxRazor` | Core Tag Helper library with embedded CSS/JS assets |
+| `htmxRazor.Demo` | Documentation site showcasing all components |
+| `htmxRazor.Tests` | 1,436 unit tests for Tag Helper rendering |
 
 ## Development
 
@@ -181,21 +181,33 @@ dotnet build
 dotnet test
 
 # Run the demo site
-dotnet run --project RazorHX.Demo
+dotnet run --project htmxRazor.Demo
 
 # Pack for NuGet
-dotnet pack RazorHX/RazorHX.csproj --configuration Release
+dotnet pack htmxRazor/htmxRazor.csproj --configuration Release
 ```
 
 ## Design System
 
-RazorHX owns its entire rendering and styling stack:
+htmxRazor owns its entire rendering and styling stack:
 
 - **CSS Custom Properties** for design tokens (colors, spacing, typography, borders, shadows)
 - **BEM naming** with `rhx-` prefix (`rhx-button`, `rhx-button--brand`, `rhx-button__label`)
 - **Light/dark themes** via `data-rhx-theme` attribute on `<html>`
 - **Utility classes** for layout and spacing (`rhx-flex`, `rhx-gap-md`, `rhx-p-lg`)
-- **Auto-injected assets** — `AddRazorHX()` injects tokens, reset, core, and utilities CSS plus the htmx script into `<head>`
+- **Auto-injected assets** — `AddhtmxRazor()` injects tokens, reset, core, and utilities CSS plus the htmx script into `<head>`
+
+The project uses a custom CSS design system — not Bootstrap or any other CSS framework.
+
+Key details from the codebase instructions:
+- BEM naming convention with an rhx- prefix (e.g., .rhx-button, .rhx-button--loading, .rhx-button__icon)
+- CSS custom properties (design tokens) defined in rhx-tokens.css — things like --rhx-color-brand-500, --rhx-radius-md, --rhx-font-size-base
+- Light/dark theme support via a data-rhx-theme attribute on <html>
+- Each component has its own scoped CSS file in Assets/css/components/
+- All CSS is embedded and served at /_rhx/ — no external dependencies
+- Hardcoded values are not allowed; everything references var(--rhx-*) tokens
+
+It's a fully self-contained design system built specifically for this component library.
 
 ## Roadmap
 

@@ -1,0 +1,88 @@
+/* ================================================================
+   htmxRazor Popover Component
+   BEM: rhx-popover / rhx-popover--open
+        rhx-popover__content / rhx-popover__arrow
+   ================================================================ */
+
+.rhx-popover {
+  position: absolute;
+  z-index: var(--rhx-z-popover, 800);
+  display: none;
+  max-width: 24rem;
+  background: var(--rhx-color-surface);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
+  border-radius: var(--rhx-radius-md);
+  box-shadow: var(--rhx-shadow-lg);
+  font-family: var(--rhx-font-family);
+  font-size: var(--rhx-font-size-sm);
+  color: var(--rhx-color-text);
+}
+
+.rhx-popover--open,
+.rhx-popover[data-rhx-visible] {
+  display: block;
+}
+
+.rhx-popover[hidden] {
+  display: none;
+}
+
+/* ── Content ── */
+.rhx-popover__content {
+  padding: var(--rhx-space-md);
+}
+
+/* ── Arrow ── */
+.rhx-popover__arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--rhx-color-surface);
+  border: var(--rhx-border-width) solid var(--rhx-color-border);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Arrow placement clipping — hide the inner border edge */
+.rhx-popover[data-rhx-current-placement^="bottom"] > .rhx-popover__arrow {
+  border-bottom: none;
+  border-right: none;
+}
+
+.rhx-popover[data-rhx-current-placement^="top"] > .rhx-popover__arrow {
+  border-top: none;
+  border-left: none;
+}
+
+.rhx-popover[data-rhx-current-placement^="left"] > .rhx-popover__arrow {
+  border-left: none;
+  border-bottom: none;
+}
+
+.rhx-popover[data-rhx-current-placement^="right"] > .rhx-popover__arrow {
+  border-right: none;
+  border-top: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TRANSITIONS
+   ══════════════════════════════════════════════════════════════ */
+
+.rhx-popover {
+  opacity: 0;
+  transition: opacity var(--rhx-transition-fast) ease;
+}
+
+.rhx-popover[data-rhx-visible] {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-popover {
+    transition-duration: 0.01ms;
+  }
+}

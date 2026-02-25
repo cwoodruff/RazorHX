@@ -4,8 +4,8 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'RazorHX.Demo/**'
-      - 'RazorHX/**'
+      - 'htmxRazor.Demo/**'
+      - 'htmxRazor/**'
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Publish
-        run: dotnet publish RazorHX.Demo/RazorHX.Demo.csproj -c Release -o ./publish --self-contained -r linux-x64
+        run: dotnet publish htmxRazor.Demo/htmxRazor.Demo.csproj -c Release -o ./publish --self-contained -r linux-x64
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -32,7 +32,7 @@ jobs:
         run: az webapp start --name razorhx-demo --resource-group rg-razorhx
 
       - name: Configure startup command
-        run: az webapp config set --resource-group rg-razorhx --name razorhx-demo --startup-file "./RazorHX.Demo"
+        run: az webapp config set --resource-group rg-razorhx --name razorhx-demo --startup-file "./htmxRazor.Demo"
 
       - name: Deploy via Azure CLI
         run: |

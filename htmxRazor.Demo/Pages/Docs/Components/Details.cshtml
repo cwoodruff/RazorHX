@@ -1,0 +1,148 @@
+@page
+@model DetailsModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Details";
+    ViewData["ComponentName"] = "Details";
+    ViewData["ComponentTag"] = "rhx-details";
+    ViewData["ComponentDescription"] = "Collapsible disclosure widget with htmx lazy loading.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-details rhx-summary="What is htmxRazor?">
+                        <p>htmxRazor is an ASP.NET Core component library built with Razor Tag Helpers
+                           and first-class htmx integration.</p>
+                    </rhx-details>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Open by Default -->
+    <div class="docs-example">
+        <h3>Open by Default</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="open-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="open-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="open-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-details rhx-summary="System Requirements" rhx-open>
+                        <ul>
+                            <li>.NET 9.0 or later</li>
+                            <li>ASP.NET Core Razor Pages or MVC</li>
+                            <li>Any modern browser</li>
+                        </ul>
+                    </rhx-details>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="open-code">
+                <div class="docs-code">
+                    <pre><code>@Model.OpenCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Multiple (FAQ) -->
+    <div class="docs-example">
+        <h3>Multiple (FAQ)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="faq-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="faq-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="faq-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div style="display: flex; flex-direction: column; gap: var(--rhx-space-sm);">
+                        <rhx-details rhx-summary="How do I install htmxRazor?">
+                            <p>Add the NuGet package to your project and register the tag helpers in _ViewImports.cshtml.</p>
+                        </rhx-details>
+                        <rhx-details rhx-summary="Does it work with htmx?">
+                            <p>Yes! Every component supports hx-get, hx-post, hx-trigger, hx-target, and hx-swap attributes.</p>
+                        </rhx-details>
+                        <rhx-details rhx-summary="Is it accessible?">
+                            <p>htmxRazor uses semantic HTML, ARIA attributes, and keyboard navigation throughout all components.</p>
+                        </rhx-details>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="faq-code">
+                <div class="docs-code">
+                    <pre><code>@Model.FaqCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Disabled -->
+    <div class="docs-example">
+        <h3>Disabled</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="disabled-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="disabled-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="disabled-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-details rhx-summary="Locked Section" rhx-disabled>
+                        <p>This content cannot be accessed.</p>
+                    </rhx-details>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="disabled-code">
+                <div class="docs-code">
+                    <pre><code>@Model.DisabledCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Lazy Load -->
+    <div class="docs-example">
+        <h3>htmx Lazy Load</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-details rhx-summary="Load Order History"
+                                 hx-get="/Docs/Components/Details?handler=DetailsContent"
+                                 hx-trigger="toggle once"
+                                 hx-target="find .rhx-details__content">
+                        <rhx-spinner rhx-size="small" />
+                    </rhx-details>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Uses native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements for built-in browser accessibility.</li>
+        <li>Keyboard users can toggle with <code>Enter</code> or <code>Space</code> when the summary is focused.</li>
+        <li>Disabled state prevents keyboard and pointer interaction.</li>
+        <li>Screen readers announce the expanded/collapsed state automatically.</li>
+    </ul>
+</section>

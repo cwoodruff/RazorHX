@@ -75,7 +75,7 @@ jobs:
           fi
 
       - name: Pack
-        run: dotnet pack RazorHX/RazorHX.csproj --configuration Release -p:Version=${{ steps.version.outputs.VERSION }} --output ./artifacts
+        run: dotnet pack htmxRazor/htmxRazor.csproj --configuration Release -p:Version=${{ steps.version.outputs.VERSION }} --output ./artifacts
 
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4

@@ -1,0 +1,156 @@
+@page
+@model CarouselModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Carousel";
+    ViewData["ComponentName"] = "Carousel";
+    ViewData["ComponentTag"] = "rhx-carousel";
+    ViewData["ComponentDescription"] = "Image and content slider with autoplay, multi-slide, and htmx lazy loading.";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Basic Image Gallery
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Carousel — Image Gallery</h2>
+
+    <div class="demo-label">Navigation arrows and pagination dots</div>
+    <div style="max-width: 600px;">
+        <rhx-carousel aria-label="Image gallery">
+            <rhx-carousel-item>
+                <img src="https://picsum.photos/id/10/600/400" alt="Forest" style="width: 100%; display: block; border-radius: var(--rhx-radius-md);" />
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <img src="https://picsum.photos/id/20/600/400" alt="Mountains" style="width: 100%; display: block; border-radius: var(--rhx-radius-md);" />
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <img src="https://picsum.photos/id/30/600/400" alt="Lake" style="width: 100%; display: block; border-radius: var(--rhx-radius-md);" />
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <img src="https://picsum.photos/id/40/600/400" alt="Desert" style="width: 100%; display: block; border-radius: var(--rhx-radius-md);" />
+            </rhx-carousel-item>
+        </rhx-carousel>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Testimonial Slider
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Carousel — Testimonials</h2>
+
+    <div class="demo-label">Text content with autoplay and loop</div>
+    <div style="max-width: 500px;">
+        <rhx-carousel rhx-autoplay="true" rhx-autoplay-interval="4000" rhx-loop="true" rhx-navigation="false" aria-label="Customer testimonials">
+            <rhx-carousel-item>
+                <div style="text-align: center; padding: var(--rhx-space-xl);">
+                    <p style="font-size: var(--rhx-font-size-lg); font-style: italic; color: var(--rhx-color-text); margin-bottom: var(--rhx-space-md);">
+                        "htmxRazor made our UI development so much faster. The htmx integration is seamless."
+                    </p>
+                    <p style="font-weight: var(--rhx-font-weight-bold); color: var(--rhx-color-text-muted);">— Jane D., Frontend Engineer</p>
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <div style="text-align: center; padding: var(--rhx-space-xl);">
+                    <p style="font-size: var(--rhx-font-size-lg); font-style: italic; color: var(--rhx-color-text); margin-bottom: var(--rhx-space-md);">
+                        "Finally, a component library that respects progressive enhancement and accessibility."
+                    </p>
+                    <p style="font-weight: var(--rhx-font-weight-bold); color: var(--rhx-color-text-muted);">— Alex K., Tech Lead</p>
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <div style="text-align: center; padding: var(--rhx-space-xl);">
+                    <p style="font-size: var(--rhx-font-size-lg); font-style: italic; color: var(--rhx-color-text); margin-bottom: var(--rhx-space-md);">
+                        "The BEM CSS system and design tokens make theming a breeze."
+                    </p>
+                    <p style="font-weight: var(--rhx-font-weight-bold); color: var(--rhx-color-text-muted);">— Sam R., Designer</p>
+                </div>
+            </rhx-carousel-item>
+        </rhx-carousel>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Multi-Slide
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Carousel — Multi-Slide</h2>
+
+    <div class="demo-label">3 slides per page, loop enabled</div>
+    <rhx-carousel rhx-slides-per-page="3" rhx-slides-per-move="1" rhx-loop="true" aria-label="Product showcase">
+        @for (var i = 1; i <= 6; i++)
+        {
+            <rhx-carousel-item>
+                <div style="padding: var(--rhx-space-sm);">
+                    <div style="background: var(--rhx-color-neutral-100); border-radius: var(--rhx-radius-md); padding: var(--rhx-space-lg); text-align: center;">
+                        <div style="font-size: var(--rhx-font-size-2xl); margin-bottom: var(--rhx-space-sm);">@i</div>
+                        <div style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">Item @i</div>
+                    </div>
+                </div>
+            </rhx-carousel-item>
+        }
+    </rhx-carousel>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     No Navigation / No Pagination
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Carousel — Minimal</h2>
+
+    <div class="demo-label">Drag or use keyboard arrows to navigate (no arrows, no dots)</div>
+    <div style="max-width: 400px;">
+        <rhx-carousel rhx-navigation="false" rhx-pagination="false" rhx-loop="true" aria-label="Minimal carousel">
+            <rhx-carousel-item>
+                <div style="background: var(--rhx-color-brand-500); color: white; padding: var(--rhx-space-xl); text-align: center; border-radius: var(--rhx-radius-md);">
+                    Slide A
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <div style="background: var(--rhx-color-danger-500); color: white; padding: var(--rhx-space-xl); text-align: center; border-radius: var(--rhx-radius-md);">
+                    Slide B
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <div style="background: var(--rhx-color-success-500); color: white; padding: var(--rhx-space-xl); text-align: center; border-radius: var(--rhx-radius-md);">
+                    Slide C
+                </div>
+            </rhx-carousel-item>
+        </rhx-carousel>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     htmx — Lazy-Loaded Content
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Carousel — htmx Lazy Load</h2>
+
+    <div class="demo-label">Third slide loads content via htmx when revealed</div>
+    <div style="max-width: 600px;">
+        <rhx-carousel aria-label="Lazy-loaded carousel">
+            <rhx-carousel-item>
+                <div style="padding: var(--rhx-space-xl); text-align: center;">
+                    <h3 style="margin-bottom: var(--rhx-space-sm);">Slide 1</h3>
+                    <p style="color: var(--rhx-color-text-muted);">Static content — already in the page.</p>
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item>
+                <div style="padding: var(--rhx-space-xl); text-align: center;">
+                    <h3 style="margin-bottom: var(--rhx-space-sm);">Slide 2</h3>
+                    <p style="color: var(--rhx-color-text-muted);">Also static content.</p>
+                </div>
+            </rhx-carousel-item>
+            <rhx-carousel-item hx-get="/Docs/Components/Carousel?handler=SlideContent" hx-trigger="intersect once" hx-swap="innerHTML">
+                <div style="padding: var(--rhx-space-xl); text-align: center; color: var(--rhx-color-text-muted);">
+                    Loading…
+                </div>
+            </rhx-carousel-item>
+        </rhx-carousel>
+    </div>
+</div>

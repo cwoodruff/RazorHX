@@ -1,0 +1,158 @@
+@page
+@model ValidationModel
+@{
+    ViewData["Title"] = "Validation";
+}
+
+<!-- ═══════════════════════════════════════════════
+     Validation Summary
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Validation Summary</h2>
+
+    <div class="demo-label">Displays all ModelState errors in a callout (submit the form below with empty fields to see it)</div>
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md);">
+        <rhx-validation-summary />
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Server-Side Validation with htmxRazor Controls
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Server-Side Validation — Form Controls</h2>
+
+    <div class="demo-label">htmxRazor form controls with rhx-for binding and standalone validation messages</div>
+
+    <form method="post" style="display: flex; flex-direction: column; gap: var(--rhx-space-lg); max-width: 32rem;">
+
+        <div>
+            <rhx-input rhx-for="Contact.Name"
+                       rhx-placeholder="Jane Doe" />
+            <rhx-validation-message rhx-for="Contact.Name" />
+        </div>
+
+        <div>
+            <rhx-input rhx-for="Contact.Email"
+                       rhx-placeholder="you@example.com" />
+            <rhx-validation-message rhx-for="Contact.Email" />
+        </div>
+
+        <div>
+            <rhx-input rhx-for="Contact.Subject"
+                       rhx-label="Subject"
+                       rhx-placeholder="Select a subject" />
+            <rhx-validation-message rhx-for="Contact.Subject" />
+        </div>
+
+        <div>
+            <rhx-textarea rhx-for="Contact.Message"
+                          rhx-placeholder="Tell us more..." />
+            <rhx-validation-message rhx-for="Contact.Message" />
+        </div>
+
+        <div class="demo-row">
+            <button type="submit" class="rhx-button rhx-button--brand">
+                Submit Form
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Client-Side Validation
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Client-Side Validation</h2>
+
+    <div class="demo-label">HTML5 constraint validation with data-rhx-validate — validates before submit</div>
+
+    <form data-rhx-validate style="display: flex; flex-direction: column; gap: var(--rhx-space-lg); max-width: 32rem;"
+          onsubmit="event.preventDefault(); alert('Form is valid!');">
+
+        <rhx-input rhx-label="Required Name" name="client-name"
+                   rhx-placeholder="Enter your name" rhx-required="true" />
+
+        <rhx-input rhx-label="Email" name="client-email"
+                   rhx-type="email" rhx-placeholder="you@example.com" rhx-required="true" />
+
+        <rhx-input rhx-label="Website" name="client-website"
+                   rhx-type="url" rhx-placeholder="https://example.com" />
+
+        <rhx-textarea rhx-label="Bio" name="client-bio"
+                      rhx-placeholder="Tell us about yourself (min 10 chars)"
+                      rhx-required="true" />
+
+        <div class="demo-row">
+            <button type="submit" class="rhx-button rhx-button--brand">
+                Validate &amp; Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Validation Summary Variants
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Validation Summary — Variants</h2>
+
+    <div class="demo-label">The summary supports all callout variants (showing static examples)</div>
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md); max-width: 32rem;">
+        <div class="rhx-callout rhx-callout--danger" role="alert">
+            <span class="rhx-callout__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </span>
+            <div class="rhx-callout__content">
+                <ul class="rhx-validation-summary__list">
+                    <li>Name is required.</li>
+                    <li>Email is required.</li>
+                    <li>Message must be at least 10 characters.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rhx-callout rhx-callout--warning" role="alert">
+            <span class="rhx-callout__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </span>
+            <div class="rhx-callout__content">
+                <ul class="rhx-validation-summary__list">
+                    <li>Some optional fields are empty.</li>
+                    <li>Consider adding a phone number.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     Standalone Validation Messages
+     ═══════════════════════════════════════════════ -->
+
+<div class="demo-section">
+    <h2>Standalone Validation Messages</h2>
+
+    <div class="demo-label">rhx-validation-message can be placed anywhere, linked to a field by rhx-for</div>
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md); max-width: 32rem;">
+        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-xs);">
+            <span class="rhx-validation-message rhx-validation-message--error" role="alert" aria-live="polite">
+                The Email field is required.
+            </span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-xs);">
+            <span class="rhx-validation-message" aria-live="polite" hidden></span>
+            <p style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm); margin: 0;">
+                (Hidden placeholder — no errors for this field)
+            </p>
+        </div>
+    </div>
+</div>
