@@ -22,7 +22,7 @@
 .rhx-slider__track {
     position: relative;
     height: 0.375rem;
-    background: var(--rhx-color-neutral-200);
+    background: var(--rhx-color-active);
     border-radius: var(--rhx-radius-full);
     display: flex;
     align-items: center;

@@ -124,7 +124,7 @@
 }
 
 .rhx-dropdown__item:hover {
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-hover);
 }
 
 .rhx-dropdown__item:focus {
@@ -134,7 +134,7 @@
 .rhx-dropdown__item:focus-visible {
   outline: 2px solid var(--rhx-color-focus-ring);
   outline-offset: -2px;
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-hover);
 }
 
 /* ── Item label ── */

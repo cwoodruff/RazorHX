@@ -16,6 +16,28 @@
   --rhx-color-focus-ring: var(--rhx-color-brand-400);
   --rhx-color-overlay: rgba(0, 0, 0, 0.7);
 
+  --rhx-color-hover: var(--rhx-color-neutral-800);
+  --rhx-color-active: var(--rhx-color-neutral-700);
+  --rhx-color-disabled-bg: var(--rhx-color-neutral-800);
+  --rhx-color-readonly-bg: var(--rhx-color-neutral-800);
+  --rhx-color-filled-bg: var(--rhx-color-neutral-800);
+
+  --rhx-color-neutral-subtle: var(--rhx-color-neutral-800);
+  --rhx-color-neutral-subtle-text: var(--rhx-color-neutral-300);
+  --rhx-color-neutral-subtle-border: var(--rhx-color-neutral-700);
+  --rhx-color-brand-subtle: var(--rhx-color-brand-950);
+  --rhx-color-brand-subtle-text: var(--rhx-color-brand-300);
+  --rhx-color-brand-subtle-border: var(--rhx-color-brand-800);
+  --rhx-color-success-subtle: var(--rhx-color-success-950);
+  --rhx-color-success-subtle-text: var(--rhx-color-success-300);
+  --rhx-color-success-subtle-border: var(--rhx-color-success-800);
+  --rhx-color-warning-subtle: var(--rhx-color-warning-950);
+  --rhx-color-warning-subtle-text: var(--rhx-color-warning-300);
+  --rhx-color-warning-subtle-border: var(--rhx-color-warning-800);
+  --rhx-color-danger-subtle: var(--rhx-color-danger-950);
+  --rhx-color-danger-subtle-text: var(--rhx-color-danger-300);
+  --rhx-color-danger-subtle-border: var(--rhx-color-danger-800);
+
   --rhx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --rhx-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --rhx-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);

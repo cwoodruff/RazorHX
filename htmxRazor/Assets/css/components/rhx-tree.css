@@ -28,7 +28,7 @@
 }
 
 .rhx-tree__item-content:hover {
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-hover);
 }
 
 .rhx-tree__item:focus-visible > .rhx-tree__item-content {
@@ -77,12 +77,13 @@
 
 /* ── Selected state ── */
 .rhx-tree__item--selected > .rhx-tree__item-content {
-    background: var(--rhx-color-brand-50, rgba(59, 130, 246, 0.1));
-    color: var(--rhx-color-brand-700, var(--rhx-color-brand-500));
+    background: var(--rhx-color-brand-subtle);
+    color: var(--rhx-color-brand-subtle-text);
 }
 
 .rhx-tree__item--selected > .rhx-tree__item-content:hover {
-    background: var(--rhx-color-brand-100, rgba(59, 130, 246, 0.15));
+    background: var(--rhx-color-brand-subtle);
+    filter: brightness(0.95);
 }
 
 /* ── Disabled state ── */

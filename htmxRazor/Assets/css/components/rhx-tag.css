@@ -60,37 +60,37 @@
 
 /* ── Neutral ── */
 .rhx-tag--neutral {
-  background: var(--rhx-color-neutral-100);
-  color: var(--rhx-color-neutral-700);
-  border-color: var(--rhx-color-neutral-200);
+  background: var(--rhx-color-neutral-subtle);
+  color: var(--rhx-color-neutral-subtle-text);
+  border-color: var(--rhx-color-neutral-subtle-border);
 }
 
 /* ── Brand ── */
 .rhx-tag--brand {
-  background: var(--rhx-color-brand-50);
-  color: var(--rhx-color-brand-700);
-  border-color: var(--rhx-color-brand-200);
+  background: var(--rhx-color-brand-subtle);
+  color: var(--rhx-color-brand-subtle-text);
+  border-color: var(--rhx-color-brand-subtle-border);
 }
 
 /* ── Success ── */
 .rhx-tag--success {
-  background: var(--rhx-color-success-50);
-  color: var(--rhx-color-success-700);
-  border-color: var(--rhx-color-success-200);
+  background: var(--rhx-color-success-subtle);
+  color: var(--rhx-color-success-subtle-text);
+  border-color: var(--rhx-color-success-subtle-border);
 }
 
 /* ── Warning ── */
 .rhx-tag--warning {
-  background: var(--rhx-color-warning-50);
-  color: var(--rhx-color-warning-700);
-  border-color: var(--rhx-color-warning-200);
+  background: var(--rhx-color-warning-subtle);
+  color: var(--rhx-color-warning-subtle-text);
+  border-color: var(--rhx-color-warning-subtle-border);
 }
 
 /* ── Danger ── */
 .rhx-tag--danger {
-  background: var(--rhx-color-danger-50);
-  color: var(--rhx-color-danger-700);
-  border-color: var(--rhx-color-danger-200);
+  background: var(--rhx-color-danger-subtle);
+  color: var(--rhx-color-danger-subtle-text);
+  border-color: var(--rhx-color-danger-subtle-border);
 }
 
 /* ══════════════════════════════════════════════════════════════

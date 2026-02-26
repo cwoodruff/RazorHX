@@ -166,7 +166,7 @@
 
 .rhx-tab__close:hover {
     color: var(--rhx-color-danger-500);
-    background: var(--rhx-color-danger-50, rgba(239, 68, 68, 0.1));
+    background: var(--rhx-color-danger-subtle);
 }
 
 /* ── Tab panel ── */

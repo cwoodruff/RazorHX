@@ -70,7 +70,7 @@
 }
 
 .rhx-dialog__close:hover {
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-hover);
     color: var(--rhx-color-text);
 }
 

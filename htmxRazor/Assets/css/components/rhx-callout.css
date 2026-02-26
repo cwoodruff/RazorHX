@@ -13,7 +13,7 @@
   border: var(--rhx-border-width) solid var(--rhx-color-border);
   border-left: 3px solid var(--rhx-color-neutral-400);
   border-radius: var(--rhx-radius-md);
-  background: var(--rhx-color-neutral-50);
+  background: var(--rhx-color-neutral-subtle);
   font-family: var(--rhx-font-family);
   font-size: var(--rhx-font-size-sm);
   line-height: var(--rhx-line-height-normal);
@@ -54,7 +54,7 @@
 }
 
 .rhx-callout__close:hover {
-  background: var(--rhx-color-neutral-200);
+  background: var(--rhx-color-active);
   color: var(--rhx-color-text);
 }
 
@@ -70,7 +70,7 @@
 /* ── Neutral (default) ── */
 .rhx-callout--neutral {
   border-left-color: var(--rhx-color-neutral-400);
-  background: var(--rhx-color-neutral-50);
+  background: var(--rhx-color-neutral-subtle);
 }
 
 .rhx-callout--neutral .rhx-callout__icon {
@@ -80,7 +80,7 @@
 /* ── Brand ── */
 .rhx-callout--brand {
   border-left-color: var(--rhx-color-brand-500);
-  background: var(--rhx-color-brand-50);
+  background: var(--rhx-color-brand-subtle);
 }
 
 .rhx-callout--brand .rhx-callout__icon {
@@ -90,7 +90,7 @@
 /* ── Success ── */
 .rhx-callout--success {
   border-left-color: var(--rhx-color-success-500);
-  background: var(--rhx-color-success-50);
+  background: var(--rhx-color-success-subtle);
 }
 
 .rhx-callout--success .rhx-callout__icon {
@@ -100,7 +100,7 @@
 /* ── Warning ── */
 .rhx-callout--warning {
   border-left-color: var(--rhx-color-warning-500);
-  background: var(--rhx-color-warning-50);
+  background: var(--rhx-color-warning-subtle);
 }
 
 .rhx-callout--warning .rhx-callout__icon {
@@ -110,7 +110,7 @@
 /* ── Danger ── */
 .rhx-callout--danger {
   border-left-color: var(--rhx-color-danger-500);
-  background: var(--rhx-color-danger-50);
+  background: var(--rhx-color-danger-subtle);
 }
 
 .rhx-callout--danger .rhx-callout__icon {

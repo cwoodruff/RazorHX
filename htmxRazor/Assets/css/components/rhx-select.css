@@ -151,17 +151,17 @@
 }
 
 .rhx-select__option:hover {
-    background-color: var(--rhx-color-neutral-100);
+    background-color: var(--rhx-color-hover);
 }
 
 .rhx-select__option:focus-visible,
 .rhx-select__option[data-rhx-focused] {
-    background-color: var(--rhx-color-neutral-100);
+    background-color: var(--rhx-color-hover);
     outline: none;
 }
 
 .rhx-select__option--selected {
-    background-color: var(--rhx-color-brand-50, var(--rhx-color-neutral-50));
+    background-color: var(--rhx-color-brand-subtle);
     font-weight: var(--rhx-font-weight-medium);
 }
 
@@ -195,7 +195,7 @@
     align-items: center;
     gap: var(--rhx-space-xs);
     padding: 0.125rem var(--rhx-space-sm);
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-hover);
     border-radius: var(--rhx-radius-sm);
     font-size: var(--rhx-font-size-sm);
     line-height: var(--rhx-line-height-tight);
@@ -228,12 +228,12 @@
 
 /* ── Filled variant ── */
 .rhx-select--filled .rhx-select__trigger {
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-filled-bg);
     border-color: transparent;
 }
 
 .rhx-select--filled .rhx-select__trigger:hover {
-    background: var(--rhx-color-neutral-200);
+    background: var(--rhx-color-active);
 }
 
 .rhx-select--filled .rhx-select__trigger:focus-visible,
@@ -278,7 +278,7 @@
 
 /* ── Readonly ── */
 .rhx-select--readonly .rhx-select__trigger {
-    background: var(--rhx-color-neutral-50);
+    background: var(--rhx-color-readonly-bg);
     cursor: default;
     pointer-events: none;
 }

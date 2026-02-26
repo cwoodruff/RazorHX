@@ -78,7 +78,7 @@
 
 .rhx-input__clear:hover {
   color: var(--rhx-color-text);
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-hover);
 }
 
 .rhx-input__clear[hidden] {
@@ -105,7 +105,7 @@
 
 .rhx-input__toggle:hover {
   color: var(--rhx-color-text);
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-hover);
 }
 
 .rhx-input__toggle-show,
@@ -136,7 +136,7 @@
 
 /* ── Filled variant ── */
 .rhx-input--filled .rhx-input__control {
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-filled-bg);
   border-color: transparent;
 }
 
@@ -160,7 +160,7 @@
 .rhx-input--disabled .rhx-input__control {
   opacity: 0.5;
   cursor: not-allowed;
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-disabled-bg);
 }
 
 .rhx-input--disabled .rhx-input__native {
@@ -173,7 +173,7 @@
 
 /* ── Readonly state ── */
 .rhx-input--readonly .rhx-input__control {
-  background: var(--rhx-color-neutral-50);
+  background: var(--rhx-color-readonly-bg);
 }
 
 .rhx-input--readonly .rhx-input__native {

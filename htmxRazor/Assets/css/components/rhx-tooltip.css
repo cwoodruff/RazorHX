@@ -19,7 +19,7 @@
   max-width: 20rem;
   padding: var(--rhx-space-xs) var(--rhx-space-sm);
   background: var(--rhx-color-neutral-900);
-  color: var(--rhx-color-text-inverse);
+  color: #ffffff;
   font-family: var(--rhx-font-family);
   font-size: var(--rhx-font-size-xs);
   line-height: var(--rhx-line-height-tight);
@@ -29,6 +29,16 @@
   word-wrap: break-word;
   opacity: 0;
   transition: opacity var(--rhx-transition-fast) ease;
+}
+
+/* ── Dark theme: invert tooltip colors ── */
+[data-rhx-theme="dark"] .rhx-tooltip {
+  background: var(--rhx-color-neutral-100);
+  color: var(--rhx-color-neutral-900);
+}
+
+[data-rhx-theme="dark"] .rhx-tooltip__arrow {
+  background: var(--rhx-color-neutral-100);
 }
 
 .rhx-tooltip--visible {

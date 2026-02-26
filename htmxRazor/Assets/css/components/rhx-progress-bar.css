@@ -19,7 +19,7 @@
 .rhx-progress-bar__track {
   flex: 1;
   height: 0.5rem;
-  background: var(--rhx-color-neutral-200);
+  background: var(--rhx-color-active);
   border-radius: var(--rhx-radius-full);
   overflow: hidden;
 }

@@ -6,7 +6,7 @@
 /* ── Base ── */
 .rhx-skeleton {
   display: block;
-  background: var(--rhx-color-neutral-200);
+  background: var(--rhx-color-active);
   border-radius: var(--rhx-radius-md);
 }
 
@@ -55,9 +55,10 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    var(--rhx-color-surface, rgba(255, 255, 255, 0.4)) 50%,
     transparent 100%
   );
+  opacity: 0.4;
   animation: rhx-skeleton-sheen 1.5s ease-in-out infinite;
 }
 

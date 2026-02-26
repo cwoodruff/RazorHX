@@ -117,17 +117,17 @@
 }
 
 .rhx-combobox__option:hover {
-    background-color: var(--rhx-color-neutral-100);
+    background-color: var(--rhx-color-hover);
 }
 
 .rhx-combobox__option:focus-visible,
 .rhx-combobox__option[data-rhx-focused] {
-    background-color: var(--rhx-color-neutral-100);
+    background-color: var(--rhx-color-hover);
     outline: none;
 }
 
 .rhx-combobox__option--selected {
-    background-color: var(--rhx-color-brand-50, var(--rhx-color-neutral-50));
+    background-color: var(--rhx-color-brand-subtle);
     font-weight: var(--rhx-font-weight-medium);
 }
 
@@ -152,7 +152,7 @@
 
 /* ── Filled variant ── */
 .rhx-combobox--filled .rhx-combobox__control {
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-filled-bg);
     border-color: transparent;
 }
 
@@ -204,7 +204,7 @@
 
 /* ── Readonly ── */
 .rhx-combobox--readonly .rhx-combobox__control {
-    background: var(--rhx-color-neutral-50);
+    background: var(--rhx-color-readonly-bg);
 }
 
 .rhx-combobox--readonly .rhx-combobox__trigger {

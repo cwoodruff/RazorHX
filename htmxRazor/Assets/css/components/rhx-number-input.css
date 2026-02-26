@@ -83,12 +83,12 @@
 .rhx-number-input__decrement:hover,
 .rhx-number-input__increment:hover {
   color: var(--rhx-color-text);
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-hover);
 }
 
 .rhx-number-input__decrement:active,
 .rhx-number-input__increment:active {
-  background: var(--rhx-color-neutral-200);
+  background: var(--rhx-color-active);
 }
 
 .rhx-number-input__decrement {
@@ -144,7 +144,7 @@
 .rhx-number-input--disabled .rhx-number-input__control {
   opacity: 0.5;
   cursor: not-allowed;
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-disabled-bg);
 }
 
 .rhx-number-input--disabled .rhx-number-input__native {
@@ -157,7 +157,7 @@
 
 /* ── Readonly state ── */
 .rhx-number-input--readonly .rhx-number-input__control {
-  background: var(--rhx-color-neutral-50);
+  background: var(--rhx-color-readonly-bg);
 }
 
 .rhx-number-input--readonly .rhx-number-input__native {

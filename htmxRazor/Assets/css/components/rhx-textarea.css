@@ -99,7 +99,7 @@
 .rhx-textarea--disabled .rhx-textarea__control {
   opacity: 0.5;
   cursor: not-allowed;
-  background: var(--rhx-color-neutral-100);
+  background: var(--rhx-color-disabled-bg);
 }
 
 .rhx-textarea--disabled .rhx-textarea__native {
@@ -112,7 +112,7 @@
 
 /* ── Readonly state ── */
 .rhx-textarea--readonly .rhx-textarea__control {
-  background: var(--rhx-color-neutral-50);
+  background: var(--rhx-color-readonly-bg);
 }
 
 .rhx-textarea--readonly .rhx-textarea__native {
