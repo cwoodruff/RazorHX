@@ -1,0 +1,194 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "My Tasks";
+}
+
+<div id="notification-area"></div>
+
+<!-- Stats -->
+<div id="stats-section" hx-get="/?handler=Stats" hx-trigger="todoChanged from:body" hx-swap="innerHTML">
+    @await Html.PartialAsync("_Stats", Model)
+</div>
+
+<!-- Progress -->
+<div id="progress-section" hx-get="/?handler=Progress" hx-trigger="todoChanged from:body" hx-swap="innerHTML">
+    @await Html.PartialAsync("_Progress", Model)
+</div>
+
+<!-- Toolbar: Search + Add button -->
+<div class="toolbar">
+    <div class="toolbar__search">
+        <rhx-input rhx-label="Search tasks"
+                   rhx-placeholder="Type to filter..."
+                   rhx-with-clear="true"
+                   rhx-size="small"
+                   name="search"
+                   hx-get="/?handler=TodoList"
+                   hx-trigger="input changed delay:300ms, search"
+                   hx-target="#todo-list"
+                   hx-include="[name='filter']"
+                   value="@Model.Search">
+        </rhx-input>
+    </div>
+    <div class="toolbar__actions">
+        <rhx-button rhx-variant="brand"
+                    data-rhx-dialog-open="add-todo-dialog">
+            <rhx-icon name="plus" rhx-size="small"></rhx-icon>
+            Add Task
+        </rhx-button>
+        @if (Model.CompletedCount > 0)
+        {
+            <rhx-tooltip rhx-content="Remove all completed tasks" rhx-placement="bottom">
+                <rhx-button rhx-variant="danger"
+                            rhx-appearance="outlined"
+                            rhx-size="small"
+                            hx-delete="/?handler=ClearCompleted"
+                            hx-target="#todo-list"
+                            hx-confirm="Remove all completed tasks?">
+                    <rhx-icon name="trash" rhx-size="small"></rhx-icon>
+                    Clear Done
+                </rhx-button>
+            </rhx-tooltip>
+        }
+    </div>
+</div>
+
+<!-- Filter Tabs -->
+<rhx-tab-group aria-label="Task filters">
+    <rhx-tab rhx-panel="all" rhx-active="@(Model.Filter != "active" && Model.Filter != "completed")"
+             hx-get="/?handler=TodoList&filter=all"
+             hx-target="#todo-list">
+        All
+        <rhx-badge rhx-variant="neutral" rhx-pill="true">@Model.TotalCount</rhx-badge>
+    </rhx-tab>
+    <rhx-tab rhx-panel="active" rhx-active="@(Model.Filter == "active")"
+             hx-get="/?handler=TodoList&filter=active"
+             hx-target="#todo-list">
+        Active
+        <rhx-badge rhx-variant="brand" rhx-pill="true">@Model.ActiveCount</rhx-badge>
+    </rhx-tab>
+    <rhx-tab rhx-panel="completed" rhx-active="@(Model.Filter == "completed")"
+             hx-get="/?handler=TodoList&filter=completed"
+             hx-target="#todo-list">
+        Completed
+        <rhx-badge rhx-variant="success" rhx-pill="true">@Model.CompletedCount</rhx-badge>
+    </rhx-tab>
+
+    <rhx-tab-panel rhx-name="all" rhx-active="@(Model.Filter != "active" && Model.Filter != "completed")">
+        <div id="todo-list">
+            @await Html.PartialAsync("_TodoList", Model.Todos)
+        </div>
+    </rhx-tab-panel>
+    <rhx-tab-panel rhx-name="active" rhx-active="@(Model.Filter == "active")">
+    </rhx-tab-panel>
+    <rhx-tab-panel rhx-name="completed" rhx-active="@(Model.Filter == "completed")">
+    </rhx-tab-panel>
+</rhx-tab-group>
+
+<input type="hidden" name="filter" value="@(Model.Filter ?? "all")" />
+
+<!-- Add Task Dialog -->
+<rhx-dialog id="add-todo-dialog" rhx-label="Add New Task">
+    <form hx-post="/?handler=Add"
+          hx-target="#todo-list"
+          hx-swap="innerHTML"
+          class="dialog-form">
+        <rhx-input rhx-label="Task title"
+                   rhx-placeholder="What needs to be done?"
+                   name="title"
+                   required="required"
+                   rhx-maxlength="200">
+        </rhx-input>
+
+        <div>
+            <label style="display: block; font-size: var(--rhx-font-size-sm); font-weight: var(--rhx-font-weight-medium); color: var(--rhx-color-text); margin-bottom: var(--rhx-space-xs);">Priority</label>
+            <rhx-select name="priority">
+                <rhx-option value="Low">Low</rhx-option>
+                <rhx-option value="Medium" selected="selected">Medium</rhx-option>
+                <rhx-option value="High">High</rhx-option>
+            </rhx-select>
+        </div>
+
+        <rhx-dialog-footer>
+            <rhx-button type="button"
+                        rhx-appearance="outlined"
+                        onclick="document.getElementById('add-todo-dialog').close()">
+                Cancel
+            </rhx-button>
+            <rhx-button type="submit" rhx-variant="brand"
+                        onclick="setTimeout(() => document.getElementById('add-todo-dialog').close(), 100)">
+                <rhx-icon name="plus" rhx-size="small"></rhx-icon>
+                Add Task
+            </rhx-button>
+        </rhx-dialog-footer>
+    </form>
+</rhx-dialog>
+
+<!-- Edit Task Dialog -->
+<rhx-dialog id="edit-todo-dialog" rhx-label="Edit Task">
+    <form id="edit-form"
+          hx-put="/?handler=Update"
+          hx-target="#todo-list"
+          hx-swap="innerHTML"
+          class="dialog-form">
+        <input type="hidden" name="id" id="edit-id" />
+        <rhx-input rhx-label="Task title"
+                   rhx-placeholder="Task title"
+                   name="title"
+                   id="edit-title"
+                   required="required"
+                   rhx-maxlength="200">
+        </rhx-input>
+
+        <div>
+            <label style="display: block; font-size: var(--rhx-font-size-sm); font-weight: var(--rhx-font-weight-medium); color: var(--rhx-color-text); margin-bottom: var(--rhx-space-xs);">Priority</label>
+            <rhx-select name="priority" id="edit-priority">
+                <rhx-option value="Low">Low</rhx-option>
+                <rhx-option value="Medium">Medium</rhx-option>
+                <rhx-option value="High">High</rhx-option>
+            </rhx-select>
+        </div>
+
+        <rhx-dialog-footer>
+            <rhx-button type="button"
+                        rhx-appearance="outlined"
+                        onclick="document.getElementById('edit-todo-dialog').close()">
+                Cancel
+            </rhx-button>
+            <rhx-button type="submit" rhx-variant="brand"
+                        onclick="setTimeout(() => document.getElementById('edit-todo-dialog').close(), 100)">
+                Save Changes
+            </rhx-button>
+        </rhx-dialog-footer>
+    </form>
+</rhx-dialog>
+
+@section Scripts {
+<script>
+    function openEditDialog(id, title, priority) {
+        document.getElementById('edit-id').value = id;
+        var titleInput = document.getElementById('edit-title');
+        if (titleInput) {
+            var input = titleInput.querySelector('input') || titleInput;
+            input.value = title;
+        }
+        var prioritySelect = document.getElementById('edit-priority');
+        if (prioritySelect) {
+            var select = prioritySelect.querySelector('select') || prioritySelect;
+            select.value = priority;
+        }
+        document.getElementById('edit-todo-dialog').showModal();
+    }
+
+    // Listen for todoChanged events to update filter tabs
+    document.body.addEventListener('todoChanged', function() {
+        // Update the hidden filter input based on current active tab
+        var activeTab = document.querySelector('.rhx-tab[aria-selected="true"]');
+        if (activeTab) {
+            var panel = activeTab.getAttribute('aria-controls') || 'all';
+            document.querySelector('[name="filter"]').value = panel;
+        }
+    });
+</script>
+}

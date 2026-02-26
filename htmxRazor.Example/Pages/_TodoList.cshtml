@@ -1,0 +1,79 @@
+@model List<htmxRazor.Example.Models.TodoItem>
+
+@if (Model.Count == 0)
+{
+    <div class="todo-empty">
+        <div class="todo-empty__icon">
+            <rhx-icon name="check" rhx-size="large"></rhx-icon>
+        </div>
+        <p style="font-size: var(--rhx-font-size-lg); font-weight: var(--rhx-font-weight-medium);">No tasks here</p>
+        <p>Add a new task to get started.</p>
+    </div>
+}
+else
+{
+    <div class="todo-list">
+        @foreach (var todo in Model)
+        {
+            <div class="todo-item @(todo.IsCompleted ? "todo-item--completed" : "")" id="todo-@todo.Id">
+                <rhx-checkbox rhx-checked="@todo.IsCompleted"
+                              hx-post="/?handler=Toggle&id=@todo.Id"
+                              hx-target="#todo-list"
+                              hx-include="[name='filter']"
+                              aria-label="@(todo.IsCompleted ? "Mark incomplete" : "Mark complete")">
+                </rhx-checkbox>
+
+                <div class="todo-item__content">
+                    <p class="todo-item__title">@todo.Title</p>
+                    <div class="todo-item__meta">
+                        @{
+                            var (variant, label) = todo.Priority switch
+                            {
+                                htmxRazor.Example.Models.TodoPriority.High => ("danger", "High"),
+                                htmxRazor.Example.Models.TodoPriority.Low => ("neutral", "Low"),
+                                _ => ("warning", "Medium")
+                            };
+                        }
+                        <rhx-badge rhx-variant="@variant" rhx-pill="true">@label</rhx-badge>
+
+                        @if (todo.IsCompleted && todo.CompletedAt.HasValue)
+                        {
+                            <rhx-tag-item rhx-variant="success" rhx-size="small">
+                                <rhx-icon name="check" rhx-size="small"></rhx-icon>
+                                Done @todo.CompletedAt.Value.ToString("MMM d")
+                            </rhx-tag-item>
+                        }
+                        else
+                        {
+                            <span>Created @todo.CreatedAt.ToString("MMM d")</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="todo-item__actions">
+                    <rhx-tooltip rhx-content="Edit task" rhx-placement="top">
+                        <rhx-button rhx-appearance="plain"
+                                    rhx-size="small"
+                                    aria-label="Edit task"
+                                    onclick="openEditDialog(@todo.Id, '@todo.Title.Replace("'", "\\'").Replace("\"", "&quot;")', '@todo.Priority')">
+                            <rhx-icon name="settings" rhx-size="small"></rhx-icon>
+                        </rhx-button>
+                    </rhx-tooltip>
+
+                    <rhx-tooltip rhx-content="Delete task" rhx-placement="top">
+                        <rhx-button rhx-variant="danger"
+                                    rhx-appearance="plain"
+                                    rhx-size="small"
+                                    aria-label="Delete task"
+                                    hx-delete="/?handler=Delete&id=@todo.Id"
+                                    hx-target="#todo-list"
+                                    hx-include="[name='filter']"
+                                    hx-confirm="Delete &quot;@todo.Title&quot;?">
+                            <rhx-icon name="trash" rhx-size="small"></rhx-icon>
+                        </rhx-button>
+                    </rhx-tooltip>
+                </div>
+            </div>
+        }
+    </div>
+}

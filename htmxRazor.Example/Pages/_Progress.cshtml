@@ -1,0 +1,14 @@
+@model htmxRazor.Example.Pages.IndexModel
+
+@if (Model.TotalCount > 0)
+{
+    <div class="progress-section">
+        <div class="progress-label">
+            <span>Progress</span>
+            <span>@Model.CompletedCount / @Model.TotalCount tasks done</span>
+        </div>
+        <rhx-progress-bar rhx-value="@Model.ProgressPercent"
+                          rhx-variant="@(Model.ProgressPercent == 100 ? "success" : "brand")">
+        </rhx-progress-bar>
+    </div>
+}

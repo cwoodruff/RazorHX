@@ -1,0 +1,16 @@
+@model htmxRazor.Example.Pages.IndexModel
+
+<div class="stats-row">
+    <div class="stat-card stat-card--brand">
+        <div class="stat-card__value">@Model.TotalCount</div>
+        <div class="stat-card__label">Total Tasks</div>
+    </div>
+    <div class="stat-card stat-card--warning">
+        <div class="stat-card__value">@Model.ActiveCount</div>
+        <div class="stat-card__label">Active</div>
+    </div>
+    <div class="stat-card stat-card--success">
+        <div class="stat-card__value">@Model.CompletedCount</div>
+        <div class="stat-card__label">Completed</div>
+    </div>
+</div>
