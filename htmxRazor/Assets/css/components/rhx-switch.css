@@ -30,7 +30,7 @@
     flex-shrink: 0;
     padding: 2px;
     border-radius: 9999px;
-    background: var(--rhx-color-neutral-300);
+    background: var(--rhx-color-border);
     transition: background-color 150ms ease;
 }
 
@@ -39,7 +39,7 @@
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 9999px;
-    background: white;
+    background: var(--rhx-color-surface);
     box-shadow: var(--rhx-shadow-sm);
     transition: transform 150ms ease;
 }
@@ -61,7 +61,7 @@
 
 /* ── Hover ── */
 .rhx-switch__label:hover .rhx-switch__track {
-    background: var(--rhx-color-neutral-400);
+    background: var(--rhx-color-text-muted);
 }
 
 .rhx-switch__label:hover .rhx-switch__native:checked ~ .rhx-switch__track {

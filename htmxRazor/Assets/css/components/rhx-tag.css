@@ -45,7 +45,7 @@
 
 .rhx-tag__remove:hover {
   opacity: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--rhx-color-hover);
 }
 
 .rhx-tag__remove:focus-visible {

@@ -319,6 +319,25 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
+   VARIANT:  GHOST  (transparent bg, muted text, minimal weight)
+   "ghost" is used as a variant; override the appearance bg/border
+   so it always behaves like a text-only button regardless of the
+   default "filled" appearance.
+   ══════════════════════════════════════════════════════════════ */
+
+.rhx-button--ghost {
+  background: var(--rhx-color-neutral-100);
+  color: var(--rhx-color-text);
+  border-color: transparent;
+}
+.rhx-button--ghost:hover {
+  background: var(--rhx-color-neutral-200);
+}
+.rhx-button--ghost:active {
+  background: var(--rhx-color-neutral-300);
+}
+
+/* ══════════════════════════════════════════════════════════════
    DARK THEME OVERRIDES
    Raw palette tokens (neutral-100, brand-50, etc.) are not
    remapped in dark mode, so we swap them for darker shades.
@@ -441,6 +460,17 @@
 }
 [data-rhx-theme="dark"] .rhx-button--danger.rhx-button--plain:active {
   background: var(--rhx-color-danger-900);
+}
+
+/* ── Ghost (dark) ── */
+[data-rhx-theme="dark"] .rhx-button--ghost {
+  background: var(--rhx-color-neutral-700);
+}
+[data-rhx-theme="dark"] .rhx-button--ghost:hover {
+  background: var(--rhx-color-neutral-600);
+}
+[data-rhx-theme="dark"] .rhx-button--ghost:active {
+  background: var(--rhx-color-neutral-500);
 }
 
 /* ══════════════════════════════════════════════════════════════

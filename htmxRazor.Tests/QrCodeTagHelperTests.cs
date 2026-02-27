@@ -126,7 +126,7 @@ public class QrCodeTagHelperTests : TagHelperTestBase
     // ── Colors ──
 
     [Fact]
-    public void Default_Fill_And_Background()
+    public void Default_Fill_And_Background_Are_Theme_Aware()
     {
         var helper = CreateHelper();
         var context = CreateContext("rhx-qr-code");
@@ -135,8 +135,8 @@ public class QrCodeTagHelperTests : TagHelperTestBase
         helper.ViewContext = CreateViewContext();
         helper.Process(context, output);
 
-        AssertAttribute(output, "data-rhx-qr-fill", "#000000");
-        AssertAttribute(output, "data-rhx-qr-background", "#ffffff");
+        AssertNoAttribute(output, "data-rhx-qr-fill");
+        AssertNoAttribute(output, "data-rhx-qr-background");
     }
 
     [Fact]

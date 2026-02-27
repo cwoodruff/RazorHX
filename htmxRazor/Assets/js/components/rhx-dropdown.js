@@ -48,12 +48,12 @@
         if (first) first.focus();
       }
 
-      function close() {
+      function close(restoreFocus) {
         menu.hidden = true;
         menu.setAttribute("aria-hidden", "true");
         triggerBtn.setAttribute("aria-expanded", "false");
         dropdown.removeAttribute("data-rhx-flipped");
-        triggerBtn.focus();
+        if (restoreFocus !== false) triggerBtn.focus();
       }
 
       function isOpen() {
@@ -168,7 +168,7 @@
       // ── Click outside ──
       document.addEventListener("click", function (e) {
         if (isOpen() && !dropdown.contains(e.target)) {
-          close();
+          close(false);
         }
       });
 

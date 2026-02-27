@@ -37,13 +37,13 @@
 
 .rhx-file-input__dropzone:hover {
     border-color: var(--rhx-color-brand-500);
-    background: var(--rhx-color-neutral-50, rgba(0, 0, 0, 0.02));
+    background: var(--rhx-color-hover);
 }
 
 /* Drag-over state (set by JS) */
 .rhx-file-input__dropzone[data-rhx-dragover] {
     border-color: var(--rhx-color-brand-500);
-    background: var(--rhx-color-brand-50, rgba(59, 130, 246, 0.05));
+    background: var(--rhx-color-brand-subtle);
 }
 
 /* Focus ring when native input is focused */
@@ -85,7 +85,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--rhx-space-sm) var(--rhx-space-md);
-    background: var(--rhx-color-neutral-50, rgba(0, 0, 0, 0.02));
+    background: var(--rhx-color-neutral-subtle);
     border-radius: var(--rhx-radius-md);
     font-size: var(--rhx-font-size-sm);
 }
@@ -125,7 +125,7 @@
 
 .rhx-file-input__file-remove:hover {
     color: var(--rhx-color-danger-500);
-    background: var(--rhx-color-danger-50, rgba(239, 68, 68, 0.1));
+    background: var(--rhx-color-danger-subtle);
 }
 
 .rhx-file-input__file-error {

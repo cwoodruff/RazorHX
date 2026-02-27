@@ -11,7 +11,7 @@
 
 /* ── Track ── */
 .rhx-progress-ring__track {
-  stroke: var(--rhx-color-neutral-200);
+  stroke: var(--rhx-color-active);
 }
 
 /* ── Fill ── */

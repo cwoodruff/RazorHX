@@ -31,7 +31,7 @@
 }
 
 .rhx-details__summary:hover {
-    background: var(--rhx-color-neutral-50, var(--rhx-color-neutral-100));
+    background: var(--rhx-color-hover);
 }
 
 .rhx-details__summary:focus-visible {

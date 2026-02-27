@@ -84,7 +84,7 @@
 }
 
 .rhx-carousel__nav-button:hover {
-    background: var(--rhx-color-neutral-100);
+    background: var(--rhx-color-hover);
 }
 
 .rhx-carousel__nav-button:focus-visible {
@@ -122,7 +122,7 @@
     height: 0.625rem;
     border-radius: var(--rhx-radius-full);
     border: var(--rhx-border-width) solid var(--rhx-color-border);
-    background: var(--rhx-color-neutral-200);
+    background: var(--rhx-color-active);
     cursor: pointer;
     padding: 0;
     transition: background-color 0.15s ease, transform 0.15s ease;

@@ -29,7 +29,7 @@
     display: inline-flex;
     position: relative;
     cursor: pointer;
-    color: var(--rhx-color-neutral-300);
+    color: var(--rhx-color-border);
     transition: color 0.1s ease, transform 0.1s ease;
 }
 
@@ -48,7 +48,7 @@
 
 /* Half star — clip technique with overflow */
 .rhx-rating__star--half {
-    color: var(--rhx-color-neutral-300);
+    color: var(--rhx-color-border);
 }
 
 .rhx-rating__star--half::before {
@@ -71,7 +71,7 @@
     background: linear-gradient(
         to right,
         var(--rhx-color-warning-500, #eab308) 50%,
-        var(--rhx-color-neutral-300) 50%
+        var(--rhx-color-border) 50%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -80,7 +80,7 @@
 
 /* Override for SVG fill via a different approach: use two overlapping stars */
 .rhx-rating__star--half svg {
-    fill: var(--rhx-color-neutral-300);
+    fill: var(--rhx-color-border);
 }
 
 .rhx-rating__star--half::before {

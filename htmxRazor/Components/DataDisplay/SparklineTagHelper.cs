@@ -163,7 +163,6 @@ public class SparklineTagHelper : TagHelper
     private void RenderArea(TagHelperOutput output)
     {
         var points = ComputePoints(Values!, Min, Max, VbWidth, VbHeight, Padding);
-        var fill = FillColor ?? $"{StrokeColor}33";
 
         // Polygon: start at bottom-left, trace the line, close at bottom-right
         var areaPoints = new List<(double x, double y)>
@@ -173,10 +172,20 @@ public class SparklineTagHelper : TagHelper
         areaPoints.AddRange(points);
         areaPoints.Add((points[^1].x, VbHeight));
 
-        output.Content.AppendHtml(
-            $"<polygon class=\"rhx-sparkline__area\" " +
-            $"fill=\"{fill}\" " +
-            $"points=\"{FormatPoints(areaPoints)}\" />");
+        if (FillColor is not null)
+        {
+            output.Content.AppendHtml(
+                $"<polygon class=\"rhx-sparkline__area\" " +
+                $"fill=\"{FillColor}\" " +
+                $"points=\"{FormatPoints(areaPoints)}\" />");
+        }
+        else
+        {
+            output.Content.AppendHtml(
+                $"<polygon class=\"rhx-sparkline__area\" " +
+                $"fill=\"{StrokeColor}\" fill-opacity=\"0.2\" " +
+                $"points=\"{FormatPoints(areaPoints)}\" />");
+        }
     }
 
     private void RenderBars(TagHelperOutput output)

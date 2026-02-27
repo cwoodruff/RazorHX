@@ -596,8 +596,9 @@
   function renderQR(canvas) {
     var value = canvas.getAttribute("data-rhx-qr-value") || "";
     var size = parseInt(canvas.getAttribute("data-rhx-qr-size"), 10) || 128;
-    var fill = canvas.getAttribute("data-rhx-qr-fill") || "#000000";
-    var bg = canvas.getAttribute("data-rhx-qr-background") || "#ffffff";
+    var cs = getComputedStyle(document.documentElement);
+    var fill = canvas.getAttribute("data-rhx-qr-fill") || cs.getPropertyValue('--rhx-color-text').trim() || "#000000";
+    var bg = canvas.getAttribute("data-rhx-qr-background") || cs.getPropertyValue('--rhx-color-surface').trim() || "#ffffff";
     var radius = parseFloat(canvas.getAttribute("data-rhx-qr-radius")) || 0;
     var ec = canvas.getAttribute("data-rhx-qr-ec") || "M";
 

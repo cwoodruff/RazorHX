@@ -44,17 +44,17 @@ public class QrCodeTagHelper : htmxRazorTagHelperBase
 
     /// <summary>
     /// Foreground (module) color.
-    /// Default: "#000000".
+    /// Defaults to the current theme's text color when not set.
     /// </summary>
     [HtmlAttributeName("rhx-fill")]
-    public string Fill { get; set; } = "#000000";
+    public string? Fill { get; set; }
 
     /// <summary>
     /// Background color.
-    /// Default: "#ffffff".
+    /// Defaults to the current theme's surface color when not set.
     /// </summary>
     [HtmlAttributeName("rhx-background")]
-    public string Background { get; set; } = "#ffffff";
+    public string? Background { get; set; }
 
     /// <summary>
     /// Corner radius for each module dot, as a fraction of the cell size (0–0.5).
@@ -85,8 +85,10 @@ public class QrCodeTagHelper : htmxRazorTagHelperBase
         output.Attributes.SetAttribute("data-rhx-qr-code", "");
         output.Attributes.SetAttribute("data-rhx-qr-value", Value);
         output.Attributes.SetAttribute("data-rhx-qr-size", Size.ToString());
-        output.Attributes.SetAttribute("data-rhx-qr-fill", Fill);
-        output.Attributes.SetAttribute("data-rhx-qr-background", Background);
+        if (!string.IsNullOrEmpty(Fill))
+            output.Attributes.SetAttribute("data-rhx-qr-fill", Fill);
+        if (!string.IsNullOrEmpty(Background))
+            output.Attributes.SetAttribute("data-rhx-qr-background", Background);
         output.Attributes.SetAttribute("data-rhx-qr-ec", ErrorCorrection.ToUpperInvariant());
 
         if (Radius > 0)
