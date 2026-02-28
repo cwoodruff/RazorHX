@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.Tests", "htmxRazo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.Example", "htmxRazor.Example\htmxRazor.Example.csproj", "{E089454E-12A7-4D38-8514-58C0B368D0A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.StyleExample", "htmxRazor.StyleExample\htmxRazor.StyleExample.csproj", "{33A43877-9D51-4389-9152-903BBE94E065}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,18 @@ Global
 		{E089454E-12A7-4D38-8514-58C0B368D0A9}.Release|x64.Build.0 = Release|Any CPU
 		{E089454E-12A7-4D38-8514-58C0B368D0A9}.Release|x86.ActiveCfg = Release|Any CPU
 		{E089454E-12A7-4D38-8514-58C0B368D0A9}.Release|x86.Build.0 = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|x64.Build.0 = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Debug|x86.Build.0 = Debug|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x64.ActiveCfg = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x64.Build.0 = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x86.ActiveCfg = Release|Any CPU
+		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

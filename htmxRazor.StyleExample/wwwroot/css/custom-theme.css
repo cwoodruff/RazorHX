@@ -1,0 +1,67 @@
+/* ══════════════════════════════════════════════════════════════
+   Custom Theme: Violet Brand
+   ──────────────────────────────────────────────────────────────
+   This file demonstrates how to override htmxRazor design tokens
+   to create a completely custom look. Load this AFTER the
+   htmxRazor core CSS so your overrides take precedence.
+
+   Key technique: Override --rhx-color-brand-* tokens to change
+   the primary color used by all htmxRazor components at once.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Step 1: Override the brand color palette ──
+   Replace the default blue with violet/purple.
+   All components that use brand tokens will automatically
+   pick up your new colors — buttons, badges, focus rings, etc.
+*/
+:root,
+[data-rhx-theme="light"] {
+    /* Violet brand palette */
+    --rhx-color-brand-50: #f5f3ff;
+    --rhx-color-brand-100: #ede9fe;
+    --rhx-color-brand-200: #ddd6fe;
+    --rhx-color-brand-300: #c4b5fd;
+    --rhx-color-brand-400: #a78bfa;
+    --rhx-color-brand-500: #8b5cf6;
+    --rhx-color-brand-600: #7c3aed;
+    --rhx-color-brand-700: #6d28d9;
+    --rhx-color-brand-800: #5b21b6;
+    --rhx-color-brand-900: #4c1d95;
+    --rhx-color-brand-950: #2e1065;
+
+    /* Update semantic tokens that reference brand */
+    --rhx-color-focus-ring: var(--rhx-color-brand-500);
+    --rhx-color-brand-subtle: var(--rhx-color-brand-50);
+    --rhx-color-brand-subtle-text: var(--rhx-color-brand-700);
+    --rhx-color-brand-subtle-border: var(--rhx-color-brand-200);
+
+    /* ── Step 2: Customize typography (optional) ──
+       Use a different font stack for a distinctive look. */
+    --rhx-font-family: "Georgia", "Times New Roman", "Palatino Linotype", serif;
+
+    /* ── Step 3: Adjust border radius for a softer feel ── */
+    --rhx-radius-sm: 0.375rem;
+    --rhx-radius-md: 0.5rem;
+    --rhx-radius-lg: 0.75rem;
+    --rhx-radius-xl: 1rem;
+
+    /* ── Step 4: Warm up the neutral palette (optional) ──
+       Shift grays toward warm tones for a cohesive feel. */
+    --rhx-color-bg: #faf8ff;
+    --rhx-color-surface: #ffffff;
+    --rhx-color-surface-raised: #ffffff;
+}
+
+/* ── Dark theme overrides ──
+   When users toggle to dark mode, your custom brand colors
+   still apply. You only need to re-map the subtle variants. */
+[data-rhx-theme="dark"] {
+    --rhx-color-focus-ring: var(--rhx-color-brand-400);
+    --rhx-color-brand-subtle: var(--rhx-color-brand-950);
+    --rhx-color-brand-subtle-text: var(--rhx-color-brand-300);
+    --rhx-color-brand-subtle-border: var(--rhx-color-brand-800);
+
+    --rhx-color-bg: #1a1625;
+    --rhx-color-surface: #241f31;
+    --rhx-color-surface-raised: #322b45;
+}

@@ -1,0 +1,317 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Custom Styling";
+}
+
+<!-- Hero -->
+<div class="page-hero">
+    <h1 class="page-hero__title">Custom Styling with htmxRazor</h1>
+    <p class="page-hero__subtitle">
+        This example shows how to override htmxRazor design tokens to create
+        a completely custom look. Every component below uses the same tag helpers
+        &mdash; only the CSS tokens have changed.
+    </p>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 1: Brand Color Palette -->
+<div class="section">
+    <h2 class="section__title">1. Custom Brand Palette</h2>
+    <p class="section__description">
+        Override <code>--rhx-color-brand-*</code> tokens to swap the default blue for violet.
+        Every component that uses brand colors updates automatically.
+    </p>
+
+    <div class="swatch-grid">
+        <div class="swatch" style="background: var(--rhx-color-brand-50); color: #333;">
+            <span class="swatch__label">50</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-100); color: #333;">
+            <span class="swatch__label">100</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-200); color: #333;">
+            <span class="swatch__label">200</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-300); color: #333;">
+            <span class="swatch__label">300</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-400); color: #fff;">
+            <span class="swatch__label">400</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-500); color: #fff;">
+            <span class="swatch__label">500</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-600); color: #fff;">
+            <span class="swatch__label">600</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-700); color: #fff;">
+            <span class="swatch__label">700</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-800); color: #fff;">
+            <span class="swatch__label">800</span>
+        </div>
+        <div class="swatch" style="background: var(--rhx-color-brand-900); color: #fff;">
+            <span class="swatch__label">900</span>
+        </div>
+    </div>
+
+    <div class="code-block">
+        <span class="code-block__label">custom-theme.css</span>
+        <code>:root,
+[data-rhx-theme="light"] {
+    --rhx-color-brand-50: #f5f3ff;
+    --rhx-color-brand-100: #ede9fe;
+    --rhx-color-brand-200: #ddd6fe;
+    --rhx-color-brand-300: #c4b5fd;
+    --rhx-color-brand-400: #a78bfa;
+    --rhx-color-brand-500: #8b5cf6;  /* primary */
+    --rhx-color-brand-600: #7c3aed;
+    --rhx-color-brand-700: #6d28d9;
+    --rhx-color-brand-800: #5b21b6;
+    --rhx-color-brand-900: #4c1d95;
+    --rhx-color-brand-950: #2e1065;
+}</code>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 2: Buttons -->
+<div class="section">
+    <h2 class="section__title">2. Buttons</h2>
+    <p class="section__description">
+        Same <code>&lt;rhx-button&gt;</code> tag helper, now rendered in violet.
+    </p>
+
+    <div class="demo-row demo-row--center">
+        <rhx-button rhx-variant="brand">Brand Button</rhx-button>
+        <rhx-button rhx-variant="brand" rhx-appearance="outline">Outline</rhx-button>
+        <rhx-button rhx-variant="brand" rhx-appearance="plain">Plain</rhx-button>
+        <rhx-button rhx-variant="success">Success</rhx-button>
+        <rhx-button rhx-variant="danger">Danger</rhx-button>
+        <rhx-button rhx-variant="neutral">Neutral</rhx-button>
+    </div>
+
+    <h3 class="section__title" style="font-size: var(--rhx-font-size-lg);">Button Sizes</h3>
+    <div class="demo-row demo-row--center">
+        <rhx-button rhx-variant="brand" rhx-size="small">Small</rhx-button>
+        <rhx-button rhx-variant="brand" rhx-size="medium">Medium</rhx-button>
+        <rhx-button rhx-variant="brand" rhx-size="large">Large</rhx-button>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 3: Badges & Tags -->
+<div class="section">
+    <h2 class="section__title">3. Badges &amp; Tags</h2>
+    <p class="section__description">
+        Badges and tags inherit the custom brand palette for a cohesive look.
+    </p>
+
+    <div class="demo-row demo-row--center">
+        <rhx-badge rhx-variant="brand">Brand</rhx-badge>
+        <rhx-badge rhx-variant="success">Success</rhx-badge>
+        <rhx-badge rhx-variant="warning">Warning</rhx-badge>
+        <rhx-badge rhx-variant="danger">Danger</rhx-badge>
+        <rhx-badge rhx-variant="neutral">Neutral</rhx-badge>
+        <rhx-badge rhx-variant="brand" rhx-pill="true">Pill Badge</rhx-badge>
+    </div>
+
+    <div class="demo-row demo-row--center" style="margin-top: var(--rhx-space-md);">
+        <rhx-tag rhx-variant="brand">Design</rhx-tag>
+        <rhx-tag rhx-variant="success">Published</rhx-tag>
+        <rhx-tag rhx-variant="warning">Draft</rhx-tag>
+        <rhx-tag rhx-variant="danger">Archived</rhx-tag>
+        <rhx-tag rhx-variant="neutral">Default</rhx-tag>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 4: Cards -->
+<div class="section">
+    <h2 class="section__title">4. Cards</h2>
+    <p class="section__description">
+        Cards use surface and border tokens. The custom border-radius gives them a softer appearance.
+    </p>
+
+    <div class="card-grid">
+        <rhx-card>
+            <rhx-card-header>
+                <h3>Getting Started</h3>
+            </rhx-card-header>
+            <rhx-card-body>
+                <p>Override <code>--rhx-color-brand-*</code> tokens in your own CSS file to set a custom primary color.</p>
+            </rhx-card-body>
+            <rhx-card-footer>
+                <rhx-button rhx-variant="brand" rhx-size="small">Learn More</rhx-button>
+            </rhx-card-footer>
+        </rhx-card>
+
+        <rhx-card>
+            <rhx-card-header>
+                <h3>Typography</h3>
+            </rhx-card-header>
+            <rhx-card-body>
+                <p>Override <code>--rhx-font-family</code> to use a serif font. This example uses Georgia.</p>
+            </rhx-card-body>
+            <rhx-card-footer>
+                <rhx-button rhx-variant="brand" rhx-appearance="outline" rhx-size="small">View Tokens</rhx-button>
+            </rhx-card-footer>
+        </rhx-card>
+
+        <rhx-card>
+            <rhx-card-header>
+                <h3>Dark Mode</h3>
+            </rhx-card-header>
+            <rhx-card-body>
+                <p>Click the palette icon in the header to toggle dark mode. Custom tokens apply to both themes.</p>
+            </rhx-card-body>
+            <rhx-card-footer>
+                <rhx-button rhx-variant="neutral" rhx-size="small" onclick="RHX.toggleTheme()">Toggle Theme</rhx-button>
+            </rhx-card-footer>
+        </rhx-card>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 5: Callouts -->
+<div class="section">
+    <h2 class="section__title">5. Callouts</h2>
+    <p class="section__description">
+        Callouts use variant-specific tokens. Success, warning, and danger palettes are unchanged
+        — only the brand variant reflects the violet override.
+    </p>
+
+    <rhx-callout rhx-variant="brand" rhx-title="Custom Brand Color">
+        This callout uses the brand variant, which is now violet instead of blue.
+        The subtle background, text, and border tokens all update automatically.
+    </rhx-callout>
+
+    <rhx-callout rhx-variant="success" rhx-title="Success Callout">
+        Non-brand variants like success, warning, and danger keep their original colors
+        unless you override those palettes too.
+    </rhx-callout>
+
+    <rhx-callout rhx-variant="warning" rhx-title="Load Order Matters">
+        Your custom theme CSS must load <strong>after</strong> the htmxRazor core CSS
+        so that your token overrides take precedence.
+    </rhx-callout>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 6: Form Controls -->
+<div class="section">
+    <h2 class="section__title">6. Form Input</h2>
+    <p class="section__description">
+        Focus rings and interactive states use the brand color. Try clicking the input below.
+    </p>
+
+    <div style="max-width: 24rem;">
+        <rhx-input rhx-label="Email address" rhx-hint="Focus to see the violet ring" rhx-placeholder="you@example.com"></rhx-input>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 7: Progress & Spinner -->
+<div class="section">
+    <h2 class="section__title">7. Progress &amp; Loading</h2>
+    <p class="section__description">
+        Progress bars and spinners use brand color tokens.
+    </p>
+
+    <div style="max-width: 24rem; margin-bottom: var(--rhx-space-lg);">
+        <rhx-progress-bar rhx-value="65" rhx-max="100" rhx-label="Upload progress"></rhx-progress-bar>
+    </div>
+
+    <div class="demo-row demo-row--center">
+        <rhx-spinner rhx-size="small"></rhx-spinner>
+        <rhx-spinner rhx-size="medium"></rhx-spinner>
+        <rhx-spinner rhx-size="large"></rhx-spinner>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 8: Tabs -->
+<div class="section">
+    <h2 class="section__title">8. Tabs</h2>
+    <p class="section__description">
+        Tab active indicators use the brand color.
+    </p>
+
+    <rhx-tabs>
+        <rhx-tab rhx-label="Overview" rhx-active="true">
+            <p>Active tab indicators and hover states now use the violet brand color.</p>
+        </rhx-tab>
+        <rhx-tab rhx-label="Token Overrides">
+            <ul class="feature-list">
+                <li>Override <code>--rhx-color-brand-*</code> for primary color</li>
+                <li>Override <code>--rhx-font-family</code> for typography</li>
+                <li>Override <code>--rhx-radius-*</code> for border radius</li>
+                <li>Override <code>--rhx-color-bg</code> for background tint</li>
+            </ul>
+        </rhx-tab>
+        <rhx-tab rhx-label="How It Works">
+            <p>
+                htmxRazor components reference CSS custom properties (design tokens) for all
+                visual properties. By overriding these tokens in your own stylesheet, you change
+                the appearance of every component at once — no need to target individual component classes.
+            </p>
+        </rhx-tab>
+    </rhx-tabs>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 9: Details / Accordion -->
+<div class="section">
+    <h2 class="section__title">9. How to Apply Custom Styling</h2>
+    <p class="section__description">
+        A step-by-step guide to customizing htmxRazor's appearance.
+    </p>
+
+    <rhx-details rhx-summary="Step 1: Create a custom theme CSS file">
+        <p>
+            Create a CSS file (e.g., <code>custom-theme.css</code>) in your <code>wwwroot/css/</code> folder.
+            This is where you will override htmxRazor design tokens.
+        </p>
+    </rhx-details>
+
+    <rhx-details rhx-summary="Step 2: Override brand color tokens">
+        <p>
+            Set new values for <code>--rhx-color-brand-50</code> through <code>--rhx-color-brand-950</code>
+            inside a <code>:root</code> or <code>[data-rhx-theme=&quot;light&quot;]</code> selector.
+            Use a tool like <a href="https://uicolors.app">uicolors.app</a> to generate a full palette from a single color.
+        </p>
+    </rhx-details>
+
+    <rhx-details rhx-summary="Step 3: Load your CSS after htmxRazor">
+        <p>
+            In your <code>_Layout.cshtml</code>, add your custom theme CSS link <strong>after</strong>
+            the htmxRazor component CSS links. CSS specificity ensures your overrides win.
+        </p>
+    </rhx-details>
+
+    <rhx-details rhx-summary="Step 4: Override additional tokens (optional)">
+        <p>
+            Beyond brand colors, you can customize typography (<code>--rhx-font-family</code>),
+            spacing (<code>--rhx-space-*</code>), border radius (<code>--rhx-radius-*</code>),
+            shadows (<code>--rhx-shadow-*</code>), and surface colors (<code>--rhx-color-bg</code>,
+            <code>--rhx-color-surface</code>).
+        </p>
+    </rhx-details>
+
+    <rhx-details rhx-summary="Step 5: Support dark mode">
+        <p>
+            Add a <code>[data-rhx-theme=&quot;dark&quot;]</code> selector in your custom CSS to override
+            tokens for dark mode. Use <code>RHX.toggleTheme()</code> in JavaScript to switch themes.
+        </p>
+    </rhx-details>
+</div>
