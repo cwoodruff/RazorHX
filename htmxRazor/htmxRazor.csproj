@@ -18,7 +18,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageIcon Condition="Exists('..\icon.png')">icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Copyright>Copyright (c) 2024 Chris Woody Woodruff</Copyright>
+    <Copyright>Copyright (c) 2026 Chris Woody Woodruff</Copyright>
 
     <!-- XML Documentation -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

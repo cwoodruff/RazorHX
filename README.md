@@ -211,14 +211,61 @@ It's a fully self-contained design system built specifically for this component 
 
 ## Roadmap
 
-| Version | Scope |
-|---------|-------|
-| **v0.1.0** | Button, Input, Validation — minimum viable library |
-| **v0.2.0** | All Form Controls + Feedback components |
-| **v0.3.0** | Navigation + Organization components |
-| **v0.4.0** | Imagery + Utilities + Data Visualization |
-| **v0.5.0** | Composite Patterns (infinite scroll, search, poll, lazy load) |
-| **v1.0.0** | Full catalog, stable API, comprehensive docs, theme system |
+Features ranked by **user impact** and **implementation effort**. The library is at v1.1.1 with 72 components; the roadmap below covers what comes next.
+
+### v1.2 — Notifications, Pagination & Quick Wins
+
+| Feature | Description | Impact | Effort |
+|---------|-------------|--------|--------|
+| **Toast Notification System** | `<rhx-toast-container>` + `<rhx-toast>` with auto-dismiss, severity variants, stacking, and `aria-live` announcements. Server-side `HtmxToastExtensions.HxToast()` piggybacks OOB-swapped toasts onto any response. | Very High | Medium |
+| **Pagination** | `<rhx-pagination>` with htmx-powered page navigation (`hx-get` with page parameter). Pairs with server-side paging for the most common data display pattern. | Very High | Medium |
+| **ARIA Live Region Manager** | `<rhx-live-region>` wrapper for screen reader announcements on htmx swaps. Accepts `politeness` (polite/assertive) and `atomic` attributes. Paired with server-side `HtmxResponseExtensions` for announcing content changes. | Very High | Low |
+| **CSS Cascade Layers** | Wrap all component CSS in `@layer rhx { }` so host app styles automatically override component styles regardless of specificity. Non-breaking CSS improvement. | High | Low |
+| **View Transition Support** | `rhx-transition` and `rhx-transition-name` attributes on the tag helper base class. Automatically appends `transition:true` to `hx-swap` for smooth animated page transitions via the View Transitions API. | High | Low |
+| **`hx-on:*` Dictionary Attribute** | Dictionary attribute on `htmxRazorTagHelperBase` for htmx 2.x event handler attributes (e.g., `hx-on::after-request`). Closes a gap already worked around in `InfiniteScrollTagHelper`. | High | Low |
+
+### v1.3 — Data Table, Accessibility & Modern CSS
+
+| Feature | Description | Impact | Effort |
+|---------|-------------|--------|--------|
+| **Data Table** | `<rhx-data-table>`, `<rhx-column>`, `<rhx-data-table-pagination>` with server-driven sort, filter, and pagination. Sort headers emit `hx-get` with query parameters; server returns `<tbody>` partials. Includes a `DataTableRequest` model binder for easy handler integration. | Very High | High |
+| **Focus Management After Swaps** | `rhx-focus-after-swap` attribute to move focus to a configurable element after htmx content swaps. On by default for `<rhx-dialog>`, `<rhx-drawer>`, and future wizard component. Addresses WCAG 2.4.3 Focus Order. | High | Medium |
+| **Command Palette** | `<rhx-command-palette>` modal search overlay activated via `Cmd+K`. Fires debounced `hx-get` to a configurable search endpoint. Results grouped with `<rhx-command-group>` and `<rhx-command-item>` with keyboard navigation. Entirely server-rendered results. | High | Medium |
+| **Container Queries** | Update card, data table, dialog, and split panel CSS to use `@container` queries so components respond to their container width rather than the viewport. Pure CSS improvement. | Medium | Low |
+| **Skip Nav & Landmarks** | `<rhx-skip-nav>` (visually hidden, visible on focus) and `<rhx-landmark>` for semantic landmark regions. Simple components addressing WCAG 2.4.1 Bypass Blocks. | Medium | Low |
+| **APG Keyboard Audit** | Formal audit of `<rhx-tabs>`, `<rhx-tree>`, `<rhx-dropdown>`, and `<rhx-combobox>` against the W3C ARIA Authoring Practices Guide keyboard patterns. | Medium | Medium |
+
+### v1.4 — Real-time, Wizard & Patterns
+
+| Feature | Description | Impact | Effort |
+|---------|-------------|--------|--------|
+| **SSE Stream Container** | `<rhx-sse-stream>` wraps `hx-ext="sse"` + `sse-connect` into a declarative Tag Helper. Companion `HtmxSseExtensions.WriteEventAsync()` formats `IAsyncEnumerable<string>` as `text/event-stream`. Aligns with htmx 4.0's streaming-first direction. | High | Medium |
+| **Multi-step Wizard** | `<rhx-wizard>`, `<rhx-wizard-step>` with visual stepper indicator, auto-generated navigation buttons with `hx-post`/`hx-get`, and server-side step state tracking. | High | High |
+| **Response-Aware Form** | `<rhx-htmx-form>` that auto-configures the htmx response-targets extension (`hx-target-422`, `hx-target-5xx`) and injects error-handling JavaScript. Removes per-form boilerplate. | High | Medium |
+| **Timeline** | `<rhx-timeline>`, `<rhx-timeline-item>` with variant-colored connectors, icon slots, and metadata regions. Pairs with `<rhx-infinite-scroll>` for loading additional events. Useful for audit logs, activity feeds, and order tracking. | Medium | Medium |
+| **Optimistic UI** | `rhx-optimistic` attribute on `<rhx-switch>`, `<rhx-rating>`, and `<rhx-button>`. Immediately reflects visual state on click before server response; reverts on error via `htmx:responseError`. | Medium | Medium |
+| **Load More Pattern** | `<rhx-load-more>` button-triggered pagination pattern. Simpler alternative to infinite scroll for content feeds. | Medium | Low |
+
+### v2.0 — Platform & DX
+
+| Feature | Description | Impact | Effort |
+|---------|-------------|--------|--------|
+| **Theme Builder** | Interactive page in the demo site with sliders and color pickers for all `--rhx-*` tokens. Generates a downloadable `rhx-theme-overrides.css` file. | High | High |
+| **Interactive Component Playground** | Property toggle panel on each demo page. Users change variant, size, and state props; the server re-renders the component with updated markup via htmx. | High | High |
+| **SignalR Hub Connector** | `<rhx-signalr>` Tag Helper wrapping SignalR hub connections with `hub-url`, `method`, `target`, and `swap` attributes. Server-side `HtmxSignalRExtensions` for sending HTML fragments from hubs. | Medium | High |
+| **CSS Anchor Positioning** | Replace JavaScript positioning in `<rhx-tooltip>` and `<rhx-popover>` with CSS Anchor Positioning API (with JS fallback). Reduces JS footprint and improves edge-of-viewport correctness. | Medium | Medium |
+| **VS Code Snippet Extension** | `.code-snippets` file with expansions for every `<rhx-*>` tag and common attribute combinations. Distributed alongside the NuGet package. | Medium | Low |
+| **Kanban Board** | `<rhx-kanban>`, `<rhx-kanban-column>`, `<rhx-kanban-card>` with native HTML Drag and Drop. Card drop events fire `hx-post` to update position server-side. | Medium | High |
+
+### Infrastructure Cleanup (ongoing)
+
+| Item | Description |
+|------|-------------|
+| Implement or remove `EnableCssIsolation` | Option is defined in `htmxRazorOptions` but has no implementation |
+| Remove `IHtmxSupported` marker interface | Dead code — nothing checks for it |
+| Add `hx-replace-url` to base class | Already exists as a response header helper but missing from tag helper attributes |
+| Adopt `HtmlRenderer` in components | Replace raw `StringBuilder` HTML construction with the fluent `HtmlRenderer` for better escaping and readability |
+| WCAG 2.2 contrast audit | Verify all foreground/background token pairs in `rhx-tokens.css` meet AA contrast ratios (4.5:1 normal text, 3:1 large text) |
 
 ## Contributing
 
@@ -226,4 +273,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, PR guidelines, and
 
 ## License
 
-[MIT](LICENSE) - Copyright (c) 2024 Chris Woody Woodruff
+[MIT](LICENSE) - Copyright (c) 2026 Chris Woody Woodruff
