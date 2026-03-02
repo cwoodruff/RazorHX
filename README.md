@@ -267,6 +267,39 @@ Features ranked by **user impact** and **implementation effort**. The library is
 | Adopt `HtmlRenderer` in components | Replace raw `StringBuilder` HTML construction with the fluent `HtmlRenderer` for better escaping and readability |
 | WCAG 2.2 contrast audit | Verify all foreground/background token pairs in `rhx-tokens.css` meet AA contrast ratios (4.5:1 normal text, 3:1 large text) |
 
+## Project Template
+
+A .NET project template for htmxRazor is available in the `templates/htmxRazor.Template` directory. This template provides a clean starting point with:
+- No jQuery or Bootstrap.
+- Pre-configured `Program.cs` for htmxRazor.
+- A base `_Layout.cshtml` including htmxRazor assets.
+- A sample `Index.cshtml` demonstrating htmx and htmxRazor components.
+
+### Installation
+
+You can install the template locally from the source or from a NuGet package.
+
+To install the template locally from source, run the following command from the project root:
+
+```bash
+dotnet new install ./templates/htmxRazor.Template
+```
+
+Alternatively, you can pack and install from the template package:
+
+```bash
+dotnet pack templates/htmxRazor.Templates.csproj -o nupkg
+dotnet new install nupkg/htmxRazor.Templates.1.1.1.nupkg
+```
+
+### Usage
+
+To create a new project using the template, run:
+
+```bash
+dotnet new htmxrazor -n YourProjectName
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, PR guidelines, and coding standards.

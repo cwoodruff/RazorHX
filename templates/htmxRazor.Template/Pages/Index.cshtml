@@ -1,0 +1,35 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="welcome-section">
+    <h2>Welcome to htmxRazor</h2>
+    <p>A modern, lightweight framework for building interactive web applications with .NET Razor Pages and htmx, without jQuery or Bootstrap.</p>
+
+    <div class="demo-actions">
+        <rhx-button rhx-variant="brand"
+                    hx-page="/Index"
+                    hx-handler="HelloWorld"
+                    hx-target="#hello-output">
+            Click Me (htmx)
+        </rhx-button>
+    </div>
+
+    <div id="hello-output" class="output-area">
+        @* htmx will swap content here *@
+    </div>
+</div>
+
+@functions {
+    public class IndexModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+    {
+        public void OnGet() { }
+
+        public Microsoft.AspNetCore.Mvc.IActionResult OnGetHelloWorld()
+        {
+            return Content("<rhx-callout rhx-variant='success'>Hello from the server! This was loaded via htmx.</rhx-callout>", "text/html");
+        }
+    }
+}

@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.Example", "htmxRa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.StyleExample", "htmxRazor.StyleExample\htmxRazor.StyleExample.csproj", "{33A43877-9D51-4389-9152-903BBE94E065}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{808186BE-9BD0-DD1D-D574-36EEAD1E7F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "htmxRazor.Templates", "templates\htmxRazor.Templates.csproj", "{88906BF0-4356-4295-BBB0-E9E05E07C75F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,8 +84,23 @@ Global
 		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x64.Build.0 = Release|Any CPU
 		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x86.ActiveCfg = Release|Any CPU
 		{33A43877-9D51-4389-9152-903BBE94E065}.Release|x86.Build.0 = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|x64.Build.0 = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Debug|x86.Build.0 = Debug|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|x64.ActiveCfg = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|x64.Build.0 = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|x86.ActiveCfg = Release|Any CPU
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88906BF0-4356-4295-BBB0-E9E05E07C75F} = {808186BE-9BD0-DD1D-D574-36EEAD1E7F8F}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,50 @@
+:root {
+    --rhx-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    font-family: var(--rhx-font-family);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+header {
+    background: #0078d4;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 0.875rem;
+    border-top: 1px solid #eee;
+    margin-top: 4rem;
+}
+
+.welcome-section {
+    text-align: center;
+}
+
+.demo-actions {
+    margin: 2rem 0;
+}
+
+.output-area {
+    margin: 2rem 0;
+    min-height: 100px;
+}

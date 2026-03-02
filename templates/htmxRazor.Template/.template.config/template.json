@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Chris Woody Woodruff",
+  "classifications": [ "Web", "Razor", "htmx", "htmxRazor" ],
+  "name": "htmxRazor Project",
+  "identity": "htmxRazor.Project.Template",
+  "shortName": "htmxrazor",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "htmxRazor.Project",
+  "preferNameDirectory": true
+}

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageId>htmxRazor.Templates</PackageId>
+    <Title>htmxRazor Templates</Title>
+    <Version>1.1.1</Version>
+    <Authors>Chris Woody Woodruff</Authors>
+    <Description>.NET project templates for htmxRazor, a modern framework for building interactive web applications with Razor Pages and htmx.</Description>
+    <PackageTags>dotnet;aspnetcore;htmx;razor-pages;templates;htmxRazor</PackageTags>
+    <PackageProjectUrl>https://github.com/cwoodruff/htmxRazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cwoodruff/htmxRazor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <TargetFramework>net10.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="htmxRazor.Template\**\*" Exclude="htmxRazor.Template\bin\**;htmxRazor.Template\obj\**;htmxRazor.Template\**\*.user" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
