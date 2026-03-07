@@ -2,6 +2,7 @@
    rhx-slider — Range slider with fill bar and tooltip
    ────────────────────────────────────────────── */
 
+@layer rhx.components {
 .rhx-slider {
     display: flex;
     flex-direction: column;
@@ -213,4 +214,5 @@
     .rhx-slider__tooltip {
         transition: none;
     }
+}
 }

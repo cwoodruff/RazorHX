@@ -24,6 +24,10 @@ public sealed class htmxRazorTagHelperComponent : TagHelperComponent
             return Task.CompletedTask;
         }
 
+        // Establish CSS cascade layer order — unlayered host app styles win automatically
+        output.PostContent.AppendHtml(
+            "\n    <style>@layer rhx.reset, rhx.tokens, rhx.core, rhx.utilities, rhx.components, rhx.theme;</style>");
+
         // Inject htmxRazor stylesheet
         output.PostContent.AppendHtml(
             "\n    <link rel=\"stylesheet\" href=\"/_rhx/css/rhx-tokens.css\">" +

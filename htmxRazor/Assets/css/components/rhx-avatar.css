@@ -2,6 +2,7 @@
    rhx-avatar — User avatar with image or initials
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-avatar {
     --rhx-avatar-size: 2.5rem;
     display: inline-flex;
@@ -85,3 +86,4 @@
 [data-rhx-theme="dark"] .rhx-avatar__initials[data-rhx-hash="5"] { background: hsl(60, 50%, 25%); color: hsl(60, 50%, 80%); }
 [data-rhx-theme="dark"] .rhx-avatar__initials[data-rhx-hash="6"] { background: hsl(0, 50%, 25%); color: hsl(0, 50%, 80%); }
 [data-rhx-theme="dark"] .rhx-avatar__initials[data-rhx-hash="7"] { background: hsl(180, 50%, 25%); color: hsl(180, 50%, 80%); }
+}

@@ -3,6 +3,7 @@
    BEM:  rhx-skeleton  /  rhx-skeleton--{effect}  rhx-skeleton--{shape}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-skeleton {
   display: block;
@@ -84,4 +85,5 @@
   .rhx-skeleton--sheen::after {
     animation: none;
   }
+}
 }

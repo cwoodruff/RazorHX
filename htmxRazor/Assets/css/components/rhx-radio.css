@@ -2,6 +2,7 @@
    rhx-radio-group & rhx-radio — Radio button components
    ═══════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Radio Group (fieldset) ── */
 .rhx-radio-group {
     border: none;
@@ -177,4 +178,5 @@
     .rhx-radio__control::after {
         transition: none;
     }
+}
 }

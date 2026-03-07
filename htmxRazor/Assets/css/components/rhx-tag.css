@@ -4,6 +4,7 @@
          rhx-tag--{variant}  rhx-tag--{size}  rhx-tag--{pill,removable}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-tag {
   display: inline-flex;
@@ -128,4 +129,5 @@
   .rhx-tag {
     transition-duration: 0.01ms;
   }
+}
 }

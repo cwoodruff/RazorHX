@@ -5,6 +5,7 @@
          rhx-button--{size}     rhx-button--{shape/state}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-button {
   display: inline-flex;
@@ -568,4 +569,5 @@
   .rhx-spinner {
     animation-duration: 1.5s;
   }
+}
 }

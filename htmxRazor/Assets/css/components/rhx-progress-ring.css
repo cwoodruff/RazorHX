@@ -3,6 +3,7 @@
    BEM:  rhx-progress-ring  /  rhx-progress-ring__{track,fill,label}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-progress-ring {
   width: 4rem;
@@ -36,4 +37,5 @@
   .rhx-progress-ring__fill {
     transition-duration: 0.01ms;
   }
+}
 }

@@ -4,6 +4,7 @@
    with a dropdown listbox.
    ───────────────────────────────────────────── */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-combobox {
     position: relative;
@@ -241,4 +242,5 @@
     .rhx-combobox__option {
         transition: none;
     }
+}
 }

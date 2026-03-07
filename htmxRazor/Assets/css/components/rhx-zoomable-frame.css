@@ -2,6 +2,7 @@
    rhx-zoomable-frame — Pinch/scroll to zoom
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-zoomable-frame {
     position: relative;
     overflow: hidden;
@@ -46,4 +47,5 @@
     .rhx-zoomable-frame__content {
         transition: none !important;
     }
+}
 }

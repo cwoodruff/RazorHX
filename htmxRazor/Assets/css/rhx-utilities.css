@@ -3,6 +3,7 @@
  * Layout and spacing utility classes for quick composition.
  */
 
+@layer rhx.utilities {
 /* ── Display ── */
 .rhx-block { display: block; }
 .rhx-inline { display: inline; }
@@ -147,3 +148,4 @@
 .rhx-overflow-hidden { overflow: hidden; }
 .rhx-overflow-auto { overflow: auto; }
 .rhx-overflow-x-auto { overflow-x: auto; }
+}

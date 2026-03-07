@@ -2,6 +2,7 @@
    rhx-breadcrumb — Breadcrumb navigation
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-breadcrumb__list {
     display: flex;
     flex-wrap: wrap;
@@ -47,4 +48,5 @@
 .rhx-breadcrumb__separator {
     color: var(--rhx-color-text-muted);
     user-select: none;
+}
 }

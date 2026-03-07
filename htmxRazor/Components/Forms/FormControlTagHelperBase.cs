@@ -296,6 +296,12 @@ public abstract class FormControlTagHelperBase : htmxRazorTagHelperBase
         Attr("hx-swap-oob", HxSwapOob);
         Attr("hx-sync", HxSync);
 
+        // hx-on:* event handlers (htmx 2.x)
+        foreach (var kvp in HxOn)
+        {
+            sb.Append($" hx-on:{Enc(kvp.Key)}=\"{Enc(kvp.Value)}\"");
+        }
+
         return sb.ToString();
     }
 

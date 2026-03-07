@@ -3,6 +3,7 @@
  * Shared component foundations — base styles used across all components.
  */
 
+@layer rhx.core {
 /* ── Visually hidden (accessible) ── */
 .rhx-sr-only {
   position: absolute;
@@ -95,4 +96,5 @@
 .rhx-surface--raised {
   background: var(--rhx-color-surface-raised);
   box-shadow: var(--rhx-shadow-md);
+}
 }

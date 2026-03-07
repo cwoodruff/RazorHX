@@ -3,6 +3,7 @@
  * BEM: rhx-textarea / rhx-textarea__control / rhx-textarea__native / rhx-textarea--{modifier}
  */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-textarea {
   display: flex;
@@ -148,4 +149,5 @@
   .rhx-textarea__control {
     transition: none;
   }
+}
 }

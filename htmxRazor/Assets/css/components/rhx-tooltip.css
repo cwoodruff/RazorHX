@@ -4,6 +4,7 @@
    The popup .rhx-tooltip is created/positioned by JS.
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Tooltip wrapper (tag helper output) ── */
 [data-rhx-tooltip] {
   display: contents;
@@ -87,4 +88,5 @@
   .rhx-tooltip {
     transition-duration: 0.01ms;
   }
+}
 }

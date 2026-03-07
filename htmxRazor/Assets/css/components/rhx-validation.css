@@ -3,6 +3,7 @@
    Standalone validation message and validation summary styling.
    ================================================================ */
 
+@layer rhx.components {
 /* ── Validation Message ── */
 .rhx-validation-message {
   display: block;
@@ -31,4 +32,5 @@
 
 .rhx-validation-summary__list li {
   line-height: var(--rhx-line-height-normal);
+}
 }

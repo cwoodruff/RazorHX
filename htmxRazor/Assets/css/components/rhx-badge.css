@@ -3,6 +3,7 @@
    BEM:  rhx-badge  /  rhx-badge--{variant}  rhx-badge--{pill,pulse}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-badge {
   display: inline-flex;
@@ -125,4 +126,5 @@
   .rhx-badge--pulse::after {
     animation: none;
   }
+}
 }

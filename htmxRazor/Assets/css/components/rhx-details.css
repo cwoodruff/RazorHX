@@ -2,6 +2,7 @@
    rhx-details — Collapsible disclosure widget
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-details {
     border: var(--rhx-border-width) solid var(--rhx-color-border);
     border-radius: var(--rhx-radius-md);
@@ -89,4 +90,5 @@
     .rhx-details__summary-icon {
         transition: none;
     }
+}
 }

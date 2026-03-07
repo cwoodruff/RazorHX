@@ -3,6 +3,7 @@
    Convenience wrappers for common htmx interaction patterns
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Infinite Scroll ── */
 
 .rhx-infinite-scroll {
@@ -40,4 +41,5 @@
 
 .rhx-lazy-load {
     display: block;
+}
 }

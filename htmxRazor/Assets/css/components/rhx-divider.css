@@ -2,6 +2,7 @@
    rhx-divider — Horizontal / vertical divider
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-divider {
     border: none;
     border-top: var(--rhx-border-width) solid var(--rhx-color-border);
@@ -15,4 +16,5 @@
     margin: 0 var(--rhx-space-md);
     align-self: stretch;
     width: 0;
+}
 }

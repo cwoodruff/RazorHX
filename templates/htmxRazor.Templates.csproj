@@ -4,7 +4,7 @@
     <PackageType>Template</PackageType>
     <PackageId>htmxRazor.Templates</PackageId>
     <Title>htmxRazor Templates</Title>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
     <Authors>Chris Woody Woodruff</Authors>
     <Description>.NET project templates for htmxRazor, a modern framework for building interactive web applications with Razor Pages and htmx.</Description>
     <PackageTags>dotnet;aspnetcore;htmx;razor-pages;templates;htmxRazor</PackageTags>

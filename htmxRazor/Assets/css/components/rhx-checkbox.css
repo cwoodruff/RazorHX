@@ -2,6 +2,7 @@
    rhx-checkbox — Custom checkbox component
    ═══════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Screen-reader-only utility ── */
 .rhx-sr-only {
     position: absolute;
@@ -182,4 +183,5 @@
     .rhx-checkbox__control {
         transition: none;
     }
+}
 }

@@ -4,6 +4,7 @@
    BEM: rhx-popup / rhx-popup--active / rhx-popup__arrow
    ================================================================ */
 
+@layer rhx.components {
 .rhx-popup {
   position: absolute;
   z-index: var(--rhx-z-popup, 700);
@@ -35,4 +36,5 @@
 
 .rhx-popup[data-rhx-strategy="fixed"] {
   position: fixed;
+}
 }

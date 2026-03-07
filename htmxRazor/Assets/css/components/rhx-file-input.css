@@ -3,6 +3,7 @@
    drag-and-drop, file list, and size validation
    ────────────────────────────────────────────── */
 
+@layer rhx.components {
 .rhx-file-input {
     display: flex;
     flex-direction: column;
@@ -203,4 +204,5 @@
     .rhx-file-input__dropzone {
         transition: none;
     }
+}
 }

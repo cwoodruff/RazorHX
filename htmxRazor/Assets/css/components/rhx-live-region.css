@@ -1,0 +1,22 @@
+/* ═══════════════════════════════════════════════════════════════
+   htmxRazor Live Region Component
+   BEM:  rhx-live-region  /  rhx-live-region--visually-hidden
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer rhx.components {
+.rhx-live-region {
+  display: block;
+}
+
+.rhx-live-region--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+}

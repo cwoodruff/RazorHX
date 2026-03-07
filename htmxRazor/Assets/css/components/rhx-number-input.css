@@ -3,6 +3,7 @@
  * BEM: rhx-number-input / rhx-number-input__control / rhx-number-input__native / rhx-number-input--{modifier}
  */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-number-input {
   display: flex;
@@ -217,4 +218,5 @@
   .rhx-number-input__increment {
     transition: none;
   }
+}
 }

@@ -3,6 +3,7 @@
    hue/opacity sliders, text input, and preset swatches
    ────────────────────────────────────────────── */
 
+@layer rhx.components {
 .rhx-color-picker {
     display: inline-flex;
     flex-direction: column;
@@ -319,4 +320,5 @@
     .rhx-color-picker__preset {
         transition: none;
     }
+}
 }

@@ -2,6 +2,7 @@
    rhx-carousel
    ═══════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-carousel {
     position: relative;
 }
@@ -153,4 +154,5 @@
     .rhx-carousel__nav-button {
         transition-duration: 0.01ms;
     }
+}
 }

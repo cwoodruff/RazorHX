@@ -4,6 +4,7 @@
          rhx-progress-bar--indeterminate
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-progress-bar {
   display: flex;
@@ -71,4 +72,5 @@
   .rhx-progress-bar--indeterminate .rhx-progress-bar__fill {
     animation-duration: 3s;
   }
+}
 }

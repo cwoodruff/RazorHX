@@ -2,6 +2,7 @@
    rhx-rating — Interactive star rating
    ────────────────────────────────────────────── */
 
+@layer rhx.components {
 .rhx-rating {
     display: flex;
     flex-direction: column;
@@ -167,4 +168,5 @@
     .rhx-rating__star {
         transition: none;
     }
+}
 }

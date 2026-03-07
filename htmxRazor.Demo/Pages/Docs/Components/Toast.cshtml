@@ -1,0 +1,159 @@
+@page
+@model ToastModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Toast";
+    ViewData["ComponentName"] = "Toast";
+    ViewData["ComponentTag"] = "rhx-toast";
+    ViewData["ComponentDescription"] = "Notification toasts with auto-dismiss, severity variants, stacking, and server-side trigger helpers.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Container Setup -->
+    <div class="docs-example">
+        <h3>Container Setup</h3>
+        <p>Place a single <code>&lt;rhx-toast-container&gt;</code> in your layout. All toasts render inside it.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="container-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="container-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="container-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-callout rhx-variant="brand">
+                        A <code>&lt;rhx-toast-container&gt;</code> is already included in this demo site's layout.
+                        Toasts will appear in the top-right corner.
+                    </rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="container-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ContainerCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Live Demo: Trigger Toasts -->
+    <div class="docs-example">
+        <h3>Trigger Toasts from Server</h3>
+        <p>Click the buttons to trigger toasts via <code>Response.HxToast()</code> from the server.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="trigger-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="trigger-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="trigger-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div id="toast-demo-target" style="display:none;"></div>
+                    <div style="display:flex; gap:var(--rhx-space-sm); flex-wrap:wrap;">
+                        <rhx-button rhx-variant="success"
+                                    hx-post="/Docs/Components/Toast?handler=ShowSuccess"
+                                    hx-target="#toast-demo-target"
+                                    hx-swap="innerHTML">
+                            Success Toast
+                        </rhx-button>
+                        <rhx-button rhx-variant="danger"
+                                    hx-post="/Docs/Components/Toast?handler=ShowError"
+                                    hx-target="#toast-demo-target"
+                                    hx-swap="innerHTML">
+                            Error Toast
+                        </rhx-button>
+                        <rhx-button rhx-variant="warning"
+                                    hx-post="/Docs/Components/Toast?handler=ShowWarning"
+                                    hx-target="#toast-demo-target"
+                                    hx-swap="innerHTML">
+                            Warning Toast
+                        </rhx-button>
+                        <rhx-button rhx-variant="brand"
+                                    hx-post="/Docs/Components/Toast?handler=ShowBrand"
+                                    hx-target="#toast-demo-target"
+                                    hx-swap="innerHTML">
+                            Brand Toast
+                        </rhx-button>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="trigger-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ButtonTriggerCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Variants (static) -->
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-toast rhx-variant="neutral" rhx-duration="0">This is a neutral notification.</rhx-toast>
+                    <rhx-toast rhx-variant="brand" rhx-duration="0">New feature available!</rhx-toast>
+                    <rhx-toast rhx-variant="success" rhx-duration="0">Item saved successfully!</rhx-toast>
+                    <rhx-toast rhx-variant="warning" rhx-duration="0">Your session expires in 5 minutes.</rhx-toast>
+                    <rhx-toast rhx-variant="danger" rhx-duration="0">Failed to delete the item.</rhx-toast>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Server-Side Usage -->
+    <div class="docs-example">
+        <h3>Server-Side: Event Trigger</h3>
+        <p>The recommended approach. Sets <code>HX-Trigger-After-Settle</code> header; JavaScript creates the toast.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="server-code" rhx-active="true">C# Code</rhx-tab>
+            <rhx-tab-panel rhx-name="server-code" rhx-active="true">
+                <div class="docs-code">
+                    <pre><code>@Model.ServerTriggerCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- OOB Swap Usage -->
+    <div class="docs-example">
+        <h3>Server-Side: OOB Swap</h3>
+        <p>For custom toast content. Server renders the full <code>&lt;rhx-toast&gt;</code> HTML and swaps it into the container.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="oob-code" rhx-active="true">C# Code</rhx-tab>
+            <rhx-tab-panel rhx-name="oob-code" rhx-active="true">
+                <div class="docs-code">
+                    <pre><code>@Model.OobSwapCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Container Properties -->
+<section class="docs-component-section">
+    <h2>Container Properties</h2>
+    <p>Properties for <code>&lt;rhx-toast-container&gt;</code>:</p>
+</section>
+@await Html.PartialAsync("_PropertyTable", Model.ContainerProperties)
+
+<!-- Toast Properties -->
+<section class="docs-component-section">
+    <h2>Toast Properties</h2>
+    <p>Properties for <code>&lt;rhx-toast&gt;</code>:</p>
+</section>
+@await Html.PartialAsync("_PropertyTable", Model.ToastProperties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Toast container uses <code>role="status"</code> with <code>aria-live="polite"</code> so new toasts are announced without interrupting.</li>
+        <li>Close button has <code>aria-label="Close"</code> for screen readers.</li>
+        <li>Icons are marked <code>aria-hidden="true"</code> since variant meaning is conveyed through text content.</li>
+        <li>Auto-dismiss pauses on hover so users have time to read.</li>
+        <li>Animations respect <code>prefers-reduced-motion</code>.</li>
+    </ul>
+</section>

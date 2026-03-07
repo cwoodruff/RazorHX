@@ -2,6 +2,7 @@
    rhx-tabs — Tab navigation component
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Tab Group container ── */
 .rhx-tab-group {
     display: flex;
@@ -191,4 +192,5 @@
     .rhx-tab {
         transition: none;
     }
+}
 }

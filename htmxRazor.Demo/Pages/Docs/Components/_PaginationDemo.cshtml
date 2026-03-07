@@ -1,0 +1,17 @@
+@model htmxRazor.Demo.Pages.Docs.Components.PaginationDemoModel
+
+<ul style="list-style:none; padding:0; margin:0 0 var(--rhx-space-md) 0;">
+    @foreach (var item in Model.Items)
+    {
+        <li style="padding:var(--rhx-space-xs) 0; border-bottom:1px solid var(--rhx-color-neutral-200);">@item</li>
+    }
+</ul>
+<rhx-pagination rhx-current-page="@Model.CurrentPage"
+                rhx-total-items="@Model.TotalItems"
+                rhx-page-size="@Model.PageSize"
+                rhx-show-info="@Model.ShowInfo"
+                rhx-show-edges="@Model.ShowEdges"
+                rhx-size="@Model.Size"
+                hx-get="@Model.HxGetUrl"
+                hx-target="#@Model.ContainerId"
+                hx-swap="innerHTML" />

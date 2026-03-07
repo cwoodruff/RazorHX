@@ -2,6 +2,7 @@
    rhx-switch — Toggle switch component
    ═══════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-switch {
     display: inline-flex;
@@ -159,4 +160,5 @@
     .rhx-switch__thumb {
         transition: none;
     }
+}
 }

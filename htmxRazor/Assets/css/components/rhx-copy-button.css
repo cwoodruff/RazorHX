@@ -4,6 +4,7 @@
          rhx-copy-button--{success,disabled}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-copy-button {
   display: inline-flex;
@@ -76,4 +77,5 @@
   .rhx-copy-button {
     transition-duration: 0.01ms;
   }
+}
 }

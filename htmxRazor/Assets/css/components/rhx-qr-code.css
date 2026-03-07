@@ -3,7 +3,9 @@
    BEM:  rhx-qr-code
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-qr-code {
   display: block;
   image-rendering: pixelated;
+}
 }

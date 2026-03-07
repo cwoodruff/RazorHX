@@ -1,0 +1,168 @@
+@page
+@model PaginationModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Pagination";
+    ViewData["ComponentName"] = "Pagination";
+    ViewData["ComponentTag"] = "rhx-pagination";
+    ViewData["ComponentDescription"] = "Page navigation with htmx-powered paging, ellipsis, size variants, and accessibility.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+    <p>All demos below are fully interactive. Click any page number, arrow, or edge button to navigate.</p>
+
+    <!-- Live htmx Demo -->
+    <div class="docs-example">
+        <h3>Live Paging</h3>
+        <p>Click page buttons to load items from the server via htmx. Items and pagination update together.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="paging-live">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.LiveDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic (starting at page 5)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="paging-basic">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.BasicDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Total Items Calculation -->
+    <div class="docs-example">
+        <h3>Auto-calculate from Total Items</h3>
+        <p>Set <code>rhx-total-items</code> and <code>rhx-page-size</code> instead of <code>rhx-total-pages</code>.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="totalitems-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="totalitems-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="totalitems-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="paging-totalitems">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.TotalItemsDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="totalitems-code">
+                <div class="docs-code">
+                    <pre><code>@Model.TotalItemsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- With Info -->
+    <div class="docs-example">
+        <h3>With Page Info</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="info-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="info-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="info-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="paging-info">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.InfoDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="info-code">
+                <div class="docs-code">
+                    <pre><code>@Model.InfoCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Sizes -->
+    <div class="docs-example">
+        <h3>Sizes</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="sizes-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="sizes-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="sizes-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <p style="font-size:var(--rhx-font-size-sm);color:var(--rhx-color-text-muted);margin:0;">Small</p>
+                    <div id="paging-small">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.SmallDemo)
+                    </div>
+                    <p style="font-size:var(--rhx-font-size-sm);color:var(--rhx-color-text-muted);margin:0;">Medium (default)</p>
+                    <div id="paging-medium">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.MediumDemo)
+                    </div>
+                    <p style="font-size:var(--rhx-font-size-sm);color:var(--rhx-color-text-muted);margin:0;">Large</p>
+                    <div id="paging-large">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.LargeDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="sizes-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- No Edge Buttons -->
+    <div class="docs-example">
+        <h3>Without First/Last Buttons</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="noedges-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="noedges-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="noedges-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <div id="paging-noedges">
+                        @await Html.PartialAsync("Docs/Components/_PaginationDemo", Model.NoEdgesDemo)
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="noedges-code">
+                <div class="docs-code">
+                    <pre><code>@Model.NoEdgesCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders a <code>&lt;nav&gt;</code> element with <code>aria-label="Pagination"</code>.</li>
+        <li>The current page button has <code>aria-current="page"</code>.</li>
+        <li>Page buttons have <code>aria-label="Go to page N"</code> for screen readers.</li>
+        <li>Previous/Next/First/Last buttons have descriptive <code>aria-label</code> values.</li>
+        <li>Disabled buttons (e.g., Previous on page 1) use the <code>disabled</code> attribute.</li>
+        <li>Ellipsis markers are hidden from assistive technologies with <code>aria-hidden="true"</code>.</li>
+        <li>Page info text uses <code>aria-live="polite"</code> so screen readers announce page changes.</li>
+    </ul>
+</section>

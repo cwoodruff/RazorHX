@@ -4,6 +4,7 @@
    All rendering is server-side; CSS handles sizing and theming.
    ================================================================ */
 
+@layer rhx.components {
 .rhx-sparkline {
   display: inline-block;
   vertical-align: middle;
@@ -33,4 +34,5 @@
   .rhx-sparkline__bar {
     transition-duration: 0.01ms;
   }
+}
 }

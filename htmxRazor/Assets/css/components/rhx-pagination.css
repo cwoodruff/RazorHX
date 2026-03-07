@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════════════
+   htmxRazor Pagination Component
+   BEM:  rhx-pagination  /  rhx-pagination__{list,item,link,ellipsis,info}
+         rhx-pagination--{size}
+         rhx-pagination__link--{current,first,prev,next,last}
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer rhx.components {
+.rhx-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--rhx-space-sm);
+}
+
+.rhx-pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--rhx-space-2xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rhx-pagination__item {
+  display: flex;
+}
+
+.rhx-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: var(--rhx-space-2xs) var(--rhx-space-xs);
+  border: 1px solid var(--rhx-color-neutral-300);
+  border-radius: var(--rhx-radius-md);
+  background: var(--rhx-color-surface);
+  color: var(--rhx-color-text);
+  font-family: inherit;
+  font-size: var(--rhx-font-size-sm);
+  font-weight: var(--rhx-font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--rhx-transition-fast),
+    border-color var(--rhx-transition-fast),
+    color var(--rhx-transition-fast);
+  user-select: none;
+}
+
+.rhx-pagination__link:hover:not(:disabled) {
+  background: var(--rhx-color-neutral-100);
+  border-color: var(--rhx-color-neutral-400);
+}
+
+.rhx-pagination__link:focus-visible {
+  outline: 2px solid var(--rhx-color-brand-500);
+  outline-offset: 2px;
+}
+
+.rhx-pagination__link:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rhx-pagination__link--current {
+  background: var(--rhx-color-brand-500);
+  border-color: var(--rhx-color-brand-500);
+  color: var(--rhx-color-on-brand);
+  cursor: default;
+}
+
+.rhx-pagination__link--current:hover:not(:disabled) {
+  background: var(--rhx-color-brand-500);
+  border-color: var(--rhx-color-brand-500);
+}
+
+.rhx-pagination__link--first,
+.rhx-pagination__link--prev,
+.rhx-pagination__link--next,
+.rhx-pagination__link--last {
+  min-width: 2.25rem;
+  padding: var(--rhx-space-2xs);
+}
+
+.rhx-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  color: var(--rhx-color-text-muted);
+  font-size: var(--rhx-font-size-sm);
+  user-select: none;
+}
+
+.rhx-pagination__info {
+  color: var(--rhx-color-text-muted);
+  font-size: var(--rhx-font-size-sm);
+  white-space: nowrap;
+}
+
+/* ── Size variants ── */
+
+.rhx-pagination--small .rhx-pagination__link {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--rhx-font-size-xs);
+  padding: var(--rhx-space-3xs) var(--rhx-space-2xs);
+}
+
+.rhx-pagination--small .rhx-pagination__ellipsis {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--rhx-font-size-xs);
+}
+
+.rhx-pagination--large .rhx-pagination__link {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  font-size: var(--rhx-font-size-base);
+  padding: var(--rhx-space-xs) var(--rhx-space-sm);
+}
+
+.rhx-pagination--large .rhx-pagination__ellipsis {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  font-size: var(--rhx-font-size-base);
+}
+
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .rhx-pagination__link {
+    transition: none;
+  }
+}
+}

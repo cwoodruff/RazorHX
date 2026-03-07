@@ -4,6 +4,7 @@
    Uses [data-rhx-spinner] to distinguish from button's border-based spinner.
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base (standalone SVG spinner) ── */
 [data-rhx-spinner] {
   display: inline-flex;
@@ -63,4 +64,5 @@
   [data-rhx-spinner] svg {
     animation-duration: 2s;
   }
+}
 }

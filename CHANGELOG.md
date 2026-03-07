@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] — Notifications, Pagination & Quick Wins
+
+### Added
+- **Toast Notification System**: `<rhx-toast-container>` and `<rhx-toast>` components with auto-dismiss, severity variants, stacking, and `aria-live` announcements. Server-side `HxToast()` and `HxToastOob()` extension methods for triggering toasts from handlers.
+- **Pagination**: `<rhx-pagination>` component with htmx-powered page navigation, ellipsis for large page counts, first/last/prev/next buttons, size variants, and page info display.
+- **ARIA Live Region Manager**: `<rhx-live-region>` wrapper component for screen reader announcements on htmx swaps. Supports politeness levels, atomic updates, and visually-hidden mode.
+- **`hx-on:*` Dictionary Attribute**: Dictionary attribute on `htmxRazorTagHelperBase` for htmx 2.x event handler attributes (e.g., `hx-on:after-request`). Refactored `InfiniteScrollTagHelper` to use it.
+- **View Transition Support**: `rhx-transition` and `rhx-transition-name` attributes on the base class for smooth animated page transitions via the View Transitions API.
+
+### Changed
+- **CSS Cascade Layers**: All component CSS wrapped in `@layer rhx.components { }`, core CSS in corresponding layers (`rhx.reset`, `rhx.tokens`, `rhx.core`, `rhx.utilities`, `rhx.theme`). Host app styles automatically override component styles without specificity wars.
+- `htmxRazorTagHelperComponent` now injects `@layer` order declaration before CSS links.
+- `FormControlTagHelperBase.BuildHtmxAttributeString()` now forwards `hx-on:*` attributes to inner elements.
+
+### Components Added
+- **Feedback**: Toast, Toast Container
+- **Navigation**: Pagination
+- **Utilities**: Live Region
+
+## [1.1.0]
+
 ### Added
 - Complete Tag Helper component library with 72 components across 10 categories
 - CSS design system with light/dark themes via CSS custom properties

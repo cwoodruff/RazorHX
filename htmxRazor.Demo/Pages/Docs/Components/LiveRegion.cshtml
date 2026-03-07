@@ -1,0 +1,117 @@
+@page
+@model LiveRegionModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Live Region";
+    ViewData["ComponentName"] = "Live Region";
+    ViewData["ComponentTag"] = "rhx-live-region";
+    ViewData["ComponentDescription"] = "ARIA live region wrapper for screen reader announcements on htmx content swaps.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic with htmx Search -->
+    <div class="docs-example">
+        <h3>Live Search Results</h3>
+        <p>Type in the search box. Screen readers will announce updated results via the live region.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview docs-preview--vertical">
+                    <rhx-input rhx-label="Search"
+                               rhx-placeholder="Type to search..."
+                               hx-get="/Docs/Components/LiveRegion?handler=Search"
+                               hx-trigger="input changed delay:300ms"
+                               hx-target="#search-results"
+                               name="q" />
+                    <rhx-live-region id="search-results">
+                        <p style="color:var(--rhx-color-text-muted);">Type to search...</p>
+                    </rhx-live-region>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Assertive -->
+    <div class="docs-example">
+        <h3>Assertive (Urgent Messages)</h3>
+        <p>Use <code>rhx-politeness="assertive"</code> for error messages or urgent alerts that should interrupt the user.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="assertive-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="assertive-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="assertive-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-live-region rhx-politeness="assertive" rhx-role="alert">
+                        <rhx-callout rhx-variant="danger">Connection lost. Reconnecting...</rhx-callout>
+                    </rhx-live-region>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="assertive-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AssertiveCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Visually Hidden -->
+    <div class="docs-example">
+        <h3>Visually Hidden</h3>
+        <p>Use <code>rhx-visually-hidden="true"</code> for screen-reader-only announcements with no visual output.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="hidden-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="hidden-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="hidden-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-live-region rhx-visually-hidden="true" id="sr-only-demo">
+                        3 results found
+                    </rhx-live-region>
+                    <rhx-callout rhx-variant="brand">
+                        The live region above is visually hidden but will announce "3 results found" to screen readers.
+                    </rhx-callout>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="hidden-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VisuallyHiddenCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Polling -->
+    <div class="docs-example">
+        <h3>htmx Polling</h3>
+        <p>Combine with htmx polling for real-time status updates announced to screen readers.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="polling-code" rhx-active="true">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="polling-code" rhx-active="true">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<!-- Accessibility -->
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>Renders <code>aria-live</code> with configurable politeness: <code>polite</code> (default, waits for idle) or <code>assertive</code> (interrupts).</li>
+        <li>Uses <code>aria-atomic="true"</code> by default so the entire region is announced as a unit on changes.</li>
+        <li><code>aria-relevant</code> can be set to control which types of changes trigger announcements.</li>
+        <li>The <code>rhx-visually-hidden</code> option provides screen-reader-only announcements using the standard visually-hidden technique.</li>
+        <li>The role defaults to <code>status</code> for non-urgent updates. Use <code>alert</code> for time-sensitive messages.</li>
+    </ul>
+</section>

@@ -6,6 +6,7 @@
          rhx-dropdown__item--{checkbox,checked,disabled}
    ================================================================ */
 
+@layer rhx.components {
 /* ── Container ── */
 .rhx-dropdown {
   position: relative;
@@ -196,4 +197,5 @@
   .rhx-dropdown__item {
     transition-duration: 0.01ms;
   }
+}
 }

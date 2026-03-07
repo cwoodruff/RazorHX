@@ -100,7 +100,11 @@ public class InfiniteScrollTagHelper : htmxRazorTagHelperBase
 
         // Remove the trigger element after loading — prevents stale spinners
         // between item groups and ensures only the newest trigger remains.
-        output.Attributes.SetAttribute("hx-on::after-request", "this.remove()");
+        if (!HxOn.ContainsKey("after-request"))
+        {
+            HxOn["after-request"] = "this.remove()";
+        }
+        RenderHtmxAttributes(output);
 
         var childContent = await output.GetChildContentAsync();
         output.Content.SetHtmlContent(childContent);

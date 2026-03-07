@@ -14,7 +14,7 @@ htmxRazor is a complete UI component library implemented as Razor Tag Helpers. E
 
 - **Server-rendered** — No JavaScript framework. Components are Tag Helpers that render HTML on the server.
 - **htmx-native** — Every component supports `hx-get`, `hx-post`, `hx-target`, `hx-swap`, and all htmx attributes directly.
-- **72 components** — Buttons, forms, dialogs, tabs, trees, carousels, data visualization, and more across 10 categories.
+- **76 components** — Buttons, forms, dialogs, tabs, trees, carousels, toasts, pagination, and more across 10 categories.
 - **Design tokens** — Light/dark themes via CSS custom properties. Toggle with `data-rhx-theme` or `RHX.toggleTheme()`.
 - **Accessible** — Semantic HTML, ARIA attributes, keyboard navigation, and screen reader support built in.
 - **Model binding** — Form components integrate with ASP.NET Core model binding, validation, and `ModelExpression`.
@@ -143,13 +143,13 @@ app.Run();
 |----------|-----------|
 | **Actions** | Button, Button Group, Dropdown |
 | **Forms** | Input, Textarea, Select, Combobox, Checkbox, Switch, Radio, Slider, Rating, Color Picker, File Input, Number Input |
-| **Feedback** | Callout, Badge, Tag, Spinner, Skeleton, Progress Bar, Progress Ring, Tooltip |
-| **Navigation** | Tabs, Breadcrumb, Tree, Carousel |
+| **Feedback** | Callout, Badge, Tag, Spinner, Skeleton, Progress Bar, Progress Ring, Tooltip, Toast, Toast Container |
+| **Navigation** | Tabs, Breadcrumb, Tree, Carousel, Pagination |
 | **Organization** | Card, Divider, Split Panel, Scroller |
 | **Overlays** | Dialog, Drawer, Details |
 | **Imagery** | Icon (43 built-in), Avatar, Animated Image, Comparison, Zoomable Frame |
 | **Formatting** | Format Bytes, Format Date, Format Number, Relative Time |
-| **Utilities** | Copy Button, QR Code, Animation, Popup, Popover |
+| **Utilities** | Copy Button, QR Code, Animation, Popup, Popover, Live Region |
 | **Patterns** | Active Search, Infinite Scroll, Lazy Load, Poll |
 
 ## How It Compares
@@ -169,7 +169,7 @@ app.Run();
 |---------|-------------|
 | `htmxRazor` | Core Tag Helper library with embedded CSS/JS assets |
 | `htmxRazor.Demo` | Documentation site showcasing all components |
-| `htmxRazor.Tests` | 1,436 unit tests for Tag Helper rendering |
+| `htmxRazor.Tests` | 1,469 unit tests for Tag Helper rendering |
 
 ## Development
 
@@ -211,18 +211,18 @@ It's a fully self-contained design system built specifically for this component 
 
 ## Roadmap
 
-Features ranked by **user impact** and **implementation effort**. The library is at v1.1.1 with 72 components; the roadmap below covers what comes next.
+Features ranked by **user impact** and **implementation effort**. The library is at v1.2.0 with 76 components; the roadmap below covers what comes next.
 
-### v1.2 — Notifications, Pagination & Quick Wins
+### v1.2 — Notifications, Pagination & Quick Wins (Shipped)
 
-| Feature | Description | Impact | Effort |
-|---------|-------------|--------|--------|
-| **Toast Notification System** | `<rhx-toast-container>` + `<rhx-toast>` with auto-dismiss, severity variants, stacking, and `aria-live` announcements. Server-side `HtmxToastExtensions.HxToast()` piggybacks OOB-swapped toasts onto any response. | Very High | Medium |
-| **Pagination** | `<rhx-pagination>` with htmx-powered page navigation (`hx-get` with page parameter). Pairs with server-side paging for the most common data display pattern. | Very High | Medium |
-| **ARIA Live Region Manager** | `<rhx-live-region>` wrapper for screen reader announcements on htmx swaps. Accepts `politeness` (polite/assertive) and `atomic` attributes. Paired with server-side `HtmxResponseExtensions` for announcing content changes. | Very High | Low |
-| **CSS Cascade Layers** | Wrap all component CSS in `@layer rhx { }` so host app styles automatically override component styles regardless of specificity. Non-breaking CSS improvement. | High | Low |
-| **View Transition Support** | `rhx-transition` and `rhx-transition-name` attributes on the tag helper base class. Automatically appends `transition:true` to `hx-swap` for smooth animated page transitions via the View Transitions API. | High | Low |
-| **`hx-on:*` Dictionary Attribute** | Dictionary attribute on `htmxRazorTagHelperBase` for htmx 2.x event handler attributes (e.g., `hx-on::after-request`). Closes a gap already worked around in `InfiniteScrollTagHelper`. | High | Low |
+All v1.2 features have been delivered:
+
+- **Toast Notification System** — `<rhx-toast-container>` + `<rhx-toast>` with auto-dismiss, severity variants, stacking, and `aria-live` announcements. Server-side `HxToast()` and `HxToastOob()` extension methods.
+- **Pagination** — `<rhx-pagination>` with htmx-powered page navigation, ellipsis, first/last/prev/next buttons, and size variants.
+- **ARIA Live Region Manager** — `<rhx-live-region>` for screen reader announcements on htmx swaps with politeness levels and atomic updates.
+- **CSS Cascade Layers** — All component CSS wrapped in `@layer` for easy host app overrides without specificity wars.
+- **View Transition Support** — `rhx-transition` and `rhx-transition-name` attributes for smooth animated page transitions via the View Transitions API.
+- **`hx-on:*` Dictionary Attribute** — Dictionary attribute on `htmxRazorTagHelperBase` for htmx 2.x event handler attributes.
 
 ### v1.3 — Data Table, Accessibility & Modern CSS
 
@@ -289,7 +289,7 @@ Alternatively, you can pack and install from the template package:
 
 ```bash
 dotnet pack templates/htmxRazor.Templates.csproj -o nupkg
-dotnet new install nupkg/htmxRazor.Templates.1.1.1.nupkg
+dotnet new install nupkg/htmxRazor.Templates.1.2.0.nupkg
 ```
 
 ### Usage

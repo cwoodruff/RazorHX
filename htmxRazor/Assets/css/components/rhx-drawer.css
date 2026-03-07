@@ -2,6 +2,7 @@
    rhx-drawer — Slide-out drawer panel
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-drawer {
     position: fixed;
     inset: 0;
@@ -152,4 +153,5 @@
     .rhx-drawer__overlay {
         transition: none;
     }
+}
 }

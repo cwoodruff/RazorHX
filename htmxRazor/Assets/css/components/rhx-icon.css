@@ -2,6 +2,7 @@
    rhx-icon — Inline SVG icon
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-icon {
     display: inline-block;
     width: 1.5rem;
@@ -25,4 +26,5 @@
 .rhx-icon--large {
     width: 2rem;
     height: 2rem;
+}
 }

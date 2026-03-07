@@ -3,6 +3,7 @@
  * BEM: rhx-input / rhx-input__label / rhx-input__control / rhx-input__native / rhx-input--{modifier}
  */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-input {
   display: flex;
@@ -223,4 +224,5 @@
   .rhx-input__toggle {
     transition: none;
   }
+}
 }

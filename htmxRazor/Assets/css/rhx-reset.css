@@ -3,6 +3,7 @@
  * Minimal reset/normalize for consistent cross-browser rendering.
  */
 
+@layer rhx.reset {
 *,
 *::before,
 *::after {
@@ -96,4 +97,5 @@ table {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
 }

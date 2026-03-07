@@ -56,6 +56,9 @@
     <link rel="stylesheet" href="/_rhx/css/components/rhx-sparkline.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-validation.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-patterns.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-toast.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-pagination.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-live-region.css" />
     <link rel="stylesheet" href="/css/docs.css" />
 </head>
 <body class="docs-layout @(showSidebar ? "" : "docs-layout--no-sidebar")">
@@ -96,6 +99,8 @@
 
     @await Html.PartialAsync("_Footer")
 
+    <rhx-toast-container rhx-position="top-end" />
+
     @Html.AntiForgeryToken()
     <script>
         document.addEventListener('htmx:configRequest', function(e) {
@@ -131,6 +136,7 @@
     <script src="/_rhx/js/components/rhx-color-picker.js" defer></script>
     <script src="/_rhx/js/components/rhx-file-input.js" defer></script>
     <script src="/_rhx/js/components/rhx-validation.js" defer></script>
+    <script src="/_rhx/js/components/rhx-toast.js" defer></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

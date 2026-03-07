@@ -4,6 +4,7 @@
          rhx-callout--{variant}
    ═══════════════════════════════════════════════════════════════ */
 
+@layer rhx.components {
 /* ── Base ── */
 .rhx-callout {
   display: flex;
@@ -133,4 +134,5 @@
   .rhx-callout {
     transition-duration: 0.01ms;
   }
+}
 }

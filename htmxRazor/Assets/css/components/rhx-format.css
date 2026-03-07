@@ -2,6 +2,7 @@
    rhx-format (shared formatting styles)
    ═══════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-format-bytes,
 .rhx-format-number {
     font-variant-numeric: tabular-nums;
@@ -10,4 +11,5 @@
 .rhx-format-date,
 .rhx-relative-time {
     /* Inherits font styles from parent */
+}
 }

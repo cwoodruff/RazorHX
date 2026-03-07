@@ -4,6 +4,7 @@
  * for when the theme is toggled via data attribute.
  */
 
+@layer rhx.theme {
 [data-rhx-theme="light"] {
   --rhx-color-bg: var(--rhx-color-neutral-50);
   --rhx-color-surface: #ffffff;
@@ -15,4 +16,5 @@
   --rhx-color-border-muted: var(--rhx-color-neutral-200);
   --rhx-color-focus-ring: var(--rhx-color-brand-500);
   --rhx-color-overlay: rgba(0, 0, 0, 0.5);
+}
 }

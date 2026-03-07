@@ -2,6 +2,7 @@
    rhx-tree — Tree view component
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-tree {
     font-size: var(--rhx-font-size-sm);
     color: var(--rhx-color-text);
@@ -106,4 +107,5 @@
     .rhx-tree__expand-icon {
         transition: none;
     }
+}
 }

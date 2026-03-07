@@ -2,6 +2,7 @@
    rhx-comparison — Before/after image comparison
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-comparison {
     position: relative;
     overflow: hidden;
@@ -97,4 +98,5 @@
 .rhx-comparison--dragging .rhx-comparison__handle-grip {
     background: var(--rhx-color-brand-500);
     color: #fff;
+}
 }

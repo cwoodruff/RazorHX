@@ -2,6 +2,7 @@
    rhx-split-panel — Resizable two-panel layout
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-split-panel {
     display: flex;
     width: 100%;
@@ -122,4 +123,5 @@
     .rhx-split-panel__end {
         transition: none;
     }
+}
 }

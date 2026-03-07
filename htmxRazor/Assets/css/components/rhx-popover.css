@@ -4,6 +4,7 @@
         rhx-popover__content / rhx-popover__arrow
    ================================================================ */
 
+@layer rhx.components {
 .rhx-popover {
   position: absolute;
   z-index: var(--rhx-z-popover, 800);
@@ -85,4 +86,5 @@
   .rhx-popover {
     transition-duration: 0.01ms;
   }
+}
 }

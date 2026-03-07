@@ -4,6 +4,7 @@
    and hidden input for form submission.
    ───────────────────────────────────────────── */
 
+@layer rhx.components {
 /* ── Block ── */
 .rhx-select {
     position: relative;
@@ -316,4 +317,5 @@
     .rhx-select__option {
         transition: none;
     }
+}
 }

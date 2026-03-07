@@ -2,6 +2,7 @@
    rhx-scroller — Scroll container with shadow indicators
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-scroller {
     position: relative;
     overflow: hidden;
@@ -138,4 +139,5 @@
     .rhx-scroller__shadow {
         transition: none;
     }
+}
 }

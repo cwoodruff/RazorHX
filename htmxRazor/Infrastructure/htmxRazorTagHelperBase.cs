@@ -246,6 +246,36 @@ public abstract class htmxRazorTagHelperBase : TagHelper
     public string? HxSync { get; set; }
 
     // ──────────────────────────────────────────────
+    //  htmx 2.x event handler attributes
+    // ──────────────────────────────────────────────
+
+    /// <summary>
+    /// htmx 2.x event handler attributes for declarative event handling.
+    /// Bound from <c>hx-on:*</c> attributes on the tag.
+    /// Example: <c>hx-on:after-request="this.remove()"</c> renders as <c>hx-on::after-request="this.remove()"</c>.
+    /// </summary>
+    [HtmlAttributeName("hx-on:", DictionaryAttributePrefix = "hx-on:")]
+    public Dictionary<string, string> HxOn { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
+    // ──────────────────────────────────────────────
+    //  View Transition support
+    // ──────────────────────────────────────────────
+
+    /// <summary>
+    /// CSS identifier for View Transition API animations.
+    /// Applied to the root element via <c>style="view-transition-name: {value}"</c>.
+    /// </summary>
+    [HtmlAttributeName("rhx-transition-name")]
+    public string? TransitionName { get; set; }
+
+    /// <summary>
+    /// Whether to enable the View Transition API on htmx swaps.
+    /// When true, automatically appends <c>transition:true</c> to hx-swap.
+    /// </summary>
+    [HtmlAttributeName("rhx-transition")]
+    public bool EnableViewTransition { get; set; }
+
+    // ──────────────────────────────────────────────
     //  Constructor
     // ──────────────────────────────────────────────
 
@@ -370,6 +400,11 @@ public abstract class htmxRazorTagHelperBase : TagHelper
         {
             output.Attributes.SetAttribute("hidden", "hidden");
         }
+
+        if (!string.IsNullOrWhiteSpace(TransitionName))
+        {
+            output.Attributes.SetAttribute("style", $"view-transition-name: {TransitionName}");
+        }
     }
 
     /// <summary>
@@ -390,7 +425,17 @@ public abstract class htmxRazorTagHelperBase : TagHelper
 
         // Behavior attributes
         WriteAttribute(output, "hx-target", HxTarget);
-        WriteAttribute(output, "hx-swap", HxSwap);
+
+        // Append transition:true to hx-swap when view transitions are enabled
+        if (EnableViewTransition && !string.IsNullOrWhiteSpace(HxSwap)
+            && !HxSwap.Contains("transition:true", StringComparison.OrdinalIgnoreCase))
+        {
+            WriteAttribute(output, "hx-swap", $"{HxSwap} transition:true");
+        }
+        else
+        {
+            WriteAttribute(output, "hx-swap", HxSwap);
+        }
         WriteAttribute(output, "hx-trigger", HxTrigger);
         WriteAttribute(output, "hx-indicator", HxIndicator);
         WriteAttribute(output, "hx-confirm", HxConfirm);
@@ -407,6 +452,12 @@ public abstract class htmxRazorTagHelperBase : TagHelper
         WriteAttribute(output, "hx-select-oob", HxSelectOob);
         WriteAttribute(output, "hx-swap-oob", HxSwapOob);
         WriteAttribute(output, "hx-sync", HxSync);
+
+        // hx-on:* event handlers (htmx 2.x)
+        foreach (var kvp in HxOn)
+        {
+            output.Attributes.SetAttribute($"hx-on:{kvp.Key}", kvp.Value);
+        }
     }
 
     /// <summary>

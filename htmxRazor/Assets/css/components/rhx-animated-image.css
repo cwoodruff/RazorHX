@@ -2,6 +2,7 @@
    rhx-animated-image — GIF/APNG with play/pause
    ══════════════════════════════════════════════ */
 
+@layer rhx.components {
 .rhx-animated-image {
     position: relative;
     display: inline-block;
@@ -59,4 +60,5 @@
     .rhx-animated-image__control {
         transition: none;
     }
+}
 }
