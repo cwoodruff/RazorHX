@@ -16,17 +16,21 @@
 }
 
 .rhx-animated-image__canvas {
-    display: none;
-    max-width: 100%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .rhx-animated-image--paused .rhx-animated-image__img {
-    display: none;
+    opacity: 0;
 }
 
 .rhx-animated-image--paused .rhx-animated-image__canvas {
-    display: block;
+    opacity: 1;
 }
 
 .rhx-animated-image__control {
@@ -38,17 +42,18 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--rhx-radius-full);
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     cursor: pointer;
     padding: 0;
     transition: background var(--rhx-transition-fast);
+    backdrop-filter: blur(4px);
 }
 
 .rhx-animated-image__control:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .rhx-animated-image__control:focus-visible {

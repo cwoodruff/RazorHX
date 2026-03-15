@@ -31,12 +31,12 @@
             if (!svg) return;
 
             if (playing) {
-                // Show pause icon
-                svg.innerHTML = '<rect x="6" y="4" width="4" height="16" /><rect x="14" y="4" width="4" height="16" />';
+                // Show pause icon (filled rects)
+                svg.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="currentColor" /><rect x="14" y="4" width="4" height="16" fill="currentColor" />';
                 control.setAttribute('aria-label', 'Pause animation');
             } else {
-                // Show play icon
-                svg.innerHTML = '<polygon points="5 3 19 12 5 21 5 3" />';
+                // Show play icon (filled triangle)
+                svg.innerHTML = '<polygon points="5 3 19 12 5 21 5 3" fill="currentColor" />';
                 control.setAttribute('aria-label', 'Play animation');
             }
         }

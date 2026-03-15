@@ -21,15 +21,3 @@
         @* htmx will swap content here *@
     </div>
 </div>
-
-@functions {
-    public class IndexModel : Microsoft.AspNetCore.Mvc.RazorPages.PageModel
-    {
-        public void OnGet() { }
-
-        public Microsoft.AspNetCore.Mvc.IActionResult OnGetHelloWorld()
-        {
-            return Content("<rhx-callout rhx-variant='success'>Hello from the server! This was loaded via htmx.</rhx-callout>", "text/html");
-        }
-    }
-}

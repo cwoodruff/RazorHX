@@ -1,0 +1,27 @@
+/* ══════════════════════════════════════════════
+   rhx-skip-nav — Skip navigation link
+   ══════════════════════════════════════════════ */
+
+@layer rhx.components {
+.rhx-skip-nav {
+    position: fixed;
+    top: var(--rhx-space-sm);
+    left: var(--rhx-space-sm);
+    z-index: var(--rhx-z-toast);
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    background: var(--rhx-color-brand-600);
+    color: #fff;
+    border-radius: var(--rhx-radius-md);
+    font-weight: var(--rhx-font-weight-semibold, var(--rhx-font-weight-bold));
+    font-size: var(--rhx-font-size-sm);
+    text-decoration: none;
+    transform: translateY(-200%);
+    transition: transform var(--rhx-transition-fast);
+}
+
+.rhx-skip-nav:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--rhx-color-focus-ring);
+    outline-offset: 2px;
+}
+}

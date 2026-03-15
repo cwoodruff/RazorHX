@@ -72,6 +72,9 @@ public class CalloutModel : PageModel
 
     public IActionResult OnDeleteDismissNotification(int id)
     {
-        return Content("", "text/html");
+        return Content(
+            $"<div style=\"padding: var(--rhx-space-sm) var(--rhx-space-md); color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);\">" +
+            $"&#10003; Notification {id} dismissed.</div>",
+            "text/html");
     }
 }

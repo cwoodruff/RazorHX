@@ -64,7 +64,7 @@ public class SwitchModel : PageModel
 
     public IActionResult OnPostToggleNotifications(string? emailNotifications)
     {
-        var enabled = emailNotifications == "on";
+        var enabled = emailNotifications == "true";
         var status = enabled ? "enabled" : "disabled";
         var icon = enabled ? "&#9989;" : "&#10060;";
         return Content($"<span style=\"color: var(--rhx-color-text-muted);\">{icon} Email notifications <strong>{status}</strong>.</span>", "text/html");

@@ -22,7 +22,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="htmxRazor.Template\**\*" Exclude="htmxRazor.Template\bin\**;htmxRazor.Template\obj\**;htmxRazor.Template\**\*.user" />
+    <Content Include="htmxRazor.Template\**\*" Exclude="htmxRazor.Template\bin\**;htmxRazor.Template\obj\**;htmxRazor.Template\**\*.user;htmxRazor.Template\**\*.cshtml;htmxRazor.Template\**\*.cshtml.cs" />
+    <None Include="htmxRazor.Template\**\*.cshtml" Pack="true" PackagePath="content\htmxRazor.Template" />
+    <None Include="htmxRazor.Template\**\*.cshtml.cs" Pack="true" PackagePath="content\htmxRazor.Template" />
     <Compile Remove="**\*" />
   </ItemGroup>
 

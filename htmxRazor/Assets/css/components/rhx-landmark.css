@@ -1,0 +1,9 @@
+/* ══════════════════════════════════════════════
+   rhx-landmark — Semantic landmark regions
+   ══════════════════════════════════════════════ */
+
+@layer rhx.components {
+.rhx-landmark {
+    display: block;
+}
+}
