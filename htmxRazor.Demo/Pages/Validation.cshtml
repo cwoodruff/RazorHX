@@ -70,8 +70,7 @@
 
     <div class="demo-label">HTML5 constraint validation with data-rhx-validate — validates before submit</div>
 
-    <form data-rhx-validate style="display: flex; flex-direction: column; gap: var(--rhx-space-lg); max-width: 32rem;"
-          onsubmit="event.preventDefault(); alert('Form is valid!');">
+    <form id="client-form" data-rhx-validate style="display: flex; flex-direction: column; gap: var(--rhx-space-lg); max-width: 32rem;">
 
         <rhx-input rhx-label="Required Name" name="client-name"
                    rhx-placeholder="Enter your name" rhx-required="true" />
@@ -84,14 +83,29 @@
 
         <rhx-textarea rhx-label="Bio" name="client-bio"
                       rhx-placeholder="Tell us about yourself (min 10 chars)"
-                      rhx-required="true" />
+                      rhx-required="true" rhx-minlength="10" />
 
-        <div class="demo-row">
+        <div class="demo-row" style="align-items: center; gap: var(--rhx-space-md);">
             <button type="submit" class="rhx-button rhx-button--brand">
                 Validate &amp; Submit
             </button>
+            <span id="client-form-result"></span>
         </div>
     </form>
+
+    <script>
+        document.getElementById('client-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Check validity directly — the rhx-validation handler shows field errors,
+            // and this handler shows the overall result message.
+            var result = document.getElementById('client-form-result');
+            if (this.checkValidity()) {
+                result.innerHTML = '<span style="color: var(--rhx-color-success-600); font-weight: var(--rhx-font-weight-medium);">&#10003; Form is valid!</span>';
+            } else {
+                result.innerHTML = '<span style="color: var(--rhx-color-danger-600); font-weight: var(--rhx-font-weight-medium);">&#10008; Please fix the errors above.</span>';
+            }
+        });
+    </script>
 </div>
 
 <!-- ═══════════════════════════════════════════════

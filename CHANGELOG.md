@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] — Data Table, Accessibility & Modern CSS
+
+### Added
+- **Data Table**: `<rhx-data-table>`, `<rhx-column>`, `<rhx-data-table-pagination>` with server-driven sort, filter, and pagination. Sort headers emit `hx-get` with query parameters; server returns partials. Includes `DataTableRequest` model binder for easy handler integration, `DataTableRequestModelBinderProvider` auto-registered via `AddhtmxRazor()`.
+- **Command Palette**: `<rhx-command-palette>` modal search overlay activated via Cmd+K / Ctrl+K. Fires debounced `hx-get` to a configurable search endpoint. Results grouped with `<rhx-command-group>` and `<rhx-command-item>` with keyboard navigation and ARIA combobox/listbox pattern.
+- **Skip Nav & Landmarks**: `<rhx-skip-nav>` (visually hidden, visible on focus) and `<rhx-landmark>` for semantic landmark regions, addressing WCAG 2.4.1 Bypass Blocks.
+- **Focus Management After Swaps**: `rhx-focus-after-swap` attribute on the base class to move focus after htmx swaps. On by default (`"first"`) for `<rhx-dialog>` and `<rhx-drawer>`, addressing WCAG 2.4.3 Focus Order.
+- **Container Queries**: Card, dialog, split panel, and data table CSS updated to use `@container` queries for container-responsive layouts. New `.rhx-container` utility class.
+- **Icons**: Added `cursor`, `grid`, `layers`, `table`, `settings` icons to `IconRegistry`.
+
+### Changed
+- **APG Keyboard Audit**: Tabs, tree, dropdown, and combobox audited against W3C ARIA Authoring Practices Guide keyboard patterns.
+  - Tree: Added type-ahead search (single character) and `*` to expand all siblings.
+  - Dropdown: `ArrowUp` on trigger now opens menu and focuses last item (per APG). Added type-ahead search.
+  - Combobox: Added `Alt+ArrowDown` (open without moving focus) and `Alt+ArrowUp` (close).
+  - Dropdown items now render `tabindex="-1"` per APG menu pattern.
+- **Play/pause icons** in `IconRegistry` and animated image JS now use `fill="currentColor"` for proper visibility.
+- **Animated image** CSS uses opacity-based toggling instead of display toggling to prevent duplicate image on pause.
+- **Drawer** CSS adds transition delay on `visibility` for smooth close animation.
+- **Dialog** CSS uses `position: fixed` with `top: 50%; left: 50%; transform: translate(-50%, -50%)` for reliable centering.
+
+### Fixed
+- Dialog not centering on page (CSS cascade layer conflict with reset `* { margin: 0 }`).
+- Switch htmx demo checking `"on"` instead of `"true"` for checkbox value.
+- Checkbox htmx demo had the same `"on"` vs `"true"` bug.
+- Callout htmx demo returning empty HTML instead of dismissal confirmation.
+- Progress bar htmx demo returning raw Tag Helper tags in `Content()` strings (Tag Helpers don't process outside Razor).
+- Animated image showing duplicate on pause and not unpausing correctly.
+- Drawer lacking smooth close animation.
+- Example project tabs not showing tasks in Active/Completed tabs (panels not sharing `#todo-list` container).
+
+### Components Added
+- **Data Display**: Data Table, Column, Data Table Pagination
+- **Overlays**: Command Palette, Command Group, Command Item
+- **Navigation**: Skip Nav, Landmark
+
+### Tests
+- 1,652 total tests (216 new), all passing.
+
 ## [1.2.0] — Notifications, Pagination & Quick Wins
 
 ### Added

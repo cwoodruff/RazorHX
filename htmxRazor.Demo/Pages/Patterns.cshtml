@@ -17,10 +17,13 @@
         {
             <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">@item</div>
         }
-        <rhx-infinite-scroll page="/Patterns" page-handler="LoadMore"
-                             route-pageNumber="2" target="#item-list">
+        <div hx-get="/Patterns?handler=LoadMore&pageNumber=2"
+             hx-trigger="intersect root:#item-list threshold:0.1"
+             hx-target="#item-list"
+             hx-swap="beforeend"
+             hx-on::after-request="this.remove()">
             <rhx-spinner />
-        </rhx-infinite-scroll>
+        </div>
     </div>
 </div>
 
