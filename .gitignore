@@ -488,3 +488,4 @@ http-client.private.env.json
 CLAUDE.md
 htmxRazor/.DS_Store
 .DS_Store
+/docs

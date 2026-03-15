@@ -8,6 +8,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    container-type: inline-size;
 }
 
 /* ── Vertical (top/bottom) ── */
@@ -115,6 +116,24 @@
 
 .rhx-split-panel--disabled > .rhx-split-panel__divider:hover > .rhx-split-panel__divider-handle {
     background: var(--rhx-color-neutral-400, #9ca3af);
+}
+
+/* ── Container query: stack vertically on small containers ── */
+@container (max-width: 500px) {
+    .rhx-split-panel:not(.rhx-split-panel--vertical) {
+        flex-direction: column;
+    }
+
+    .rhx-split-panel:not(.rhx-split-panel--vertical) > .rhx-split-panel__divider {
+        height: 8px;
+        width: auto;
+        cursor: row-resize;
+    }
+
+    .rhx-split-panel:not(.rhx-split-panel--vertical) > .rhx-split-panel__divider > .rhx-split-panel__divider-handle {
+        width: 24px;
+        height: 2px;
+    }
 }
 
 /* ── Reduced motion ── */

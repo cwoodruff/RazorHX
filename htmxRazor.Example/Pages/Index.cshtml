@@ -56,33 +56,32 @@
 
 <!-- Filter Tabs -->
 <rhx-tab-group aria-label="Task filters">
-    <rhx-tab rhx-panel="all" rhx-active="@(Model.Filter != "active" && Model.Filter != "completed")"
+    <rhx-tab rhx-panel="tasks" rhx-active="@(Model.Filter != "active" && Model.Filter != "completed")"
              hx-get="/?handler=TodoList&filter=all"
-             hx-target="#todo-list">
+             hx-target="#todo-list"
+             hx-swap="innerHTML">
         All
         <rhx-badge rhx-variant="neutral" rhx-pill="true">@Model.TotalCount</rhx-badge>
     </rhx-tab>
-    <rhx-tab rhx-panel="active" rhx-active="@(Model.Filter == "active")"
+    <rhx-tab rhx-panel="tasks" rhx-active="@(Model.Filter == "active")"
              hx-get="/?handler=TodoList&filter=active"
-             hx-target="#todo-list">
+             hx-target="#todo-list"
+             hx-swap="innerHTML">
         Active
         <rhx-badge rhx-variant="brand" rhx-pill="true">@Model.ActiveCount</rhx-badge>
     </rhx-tab>
-    <rhx-tab rhx-panel="completed" rhx-active="@(Model.Filter == "completed")"
+    <rhx-tab rhx-panel="tasks" rhx-active="@(Model.Filter == "completed")"
              hx-get="/?handler=TodoList&filter=completed"
-             hx-target="#todo-list">
+             hx-target="#todo-list"
+             hx-swap="innerHTML">
         Completed
         <rhx-badge rhx-variant="success" rhx-pill="true">@Model.CompletedCount</rhx-badge>
     </rhx-tab>
 
-    <rhx-tab-panel rhx-name="all" rhx-active="@(Model.Filter != "active" && Model.Filter != "completed")">
+    <rhx-tab-panel rhx-name="tasks" rhx-active="true">
         <div id="todo-list">
             @await Html.PartialAsync("_TodoList", Model.Todos)
         </div>
-    </rhx-tab-panel>
-    <rhx-tab-panel rhx-name="active" rhx-active="@(Model.Filter == "active")">
-    </rhx-tab-panel>
-    <rhx-tab-panel rhx-name="completed" rhx-active="@(Model.Filter == "completed")">
     </rhx-tab-panel>
 </rhx-tab-group>
 

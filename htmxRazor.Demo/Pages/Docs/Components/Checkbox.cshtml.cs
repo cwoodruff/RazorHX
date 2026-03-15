@@ -69,7 +69,7 @@ public class CheckboxModel : PageModel
 
     public IActionResult OnPostUpdatePreference(string? marketingEmails)
     {
-        var subscribed = marketingEmails == "on";
+        var subscribed = marketingEmails == "true";
         var message = subscribed
             ? "You are now <strong>subscribed</strong> to marketing emails."
             : "You have <strong>unsubscribed</strong> from marketing emails.";

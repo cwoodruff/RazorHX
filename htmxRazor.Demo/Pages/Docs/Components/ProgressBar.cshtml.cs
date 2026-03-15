@@ -58,7 +58,7 @@ public class ProgressBarModel : PageModel
         return Content($"""
             <div hx-get="/Docs/Components/ProgressBar?handler=PollProgress&taskId={taskId}"
                  hx-trigger="every 500ms" hx-target="#progress-container" hx-swap="innerHTML">
-                <rhx-progress-bar rhx-value="0" rhx-label="Processing" />
+                {RenderProgressBar(0)}
                 <span style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">0% complete</span>
             </div>
             """, "text/html");
@@ -77,9 +77,9 @@ public class ProgressBarModel : PageModel
         if (progress >= 100)
         {
             TaskProgress.TryRemove(taskId, out _);
-            return Content("""
+            return Content($"""
                 <div>
-                    <rhx-progress-bar rhx-value="100" rhx-label="Complete" />
+                    {RenderProgressBar(100)}
                     <span style="color: var(--rhx-color-success-500); font-size: var(--rhx-font-size-sm); font-weight: var(--rhx-font-weight-medium);">Task complete!</span>
                 </div>
                 """, "text/html");
@@ -88,9 +88,22 @@ public class ProgressBarModel : PageModel
         return Content($"""
             <div hx-get="/Docs/Components/ProgressBar?handler=PollProgress&taskId={taskId}"
                  hx-trigger="every 500ms" hx-target="#progress-container" hx-swap="innerHTML">
-                <rhx-progress-bar rhx-value="{progress}" rhx-label="Processing" />
+                {RenderProgressBar(progress)}
                 <span style="color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">{progress}% complete</span>
             </div>
             """, "text/html");
+    }
+
+    private static string RenderProgressBar(int value)
+    {
+        var clamped = Math.Clamp(value, 0, 100);
+        return $"""
+            <div class="rhx-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{clamped}" aria-label="Processing">
+                <div class="rhx-progress-bar__track">
+                    <div class="rhx-progress-bar__fill" style="width: {clamped}%"></div>
+                </div>
+                <span class="rhx-progress-bar__label">{clamped}%</span>
+            </div>
+            """;
     }
 }

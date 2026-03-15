@@ -7,12 +7,16 @@
     border: none;
     padding: 0;
     background: transparent;
+    width: fit-content;
     max-width: min(90vw, 32rem);
     max-height: 85vh;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
     border-radius: var(--rhx-radius-lg);
     box-shadow: var(--rhx-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
-    overflow: visible;
 }
 
 /* ── Native backdrop ── */
@@ -102,17 +106,29 @@
 @keyframes rhx-dialog-in {
     from {
         opacity: 0;
-        transform: scale(0.95) translateY(-8px);
+        transform: translate(-50%, -50%) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
 @keyframes rhx-dialog-backdrop-in {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* ── Container query: full-width on small containers ── */
+@container (max-width: 480px) {
+    .rhx-dialog {
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .rhx-dialog__panel {
+        border-radius: 0;
+    }
 }
 
 /* ── Reduced motion ── */

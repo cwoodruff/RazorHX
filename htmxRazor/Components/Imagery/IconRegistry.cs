@@ -80,8 +80,8 @@ public static class IconRegistry
         Register("x-circle", "<circle cx=\"12\" cy=\"12\" r=\"10\" /><path d=\"M15 9l-6 6\" /><path d=\"M9 9l6 6\" />");
 
         // ── Media ──
-        Register("play", "<polygon points=\"5 3 19 12 5 21 5 3\" />");
-        Register("pause", "<rect x=\"6\" y=\"4\" width=\"4\" height=\"16\" /><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\" />");
+        Register("play", "<polygon points=\"5 3 19 12 5 21 5 3\" fill=\"currentColor\" />");
+        Register("pause", "<rect x=\"6\" y=\"4\" width=\"4\" height=\"16\" fill=\"currentColor\" /><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\" fill=\"currentColor\" />");
         Register("eye", "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\" /><circle cx=\"12\" cy=\"12\" r=\"3\" />");
         Register("eye-off", "<path d=\"M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94\" /><path d=\"M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19\" /><path d=\"M14.12 14.12a3 3 0 11-4.24-4.24\" /><path d=\"M1 1l22 22\" />");
         Register("lock", "<rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" /><path d=\"M7 11V7a5 5 0 0110 0v4\" />");

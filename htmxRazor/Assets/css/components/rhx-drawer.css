@@ -9,6 +9,7 @@
     z-index: var(--rhx-z-drawer, 1000);
     pointer-events: none;
     visibility: hidden;
+    transition: visibility 0s 0.25s;
 }
 
 .rhx-drawer--contained {
@@ -75,6 +76,7 @@
 .rhx-drawer--open {
     pointer-events: auto;
     visibility: visible;
+    transition: visibility 0s 0s;
 }
 
 .rhx-drawer--open > .rhx-drawer__overlay {

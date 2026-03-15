@@ -11,6 +11,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    container-type: inline-size;
 }
 
 /* ── Image ── */
@@ -53,5 +54,20 @@
     display: flex;
     align-items: center;
     gap: var(--rhx-space-sm);
+}
+
+/* ── Container query: compact layout ── */
+@container (max-width: 280px) {
+    .rhx-card__header {
+        padding: var(--rhx-space-md) var(--rhx-space-md) 0;
+    }
+
+    .rhx-card__body {
+        padding: var(--rhx-space-md);
+    }
+
+    .rhx-card__footer {
+        padding: var(--rhx-space-sm) var(--rhx-space-md);
+    }
 }
 }

@@ -46,6 +46,15 @@ public class DialogTagHelper : htmxRazorTagHelperBase
     public bool Open { get; set; }
 
     /// <summary>
+    /// CSS selector of the element to receive focus after an htmx swap.
+    /// Defaults to "first" so focus moves to the first focusable element
+    /// in swapped dialog content, addressing WCAG 2.4.3 Focus Order.
+    /// Set to "none" to disable.
+    /// </summary>
+    [HtmlAttributeName("rhx-focus-after-swap")]
+    public new string? FocusAfterSwap { get; set; } = "first";
+
+    /// <summary>
     /// The title text displayed in the dialog header.
     /// When set, a header with title and close button is rendered.
     /// </summary>
@@ -89,6 +98,9 @@ public class DialogTagHelper : htmxRazorTagHelperBase
 
         if (Open)
             output.Attributes.SetAttribute("open", "open");
+
+        if (!string.IsNullOrWhiteSpace(FocusAfterSwap) && FocusAfterSwap != "none")
+            output.Attributes.SetAttribute("data-rhx-focus-after-swap", FocusAfterSwap);
 
         RenderHtmxAttributes(output);
 

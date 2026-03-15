@@ -97,4 +97,9 @@
   background: var(--rhx-color-surface-raised);
   box-shadow: var(--rhx-shadow-md);
 }
+
+/* ── Container query context ── */
+.rhx-container {
+  container-type: inline-size;
+}
 }

@@ -276,6 +276,20 @@ public abstract class htmxRazorTagHelperBase : TagHelper
     public bool EnableViewTransition { get; set; }
 
     // ──────────────────────────────────────────────
+    //  Accessibility — Focus after swap
+    // ──────────────────────────────────────────────
+
+    /// <summary>
+    /// CSS selector of the element to receive focus after an htmx content swap.
+    /// Addresses WCAG 2.4.3 Focus Order by ensuring focus moves to a predictable
+    /// location after dynamic content changes.
+    /// Special values: "first" (first focusable element in swapped content),
+    /// "self" (the element itself), "none" (opt out).
+    /// </summary>
+    [HtmlAttributeName("rhx-focus-after-swap")]
+    public string? FocusAfterSwap { get; set; }
+
+    // ──────────────────────────────────────────────
     //  Constructor
     // ──────────────────────────────────────────────
 
@@ -404,6 +418,11 @@ public abstract class htmxRazorTagHelperBase : TagHelper
         if (!string.IsNullOrWhiteSpace(TransitionName))
         {
             output.Attributes.SetAttribute("style", $"view-transition-name: {TransitionName}");
+        }
+
+        if (!string.IsNullOrWhiteSpace(FocusAfterSwap))
+        {
+            output.Attributes.SetAttribute("data-rhx-focus-after-swap", FocusAfterSwap);
         }
     }
 
