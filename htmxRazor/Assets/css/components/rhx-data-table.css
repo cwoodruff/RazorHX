@@ -1,0 +1,245 @@
+/* ══════════════════════════════════════════════
+   rhx-data-table — Server-driven data table
+   ══════════════════════════════════════════════ */
+
+@layer rhx.components {
+.rhx-data-table {
+    position: relative;
+    container-type: inline-size;
+}
+
+/* ── Scroll container ── */
+.rhx-data-table__scroll-container {
+    overflow-x: auto;
+}
+
+/* ── Table ── */
+.rhx-data-table__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--rhx-font-family);
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text);
+}
+
+/* ── Caption ── */
+.rhx-data-table__caption {
+    text-align: left;
+    padding: var(--rhx-space-sm) 0;
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text-muted);
+    caption-side: top;
+}
+
+/* ── Header ── */
+.rhx-data-table__head {
+    background: var(--rhx-color-neutral-subtle);
+}
+
+.rhx-data-table__header {
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    text-align: left;
+    font-weight: var(--rhx-font-weight-semibold);
+    color: var(--rhx-color-text);
+    border-bottom: var(--rhx-border-width-thick, 2px) solid var(--rhx-color-border);
+    white-space: nowrap;
+}
+
+.rhx-data-table__header--center { text-align: center; }
+.rhx-data-table__header--end { text-align: right; }
+
+/* ── Sort button ── */
+.rhx-data-table__sort-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--rhx-space-xs);
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-weight: var(--rhx-font-weight-semibold);
+    color: inherit;
+    cursor: pointer;
+}
+
+.rhx-data-table__sort-button:hover {
+    color: var(--rhx-color-brand-600);
+}
+
+.rhx-data-table__sort-button:focus-visible {
+    outline: 2px solid var(--rhx-color-focus-ring);
+    outline-offset: 2px;
+}
+
+/* ── Sort icon ── */
+.rhx-data-table__sort-icon {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid currentColor;
+    opacity: 0.3;
+    transition: transform var(--rhx-transition-fast), opacity var(--rhx-transition-fast);
+}
+
+.rhx-data-table__header--asc .rhx-data-table__sort-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.rhx-data-table__header--desc .rhx-data-table__sort-icon {
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+/* ── Filter input ── */
+.rhx-data-table__filter-input {
+    display: block;
+    width: 100%;
+    margin-top: var(--rhx-space-xs);
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-xs);
+    font-family: var(--rhx-font-family);
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-sm);
+    background: var(--rhx-color-surface);
+    color: var(--rhx-color-text);
+}
+
+.rhx-data-table__filter-input:focus {
+    outline: 2px solid var(--rhx-color-focus-ring);
+    outline-offset: -1px;
+    border-color: var(--rhx-color-brand-500);
+}
+
+/* ── Body cells ── */
+.rhx-data-table__body td {
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    border-bottom: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+    vertical-align: top;
+}
+
+/* ── Modifiers ── */
+
+/* Striped rows */
+.rhx-data-table--striped .rhx-data-table__body tr:nth-child(even) {
+    background: var(--rhx-color-neutral-50);
+}
+
+/* Hoverable rows */
+.rhx-data-table--hoverable .rhx-data-table__body tr:hover {
+    background: var(--rhx-color-hover);
+}
+
+/* Bordered cells */
+.rhx-data-table--bordered .rhx-data-table__header,
+.rhx-data-table--bordered .rhx-data-table__body td {
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+}
+
+/* Compact */
+.rhx-data-table--compact .rhx-data-table__header,
+.rhx-data-table--compact .rhx-data-table__body td {
+    padding: var(--rhx-space-xs) var(--rhx-space-sm);
+}
+
+/* Sticky header */
+.rhx-data-table--sticky-header .rhx-data-table__head th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--rhx-color-neutral-subtle);
+}
+
+/* Loading overlay */
+.rhx-data-table__loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rhx-color-surface);
+    opacity: 0.7;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+.rhx-data-table--loading .rhx-data-table__loading-overlay {
+    display: flex;
+}
+
+/* ── Pagination ── */
+.rhx-data-table__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--rhx-space-sm) var(--rhx-space-md);
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-text-muted);
+    border-top: var(--rhx-border-width) solid var(--rhx-color-border-muted, var(--rhx-color-border));
+    flex-wrap: wrap;
+    gap: var(--rhx-space-sm);
+}
+
+.rhx-data-table__pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-md);
+}
+
+.rhx-data-table__pagination-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-xs);
+}
+
+.rhx-data-table__pagination-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--rhx-space-sm);
+    background: none;
+    border: var(--rhx-border-width) solid var(--rhx-color-border);
+    border-radius: var(--rhx-radius-sm);
+    color: var(--rhx-color-text);
+    cursor: pointer;
+    font-size: var(--rhx-font-size-sm);
+}
+
+.rhx-data-table__pagination-button:hover:not(:disabled) {
+    background: var(--rhx-color-hover);
+}
+
+.rhx-data-table__pagination-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.rhx-data-table__pagination-button:focus-visible {
+    outline: 2px solid var(--rhx-color-focus-ring);
+    outline-offset: 2px;
+}
+
+.rhx-data-table__page-indicator {
+    padding: 0 var(--rhx-space-sm);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Container query: compact on small containers ── */
+@container (max-width: 500px) {
+    .rhx-data-table__pagination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .rhx-data-table__sort-icon {
+        transition: none;
+    }
+}
+}

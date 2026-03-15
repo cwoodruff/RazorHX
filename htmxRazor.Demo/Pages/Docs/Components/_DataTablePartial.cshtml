@@ -1,0 +1,21 @@
+@using htmxRazor.Demo.Pages.Docs.Components
+@model DataTableModel.TableState
+
+<rhx-data-table id="htmx-table" rhx-hoverable="true"
+                rhx-sort-url="/Docs/Components/DataTable?handler=TableData"
+                rhx-hx-target="#htmx-table-container"
+                rhx-label="Products">
+    <rhx-column rhx-field="name" rhx-header="Name" rhx-sortable="true"
+                rhx-sort-direction="@(Model.Sort == "name" ? Model.SortDirection : null)" />
+    <rhx-column rhx-field="price" rhx-header="Price" rhx-sortable="true"
+                rhx-sort-direction="@(Model.Sort == "price" ? Model.SortDirection : null)" />
+    <rhx-column rhx-field="stock" rhx-header="Stock" />
+    @foreach (var p in Model.Items)
+    {
+        <tr><td>@p.Name</td><td>@p.Price.ToString("C")</td><td>@p.Stock</td></tr>
+    }
+    <rhx-data-table-pagination rhx-page="@Model.Page" rhx-page-size="@Model.PageSize"
+        rhx-total-items="@Model.TotalItems"
+        rhx-url="/Docs/Components/DataTable?handler=TableData"
+        rhx-target="#htmx-table-container" />
+</rhx-data-table>

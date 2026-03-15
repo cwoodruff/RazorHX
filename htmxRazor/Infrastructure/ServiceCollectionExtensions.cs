@@ -1,4 +1,5 @@
 using htmxRazor.Configuration;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(options);
 
         services.AddTransient<ITagHelperComponent, htmxRazorTagHelperComponent>();
+
+        services.Configure<MvcOptions>(mvc =>
+        {
+            mvc.ModelBinderProviders.Insert(0, new DataTableRequestModelBinderProvider());
+        });
 
         return services;
     }

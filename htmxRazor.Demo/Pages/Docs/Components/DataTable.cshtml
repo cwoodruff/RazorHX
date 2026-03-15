@@ -1,0 +1,158 @@
+@page
+@model DataTableModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Data Table";
+    ViewData["ComponentName"] = "Data Table";
+    ViewData["ComponentTag"] = "rhx-data-table";
+    ViewData["ComponentDescription"] = "Server-driven data table with sortable columns, filterable headers, pagination, and htmx integration.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic Table</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <rhx-data-table id="basic-table" rhx-striped="true" rhx-hoverable="true"
+                                    rhx-caption="Product inventory">
+                        <rhx-column rhx-field="name" rhx-header="Name" />
+                        <rhx-column rhx-field="category" rhx-header="Category" />
+                        <rhx-column rhx-field="price" rhx-header="Price" />
+                        <rhx-column rhx-field="stock" rhx-header="Stock" />
+                        @foreach (var p in Model.Items)
+                        {
+                            <tr><td>@p.Name</td><td>@p.Category</td><td>@p.Price.ToString("C")</td><td>@p.Stock</td></tr>
+                        }
+                    </rhx-data-table>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Modifiers -->
+    <div class="docs-example">
+        <h3>Bordered &amp; Compact</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="mod-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="mod-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="mod-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <rhx-data-table id="mod-table" rhx-bordered="true" rhx-compact="true"
+                                    rhx-label="Compact bordered table">
+                        <rhx-column rhx-field="name" rhx-header="Name" />
+                        <rhx-column rhx-field="category" rhx-header="Category" />
+                        <rhx-column rhx-field="price" rhx-header="Price" />
+                        @foreach (var p in Model.Items.Take(5))
+                        {
+                            <tr><td>@p.Name</td><td>@p.Category</td><td>@p.Price.ToString("C")</td></tr>
+                        }
+                    </rhx-data-table>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="mod-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ModifiersCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Static Pagination -->
+    <div class="docs-example">
+        <h3>With Pagination</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="pag-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="pag-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="pag-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <div id="pag-table-container">
+                        @await Html.PartialAsync("_DataTablePaginatedPartial", new DataTableModel.TableState
+                        {
+                            Items = DataTableModel.AllProducts.Take(10).ToList(),
+                            TotalItems = DataTableModel.AllProducts.Count,
+                            Page = 1,
+                            PageSize = 10
+                        })
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="pag-code">
+                <div class="docs-code">
+                    <pre><code>@Model.PaginationCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- htmx Integration -->
+    <div class="docs-example">
+        <h3>htmx Integration (Sort + Pagination)</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="htmx-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="htmx-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="htmx-preview" rhx-active="true">
+                <div class="docs-preview" style="flex-direction: column; align-items: stretch;">
+                    <div id="htmx-table-container">
+                        @await Html.PartialAsync("_DataTablePartial", new DataTableModel.TableState
+                        {
+                            Items = DataTableModel.AllProducts.Take(10).ToList(),
+                            TotalItems = DataTableModel.AllProducts.Count,
+                            Page = 1,
+                            PageSize = 10
+                        })
+                    </div>
+                    <p style="margin-top: var(--rhx-space-sm); color: var(--rhx-color-text-muted); font-size: var(--rhx-font-size-sm);">
+                        Click column headers to sort. Pagination buttons load new pages via htmx.
+                    </p>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="htmx-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HtmxCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>
+
+<!-- Properties -->
+@await Html.PartialAsync("_PropertyTable", Model.Properties)
+
+<section class="docs-component-section">
+    <h2>Column Properties</h2>
+    <p style="margin-bottom: var(--rhx-space-md); color: var(--rhx-color-text-muted);">
+        Properties for <code>&lt;rhx-column&gt;</code> elements.
+    </p>
+    @await Html.PartialAsync("_PropertyTable", Model.ColumnProperties)
+</section>
+
+<section class="docs-component-section">
+    <h2>Pagination Properties</h2>
+    <p style="margin-bottom: var(--rhx-space-md); color: var(--rhx-color-text-muted);">
+        Properties for <code>&lt;rhx-data-table-pagination&gt;</code> elements.
+    </p>
+    @await Html.PartialAsync("_PropertyTable", Model.PaginationProperties)
+</section>
+
+<section class="docs-component-section">
+    <h2>Accessibility</h2>
+    <ul class="docs-a11y-list">
+        <li>The table uses <code>role="grid"</code> with <code>aria-label</code> for assistive technology recognition.</li>
+        <li>Sort buttons render as native <code>&lt;button&gt;</code> elements with <code>aria-sort</code> reflecting the current state.</li>
+        <li>Filter inputs have <code>aria-label</code> describing which column they filter.</li>
+        <li>Pagination buttons have <code>aria-label</code> for each action (first, previous, next, last page).</li>
+        <li>Loading state sets <code>aria-busy="true"</code> on the container.</li>
+        <li>The <code>&lt;caption&gt;</code> element provides an accessible description of the table's purpose.</li>
+    </ul>
+</section>

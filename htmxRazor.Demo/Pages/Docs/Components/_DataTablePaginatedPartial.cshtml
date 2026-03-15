@@ -1,0 +1,20 @@
+@using htmxRazor.Demo.Pages.Docs.Components
+@model DataTableModel.TableState
+
+<rhx-data-table id="pag-table" rhx-striped="true" rhx-hoverable="true"
+                rhx-sort-url="/Docs/Components/DataTable?handler=PaginatedData"
+                rhx-hx-target="#pag-table-container"
+                rhx-label="Products with pagination">
+    <rhx-column rhx-field="name" rhx-header="Name" />
+    <rhx-column rhx-field="category" rhx-header="Category" />
+    <rhx-column rhx-field="price" rhx-header="Price" />
+    <rhx-column rhx-field="stock" rhx-header="Stock" />
+    @foreach (var p in Model.Items)
+    {
+        <tr><td>@p.Name</td><td>@p.Category</td><td>@p.Price.ToString("C")</td><td>@p.Stock</td></tr>
+    }
+    <rhx-data-table-pagination rhx-page="@Model.Page" rhx-page-size="@Model.PageSize"
+        rhx-total-items="@Model.TotalItems"
+        rhx-url="/Docs/Components/DataTable?handler=PaginatedData"
+        rhx-target="#pag-table-container" />
+</rhx-data-table>
