@@ -120,9 +120,22 @@
 
       // ── Trigger keyboard ──
       triggerBtn.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        if (e.key === "ArrowDown") {
           e.preventDefault();
-          if (!isOpen()) open();
+          if (!isOpen()) {
+            open(); // open() already focuses first item
+          }
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          if (!isOpen()) {
+            // APG: ArrowUp on trigger opens menu and focuses last item
+            menu.hidden = false;
+            menu.setAttribute("aria-hidden", "false");
+            triggerBtn.setAttribute("aria-expanded", "true");
+            checkViewportFlip();
+            var items = getItems();
+            if (items.length) items[items.length - 1].focus();
+          }
         } else if (e.key === "Escape" && isOpen()) {
           e.preventDefault();
           close();
@@ -154,6 +167,18 @@
           if (idx >= 0) activateItem(items[idx]);
         } else if (e.key === "Tab") {
           close();
+        } else if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+          // APG: type-ahead — printable character moves focus to next matching item
+          e.preventDefault();
+          var ch = e.key.toLowerCase();
+          for (var i = 1; i <= items.length; i++) {
+            var candidate = items[(idx + i) % items.length];
+            var text = candidate.textContent.trim().toLowerCase();
+            if (text.charAt(0) === ch) {
+              candidate.focus();
+              break;
+            }
+          }
         }
       });
 
