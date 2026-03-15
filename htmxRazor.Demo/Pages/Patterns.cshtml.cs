@@ -22,18 +22,16 @@ public class PatternsModel : PageModel
             $"<div class=\"rhx-card\" style=\"padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);\">" +
             $"{WebUtility.HtmlEncode(i)}</div>"));
 
-        if (pageNumber < 5)
-        {
-            var next = pageNumber + 1;
-            html += $"<div class=\"rhx-infinite-scroll\" " +
-                    $"hx-get=\"/Patterns?handler=LoadMore&pageNumber={next}\" " +
-                    $"hx-trigger=\"revealed\" hx-target=\"#item-list\" hx-swap=\"beforeend\" " +
-                    $"hx-on::after-request=\"this.remove()\">" +
-                    $"<span class=\"rhx-spinner\" role=\"status\" data-rhx-spinner=\"\" aria-label=\"Loading\">" +
-                    $"<svg viewBox=\"0 0 24 24\" fill=\"none\">" +
-                    $"<circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"3\" />" +
-                    $"</svg></span></div>";
-        }
+        var next = pageNumber + 1;
+        html += $"<div " +
+                $"hx-get=\"/Patterns?handler=LoadMore&amp;pageNumber={next}\" " +
+                $"hx-trigger=\"intersect root:#item-list threshold:0.1\" " +
+                $"hx-target=\"#item-list\" hx-swap=\"beforeend\" " +
+                $"hx-on::after-request=\"this.remove()\">" +
+                $"<span class=\"rhx-spinner\" role=\"status\" data-rhx-spinner=\"\" aria-label=\"Loading\">" +
+                $"<svg viewBox=\"0 0 24 24\" fill=\"none\">" +
+                $"<circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"3\" />" +
+                $"</svg></span></div>";
 
         return Content(html, "text/html");
     }

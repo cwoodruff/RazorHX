@@ -1,0 +1,538 @@
+using htmxRazor.Components.Actions;
+using htmxRazor.Components.Forms;
+using htmxRazor.Components.Navigation;
+using htmxRazor.Rendering;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Xunit;
+
+namespace htmxRazor.Tests;
+
+/// <summary>
+/// APG (ARIA Authoring Practices Guide) audit tests.
+/// Verifies that Tag Helpers render the required ARIA attributes
+/// for tabs, tree, dropdown, and combobox patterns.
+/// </summary>
+public class ApgKeyboardAuditTests : TagHelperTestBase
+{
+    private static string HtmlContentToString(IHtmlContent content)
+    {
+        using var writer = new System.IO.StringWriter();
+        content.WriteTo(writer, System.Text.Encodings.Web.HtmlEncoder.Default);
+        return writer.ToString();
+    }
+
+    // ══════════════════════════════════════════════
+    //  Tabs — APG Tabs Pattern
+    // ══════════════════════════════════════════════
+
+    [Fact]
+    public async Task TabGroup_Renders_Tablist_Role()
+    {
+        var helper = new TabGroupTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-tab-group");
+        var output = CreateOutput("rhx-tab-group", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("role=\"tablist\"", content);
+    }
+
+    [Fact]
+    public async Task TabGroup_Vertical_Has_AriaOrientation()
+    {
+        var helper = new TabGroupTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Placement = "start";
+        var context = CreateContext("rhx-tab-group");
+        var output = CreateOutput("rhx-tab-group", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-orientation=\"vertical\"", content);
+    }
+
+    [Fact]
+    public async Task TabGroup_Horizontal_No_AriaOrientation()
+    {
+        var helper = new TabGroupTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Placement = "top";
+        var context = CreateContext("rhx-tab-group");
+        var output = CreateOutput("rhx-tab-group", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.DoesNotContain("aria-orientation", content);
+    }
+
+    [Fact]
+    public async Task Tab_Active_Has_AriaSelected_True_And_Tabindex_0()
+    {
+        var helper = new TabTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Panel = "general";
+        helper.Active = true;
+        var context = CreateContext("rhx-tab");
+        var navList = new List<string>();
+        context.Items["RhxTabsNav"] = navList;
+        var output = CreateOutput("rhx-tab", childContent: "General");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.Single(navList);
+        var html = navList[0];
+        Assert.Contains("aria-selected=\"true\"", html);
+        Assert.Contains("tabindex=\"0\"", html);
+        Assert.Contains("role=\"tab\"", html);
+    }
+
+    [Fact]
+    public async Task Tab_Inactive_Has_AriaSelected_False_And_Tabindex_Minus1()
+    {
+        var helper = new TabTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Panel = "advanced";
+        helper.Active = false;
+        var context = CreateContext("rhx-tab");
+        var navList = new List<string>();
+        context.Items["RhxTabsNav"] = navList;
+        var output = CreateOutput("rhx-tab", childContent: "Advanced");
+
+        await helper.ProcessAsync(context, output);
+
+        var html = navList[0];
+        Assert.Contains("aria-selected=\"false\"", html);
+        Assert.Contains("tabindex=\"-1\"", html);
+    }
+
+    [Fact]
+    public async Task Tab_Has_AriaControls_Matching_Panel()
+    {
+        var helper = new TabTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Panel = "settings";
+        var context = CreateContext("rhx-tab");
+        var navList = new List<string>();
+        context.Items["RhxTabsNav"] = navList;
+        var output = CreateOutput("rhx-tab", childContent: "Settings");
+
+        await helper.ProcessAsync(context, output);
+
+        var html = navList[0];
+        Assert.Contains("aria-controls=\"panel-settings\"", html);
+        Assert.Contains("id=\"tab-settings\"", html);
+    }
+
+    [Fact]
+    public async Task Tab_Disabled_Has_AriaDisabled()
+    {
+        var helper = new TabTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Panel = "disabled-tab";
+        helper.Disabled = true;
+        var context = CreateContext("rhx-tab");
+        var navList = new List<string>();
+        context.Items["RhxTabsNav"] = navList;
+        var output = CreateOutput("rhx-tab", childContent: "Disabled");
+
+        await helper.ProcessAsync(context, output);
+
+        var html = navList[0];
+        Assert.Contains("aria-disabled=\"true\"", html);
+        Assert.Contains("disabled", html);
+    }
+
+    [Fact]
+    public async Task TabGroup_Has_DataActivation_When_Manual()
+    {
+        var helper = new TabGroupTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Activation = "manual";
+        var context = CreateContext("rhx-tab-group");
+        var output = CreateOutput("rhx-tab-group", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "data-rhx-activation", "manual");
+    }
+
+    // ══════════════════════════════════════════════
+    //  Tree — APG Tree View Pattern
+    // ══════════════════════════════════════════════
+
+    [Fact]
+    public void Tree_Has_Role_Tree()
+    {
+        var helper = new TreeTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-tree");
+        var output = CreateOutput("rhx-tree");
+
+        helper.Process(context, output);
+
+        AssertAttribute(output, "role", "tree");
+    }
+
+    [Fact]
+    public void Tree_Has_AriaLabel()
+    {
+        var helper = new TreeTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.AriaLabel = "File explorer";
+        var context = CreateContext("rhx-tree");
+        var output = CreateOutput("rhx-tree");
+
+        helper.Process(context, output);
+
+        AssertAttribute(output, "aria-label", "File explorer");
+    }
+
+    [Fact]
+    public async Task TreeItem_Branch_Has_Role_Treeitem_And_AriaExpanded()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Label = "Documents";
+        helper.Expanded = false;
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "<div>child</div>");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "role", "treeitem");
+        AssertAttribute(output, "aria-expanded", "false");
+    }
+
+    [Fact]
+    public async Task TreeItem_Branch_Expanded_Has_AriaExpanded_True()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Label = "Documents";
+        helper.Expanded = true;
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "<div>child</div>");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "aria-expanded", "true");
+    }
+
+    [Fact]
+    public async Task TreeItem_Leaf_Has_No_AriaExpanded()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "readme.txt");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "role", "treeitem");
+        AssertNoAttribute(output, "aria-expanded");
+    }
+
+    [Fact]
+    public async Task TreeItem_Children_Group_Has_Role_Group()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Label = "Folder";
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "<div>child</div>");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("role=\"group\"", content);
+    }
+
+    [Fact]
+    public async Task TreeItem_Disabled_Has_AriaDisabled()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Disabled = true;
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "locked.txt");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "aria-disabled", "true");
+    }
+
+    [Fact]
+    public async Task TreeItem_Has_Tabindex()
+    {
+        var helper = new TreeItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-tree-item");
+        var output = CreateOutput("rhx-tree-item", childContent: "file.txt");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "tabindex", "-1");
+    }
+
+    // ══════════════════════════════════════════════
+    //  Dropdown — APG Menu Button Pattern
+    // ══════════════════════════════════════════════
+
+    [Fact]
+    public async Task Dropdown_Panel_Has_Role_Menu()
+    {
+        var helper = new DropdownTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-dropdown");
+        var output = CreateOutput("rhx-dropdown", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("role=\"menu\"", content);
+    }
+
+    [Fact]
+    public async Task Dropdown_Panel_Has_AriaHidden_When_Closed()
+    {
+        var helper = new DropdownTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-dropdown");
+        var output = CreateOutput("rhx-dropdown", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-hidden=\"true\"", content);
+        Assert.Contains("hidden", content);
+    }
+
+    [Fact]
+    public async Task Dropdown_Panel_Not_Hidden_When_Open()
+    {
+        var helper = new DropdownTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Open = true;
+        var context = CreateContext("rhx-dropdown");
+        var output = CreateOutput("rhx-dropdown", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-hidden=\"false\"", content);
+    }
+
+    [Fact]
+    public async Task Dropdown_Trigger_Has_AriaHaspopup_Menu()
+    {
+        var triggerHelper = new DropdownTriggerTagHelper();
+        var context = CreateContext("rhx-dropdown-trigger");
+        SlotRenderer.CreateForContext(context);
+        context.Items[typeof(DropdownTagHelper)] = new DropdownTagHelper(CreateUrlHelperFactory());
+        context.Items["DropdownPanelId"] = "test-panel";
+        var output = CreateOutput("rhx-dropdown-trigger", childContent: "<button>Actions</button>");
+
+        await triggerHelper.ProcessAsync(context, output);
+
+        var slots = SlotRenderer.FromContext(context)!;
+        var triggerHtml = HtmlContentToString(slots.Get("trigger")!);
+        Assert.Contains("aria-haspopup=\"menu\"", triggerHtml);
+    }
+
+    [Fact]
+    public async Task Dropdown_Trigger_Has_AriaExpanded()
+    {
+        var triggerHelper = new DropdownTriggerTagHelper();
+        var context = CreateContext("rhx-dropdown-trigger");
+        SlotRenderer.CreateForContext(context);
+        context.Items[typeof(DropdownTagHelper)] = new DropdownTagHelper(CreateUrlHelperFactory());
+        context.Items["DropdownPanelId"] = "test-panel";
+        var output = CreateOutput("rhx-dropdown-trigger", childContent: "<button>Actions</button>");
+
+        await triggerHelper.ProcessAsync(context, output);
+
+        var slots = SlotRenderer.FromContext(context)!;
+        var triggerHtml = HtmlContentToString(slots.Get("trigger")!);
+        Assert.Contains("aria-expanded=\"false\"", triggerHtml);
+    }
+
+    [Fact]
+    public async Task Dropdown_Trigger_Has_AriaControls()
+    {
+        var triggerHelper = new DropdownTriggerTagHelper();
+        var context = CreateContext("rhx-dropdown-trigger");
+        SlotRenderer.CreateForContext(context);
+        context.Items[typeof(DropdownTagHelper)] = new DropdownTagHelper(CreateUrlHelperFactory());
+        context.Items["DropdownPanelId"] = "my-menu";
+        var output = CreateOutput("rhx-dropdown-trigger", childContent: "<button>Actions</button>");
+
+        await triggerHelper.ProcessAsync(context, output);
+
+        var slots = SlotRenderer.FromContext(context)!;
+        var triggerHtml = HtmlContentToString(slots.Get("trigger")!);
+        Assert.Contains("aria-controls=\"my-menu\"", triggerHtml);
+    }
+
+    [Fact]
+    public async Task Dropdown_Item_Has_Tabindex_Minus1()
+    {
+        var helper = new DropdownItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        var context = CreateContext("rhx-dropdown-item");
+        var output = CreateOutput("rhx-dropdown-item", childContent: "Edit");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "tabindex", "-1");
+    }
+
+    [Fact]
+    public async Task Dropdown_Link_Item_Has_Tabindex_Minus1()
+    {
+        var helper = new DropdownItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Href = "/settings";
+        var context = CreateContext("rhx-dropdown-item");
+        var output = CreateOutput("rhx-dropdown-item", childContent: "Settings");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.Equal("a", output.TagName);
+        AssertAttribute(output, "tabindex", "-1");
+        AssertAttribute(output, "role", "menuitem");
+    }
+
+    [Fact]
+    public async Task Dropdown_Checkbox_Item_Has_Correct_Role_And_State()
+    {
+        var helper = new DropdownItemTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Type = "checkbox";
+        helper.Checked = true;
+        helper.Value = "col-name";
+        var context = CreateContext("rhx-dropdown-item");
+        var output = CreateOutput("rhx-dropdown-item", childContent: "Name");
+
+        await helper.ProcessAsync(context, output);
+
+        AssertAttribute(output, "role", "menuitemcheckbox");
+        AssertAttribute(output, "aria-checked", "true");
+        AssertAttribute(output, "data-value", "col-name");
+    }
+
+    [Fact]
+    public async Task Dropdown_Panel_Has_AriaLabel()
+    {
+        var helper = new DropdownTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.AriaLabel = "Actions menu";
+        var context = CreateContext("rhx-dropdown");
+        var output = CreateOutput("rhx-dropdown", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-label=\"Actions menu\"", content);
+    }
+
+    // ══════════════════════════════════════════════
+    //  Combobox — APG Combobox Pattern
+    // ══════════════════════════════════════════════
+
+    [Fact]
+    public async Task Combobox_Input_Has_Role_Combobox()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("role=\"combobox\"", content);
+    }
+
+    [Fact]
+    public async Task Combobox_Input_Has_AriaExpanded()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-expanded=\"false\"", content);
+    }
+
+    [Fact]
+    public async Task Combobox_Input_Has_AriaAutocomplete()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("aria-autocomplete=\"list\"", content);
+    }
+
+    [Fact]
+    public async Task Combobox_Input_Has_AriaControls_Pointing_To_Listbox()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        // aria-controls should reference the listbox ID
+        Assert.Contains("aria-controls=\"", content);
+        Assert.Contains("role=\"listbox\"", content);
+    }
+
+    [Fact]
+    public async Task Combobox_Listbox_Has_Role_Listbox()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("role=\"listbox\"", content);
+    }
+
+    [Fact]
+    public async Task Combobox_Has_Autocomplete_Off()
+    {
+        var helper = new ComboboxTagHelper(CreateUrlHelperFactory());
+        helper.ViewContext = CreateViewContext();
+        helper.Name = "city";
+        var context = CreateContext("rhx-combobox");
+        var output = CreateOutput("rhx-combobox", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var content = output.Content.GetContent();
+        Assert.Contains("autocomplete=\"off\"", content);
+    }
+}

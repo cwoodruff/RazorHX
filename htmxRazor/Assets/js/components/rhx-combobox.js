@@ -189,7 +189,10 @@
         switch (e.key) {
           case "ArrowDown":
             e.preventDefault();
-            if (!isOpen()) {
+            if (e.altKey) {
+              // APG: Alt+ArrowDown opens listbox without moving focus
+              if (!isOpen()) open();
+            } else if (!isOpen()) {
               open();
             } else {
               var next = focusedIdx + 1;
@@ -199,7 +202,10 @@
 
           case "ArrowUp":
             e.preventDefault();
-            if (!isOpen()) {
+            if (e.altKey) {
+              // APG: Alt+ArrowUp closes listbox
+              if (isOpen()) close();
+            } else if (!isOpen()) {
               open();
             } else {
               var prev = focusedIdx - 1;

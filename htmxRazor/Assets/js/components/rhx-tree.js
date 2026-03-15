@@ -226,6 +226,37 @@
                     selectItem(item);
                     if (isExpandable(item)) toggleExpand(item);
                     break;
+
+                case '*':
+                    // APG: expand all siblings at the current level
+                    e.preventDefault();
+                    var parentGroup = item.parentElement;
+                    if (parentGroup) {
+                        var siblings = parentGroup.querySelectorAll(':scope > [role="treeitem"]');
+                        siblings.forEach(function (s) {
+                            if (isExpandable(s) && !isExpanded(s)) expand(s);
+                        });
+                    }
+                    break;
+
+                default:
+                    // APG: type-ahead — printable character moves focus to next matching item
+                    if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                        e.preventDefault();
+                        var ch = e.key.toLowerCase();
+                        var visibleAll = getVisibleItems();
+                        var startIdx = visibleAll.indexOf(item);
+                        for (var i = 1; i <= visibleAll.length; i++) {
+                            var candidate = visibleAll[(startIdx + i) % visibleAll.length];
+                            var label = candidate.querySelector('.rhx-tree__item-label');
+                            var text = label ? label.textContent.trim().toLowerCase() : '';
+                            if (text.charAt(0) === ch) {
+                                focusItem(candidate);
+                                break;
+                            }
+                        }
+                    }
+                    break;
             }
         });
 

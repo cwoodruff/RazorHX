@@ -14,7 +14,7 @@ htmxRazor is a complete UI component library implemented as Razor Tag Helpers. E
 
 - **Server-rendered** — No JavaScript framework. Components are Tag Helpers that render HTML on the server.
 - **htmx-native** — Every component supports `hx-get`, `hx-post`, `hx-target`, `hx-swap`, and all htmx attributes directly.
-- **76 components** — Buttons, forms, dialogs, tabs, trees, carousels, toasts, pagination, and more across 10 categories.
+- **80+ components** — Buttons, forms, data tables, dialogs, command palette, tabs, trees, carousels, toasts, pagination, and more across 11 categories.
 - **Design tokens** — Light/dark themes via CSS custom properties. Toggle with `data-rhx-theme` or `RHX.toggleTheme()`.
 - **Accessible** — Semantic HTML, ARIA attributes, keyboard navigation, and screen reader support built in.
 - **Model binding** — Form components integrate with ASP.NET Core model binding, validation, and `ModelExpression`.
@@ -119,6 +119,44 @@ app.Run();
 </rhx-dialog>
 ```
 
+### Data Tables with Server-Driven Sort & Pagination
+
+```html
+<rhx-data-table id="products" rhx-striped="true" rhx-hoverable="true"
+                rhx-sort-url="/Products?handler=TableData"
+                rhx-label="Product list">
+    <rhx-column rhx-field="name" rhx-header="Name" rhx-sortable="true" />
+    <rhx-column rhx-field="price" rhx-header="Price" rhx-sortable="true" />
+    <rhx-column rhx-field="stock" rhx-header="Stock" />
+    @foreach (var p in Model.Items)
+    {
+        <tr><td>@p.Name</td><td>@p.Price</td><td>@p.Stock</td></tr>
+    }
+    <rhx-data-table-pagination rhx-page="1" rhx-page-size="10"
+        rhx-total-items="@Model.TotalItems"
+        rhx-url="/Products?handler=TableData"
+        rhx-target="#products-body" />
+</rhx-data-table>
+```
+
+### Command Palette (Cmd+K Search)
+
+```html
+<!-- Press Cmd+K / Ctrl+K to open -->
+<rhx-command-palette id="search"
+    rhx-placeholder="Search components..."
+    hx-get="/Search"
+    rhx-debounce="200">
+</rhx-command-palette>
+
+<!-- Server returns grouped results -->
+<rhx-command-group rhx-heading="Pages">
+    <rhx-command-item rhx-value="home" rhx-href="/" rhx-icon="home">
+        Home
+    </rhx-command-item>
+</rhx-command-group>
+```
+
 ### Theming
 
 ```html
@@ -144,10 +182,11 @@ app.Run();
 | **Actions** | Button, Button Group, Dropdown |
 | **Forms** | Input, Textarea, Select, Combobox, Checkbox, Switch, Radio, Slider, Rating, Color Picker, File Input, Number Input |
 | **Feedback** | Callout, Badge, Tag, Spinner, Skeleton, Progress Bar, Progress Ring, Tooltip, Toast, Toast Container |
-| **Navigation** | Tabs, Breadcrumb, Tree, Carousel, Pagination |
+| **Navigation** | Tabs, Breadcrumb, Tree, Carousel, Pagination, Skip Nav, Landmark |
 | **Organization** | Card, Divider, Split Panel, Scroller |
-| **Overlays** | Dialog, Drawer, Details |
-| **Imagery** | Icon (43 built-in), Avatar, Animated Image, Comparison, Zoomable Frame |
+| **Overlays** | Dialog, Drawer, Details, Command Palette |
+| **Data Display** | Data Table, Sparkline |
+| **Imagery** | Icon (48 built-in), Avatar, Animated Image, Comparison, Zoomable Frame |
 | **Formatting** | Format Bytes, Format Date, Format Number, Relative Time |
 | **Utilities** | Copy Button, QR Code, Animation, Popup, Popover, Live Region |
 | **Patterns** | Active Search, Infinite Scroll, Lazy Load, Poll |
@@ -169,7 +208,7 @@ app.Run();
 |---------|-------------|
 | `htmxRazor` | Core Tag Helper library with embedded CSS/JS assets |
 | `htmxRazor.Demo` | Documentation site showcasing all components |
-| `htmxRazor.Tests` | 1,469 unit tests for Tag Helper rendering |
+| `htmxRazor.Tests` | 1,652 unit tests for Tag Helper rendering |
 
 ## Development
 
@@ -211,29 +250,24 @@ It's a fully self-contained design system built specifically for this component 
 
 ## Roadmap
 
-Features ranked by **user impact** and **implementation effort**. The library is at v1.2.0 with 76 components; the roadmap below covers what comes next.
+Features ranked by **user impact** and **implementation effort**. The library is at v1.3.0 with 80+ components; the roadmap below covers what comes next.
 
 ### v1.2 — Notifications, Pagination & Quick Wins (Shipped)
 
-All v1.2 features have been delivered:
-
-- **Toast Notification System** — `<rhx-toast-container>` + `<rhx-toast>` with auto-dismiss, severity variants, stacking, and `aria-live` announcements. Server-side `HxToast()` and `HxToastOob()` extension methods.
+- **Toast Notification System** — `<rhx-toast-container>` + `<rhx-toast>` with auto-dismiss, severity variants, stacking, and `aria-live` announcements.
 - **Pagination** — `<rhx-pagination>` with htmx-powered page navigation, ellipsis, first/last/prev/next buttons, and size variants.
-- **ARIA Live Region Manager** — `<rhx-live-region>` for screen reader announcements on htmx swaps with politeness levels and atomic updates.
+- **ARIA Live Region Manager** — `<rhx-live-region>` for screen reader announcements on htmx swaps.
 - **CSS Cascade Layers** — All component CSS wrapped in `@layer` for easy host app overrides without specificity wars.
-- **View Transition Support** — `rhx-transition` and `rhx-transition-name` attributes for smooth animated page transitions via the View Transitions API.
-- **`hx-on:*` Dictionary Attribute** — Dictionary attribute on `htmxRazorTagHelperBase` for htmx 2.x event handler attributes.
+- **View Transition Support** — `rhx-transition` and `rhx-transition-name` attributes for the View Transitions API.
 
-### v1.3 — Data Table, Accessibility & Modern CSS
+### v1.3 — Data Table, Accessibility & Modern CSS (Shipped)
 
-| Feature | Description | Impact | Effort |
-|---------|-------------|--------|--------|
-| **Data Table** | `<rhx-data-table>`, `<rhx-column>`, `<rhx-data-table-pagination>` with server-driven sort, filter, and pagination. Sort headers emit `hx-get` with query parameters; server returns `<tbody>` partials. Includes a `DataTableRequest` model binder for easy handler integration. | Very High | High |
-| **Focus Management After Swaps** | `rhx-focus-after-swap` attribute to move focus to a configurable element after htmx content swaps. On by default for `<rhx-dialog>`, `<rhx-drawer>`, and future wizard component. Addresses WCAG 2.4.3 Focus Order. | High | Medium |
-| **Command Palette** | `<rhx-command-palette>` modal search overlay activated via `Cmd+K`. Fires debounced `hx-get` to a configurable search endpoint. Results grouped with `<rhx-command-group>` and `<rhx-command-item>` with keyboard navigation. Entirely server-rendered results. | High | Medium |
-| **Container Queries** | Update card, data table, dialog, and split panel CSS to use `@container` queries so components respond to their container width rather than the viewport. Pure CSS improvement. | Medium | Low |
-| **Skip Nav & Landmarks** | `<rhx-skip-nav>` (visually hidden, visible on focus) and `<rhx-landmark>` for semantic landmark regions. Simple components addressing WCAG 2.4.1 Bypass Blocks. | Medium | Low |
-| **APG Keyboard Audit** | Formal audit of `<rhx-tabs>`, `<rhx-tree>`, `<rhx-dropdown>`, and `<rhx-combobox>` against the W3C ARIA Authoring Practices Guide keyboard patterns. | Medium | Medium |
+- **Data Table** — `<rhx-data-table>`, `<rhx-column>`, `<rhx-data-table-pagination>` with server-driven sort, filter, and pagination. Includes `DataTableRequest` model binder auto-registered via `AddhtmxRazor()`.
+- **Command Palette** — `<rhx-command-palette>` modal search overlay activated via Cmd+K / Ctrl+K with debounced `hx-get`, grouped results via `<rhx-command-group>` and `<rhx-command-item>`, and full keyboard navigation.
+- **Focus Management After Swaps** — `rhx-focus-after-swap` attribute on the base class. On by default for `<rhx-dialog>` and `<rhx-drawer>` (WCAG 2.4.3).
+- **Skip Nav & Landmarks** — `<rhx-skip-nav>` and `<rhx-landmark>` for semantic page regions (WCAG 2.4.1).
+- **Container Queries** — Card, dialog, split panel, and data table CSS use `@container` queries for container-responsive layouts.
+- **APG Keyboard Audit** — Tabs, tree, dropdown, and combobox audited against W3C ARIA Authoring Practices Guide. Added type-ahead, `*` expand siblings, `Alt+Arrow` patterns.
 
 ### v1.4 — Real-time, Wizard & Patterns
 
@@ -289,7 +323,7 @@ Alternatively, you can pack and install from the template package:
 
 ```bash
 dotnet pack templates/htmxRazor.Templates.csproj -o nupkg
-dotnet new install nupkg/htmxRazor.Templates.1.2.0.nupkg
+dotnet new install nupkg/htmxRazor.Templates.1.3.0.nupkg
 ```
 
 ### Usage

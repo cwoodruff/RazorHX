@@ -126,6 +126,9 @@ public class DropdownItemTagHelper : htmxRazorTagHelperBase
             AriaAttributeHelper.RoleMenuItem(output);
         }
 
+        // ── Focusable but removed from tab order (APG menu pattern) ──
+        output.Attributes.SetAttribute("tabindex", "-1");
+
         // ── Element-specific attributes ──
         if (isLink)
         {
