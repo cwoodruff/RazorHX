@@ -50,7 +50,37 @@ app.Run();
 @addTagHelper *, htmxRazor
 ```
 
-### 4. Use Components
+### 4. Import Component CSS
+
+`AddhtmxRazor()` auto-injects the foundation stylesheets (design tokens, reset, core utilities, and theme) into `<head>`. However, **each component has its own CSS file** that you must import separately. Add `<link>` tags for the components you use in your `_Layout.cshtml`:
+
+```html
+<head>
+    @* Foundation CSS is auto-injected by AddhtmxRazor() *@
+
+    @* Import CSS for each component you use *@
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-input.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-dialog.css" />
+    <!-- Add more as needed -->
+</head>
+```
+
+The naming convention is `/_rhx/css/components/rhx-{component}.css`. For example:
+- `<rhx-button>` → `/_rhx/css/components/rhx-button.css`
+- `<rhx-data-table>` → `/_rhx/css/components/rhx-data-table.css`
+- `<rhx-command-palette>` → `/_rhx/css/components/rhx-command-palette.css`
+
+> **Tip:** Without component CSS, your components will render correctly but appear unstyled. If a component looks generic, check that you've imported its CSS file.
+
+Some components with interactive behavior also need their JavaScript file:
+
+```html
+<script src="/_rhx/js/components/rhx-dialog.js" defer></script>
+<script src="/_rhx/js/components/rhx-tabs.js" defer></script>
+```
+
+### 5. Use Components
 
 ```html
 <rhx-button rhx-variant="brand" rhx-size="large">
@@ -234,7 +264,7 @@ htmxRazor owns its entire rendering and styling stack:
 - **BEM naming** with `rhx-` prefix (`rhx-button`, `rhx-button--brand`, `rhx-button__label`)
 - **Light/dark themes** via `data-rhx-theme` attribute on `<html>`
 - **Utility classes** for layout and spacing (`rhx-flex`, `rhx-gap-md`, `rhx-p-lg`)
-- **Auto-injected assets** — `AddhtmxRazor()` injects tokens, reset, core, and utilities CSS plus the htmx script into `<head>`
+- **Auto-injected foundation** — `AddhtmxRazor()` injects tokens, reset, core, and utilities CSS plus the htmx script into `<head>`. Component-specific CSS (e.g., `rhx-button.css`) must be imported separately — see [Quick Start step 4](#4-import-component-css)
 
 The project uses a custom CSS design system — not Bootstrap or any other CSS framework.
 

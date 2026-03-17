@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - htmxRazor App</title>
-    @* htmxRazor core styles/scripts are auto-injected by htmxRazorTagHelperComponent *@
+    @* htmxRazor foundation styles (tokens, reset, core, utilities, theme) are auto-injected *@
+
+    @* Import CSS for each htmxRazor component you use: /_rhx/css/components/rhx-{component}.css *@
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" />
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>

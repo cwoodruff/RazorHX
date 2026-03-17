@@ -50,10 +50,56 @@ app.Run();</code></pre>
 @@addTagHelper *, htmxRazor</code></pre>
     </div>
 
-    <h2>Your First Component</h2>
-    <p>Use the <code>&lt;rhx-button&gt;</code> tag helper in any Razor page:</p>
+    <h2>Import Component CSS</h2>
+    <p>
+        <code>AddhtmxRazor()</code> auto-injects the <strong>foundation</strong> stylesheets
+        (design tokens, reset, core utilities, and theme) into every page's <code>&lt;head&gt;</code>.
+        However, <strong>each component has its own CSS file</strong> that you must import separately.
+    </p>
+    <p>
+        Add <code>&lt;link&gt;</code> tags in your <code>_Layout.cshtml</code> for the components you use:
+    </p>
     <div class="docs-code">
-        <pre><code>&lt;rhx-button rhx-variant="brand"&gt;Click Me&lt;/rhx-button&gt;</code></pre>
+        <pre><code>&lt;head&gt;
+    &lt;!-- Foundation CSS is auto-injected by AddhtmxRazor() --&gt;
+
+    &lt;!-- Import CSS for each component you use --&gt;
+    &lt;link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" /&gt;
+    &lt;link rel="stylesheet" href="/_rhx/css/components/rhx-input.css" /&gt;
+    &lt;link rel="stylesheet" href="/_rhx/css/components/rhx-dialog.css" /&gt;
+    &lt;!-- Add more as needed --&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+    <p>
+        The naming convention is <code>/_rhx/css/components/rhx-{component}.css</code>. For example:
+    </p>
+    <ul>
+        <li><code>&lt;rhx-button&gt;</code> &rarr; <code>/_rhx/css/components/rhx-button.css</code></li>
+        <li><code>&lt;rhx-data-table&gt;</code> &rarr; <code>/_rhx/css/components/rhx-data-table.css</code></li>
+        <li><code>&lt;rhx-command-palette&gt;</code> &rarr; <code>/_rhx/css/components/rhx-command-palette.css</code></li>
+    </ul>
+    <div class="docs-callout docs-callout--info">
+        <strong>Tip:</strong> Without component CSS, your components will render correctly but appear
+        unstyled. If a component looks generic, check that you've imported its CSS file.
+    </div>
+    <p>
+        Some components with interactive behavior also need their JavaScript file:
+    </p>
+    <div class="docs-code">
+        <pre><code>&lt;script src="/_rhx/js/components/rhx-dialog.js" defer&gt;&lt;/script&gt;
+&lt;script src="/_rhx/js/components/rhx-tabs.js" defer&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <h2>Your First Component</h2>
+    <p>
+        With the button CSS imported, use the <code>&lt;rhx-button&gt;</code> tag helper in any Razor page:
+    </p>
+    <div class="docs-code">
+        <pre><code>&lt;!-- In _Layout.cshtml &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="/_rhx/css/components/rhx-button.css" /&gt;
+
+&lt;!-- In your Razor page --&gt;
+&lt;rhx-button rhx-variant="brand"&gt;Click Me&lt;/rhx-button&gt;</code></pre>
     </div>
     <p>This renders as:</p>
     <div class="docs-preview">
