@@ -205,21 +205,94 @@ Some components with interactive behavior also need their JavaScript file:
 </style>
 ```
 
+### Real-time SSE Streaming
+
+```html
+<!-- Client: declarative SSE container -->
+<rhx-sse-stream rhx-url="/dashboard?handler=StatusStream"
+                rhx-event="status-update">
+    <rhx-spinner />
+</rhx-sse-stream>
+```
+
+```csharp
+// Server: stream events from an IAsyncEnumerable
+public async Task<IActionResult> OnGetStatusStream(CancellationToken ct)
+{
+    await Response.WriteSseStreamAsync(GetUpdatesAsync(), "status-update", ct);
+    return new EmptyResult();
+}
+```
+
+### Multi-step Wizard
+
+```html
+<rhx-wizard rhx-current-step="2" page="/Checkout">
+    <rhx-wizard-step rhx-title="Account" rhx-status="complete">
+        ...
+    </rhx-wizard-step>
+    <rhx-wizard-step rhx-title="Shipping" rhx-status="current">
+        <rhx-input rhx-for="Address" />
+    </rhx-wizard-step>
+    <rhx-wizard-step rhx-title="Payment">
+        ...
+    </rhx-wizard-step>
+</rhx-wizard>
+```
+
+### Response-Aware Form
+
+```html
+<!-- Auto-configures response-targets extension and error handling -->
+<rhx-htmx-form page="/Contact" page-handler="Submit"
+                rhx-error-target="#errors"
+                rhx-reset-on-success="true">
+    <rhx-input rhx-for="Email" />
+    <rhx-button type="submit" rhx-variant="brand">Send</rhx-button>
+</rhx-htmx-form>
+```
+
+### Timeline
+
+```html
+<rhx-timeline>
+    <rhx-timeline-item rhx-variant="success" rhx-label="March 10">
+        Order placed
+    </rhx-timeline-item>
+    <rhx-timeline-item rhx-variant="brand" rhx-label="March 14" rhx-active="true">
+        Shipped
+    </rhx-timeline-item>
+    <rhx-timeline-item rhx-label="Pending">
+        Delivered
+    </rhx-timeline-item>
+</rhx-timeline>
+```
+
+### Optimistic UI
+
+```html
+<!-- Toggle flips immediately; reverts on server error -->
+<rhx-switch name="darkMode" rhx-label="Dark mode"
+            rhx-optimistic="true"
+            hx-post="/settings/darkMode"
+            hx-trigger="change" hx-swap="none" />
+```
+
 ## Component Catalog
 
 | Category | Components |
 |----------|-----------|
 | **Actions** | Button, Button Group, Dropdown |
-| **Forms** | Input, Textarea, Select, Combobox, Checkbox, Switch, Radio, Slider, Rating, Color Picker, File Input, Number Input |
+| **Forms** | Input, Textarea, Select, Combobox, Checkbox, Switch, Radio, Slider, Rating, Color Picker, File Input, Number Input, htmx Form |
 | **Feedback** | Callout, Badge, Tag, Spinner, Skeleton, Progress Bar, Progress Ring, Tooltip, Toast, Toast Container |
-| **Navigation** | Tabs, Breadcrumb, Tree, Carousel, Pagination, Skip Nav, Landmark |
-| **Organization** | Card, Divider, Split Panel, Scroller |
+| **Navigation** | Tabs, Breadcrumb, Tree, Carousel, Pagination, Skip Nav, Landmark, Wizard |
+| **Organization** | Card, Divider, Split Panel, Scroller, Timeline |
 | **Overlays** | Dialog, Drawer, Details, Command Palette |
 | **Data Display** | Data Table, Sparkline |
 | **Imagery** | Icon (48 built-in), Avatar, Animated Image, Comparison, Zoomable Frame |
 | **Formatting** | Format Bytes, Format Date, Format Number, Relative Time |
 | **Utilities** | Copy Button, QR Code, Animation, Popup, Popover, Live Region |
-| **Patterns** | Active Search, Infinite Scroll, Lazy Load, Poll |
+| **Patterns** | Active Search, Infinite Scroll, Lazy Load, Poll, Load More, SSE Stream, Optimistic UI |
 
 ## How It Compares
 
@@ -238,7 +311,7 @@ Some components with interactive behavior also need their JavaScript file:
 |---------|-------------|
 | `htmxRazor` | Core Tag Helper library with embedded CSS/JS assets |
 | `htmxRazor.Demo` | Documentation site showcasing all components |
-| `htmxRazor.Tests` | 1,652 unit tests for Tag Helper rendering |
+| `htmxRazor.Tests` | 1,794 unit tests for Tag Helper rendering |
 
 ## Development
 
@@ -280,7 +353,7 @@ It's a fully self-contained design system built specifically for this component 
 
 ## Roadmap
 
-Features ranked by **user impact** and **implementation effort**. The library is at v1.3.0 with 80+ components; the roadmap below covers what comes next.
+Features ranked by **user impact** and **implementation effort**. The library is at v1.4.0 with 80+ components; the roadmap below covers what comes next.
 
 ### v1.2 — Notifications, Pagination & Quick Wins (Shipped)
 
@@ -299,16 +372,14 @@ Features ranked by **user impact** and **implementation effort**. The library is
 - **Container Queries** — Card, dialog, split panel, and data table CSS use `@container` queries for container-responsive layouts.
 - **APG Keyboard Audit** — Tabs, tree, dropdown, and combobox audited against W3C ARIA Authoring Practices Guide. Added type-ahead, `*` expand siblings, `Alt+Arrow` patterns.
 
-### v1.4 — Real-time, Wizard & Patterns
+### v1.4 — Real-time, Wizard & Patterns (Shipped)
 
-| Feature | Description | Impact | Effort |
-|---------|-------------|--------|--------|
-| **SSE Stream Container** | `<rhx-sse-stream>` wraps `hx-ext="sse"` + `sse-connect` into a declarative Tag Helper. Companion `HtmxSseExtensions.WriteEventAsync()` formats `IAsyncEnumerable<string>` as `text/event-stream`. Aligns with htmx 4.0's streaming-first direction. | High | Medium |
-| **Multi-step Wizard** | `<rhx-wizard>`, `<rhx-wizard-step>` with visual stepper indicator, auto-generated navigation buttons with `hx-post`/`hx-get`, and server-side step state tracking. | High | High |
-| **Response-Aware Form** | `<rhx-htmx-form>` that auto-configures the htmx response-targets extension (`hx-target-422`, `hx-target-5xx`) and injects error-handling JavaScript. Removes per-form boilerplate. | High | Medium |
-| **Timeline** | `<rhx-timeline>`, `<rhx-timeline-item>` with variant-colored connectors, icon slots, and metadata regions. Pairs with `<rhx-infinite-scroll>` for loading additional events. Useful for audit logs, activity feeds, and order tracking. | Medium | Medium |
-| **Optimistic UI** | `rhx-optimistic` attribute on `<rhx-switch>`, `<rhx-rating>`, and `<rhx-button>`. Immediately reflects visual state on click before server response; reverts on error via `htmx:responseError`. | Medium | Medium |
-| **Load More Pattern** | `<rhx-load-more>` button-triggered pagination pattern. Simpler alternative to infinite scroll for content feeds. | Medium | Low |
+- **SSE Stream Container** — `<rhx-sse-stream>` wraps `hx-ext="sse"` + `sse-connect` into a declarative Tag Helper. Companion `HtmxSseExtensions` provides `PrepareSseResponse()`, `WriteSseEventAsync()`, and `WriteSseStreamAsync()` to format `IAsyncEnumerable<string>` as `text/event-stream`.
+- **Multi-step Wizard** — `<rhx-wizard>` and `<rhx-wizard-step>` with visual stepper indicator, auto-generated Previous/Next navigation buttons (`hx-get`/`hx-post`), step status tracking (incomplete, current, complete, error), horizontal/vertical layouts, and linear/non-linear navigation. Server-side `WizardState` and `WizardSessionExtensions` for TempData-based step tracking.
+- **Response-Aware Form** — `<rhx-htmx-form>` auto-configures the htmx `response-targets` extension with `hx-target-422`, `hx-target-4*`, and `hx-target-5*`. Built-in error container with `aria-live`, submit-button disabling, submitting state, and reset-on-success. Pairs with existing `HtmxValidationFailure()` for 422 responses.
+- **Timeline** — `<rhx-timeline>` and `<rhx-timeline-item>` with variant-colored connectors (brand, success, warning, danger), icon slots via `<rhx-timeline-icon>`, labels, active state highlighting, and vertical/horizontal/alternating layouts. Pairs with `<rhx-infinite-scroll>` or `<rhx-load-more>` for loading additional events.
+- **Optimistic UI** — `rhx-optimistic` attribute on `<rhx-switch>`, `<rhx-rating>`, and `<rhx-button>`. Immediately reflects visual state on click before the server responds; reverts automatically on error via `htmx:responseError` with a brief flash animation. Respects `prefers-reduced-motion`.
+- **Load More Pattern** — `<rhx-load-more>` button-triggered pagination. Renders a styled button with `hx-get`, loading spinner, and auto-removal after fetch. Configurable variant, target, swap strategy, and loading text.
 
 ### v2.0 — Platform & DX
 

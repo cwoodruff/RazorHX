@@ -1,0 +1,115 @@
+@page
+@model TimelineModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Timeline";
+    ViewData["ComponentName"] = "Timeline";
+    ViewData["ComponentTag"] = "rhx-timeline";
+    ViewData["ComponentDescription"] = "Vertical or horizontal timeline with variant-colored connectors, icon slots, and metadata regions.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Order Tracking</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-timeline>
+                        <rhx-timeline-item rhx-variant="success" rhx-label="March 10, 2026">
+                            Order placed
+                        </rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="success" rhx-label="March 12, 2026">
+                            Payment confirmed
+                        </rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="brand" rhx-label="March 14, 2026" rhx-active="true">
+                            Shipped
+                        </rhx-timeline-item>
+                        <rhx-timeline-item rhx-label="Pending">
+                            Delivered
+                        </rhx-timeline-item>
+                    </rhx-timeline>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Variants -->
+    <div class="docs-example">
+        <h3>Variants</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variants-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variants-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variants-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-timeline>
+                        <rhx-timeline-item rhx-variant="success">Completed</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="brand">In Progress</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="warning">Review Needed</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="danger">Failed</rhx-timeline-item>
+                    </rhx-timeline>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variants-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantsCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Horizontal -->
+    <div class="docs-example">
+        <h3>Horizontal Layout</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="horiz-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="horiz-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="horiz-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-timeline rhx-layout="horizontal">
+                        <rhx-timeline-item rhx-variant="success" rhx-label="Step 1">Done</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="brand" rhx-label="Step 2" rhx-active="true">Active</rhx-timeline-item>
+                        <rhx-timeline-item rhx-label="Step 3">Pending</rhx-timeline-item>
+                    </rhx-timeline>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="horiz-code">
+                <div class="docs-code">
+                    <pre><code>@Model.HorizontalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Alternate -->
+    <div class="docs-example">
+        <h3>Alternating Layout</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="alt-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="alt-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="alt-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-timeline rhx-align="alternate">
+                        <rhx-timeline-item rhx-variant="brand" rhx-label="9:00 AM">Morning standup</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="success" rhx-label="11:30 AM">Code review</rhx-timeline-item>
+                        <rhx-timeline-item rhx-variant="warning" rhx-label="2:00 PM">Design review</rhx-timeline-item>
+                    </rhx-timeline>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="alt-code">
+                <div class="docs-code">
+                    <pre><code>@Model.AlternateCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>

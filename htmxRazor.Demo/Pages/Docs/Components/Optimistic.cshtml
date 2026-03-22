@@ -1,0 +1,94 @@
+@page
+@model OptimisticModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Optimistic UI";
+    ViewData["ComponentName"] = "Optimistic UI";
+    ViewData["ComponentTag"] = "rhx-optimistic";
+    ViewData["ComponentDescription"] = "Immediately reflects visual state changes on interaction before the server responds. Reverts on error.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <rhx-callout rhx-variant="neutral">
+        The <code>rhx-optimistic</code> attribute is supported on <code>&lt;rhx-switch&gt;</code>,
+        <code>&lt;rhx-rating&gt;</code>, and <code>&lt;rhx-button&gt;</code>. It adds a
+        <code>data-rhx-optimistic</code> data attribute; the companion JavaScript handles
+        visual state management and error rollback.
+    </rhx-callout>
+
+    <!-- Optimistic Switch -->
+    <div class="docs-example">
+        <h3>Optimistic Switch</h3>
+        <p>Toggle flips immediately. If the server returns an error, it reverts.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="switch-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="switch-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="switch-preview" rhx-active="true">
+                <div class="docs-preview" style="display: flex; flex-direction: column; gap: var(--rhx-space-md);">
+                    <rhx-switch name="darkMode" rhx-label="Dark mode (succeeds)"
+                                rhx-optimistic="true"
+                                hx-post="/Docs/Components/Optimistic?handler=Toggle"
+                                hx-trigger="change" hx-swap="none" />
+                    <rhx-switch name="failMode" rhx-label="Fail mode (reverts on error)"
+                                rhx-optimistic="true"
+                                hx-post="/Docs/Components/Optimistic?handler=ToggleError"
+                                hx-trigger="change" hx-swap="none" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="switch-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SwitchCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Optimistic Rating -->
+    <div class="docs-example">
+        <h3>Optimistic Rating</h3>
+        <p>Stars update immediately on click. Reverts if the server rejects the rating.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="rating-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="rating-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="rating-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-rating name="score" rhx-label="Rate this product"
+                                rhx-optimistic="true"
+                                hx-post="/Docs/Components/Optimistic?handler=Rate"
+                                hx-trigger="change" hx-swap="none" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="rating-code">
+                <div class="docs-code">
+                    <pre><code>@Model.RatingCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Optimistic Button -->
+    <div class="docs-example">
+        <h3>Optimistic Button</h3>
+        <p>Button enters loading state on click. Reverts on server error.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="button-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="button-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="button-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-button rhx-variant="brand" rhx-optimistic="true"
+                                hx-post="/Docs/Components/Optimistic?handler=Like"
+                                hx-swap="none">
+                        Like
+                    </rhx-button>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="button-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ButtonCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>

@@ -88,6 +88,13 @@ public class ButtonTagHelper : htmxRazorTagHelperBase
     [HtmlAttributeName("rhx-loading")]
     public bool Loading { get; set; }
 
+    /// <summary>
+    /// Whether to enable optimistic UI. On click, immediately shows loading
+    /// state before the server responds; reverts on error via <c>htmx:responseError</c>.
+    /// </summary>
+    [HtmlAttributeName("rhx-optimistic")]
+    public bool Optimistic { get; set; }
+
     // ──────────────────────────────────────────────
     //  Shape modifiers
     // ──────────────────────────────────────────────
@@ -198,6 +205,8 @@ public class ButtonTagHelper : htmxRazorTagHelperBase
             .AddIf(GetModifierClass("disabled"), Disabled && isLink);
 
         ApplyBaseAttributes(output, css);
+        if (Optimistic)
+            output.Attributes.SetAttribute("data-rhx-optimistic", "");
 
         // ── Element-specific attributes ──
         if (isLink)

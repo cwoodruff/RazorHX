@@ -42,4 +42,34 @@
 .rhx-lazy-load {
     display: block;
 }
+
+/* ── Load More ── */
+
+.rhx-load-more {
+    display: flex;
+    justify-content: center;
+    padding: var(--rhx-space-md);
+}
+
+.rhx-load-more__button {
+    gap: var(--rhx-space-xs);
+}
+
+.rhx-load-more__indicator {
+    display: none;
+}
+
+.rhx-load-more.htmx-request .rhx-load-more__indicator {
+    display: inline-flex;
+}
+
+.rhx-load-more.htmx-request .rhx-load-more__label {
+    opacity: 0.6;
+}
+
+/* ── SSE Stream ── */
+
+.rhx-sse-stream {
+    display: block;
+}
 }

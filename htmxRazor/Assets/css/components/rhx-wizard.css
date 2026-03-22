@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════════════════════════
+   rhx-wizard — Multi-step wizard with stepper indicator
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer rhx.components {
+
+/* ── Container ── */
+
+.rhx-wizard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-lg);
+}
+
+.rhx-wizard--vertical {
+    flex-direction: row;
+}
+
+.rhx-wizard--vertical .rhx-wizard__stepper {
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.rhx-wizard--vertical .rhx-wizard__steps {
+    flex-direction: column;
+}
+
+/* ── Stepper ── */
+
+.rhx-wizard__stepper {
+    display: flex;
+}
+
+.rhx-wizard__steps {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: var(--rhx-space-sm);
+    flex: 1;
+}
+
+.rhx-wizard__step {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-xs);
+    flex: 1;
+}
+
+/* ── Step indicator ── */
+
+.rhx-wizard__step-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--rhx-font-size-sm);
+    font-weight: 600;
+    background: var(--rhx-color-neutral-200);
+    color: var(--rhx-color-neutral-600);
+    border: none;
+    cursor: default;
+    flex-shrink: 0;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+button.rhx-wizard__step-indicator {
+    cursor: pointer;
+}
+
+button.rhx-wizard__step-indicator:hover {
+    background: var(--rhx-color-neutral-300);
+}
+
+.rhx-wizard__step--current .rhx-wizard__step-indicator {
+    background: var(--rhx-color-brand-500);
+    color: white;
+}
+
+.rhx-wizard__step--complete .rhx-wizard__step-indicator {
+    background: var(--rhx-color-success-500);
+    color: white;
+}
+
+.rhx-wizard__step--error .rhx-wizard__step-indicator {
+    background: var(--rhx-color-danger-500);
+    color: white;
+}
+
+/* ── Step label ── */
+
+.rhx-wizard__step-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.rhx-wizard__step-title {
+    font-weight: 500;
+    font-size: var(--rhx-font-size-sm);
+    color: var(--rhx-color-neutral-700);
+}
+
+.rhx-wizard__step--current .rhx-wizard__step-title {
+    color: var(--rhx-color-brand-700);
+}
+
+.rhx-wizard__step-description {
+    font-size: var(--rhx-font-size-xs);
+    color: var(--rhx-color-neutral-500);
+}
+
+/* ── Panel ── */
+
+.rhx-wizard__panel {
+    flex: 1;
+}
+
+/* ── Navigation ── */
+
+.rhx-wizard__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--rhx-space-md);
+}
+
+/* ── Dark theme ── */
+
+[data-rhx-theme="dark"] .rhx-wizard__step-indicator {
+    background: var(--rhx-color-neutral-700);
+    color: var(--rhx-color-neutral-300);
+}
+
+[data-rhx-theme="dark"] button.rhx-wizard__step-indicator:hover {
+    background: var(--rhx-color-neutral-600);
+}
+
+[data-rhx-theme="dark"] .rhx-wizard__step-title {
+    color: var(--rhx-color-neutral-200);
+}
+
+[data-rhx-theme="dark"] .rhx-wizard__step-description {
+    color: var(--rhx-color-neutral-400);
+}
+
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    .rhx-wizard__step-indicator {
+        transition: none;
+    }
+}
+
+}

@@ -1,0 +1,27 @@
+@model int
+@{
+    var step = Model;
+}
+<rhx-wizard rhx-current-step="@step" page="/Docs/Components/Wizard">
+    <rhx-wizard-step rhx-title="Account" rhx-description="Create your account"
+                      rhx-status="@(step > 1 ? "complete" : "current")">
+        <h3>Create Account</h3>
+        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-md); max-width: 400px;">
+            <rhx-input name="username" rhx-label="Username" />
+            <rhx-input name="password" rhx-label="Password" type="password" />
+        </div>
+    </rhx-wizard-step>
+    <rhx-wizard-step rhx-title="Profile" rhx-description="Personal info"
+                      rhx-status="@(step > 2 ? "complete" : step == 2 ? "current" : "incomplete")">
+        <h3>Your Profile</h3>
+        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-md); max-width: 400px;">
+            <rhx-input name="fullName" rhx-label="Full Name" />
+            <rhx-input name="email" rhx-label="Email" type="email" />
+        </div>
+    </rhx-wizard-step>
+    <rhx-wizard-step rhx-title="Confirm" rhx-description="Review &amp; submit"
+                      rhx-status="@(step == 3 ? "current" : "incomplete")">
+        <h3>Review &amp; Confirm</h3>
+        <p>Please review your information before submitting.</p>
+    </rhx-wizard-step>
+</rhx-wizard>

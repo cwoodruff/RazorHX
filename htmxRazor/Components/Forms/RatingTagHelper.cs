@@ -34,6 +34,13 @@ public class RatingTagHelper : FormControlTagHelperBase
     [HtmlAttributeName("rhx-precision")]
     public double Precision { get; set; } = 1;
 
+    /// <summary>
+    /// Whether to enable optimistic UI. Visually reflects rating change
+    /// immediately on click; reverts if the server returns an error.
+    /// </summary>
+    [HtmlAttributeName("rhx-optimistic")]
+    public bool Optimistic { get; set; }
+
     // ──────────────────────────────────────────────
     //  Constructor
     // ──────────────────────────────────────────────
@@ -73,6 +80,8 @@ public class RatingTagHelper : FormControlTagHelperBase
 
         ApplyWrapperAttributes(output, css);
         output.Attributes.SetAttribute("data-rhx-rating", "");
+        if (Optimistic)
+            output.Attributes.SetAttribute("data-rhx-optimistic", "");
         output.Attributes.SetAttribute("data-rhx-precision", Precision.ToString("G", CultureInfo.InvariantCulture));
         output.Attributes.SetAttribute("data-rhx-max", Max.ToString(CultureInfo.InvariantCulture));
 
