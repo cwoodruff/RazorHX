@@ -31,6 +31,13 @@ public class SwitchTagHelper : FormControlTagHelperBase
     [HtmlAttributeName("rhx-checked")]
     public bool Checked { get; set; }
 
+    /// <summary>
+    /// Whether to enable optimistic UI. Visually reflects state change
+    /// immediately on interaction; reverts if the server returns an error.
+    /// </summary>
+    [HtmlAttributeName("rhx-optimistic")]
+    public bool Optimistic { get; set; }
+
     // ──────────────────────────────────────────────
     //  Constructor
     // ──────────────────────────────────────────────
@@ -65,6 +72,8 @@ public class SwitchTagHelper : FormControlTagHelperBase
 
         ApplyWrapperAttributes(output, css);
         output.Attributes.SetAttribute("data-rhx-switch", "");
+        if (Optimistic)
+            output.Attributes.SetAttribute("data-rhx-optimistic", "");
 
         // ── Build inner HTML ──
         var sb = new StringBuilder();

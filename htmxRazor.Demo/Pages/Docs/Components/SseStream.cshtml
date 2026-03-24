@@ -1,0 +1,91 @@
+@page
+@model SseStreamModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "SSE Stream";
+    ViewData["ComponentName"] = "SSE Stream";
+    ViewData["ComponentTag"] = "rhx-sse-stream";
+    ViewData["ComponentDescription"] = "Declarative wrapper for the htmx SSE extension. Streams real-time content from the server via Server-Sent Events.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <rhx-callout rhx-variant="neutral">
+        The SSE Stream component requires the
+        <a href="https://htmx.org/extensions/sse/" target="_blank" rel="noopener">htmx SSE extension</a>.
+        This demo site includes it globally. In your own project, add
+        <code>&lt;script src="https://unpkg.com/htmx-ext-sse"&gt;&lt;/script&gt;</code>
+        to your layout.
+    </rhx-callout>
+
+    <!-- Server Clock -->
+    <div class="docs-example">
+        <h3>Server Clock</h3>
+        <p>Streams the current server time every second for 10 seconds.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="clock-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="clock-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="clock-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-sse-stream rhx-url="/Docs/Components/SseStream?handler=Clock"
+                                     rhx-event="clock">
+                        <rhx-spinner />
+                    </rhx-sse-stream>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="clock-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Close on Event -->
+    <div class="docs-example">
+        <h3>Close on Event</h3>
+        <p>Streams a countdown, then closes the connection when a "done" event is received.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="close-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="close-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="close-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-sse-stream page="/Docs/Components/SseStream" page-handler="Countdown"
+                                     rhx-event="tick" rhx-close-on="done">
+                        Waiting for countdown...
+                    </rhx-sse-stream>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="close-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CloseCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Server-Side Helper -->
+    <div class="docs-example">
+        <h3>Server-Side Helpers</h3>
+        <p>Use the companion <code>HtmxSseExtensions</code> methods to format responses:</p>
+        <div class="docs-code">
+            <pre><code>// In your PageModel or Controller:
+public async Task OnGetStream()
+{
+    Response.PrepareSseResponse();
+
+    await foreach (var item in GetItemsAsync())
+    {
+        await Response.WriteSseEventAsync(item, "message");
+    }
+}
+
+// Or stream an IAsyncEnumerable directly:
+public async Task OnGetStream()
+{
+    await Response.WriteSseStreamAsync(GetItemsAsync(), "message");
+}</code></pre>
+        </div>
+    </div>
+</section>

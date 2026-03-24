@@ -218,6 +218,25 @@
     max-width: 24rem;
 }
 
+/* ── Activity log section ── */
+.activity-section {
+    margin-top: var(--rhx-space-lg);
+}
+
+.activity-section__header {
+    margin-bottom: var(--rhx-space-md);
+}
+
+.activity-section__title {
+    display: flex;
+    align-items: center;
+    gap: var(--rhx-space-sm);
+    font-size: var(--rhx-font-size-lg);
+    font-weight: var(--rhx-font-weight-bold);
+    color: var(--rhx-color-text);
+    margin: 0;
+}
+
 /* ── Fade animation for htmx swaps ── */
 .htmx-swapping {
     opacity: 0;

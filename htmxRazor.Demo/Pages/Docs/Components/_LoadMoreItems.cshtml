@@ -1,0 +1,19 @@
+@model (int Page, int PageSize, int MaxPages, string Target, string Variant, string Label)
+@{
+    var start = (Model.Page - 1) * Model.PageSize + 1;
+}
+@for (var i = start; i < start + Model.PageSize; i++)
+{
+    <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">Item @i</div>
+}
+@if (Model.Page < Model.MaxPages)
+{
+    <rhx-load-more page="/Docs/Components/LoadMore" page-handler="LoadMore"
+                   route-page="@(Model.Page + 1)"
+                   route-target="@Model.Target"
+                   route-variant="@Model.Variant"
+                   target="@Model.Target"
+                   rhx-variant="@Model.Variant">
+        @Model.Label
+    </rhx-load-more>
+}

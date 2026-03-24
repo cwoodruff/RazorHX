@@ -1,0 +1,79 @@
+@page
+@model WizardModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Wizard";
+    ViewData["ComponentName"] = "Wizard";
+    ViewData["ComponentTag"] = "rhx-wizard";
+    ViewData["ComponentDescription"] = "Multi-step wizard with visual stepper indicator, auto-generated navigation buttons, and server-side step state tracking.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic Wizard -->
+    <div class="docs-example">
+        <h3>Basic Wizard</h3>
+        <p>A three-step wizard with automatic Previous/Next navigation via htmx.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <partial name="_WizardPartial" model="Model.CurrentStep" />
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Vertical Layout -->
+    <div class="docs-example">
+        <h3>Vertical Layout</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="vert-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="vert-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="vert-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-wizard rhx-current-step="2" rhx-layout="vertical" page="/Docs/Components/Wizard">
+                        <rhx-wizard-step rhx-title="Basics" rhx-status="complete">
+                            <p>Basic information collected.</p>
+                        </rhx-wizard-step>
+                        <rhx-wizard-step rhx-title="Details" rhx-status="current">
+                            <p>Please fill in the details.</p>
+                        </rhx-wizard-step>
+                        <rhx-wizard-step rhx-title="Review">
+                            <p>Final review before submission.</p>
+                        </rhx-wizard-step>
+                    </rhx-wizard>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="vert-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VerticalCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Server-Side State -->
+    <div class="docs-example">
+        <h3>Server-Side State Tracking</h3>
+        <p>Use <code>WizardState</code> and <code>WizardSessionExtensions</code> to track step progress across requests:</p>
+        <div class="docs-code">
+            <pre><code>public IActionResult OnPostWizardNext(int step)
+{
+    var state = TempData.GetWizardState("checkout");
+    state.MarkComplete(state.CurrentStep);
+    state.CurrentStep = step;
+    TempData.SetWizardState("checkout", state);
+
+    return Partial("_WizardPartial", state);
+}</code></pre>
+        </div>
+    </div>
+</section>

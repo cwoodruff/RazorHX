@@ -1,0 +1,84 @@
+@page
+@model HtmxFormModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "htmx Form";
+    ViewData["ComponentName"] = "htmx Form";
+    ViewData["ComponentTag"] = "rhx-htmx-form";
+    ViewData["ComponentDescription"] = "Response-aware form that auto-configures the htmx response-targets extension and injects error-handling JavaScript.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic Form -->
+    <div class="docs-example">
+        <h3>Basic Form with Validation</h3>
+        <p>Submits via htmx POST. On 422 validation failure, errors are swapped into the error target.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-htmx-form page="/Docs/Components/HtmxForm" page-handler="Contact"
+                                    rhx-error-target="#contact-errors">
+                        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-md); max-width: 400px;">
+                            <rhx-input name="Name" rhx-label="Name" rhx-required="true" />
+                            <rhx-input name="Email" rhx-label="Email" type="email" />
+                            <div id="contact-errors"></div>
+                            <rhx-button type="submit" rhx-variant="brand">Submit</rhx-button>
+                        </div>
+                    </rhx-htmx-form>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Reset on Success -->
+    <div class="docs-example">
+        <h3>Reset on Success</h3>
+        <p>The form resets automatically after a successful submission.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="reset-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="reset-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="reset-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <rhx-htmx-form page="/Docs/Components/HtmxForm" page-handler="Message"
+                                    rhx-reset-on-success="true">
+                        <div style="display: flex; flex-direction: column; gap: var(--rhx-space-md); max-width: 400px;">
+                            <rhx-textarea name="Message" rhx-label="Message" />
+                            <rhx-button type="submit" rhx-variant="brand">Send</rhx-button>
+                        </div>
+                    </rhx-htmx-form>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="reset-code">
+                <div class="docs-code">
+                    <pre><code>@Model.ResetCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Server-Side Pairing -->
+    <div class="docs-example">
+        <h3>Server-Side Pattern</h3>
+        <p>Pair with the existing <code>HtmxValidationFailure()</code> extension for 422 responses:</p>
+        <div class="docs-code">
+            <pre><code>public IActionResult OnPostContact()
+{
+    if (!ModelState.IsValid)
+    {
+        return this.HtmxValidationFailure("_FormErrors", this);
+    }
+
+    return Content("&lt;rhx-callout rhx-variant=\"success\"&gt;Saved!&lt;/rhx-callout&gt;", "text/html");
+}</code></pre>
+        </div>
+    </div>
+</section>

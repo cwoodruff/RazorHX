@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Dialog Size Variants** — `rhx-size` attribute on `<rhx-dialog>` with preset sizes (`small` 24rem, `medium` 32rem, `large` 48rem, `full` 90vw) and custom CSS width support (e.g., `rhx-size="40rem"`). Dialog now expands to fit content up to 48rem by default (previously capped at 32rem).
+- **`palette` icon** — Added to `IconRegistry` for design/theming contexts.
+
 ## [1.3.0] — Data Table, Accessibility & Modern CSS
 
 ### Added

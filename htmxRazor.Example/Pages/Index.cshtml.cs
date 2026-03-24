@@ -22,6 +22,7 @@ public class IndexModel : PageModel
     public int ActiveCount => _todoService.ActiveCount;
     public int CompletedCount => _todoService.CompletedCount;
     public int ProgressPercent => TotalCount == 0 ? 0 : (int)Math.Round(100.0 * CompletedCount / TotalCount);
+    public List<ActivityEntry> Activities => _todoService.GetRecentActivity();
 
     public void OnGet(string? filter, string? search)
     {
@@ -48,11 +49,18 @@ public class IndexModel : PageModel
         return Partial("_Progress", this);
     }
 
+    public IActionResult OnGetActivityLog()
+    {
+        return Partial("_ActivityLog", _todoService.GetRecentActivity());
+    }
+
     public IActionResult OnPostAdd(string title, TodoPriority priority, string? filter)
     {
         if (!string.IsNullOrWhiteSpace(title))
         {
             _todoService.Add(title.Trim(), priority);
+            _todoService.LogActivity($"Added \"{title.Trim()}\"", "success", "plus");
+            Response.HxToast($"Task \"{title.Trim()}\" added", "success");
         }
 
         Response.HxTrigger("todoChanged");
@@ -62,7 +70,16 @@ public class IndexModel : PageModel
 
     public IActionResult OnPostToggle(int id, string? filter)
     {
-        _todoService.Toggle(id);
+        var todo = _todoService.Toggle(id);
+        if (todo is not null)
+        {
+            var action = todo.IsCompleted ? "completed" : "reopened";
+            var variant = todo.IsCompleted ? "success" : "warning";
+            var icon = todo.IsCompleted ? "check-circle" : "refresh";
+            _todoService.LogActivity($"{char.ToUpper(action[0])}{action[1..]} \"{todo.Title}\"", variant, icon);
+            Response.HxToast($"Task {action}", variant);
+        }
+
         Response.HxTrigger("todoChanged");
         Todos = _todoService.GetFiltered(filter, null);
         return Partial("_TodoList", Todos);
@@ -73,6 +90,8 @@ public class IndexModel : PageModel
         if (!string.IsNullOrWhiteSpace(title))
         {
             _todoService.Update(id, title.Trim(), priority);
+            _todoService.LogActivity($"Updated \"{title.Trim()}\"", "brand", "edit");
+            Response.HxToast("Task updated", "brand");
         }
 
         Response.HxTrigger("todoChanged");
@@ -82,7 +101,14 @@ public class IndexModel : PageModel
 
     public IActionResult OnDeleteDelete(int id, string? filter)
     {
+        var todo = _todoService.GetById(id);
         _todoService.Delete(id);
+        if (todo is not null)
+        {
+            _todoService.LogActivity($"Deleted \"{todo.Title}\"", "danger", "trash");
+            Response.HxToast("Task deleted", "danger");
+        }
+
         Response.HxTrigger("todoChanged");
         Todos = _todoService.GetFiltered(filter, null);
         return Partial("_TodoList", Todos);
@@ -90,7 +116,10 @@ public class IndexModel : PageModel
 
     public IActionResult OnDeleteClearCompleted(string? filter)
     {
-        _todoService.ClearCompleted();
+        var count = _todoService.ClearCompleted();
+        _todoService.LogActivity($"Cleared {count} completed task{(count != 1 ? "s" : "")}", "danger", "trash");
+        Response.HxToast($"Cleared {count} completed task{(count != 1 ? "s" : "")}", "danger");
+
         Response.HxTrigger("todoChanged");
         Todos = _todoService.GetFiltered(filter, null);
         return Partial("_TodoList", Todos);

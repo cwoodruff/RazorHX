@@ -4,8 +4,6 @@
     ViewData["Title"] = "My Tasks";
 }
 
-<div id="notification-area"></div>
-
 <!-- Stats -->
 <div id="stats-section" hx-get="/?handler=Stats" hx-trigger="todoChanged from:body" hx-swap="innerHTML">
     @await Html.PartialAsync("_Stats", Model)
@@ -61,21 +59,21 @@
              hx-target="#todo-list"
              hx-swap="innerHTML">
         All
-        <rhx-badge rhx-variant="neutral" rhx-pill="true">@Model.TotalCount</rhx-badge>
+        <rhx-badge rhx-variant="neutral" rhx-pill="true"><span id="badge-all">@Model.TotalCount</span></rhx-badge>
     </rhx-tab>
     <rhx-tab rhx-panel="tasks" rhx-active="@(Model.Filter == "active")"
              hx-get="/?handler=TodoList&filter=active"
              hx-target="#todo-list"
              hx-swap="innerHTML">
         Active
-        <rhx-badge rhx-variant="brand" rhx-pill="true">@Model.ActiveCount</rhx-badge>
+        <rhx-badge rhx-variant="brand" rhx-pill="true"><span id="badge-active">@Model.ActiveCount</span></rhx-badge>
     </rhx-tab>
     <rhx-tab rhx-panel="tasks" rhx-active="@(Model.Filter == "completed")"
              hx-get="/?handler=TodoList&filter=completed"
              hx-target="#todo-list"
              hx-swap="innerHTML">
         Completed
-        <rhx-badge rhx-variant="success" rhx-pill="true">@Model.CompletedCount</rhx-badge>
+        <rhx-badge rhx-variant="success" rhx-pill="true"><span id="badge-completed">@Model.CompletedCount</span></rhx-badge>
     </rhx-tab>
 
     <rhx-tab-panel rhx-name="tasks" rhx-active="true">
@@ -162,6 +160,20 @@
         </rhx-dialog-footer>
     </form>
 </rhx-dialog>
+
+<!-- Activity Log (v1.4: Timeline) -->
+<rhx-divider />
+<section class="activity-section">
+    <div class="activity-section__header">
+        <h2 class="activity-section__title">
+            <rhx-icon rhx-name="clock" rhx-size="20" aria-hidden="true"></rhx-icon>
+            Recent Activity
+        </h2>
+    </div>
+    <div id="activity-log" hx-get="/?handler=ActivityLog" hx-trigger="todoChanged from:body" hx-swap="innerHTML">
+        @await Html.PartialAsync("_ActivityLog", Model.Activities)
+    </div>
+</section>
 
 @section Scripts {
 <script>

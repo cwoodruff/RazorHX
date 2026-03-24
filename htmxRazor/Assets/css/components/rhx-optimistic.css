@@ -1,0 +1,33 @@
+/* ═══════════════════════════════════════════════════════════════
+   rhx-optimistic — Optimistic UI transition and revert styles
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer rhx.components {
+
+[data-rhx-optimistic] {
+    transition: opacity 0.15s ease;
+}
+
+[data-rhx-optimistic].htmx-request {
+    opacity: 0.8;
+}
+
+@keyframes rhx-optimistic-revert {
+    0% { outline: 2px solid var(--rhx-color-danger-300); }
+    100% { outline: 2px solid transparent; }
+}
+
+[data-rhx-optimistic].rhx-optimistic--reverted {
+    animation: rhx-optimistic-revert 0.6s ease-out;
+}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-rhx-optimistic] {
+        transition: none;
+    }
+    [data-rhx-optimistic].rhx-optimistic--reverted {
+        animation: none;
+    }
+}

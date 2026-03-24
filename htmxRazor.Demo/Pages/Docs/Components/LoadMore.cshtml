@@ -1,0 +1,69 @@
+@page
+@model LoadMoreModel
+@{
+    Layout = "_ComponentPage";
+    ViewData["Title"] = "Load More";
+    ViewData["ComponentName"] = "Load More";
+    ViewData["ComponentTag"] = "rhx-load-more";
+    ViewData["ComponentDescription"] = "Button-triggered pagination pattern. A simpler alternative to infinite scroll for content feeds.";
+}
+
+<section class="docs-component-section">
+    <h2>Examples</h2>
+
+    <!-- Basic -->
+    <div class="docs-example">
+        <h3>Basic Load More</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="basic-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="basic-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="basic-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div id="item-list" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); padding: var(--rhx-space-md);">
+                        @foreach (var item in Model.Items)
+                        {
+                            <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">@item</div>
+                        }
+                        <rhx-load-more page="/Docs/Components/LoadMore" page-handler="LoadMore"
+                                       route-page="2" route-target="#item-list" route-variant="neutral" route-label="Load more items"
+                                       target="#item-list">
+                            Load more items
+                        </rhx-load-more>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="basic-code">
+                <div class="docs-code">
+                    <pre><code>@Model.BasicCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Variant -->
+    <div class="docs-example">
+        <h3>Brand Variant</h3>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="variant-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="variant-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="variant-preview" rhx-active="true">
+                <div class="docs-preview">
+                    <div id="item-list2" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--rhx-color-border); border-radius: var(--rhx-radius-md); padding: var(--rhx-space-md);">
+                        <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">Item 1</div>
+                        <div class="rhx-card" style="padding: var(--rhx-space-md); margin-bottom: var(--rhx-space-xs);">Item 2</div>
+                        <rhx-load-more page="/Docs/Components/LoadMore" page-handler="LoadMore"
+                                       route-page="2" route-target="#item-list2" route-variant="brand" route-label="Show more"
+                                       target="#item-list2" rhx-variant="brand">
+                            Show more
+                        </rhx-load-more>
+                    </div>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="variant-code">
+                <div class="docs-code">
+                    <pre><code>@Model.VariantCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+</section>

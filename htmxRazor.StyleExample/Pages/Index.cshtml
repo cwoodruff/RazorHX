@@ -315,3 +315,101 @@
         </p>
     </rhx-details>
 </div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 10: Toast Notifications (v1.2) -->
+<div class="section">
+    <h2 class="section__title">10. Toast Notifications <rhx-badge rhx-variant="brand" rhx-pill="true">v1.2</rhx-badge></h2>
+    <p class="section__description">
+        Toast notifications inherit variant colors from design tokens. The brand variant
+        uses the custom violet palette.
+    </p>
+
+    <div class="toast-demo">
+        <rhx-toast rhx-variant="success">Changes saved successfully.</rhx-toast>
+        <rhx-toast rhx-variant="brand">Deployment started for staging environment.</rhx-toast>
+        <rhx-toast rhx-variant="warning">API rate limit approaching — 90% consumed.</rhx-toast>
+        <rhx-toast rhx-variant="danger">Build failed — 3 test failures detected.</rhx-toast>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 11: Timeline (v1.4) -->
+<div class="section">
+    <h2 class="section__title">11. Timeline <rhx-badge rhx-variant="brand" rhx-pill="true">v1.4</rhx-badge></h2>
+    <p class="section__description">
+        Timeline connectors and dots use variant colors. The brand variant shows
+        the violet override; other variants keep their semantic colors.
+    </p>
+
+    <rhx-timeline rhx-layout="vertical" rhx-align="start">
+        <rhx-timeline-item rhx-variant="brand" rhx-label="Today">
+            <rhx-timeline-icon>
+                <rhx-icon rhx-name="star" rhx-size="16"></rhx-icon>
+            </rhx-timeline-icon>
+            Custom theme applied — violet brand palette active
+        </rhx-timeline-item>
+        <rhx-timeline-item rhx-variant="success" rhx-label="Yesterday">
+            <rhx-timeline-icon>
+                <rhx-icon rhx-name="check-circle" rhx-size="16"></rhx-icon>
+            </rhx-timeline-icon>
+            Design tokens validated across all components
+        </rhx-timeline-item>
+        <rhx-timeline-item rhx-variant="warning" rhx-label="Mar 20">
+            <rhx-timeline-icon>
+                <rhx-icon rhx-name="alert-triangle" rhx-size="16"></rhx-icon>
+            </rhx-timeline-icon>
+            Dark mode contrast ratios flagged for review
+        </rhx-timeline-item>
+        <rhx-timeline-item rhx-variant="danger" rhx-label="Mar 18">
+            <rhx-timeline-icon>
+                <rhx-icon rhx-name="x-circle" rhx-size="16"></rhx-icon>
+            </rhx-timeline-icon>
+            Font fallback regression fixed in Safari
+        </rhx-timeline-item>
+        <rhx-timeline-item rhx-variant="neutral" rhx-label="Mar 15">
+            <rhx-timeline-icon>
+                <rhx-icon rhx-name="edit" rhx-size="16"></rhx-icon>
+            </rhx-timeline-icon>
+            Initial theme file created
+        </rhx-timeline-item>
+    </rhx-timeline>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 12: Pagination (v1.2) -->
+<div class="section">
+    <h2 class="section__title">12. Pagination <rhx-badge rhx-variant="brand" rhx-pill="true">v1.2</rhx-badge></h2>
+    <p class="section__description">
+        Pagination active-page indicators and hover states use the brand color tokens.
+    </p>
+
+    <rhx-pagination rhx-current-page="3" rhx-total-pages="12" rhx-show-info="true" rhx-label="Example pagination"></rhx-pagination>
+
+    <h3 class="section__title" style="font-size: var(--rhx-font-size-lg); margin-top: var(--rhx-space-xl);">Pagination Sizes</h3>
+    <div style="display: flex; flex-direction: column; gap: var(--rhx-space-lg);">
+        <rhx-pagination rhx-current-page="1" rhx-total-pages="5" rhx-size="small" rhx-label="Small pagination"></rhx-pagination>
+        <rhx-pagination rhx-current-page="2" rhx-total-pages="5" rhx-size="medium" rhx-label="Medium pagination"></rhx-pagination>
+        <rhx-pagination rhx-current-page="3" rhx-total-pages="5" rhx-size="large" rhx-label="Large pagination"></rhx-pagination>
+    </div>
+</div>
+
+<rhx-divider></rhx-divider>
+
+<!-- Section 13: Switch -->
+<div class="section">
+    <h2 class="section__title">13. Switch Controls</h2>
+    <p class="section__description">
+        Switch toggles use the brand color when checked. The violet track color
+        comes from the <code>--rhx-color-brand-500</code> token override.
+    </p>
+
+    <div class="demo-row" style="flex-direction: column; gap: var(--rhx-space-md);">
+        <rhx-switch rhx-label="Enable notifications" rhx-checked="true"></rhx-switch>
+        <rhx-switch rhx-label="Dark mode sync" rhx-checked="false"></rhx-switch>
+        <rhx-switch rhx-label="Auto-save drafts" rhx-checked="true"></rhx-switch>
+    </div>
+</div>

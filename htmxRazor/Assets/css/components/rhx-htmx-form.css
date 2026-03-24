@@ -1,0 +1,36 @@
+/* ═══════════════════════════════════════════════════════════════
+   rhx-htmx-form — Response-aware form with error handling
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer rhx.components {
+
+.rhx-htmx-form {
+    display: block;
+}
+
+.rhx-htmx-form__error-container {
+    margin-top: var(--rhx-space-md);
+}
+
+.rhx-htmx-form__error-container:not([hidden]) {
+    padding: var(--rhx-space-md);
+    background: var(--rhx-color-danger-50);
+    border: 1px solid var(--rhx-color-danger-200);
+    border-radius: var(--rhx-radius-md);
+    color: var(--rhx-color-danger-700);
+}
+
+.rhx-htmx-form--submitting {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* ── Dark theme ── */
+
+[data-rhx-theme="dark"] .rhx-htmx-form__error-container:not([hidden]) {
+    background: var(--rhx-color-danger-950);
+    border-color: var(--rhx-color-danger-800);
+    color: var(--rhx-color-danger-200);
+}
+
+}

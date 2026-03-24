@@ -88,6 +88,9 @@ public static class IconRegistry
         Register("unlock", "<rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" /><path d=\"M7 11V7a5 5 0 019.9-1\" />");
         Register("globe", "<circle cx=\"12\" cy=\"12\" r=\"10\" /><path d=\"M2 12h20\" /><path d=\"M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z\" />");
 
+        // ── Design ──
+        Register("palette", "<circle cx=\"13.5\" cy=\"6.5\" r=\"1.5\" fill=\"currentColor\" /><circle cx=\"17.5\" cy=\"10.5\" r=\"1.5\" fill=\"currentColor\" /><circle cx=\"8.5\" cy=\"7.5\" r=\"1.5\" fill=\"currentColor\" /><circle cx=\"6.5\" cy=\"12\" r=\"1.5\" fill=\"currentColor\" /><path d=\"M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10a2 2 0 002-2v-1c0-.55-.22-1.05-.59-1.41A1.993 1.993 0 0114.73 16H16c3.31 0 6-2.69 6-6 0-4.96-4.49-8-10-8z\" />");
+
         // ── UI / Layout ──
         Register("cursor", "<path d=\"M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z\" /><path d=\"M13 13l6 6\" />");
         Register("grid", "<rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" /><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" /><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" /><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" />");

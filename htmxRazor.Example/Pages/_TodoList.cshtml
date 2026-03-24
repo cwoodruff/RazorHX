@@ -17,6 +17,7 @@ else
         {
             <div class="todo-item @(todo.IsCompleted ? "todo-item--completed" : "")" id="todo-@todo.Id">
                 <rhx-checkbox rhx-checked="@todo.IsCompleted"
+                              rhx-optimistic="true"
                               hx-post="/?handler=Toggle&id=@todo.Id"
                               hx-target="#todo-list"
                               hx-include="[name='filter']"
