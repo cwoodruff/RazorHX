@@ -24,7 +24,7 @@ namespace htmxRazor.Components.Overlays;
 /// </remarks>
 /// <example>
 /// <code>
-/// &lt;rhx-dialog id="edit-dialog" rhx-label="Edit Item"&gt;
+/// &lt;rhx-dialog id="edit-dialog" rhx-label="Edit Item" rhx-size="large"&gt;
 ///     &lt;form&gt;...&lt;/form&gt;
 ///     &lt;rhx-dialog-footer&gt;
 ///         &lt;rhx-button rhx-variant="ghost"&gt;Cancel&lt;/rhx-button&gt;
@@ -69,6 +69,16 @@ public class DialogTagHelper : htmxRazorTagHelperBase
     public bool NoHeader { get; set; }
 
     /// <summary>
+    /// The size of the dialog. Preset values: <c>small</c> (24rem), <c>medium</c> (32rem),
+    /// <c>large</c> (48rem), <c>full</c> (90vw). Any other value is treated as a custom
+    /// CSS width (e.g., <c>40rem</c>, <c>600px</c>, <c>80%</c>) and applied via an
+    /// inline <c>--rhx-dialog-width</c> custom property.
+    /// When omitted the dialog expands to fit its content up to <c>max-width</c>.
+    /// </summary>
+    [HtmlAttributeName("rhx-size")]
+    public string? Size { get; set; }
+
+    /// <summary>
     /// Creates a new DialogTagHelper with URL generation support.
     /// </summary>
     public DialogTagHelper(IUrlHelperFactory urlHelperFactory) : base(urlHelperFactory) { }
@@ -83,6 +93,27 @@ public class DialogTagHelper : htmxRazorTagHelperBase
         output.TagMode = TagMode.StartTagAndEndTag;
 
         var css = CreateCssBuilder();
+
+        // Size modifier
+        if (!string.IsNullOrWhiteSpace(Size))
+        {
+            var normalized = Size.Trim().ToLowerInvariant();
+            if (normalized is "small" or "medium" or "large" or "full")
+            {
+                css.Add($"rhx-dialog--{normalized}");
+            }
+            else
+            {
+                css.Add("rhx-dialog--custom");
+                // Apply custom width via CSS custom property
+                var existingStyle = output.Attributes["style"]?.Value?.ToString() ?? "";
+                var styleValue = string.IsNullOrWhiteSpace(existingStyle)
+                    ? $"--rhx-dialog-width: {Size}"
+                    : $"{existingStyle.TrimEnd(';')}; --rhx-dialog-width: {Size}";
+                output.Attributes.SetAttribute("style", styleValue);
+            }
+        }
+
         ApplyBaseAttributes(output, css);
 
         output.Attributes.SetAttribute("data-rhx-dialog", "");

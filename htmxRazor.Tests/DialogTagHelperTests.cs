@@ -346,6 +346,83 @@ public class DialogTagHelperTests : TagHelperTestBase
     }
 
     // ══════════════════════════════════════════════
+    //  Size
+    // ══════════════════════════════════════════════
+
+    [Theory]
+    [InlineData("small")]
+    [InlineData("medium")]
+    [InlineData("large")]
+    [InlineData("full")]
+    public async Task Size_Preset_Adds_Modifier_Class(string size)
+    {
+        var helper = CreateHelper();
+        helper.Size = size;
+        var context = CreateContext("rhx-dialog");
+        var output = CreateOutput("rhx-dialog", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, $"rhx-dialog--{size}"));
+    }
+
+    [Fact]
+    public async Task Size_Custom_Value_Adds_Custom_Class()
+    {
+        var helper = CreateHelper();
+        helper.Size = "40rem";
+        var context = CreateContext("rhx-dialog");
+        var output = CreateOutput("rhx-dialog", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-dialog--custom"));
+    }
+
+    [Fact]
+    public async Task Size_Custom_Value_Sets_CssProperty()
+    {
+        var helper = CreateHelper();
+        helper.Size = "40rem";
+        var context = CreateContext("rhx-dialog");
+        var output = CreateOutput("rhx-dialog", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        var style = GetAttribute(output, "style");
+        Assert.Contains("--rhx-dialog-width: 40rem", style);
+    }
+
+    [Fact]
+    public async Task Size_Null_No_Size_Class()
+    {
+        var helper = CreateHelper();
+        var context = CreateContext("rhx-dialog");
+        var output = CreateOutput("rhx-dialog", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.False(HasClass(output, "rhx-dialog--small"));
+        Assert.False(HasClass(output, "rhx-dialog--medium"));
+        Assert.False(HasClass(output, "rhx-dialog--large"));
+        Assert.False(HasClass(output, "rhx-dialog--full"));
+        Assert.False(HasClass(output, "rhx-dialog--custom"));
+    }
+
+    [Fact]
+    public async Task Size_Is_Case_Insensitive()
+    {
+        var helper = CreateHelper();
+        helper.Size = "Large";
+        var context = CreateContext("rhx-dialog");
+        var output = CreateOutput("rhx-dialog", childContent: "");
+
+        await helper.ProcessAsync(context, output);
+
+        Assert.True(HasClass(output, "rhx-dialog--large"));
+    }
+
+    // ══════════════════════════════════════════════
     //  htmx support
     // ══════════════════════════════════════════════
 

@@ -139,8 +139,12 @@ Some components with interactive behavior also need their JavaScript file:
     Edit Profile
 </rhx-button>
 
-<rhx-dialog id="edit-dialog" rhx-label="Edit Profile">
-    <rhx-input rhx-for="DisplayName" />
+<!-- rhx-size: small | medium | large | full | any CSS width -->
+<rhx-dialog id="edit-dialog" rhx-label="Edit Profile" rhx-size="large">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <rhx-input rhx-for="FirstName" />
+        <rhx-input rhx-for="LastName" />
+    </div>
     <rhx-dialog-footer>
         <rhx-button rhx-variant="neutral" rhx-appearance="outlined"
                     onclick="this.closest('dialog').close()">Cancel</rhx-button>
@@ -311,7 +315,7 @@ public async Task<IActionResult> OnGetStatusStream(CancellationToken ct)
 |---------|-------------|
 | `htmxRazor` | Core Tag Helper library with embedded CSS/JS assets |
 | `htmxRazor.Demo` | Documentation site showcasing all components |
-| `htmxRazor.Tests` | 1,794 unit tests for Tag Helper rendering |
+| `htmxRazor.Tests` | 1,802 unit tests for Tag Helper rendering |
 
 ## Development
 

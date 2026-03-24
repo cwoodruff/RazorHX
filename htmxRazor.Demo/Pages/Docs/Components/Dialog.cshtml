@@ -103,6 +103,108 @@
         </rhx-tab-group>
     </div>
 
+    <!-- Size Variants -->
+    <div class="docs-example">
+        <h3>Size Variants</h3>
+        <p>Use <code>rhx-size</code> to control the dialog width. Preset values: <code>small</code>, <code>medium</code>, <code>large</code>, <code>full</code>.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="size-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="size-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="size-preview" rhx-active="true">
+                <div class="docs-preview" style="display: flex; gap: var(--rhx-space-md); flex-wrap: wrap;">
+                    <rhx-button rhx-variant="neutral" rhx-appearance="outlined" rhx-size="small"
+                                data-rhx-dialog-open="size-sm-dialog">Small</rhx-button>
+                    <rhx-button rhx-variant="neutral" rhx-appearance="outlined" rhx-size="small"
+                                data-rhx-dialog-open="size-md-dialog">Medium</rhx-button>
+                    <rhx-button rhx-variant="brand" rhx-size="small"
+                                data-rhx-dialog-open="size-lg-dialog">Large</rhx-button>
+                    <rhx-button rhx-variant="neutral" rhx-appearance="outlined" rhx-size="small"
+                                data-rhx-dialog-open="size-full-dialog">Full</rhx-button>
+
+                    <rhx-dialog id="size-sm-dialog" rhx-label="Small Dialog" rhx-size="small">
+                        <p>A compact dialog at <strong>24rem</strong> wide. Good for confirmations and short messages.</p>
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="brand" rhx-size="small"
+                                        onclick="this.closest('dialog').close()">Got it</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+
+                    <rhx-dialog id="size-md-dialog" rhx-label="Medium Dialog" rhx-size="medium">
+                        <p>The medium size at <strong>32rem</strong> wide. Works well for simple forms with a few fields.</p>
+                        <rhx-input rhx-label="Name" rhx-placeholder="Enter your name" name="demo-name" />
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="neutral" rhx-appearance="outlined"
+                                        onclick="this.closest('dialog').close()">Cancel</rhx-button>
+                            <rhx-button rhx-variant="brand"
+                                        onclick="this.closest('dialog').close()">Save</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+
+                    <rhx-dialog id="size-lg-dialog" rhx-label="Large Dialog" rhx-size="large">
+                        <p>A wide dialog at <strong>48rem</strong>. Ideal for multi-column forms, data tables, or detailed content.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--rhx-space-md); margin-top: var(--rhx-space-md);">
+                            <rhx-input rhx-label="First Name" rhx-placeholder="Jane" name="demo-first" />
+                            <rhx-input rhx-label="Last Name" rhx-placeholder="Smith" name="demo-last" />
+                            <rhx-input rhx-label="Email" rhx-placeholder="jane@example.com" name="demo-email" type="email" />
+                            <rhx-input rhx-label="Phone" rhx-placeholder="+1 555-1234" name="demo-phone" type="tel" />
+                        </div>
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="neutral" rhx-appearance="outlined"
+                                        onclick="this.closest('dialog').close()">Cancel</rhx-button>
+                            <rhx-button rhx-variant="brand"
+                                        onclick="this.closest('dialog').close()">Save Profile</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+
+                    <rhx-dialog id="size-full-dialog" rhx-label="Full-Width Dialog" rhx-size="full">
+                        <p>Full-width dialog at <strong>90vw</strong>. Useful for complex workflows, dashboards, or image previews.</p>
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="brand"
+                                        onclick="this.closest('dialog').close()">Close</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="size-code">
+                <div class="docs-code">
+                    <pre><code>@Model.SizeCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
+    <!-- Custom Width -->
+    <div class="docs-example">
+        <h3>Custom Width</h3>
+        <p>Pass any CSS width value to <code>rhx-size</code> for a custom dialog width.</p>
+        <rhx-tab-group>
+            <rhx-tab rhx-panel="custom-preview" rhx-active="true">Preview</rhx-tab>
+            <rhx-tab rhx-panel="custom-code">Code</rhx-tab>
+            <rhx-tab-panel rhx-name="custom-preview" rhx-active="true">
+                <div class="docs-preview" style="display: flex; gap: var(--rhx-space-md); flex-wrap: wrap;">
+                    <rhx-button rhx-variant="brand" rhx-appearance="outlined"
+                                data-rhx-dialog-open="custom-width-dialog">
+                        Open 40rem Dialog
+                    </rhx-button>
+
+                    <rhx-dialog id="custom-width-dialog" rhx-label="Custom Width" rhx-size="40rem">
+                        <p>This dialog uses a custom width of <strong>40rem</strong> set via <code>rhx-size="40rem"</code>.</p>
+                        <p>You can use any CSS length: <code>600px</code>, <code>70vw</code>, <code>40rem</code>, etc.</p>
+                        <rhx-dialog-footer>
+                            <rhx-button rhx-variant="brand"
+                                        onclick="this.closest('dialog').close()">Close</rhx-button>
+                        </rhx-dialog-footer>
+                    </rhx-dialog>
+                </div>
+            </rhx-tab-panel>
+            <rhx-tab-panel rhx-name="custom-code">
+                <div class="docs-code">
+                    <pre><code>@Model.CustomWidthCode</code></pre>
+                </div>
+            </rhx-tab-panel>
+        </rhx-tab-group>
+    </div>
+
     <!-- htmx Integration -->
     <div class="docs-example">
         <h3>htmx Integration</h3>
