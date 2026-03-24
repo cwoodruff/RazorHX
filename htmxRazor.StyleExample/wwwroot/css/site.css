@@ -198,3 +198,10 @@
     background: var(--rhx-color-brand-500);
     flex-shrink: 0;
 }
+
+/* ── Toast demo (static inline display) ── */
+.toast-demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rhx-space-md);
+}

@@ -20,12 +20,18 @@
     <link rel="stylesheet" href="/_rhx/css/components/rhx-spinner.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-details.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-tabs.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-toast.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-timeline.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-pagination.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-skip-nav.css" />
     <!-- Custom theme: overrides htmxRazor design tokens -->
     <link rel="stylesheet" href="~/css/custom-theme.css" />
     <!-- App-specific layout styles -->
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <rhx-skip-nav rhx-target="#main-content" rhx-label="Skip to main content" />
+
     <header class="app-header">
         <div class="app-header__inner">
             <div class="app-header__brand">
@@ -43,7 +49,7 @@
         </div>
     </header>
 
-    <main class="app-main">
+    <main id="main-content" class="app-main">
         @RenderBody()
     </main>
 
