@@ -88,4 +88,25 @@ public class TodoService
     public int TotalCount => _todos.Count;
     public int ActiveCount => _todos.Count(t => !t.IsCompleted);
     public int CompletedCount => _todos.Count(t => t.IsCompleted);
+
+    // ── Activity Log ──
+
+    private static readonly List<ActivityEntry> _activities = new()
+    {
+        new() { Message = "Project created", Variant = "brand", Icon = "check-circle", Timestamp = DateTime.UtcNow.AddDays(-3) },
+    };
+
+    public List<ActivityEntry> GetRecentActivity(int count = 8) =>
+        _activities.OrderByDescending(a => a.Timestamp).Take(count).ToList();
+
+    public void LogActivity(string message, string variant = "neutral", string icon = "info")
+    {
+        _activities.Add(new ActivityEntry
+        {
+            Message = message,
+            Variant = variant,
+            Icon = icon,
+            Timestamp = DateTime.UtcNow
+        });
+    }
 }

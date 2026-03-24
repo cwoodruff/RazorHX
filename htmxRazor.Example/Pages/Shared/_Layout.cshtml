@@ -21,9 +21,14 @@
     <link rel="stylesheet" href="/_rhx/css/components/rhx-tag.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-switch.css" />
     <link rel="stylesheet" href="/_rhx/css/components/rhx-details.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-toast.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-timeline.css" />
+    <link rel="stylesheet" href="/_rhx/css/components/rhx-skip-nav.css" />
     <link rel="stylesheet" href="~/css/app.css" />
 </head>
 <body>
+    <rhx-skip-nav rhx-target="#main-content" rhx-label="Skip to main content" />
+
     <header class="app-header">
         <div class="app-header__inner">
             <div class="app-header__brand">
@@ -41,7 +46,7 @@
         </div>
     </header>
 
-    <main class="app-main">
+    <main id="main-content" class="app-main">
         @RenderBody()
     </main>
 
@@ -50,6 +55,8 @@
         <rhx-badge rhx-variant="brand" rhx-pill="true">htmxRazor</rhx-badge>
         <span>+ htmx</span>
     </footer>
+
+    <rhx-toast-container rhx-position="top-end" rhx-duration="4000" rhx-max="3" />
 
     @Html.AntiForgeryToken()
     <script>
@@ -65,6 +72,8 @@
     <script src="/_rhx/js/components/rhx-tabs.js" defer></script>
     <script src="/_rhx/js/components/rhx-dialog.js" defer></script>
     <script src="/_rhx/js/components/rhx-validation.js" defer></script>
+    <script src="/_rhx/js/components/rhx-toast.js" defer></script>
+    <script src="/_rhx/js/components/rhx-timeline.js" defer></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

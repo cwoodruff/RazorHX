@@ -25,3 +25,14 @@ public enum TodoPriority
     Medium,
     High
 }
+
+/// <summary>
+/// Represents an entry in the activity log displayed as a timeline.
+/// </summary>
+public class ActivityEntry
+{
+    public string Message { get; set; } = string.Empty;
+    public string Variant { get; set; } = "neutral";
+    public string Icon { get; set; } = "info";
+    public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+}
