@@ -6,6 +6,8 @@
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.
 microsoft.com/)
 
+<a href="https://www.producthunt.com/products/htmxrazor?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-htmxrazor" target="_blank" rel="noopener noreferrer"><img alt="htmxRazor - Server-rendered UI components for ASP.NET Core with htmx | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1089741&amp;theme=light&amp;t=1774441690528"></a>
+
 **Server-rendered UI components for ASP.NET Core with first-class htmx integration.**
 
 htmxRazor is a complete UI component library implemented as Razor Tag Helpers. Every component renders clean, semantic HTML styled by its own CSS design system. No client-side framework required — just add htmx attributes to any component for dynamic behavior.
